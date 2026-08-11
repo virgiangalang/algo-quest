@@ -1,0 +1,583 @@
+{
+  "level": "sd-kelas-4-6",
+  "label": "SD Kelas 4–6",
+  "ageRange": "10–12 tahun",
+  "curriculum": "Kurikulum Merdeka",
+  "caseTitle": "Kode yang Hilang",
+  "chapters": [
+    {
+      "id": "bab-1",
+      "title": "Bab 1 — Insiden di Lab",
+      "questions": [
+        {
+          "id": "q1-1",
+          "scene": "Pintu laboratorium terkunci rapat. Sebuah keypad menyala di sampingnya.",
+          "q": "Sebuah kotak berisi 240 microchip. Sebanyak 3/8 di antaranya berwarna biru. Berapa jumlah chip biru?",
+          "choices": ["80", "90", "120", "150"],
+          "answer": 1,
+          "skill": "Pecahan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "AKSES DIBERIKAN. 3/8 × 240 = 90. Kamu menghitung bagian pecahan dengan tepat!",
+          "wrong": [
+            "Itu 1/3 dari 240, bukan 3/8.",
+            "Cek kembali: 1/8 dari 240 = 30, jadi 3/8 = 90.",
+            "Itu setengah dari 240.",
+            "Terlalu besar. Mulai dari 1/8."
+          ],
+          "clue": "Jejak kaki berlumpur ditemukan di dekat meja Prof. Nova."
+        },
+        {
+          "id": "q1-2",
+          "scene": "Jam digital rusak berhenti tepat saat chip menghilang.",
+          "q": "Jam berhenti pukul 14.35. Petugas memeriksa 47 menit sebelumnya. Pukul berapa?",
+          "choices": ["13:38", "13:48", "14:02", "14:12"],
+          "answer": 1,
+          "skill": "Waktu",
+          "difficulty": "Mudah",
+          "type": "investigator",
+          "correct": "Tepat! 14:35 – 47 menit = 13:48. Garis waktu berhasil disusun.",
+          "wrong": [
+            "Kurangi 47 menit dari 14.35 dengan teliti.",
+            "Jamnya benar, menitnya keliru.",
+            "Itu hanya 33 menit sebelumnya.",
+            "Itu hanya 23 menit sebelumnya."
+          ],
+          "clue": "Ruangan masih aman pada pukul 13.48."
+        },
+        {
+          "id": "q1-3",
+          "scene": "Di atas meja terdapat empat baterai berlabel angka.",
+          "q": "Manakah yang nilainya paling besar?",
+          "choices": ["3,09", "3,9", "3,19", "3,099"],
+          "answer": 1,
+          "skill": "Desimal",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "Benar! 3,9 = 3,90. Bandingkan persepuluhan terlebih dahulu.",
+          "wrong": [
+            "Bandingkan nilai tempat persepuluhan lebih dulu.",
+            "3,9 adalah yang terbesar!",
+            "3,19 < 3,90.",
+            "3,099 sedikit lebih besar dari 3,09, tapi masih kecil dari 3,9."
+          ],
+          "clue": "Sidik jari ditemukan di meja lab."
+        },
+        {
+          "id": "q1-4",
+          "scene": "Lampu UV memperlihatkan pola kode di lantai.",
+          "q": "Lengkapi pola: 18, 24, 30, 36, __",
+          "choices": ["40", "41", "42", "44"],
+          "answer": 2,
+          "skill": "Pola",
+          "difficulty": "Mudah",
+          "type": "codebreaker",
+          "correct": "36 + 6 = 42! Laci tersembunyi terbuka.",
+          "wrong": [
+            "Perhatikan kenaikannya selalu sama.",
+            "Setiap bilangan bertambah 6.",
+            "42 — tepat!",
+            "Polanya bukan +8."
+          ],
+          "clue": "Kartu pengunjung sobek ditemukan di dalam laci."
+        },
+        {
+          "id": "q1-5",
+          "scene": "Nomor ID pada kartu tamu sebagian rusak.",
+          "q": "Bilangan dibulatkan jadi 4.700 (ke ratusan terdekat). Mana yang mungkin?",
+          "choices": ["4.641", "4.749", "4.751", "4.801"],
+          "answer": 1,
+          "skill": "Pembulatan",
+          "difficulty": "Sedang",
+          "type": "analyst",
+          "correct": "4.749 dibulatkan ke 4.700. Kartu itu cocok!",
+          "wrong": [
+            "4.641 → 4.600.",
+            "4.749 → 4.700. Tepat!",
+            "4.751 → 4.800.",
+            "4.801 → 4.800."
+          ],
+          "clue": "ID tersangka antara 4.650 dan 4.749."
+        }
+      ]
+    },
+    {
+      "id": "bab-2",
+      "title": "Bab 2 — Memburu Tersangka",
+      "questions": [
+        {
+          "id": "q2-1",
+          "scene": "Mira mengaku berada di perpustakaan selama 0,75 jam.",
+          "q": "0,75 jam = berapa menit?",
+          "choices": ["35", "40", "45", "75"],
+          "answer": 2,
+          "skill": "Desimal",
+          "difficulty": "Mudah",
+          "type": "investigator",
+          "correct": "0,75 × 60 = 45 menit. Alibi Mira terbukti.",
+          "wrong": [
+            "Kalikan jumlah jam × 60.",
+            "0,75 × 60 = 45.",
+            "Tepat: 45 menit.",
+            "75 adalah angka desimalnya, bukan menit."
+          ],
+          "clue": "Waktu Mira di perpustakaan sesuai rekaman CCTV."
+        },
+        {
+          "id": "q2-2",
+          "scene": "Rafi membeli makan di kafe. Sebagian struk terbakar.",
+          "q": "Minuman Rp12.000 dan sandwich Rp19.250. Totalnya?",
+          "choices": ["Rp29.250", "Rp30.750", "Rp31.250", "Rp32.000"],
+          "answer": 2,
+          "skill": "Penjumlahan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "12.000 + 19.250 = 31.250. Total struk cocok!",
+          "wrong": [
+            "Sejajarkan nilai yang sama.",
+            "Cek kembali.",
+            "Tepat: 31.250.",
+            "Terlalu besar."
+          ],
+          "clue": "Rafi memang berada di kafe saat kejadian."
+        },
+        {
+          "id": "q2-3",
+          "scene": "Luna mengaku menyalin 2/5 laporan setebal 150 halaman.",
+          "q": "Berapa halaman yang disalin Luna?",
+          "choices": ["30", "50", "60", "75"],
+          "answer": 2,
+          "skill": "Pecahan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "150 ÷ 5 × 2 = 60 halaman. Log printer mengonfirmasi.",
+          "wrong": [
+            "Cari 1/5 dulu: 150 ÷ 5 = 30.",
+            "50 = 1/3 dari 150.",
+            "60 — tepat!",
+            "75 = setengah dari 150."
+          ],
+          "clue": "Log pencetakan Luna terbukti asli."
+        },
+        {
+          "id": "q2-4",
+          "scene": "Theo bersepeda 12 km dalam 40 menit.",
+          "q": "Dengan kecepatan sama, berapa km dalam 10 menit?",
+          "choices": ["2 km", "3 km", "4 km", "6 km"],
+          "answer": 1,
+          "skill": "Rasio",
+          "difficulty": "Sedang",
+          "type": "speedster",
+          "correct": "10 menit = 1/4 dari 40 menit. 12 ÷ 4 = 3 km.",
+          "wrong": [
+            "10 menit adalah seperempat dari 40.",
+            "12 ÷ 4 = 3.",
+            "4 km → kecepatan lebih tinggi.",
+            "6 km = setengah jarak."
+          ],
+          "clue": "Perkiraan GPS Theo masuk akal."
+        },
+        {
+          "id": "q2-5",
+          "scene": "Tersangka memberi pernyataan soal kamera keamanan.",
+          "q": "25% dari 80 kamera tidak aktif. Berapa yang mati?",
+          "choices": ["15", "20", "25", "30"],
+          "answer": 1,
+          "skill": "Persentase",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "25% = 1/4. 80 ÷ 4 = 20 kamera.",
+          "wrong": [
+            "25% = seperempat.",
+            "80 ÷ 4 = 20 — tepat!",
+            "25 adalah persentasenya.",
+            "30 = 37,5% dari 80."
+          ],
+          "clue": "20 kamera tidak aktif saat kejadian."
+        }
+      ]
+    },
+    {
+      "id": "bab-3",
+      "title": "Bab 3 — Bukti Tersembunyi",
+      "questions": [
+        {
+          "id": "q3-1",
+          "scene": "Peta kompleks penelitian ditemukan di bawah karpet.",
+          "q": "Ruang penyimpanan 8 m × 5 m. Berapa kelilingnya?",
+          "choices": ["13 m", "26 m", "40 m", "80 m"],
+          "answer": 1,
+          "skill": "Geometri",
+          "difficulty": "Mudah",
+          "type": "explorer",
+          "correct": "2 × (8 + 5) = 26 m. Panel dinding longgar ditemukan!",
+          "wrong": [
+            "Keliling = jumlah semua sisi.",
+            "2 × (8+5) = 26 — tepat!",
+            "40 adalah luasnya.",
+            "80 bukan keliling maupun luas."
+          ],
+          "clue": "Panel tersembunyi di sudut 26 m."
+        },
+        {
+          "id": "q3-2",
+          "scene": "Denah ruangan ditemukan di balik panel.",
+          "q": "Ruangan 8 m × 5 m. Berapa luasnya?",
+          "choices": ["13 m²", "26 m²", "40 m²", "80 m²"],
+          "answer": 2,
+          "skill": "Geometri",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "8 × 5 = 40 m². Ruang tersembunyi terkonfirmasi.",
+          "wrong": [
+            "Luas = panjang × lebar.",
+            "26 adalah kelilingnya.",
+            "8 × 5 = 40 — tepat!",
+            "80 = dua kali luas."
+          ],
+          "clue": "Ruang rahasia seluas 40 m²."
+        },
+        {
+          "id": "q3-3",
+          "scene": "Tabung ukur bersegel memuat kode tersembunyi.",
+          "q": "1,5 liter = berapa mililiter?",
+          "choices": ["150 mL", "500 mL", "1.050 mL", "1.500 mL"],
+          "answer": 3,
+          "skill": "Pengukuran",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "1 liter = 1.000 mL. 1,5 × 1.000 = 1.500 mL!",
+          "wrong": [
+            "1 liter = 1.000 mL.",
+            "0,5 L = 500 mL.",
+            "1.050 mL = 1,05 L.",
+            "1.500 mL — tepat!"
+          ],
+          "clue": "Kunci ditemukan di mekanisme tabung."
+        },
+        {
+          "id": "q3-4",
+          "scene": "Brankas meminta jawaban berat paket.",
+          "q": "Paket 2,75 kg = berapa gram?",
+          "choices": ["275 g", "2.075 g", "2.750 g", "27.500 g"],
+          "answer": 2,
+          "skill": "Pengukuran",
+          "difficulty": "Sedang",
+          "type": "analyst",
+          "correct": "2,75 × 1.000 = 2.750 g. Brankas terbuka!",
+          "wrong": [
+            "1 kg = 1.000 g.",
+            "2.075 = 2,075 kg.",
+            "2.750 — tepat!",
+            "Itu × 10.000."
+          ],
+          "clue": "Tiket kereta ada di dalam brankas."
+        },
+        {
+          "id": "q3-5",
+          "scene": "Jaringan laser menjaga pintu ruangan.",
+          "q": "Sinar laser membentuk sudut siku-siku. Berapa derajatnya?",
+          "choices": ["45°", "60°", "90°", "180°"],
+          "answer": 2,
+          "skill": "Geometri",
+          "difficulty": "Mudah",
+          "type": "explorer",
+          "correct": "90° — sudut siku-siku! Kamu berhasil memutar cermin dengan tepat.",
+          "wrong": [
+            "45° = setengah sudut siku-siku.",
+            "60° = sudut lancip.",
+            "90° — tepat!",
+            "180° = sudut lurus."
+          ],
+          "clue": "Cermin di sudut 90° mengalihkan laser."
+        }
+      ]
+    },
+    {
+      "id": "bab-4",
+      "title": "Bab 4 — Pecahkan Kodenya",
+      "questions": [
+        {
+          "id": "q4-1",
+          "scene": "Tiket kereta memuat deret terenkripsi.",
+          "q": "Angka berikutnya: 3, 6, 12, 24, __",
+          "choices": ["30", "36", "42", "48"],
+          "answer": 3,
+          "skill": "Pola",
+          "difficulty": "Mudah",
+          "type": "codebreaker",
+          "correct": "× 2 setiap kali. 24 × 2 = 48. Peron terkonfirmasi!",
+          "wrong": [
+            "Pola ini perkalian, bukan penjumlahan.",
+            "12 × 2 = 24.",
+            "42 bukan hasil ×2.",
+            "48 — tepat!"
+          ],
+          "clue": "Tersangka menggunakan Peron 48."
+        },
+        {
+          "id": "q4-2",
+          "scene": "Loker di stasiun meminta nilai x.",
+          "q": "x + 17 = 45. Berapa x?",
+          "choices": ["18", "28", "52", "62"],
+          "answer": 1,
+          "skill": "Aljabar",
+          "difficulty": "Mudah",
+          "type": "codebreaker",
+          "correct": "45 – 17 = 28. Loker nomor 28 terbuka!",
+          "wrong": [
+            "Kurangi 17 dari 45.",
+            "28 — tepat!",
+            "52 = penjumlahan, bukan pengurangan.",
+            "62 = 17 ditambah dua kali."
+          ],
+          "clue": "Ponsel berkode ditemukan di loker 28."
+        },
+        {
+          "id": "q4-3",
+          "scene": "Ponsel menampilkan sandi perkalian.",
+          "q": "6 × n = 54. Berapa n?",
+          "choices": ["7", "8", "9", "10"],
+          "answer": 2,
+          "skill": "Aljabar",
+          "difficulty": "Mudah",
+          "type": "codebreaker",
+          "correct": "54 ÷ 6 = 9. Digit kode terkonfirmasi!",
+          "wrong": [
+            "54 ÷ 6 = n.",
+            "6 × 8 = 48.",
+            "6 × 9 = 54 — tepat!",
+            "6 × 10 = 60."
+          ],
+          "clue": "PIN ponsel mengandung angka 9."
+        },
+        {
+          "id": "q4-4",
+          "scene": "Pesan rahasia: 'Hanya yang mengenal bilangan prima bisa melihat kebenaran.'",
+          "q": "Mana yang merupakan bilangan prima?",
+          "choices": ["21", "27", "29", "39"],
+          "answer": 2,
+          "skill": "Bilangan",
+          "difficulty": "Sedang",
+          "type": "codebreaker",
+          "correct": "29 hanya habis dibagi 1 dan 29. Pesan terenkripsi terbuka!",
+          "wrong": [
+            "21 = 3 × 7.",
+            "27 = 3 × 9.",
+            "29 — prima!",
+            "39 = 3 × 13."
+          ],
+          "clue": "Pesan rahasia: 'Bertemu pukul 18.20'."
+        },
+        {
+          "id": "q4-5",
+          "scene": "Sandi terakhir memakai mesin fungsi sederhana.",
+          "q": "Mesin: kalikan 3, lalu tambah 2. Masukan = 7. Hasilnya?",
+          "choices": ["21", "23", "27", "29"],
+          "answer": 1,
+          "skill": "Aljabar",
+          "difficulty": "Sedang",
+          "type": "codebreaker",
+          "correct": "3 × 7 + 2 = 23. Rekaman audio rahasia diputar!",
+          "wrong": [
+            "Jangan lupa +2 setelah perkalian.",
+            "3 × 7 + 2 = 23 — tepat!",
+            "27 berarti +6, bukan +2.",
+            "29 terlalu besar."
+          ],
+          "clue": "Rekaman menyebut ransel merah."
+        }
+      ]
+    },
+    {
+      "id": "bab-5",
+      "title": "Bab 5 — Pengejaran",
+      "questions": [
+        {
+          "id": "q5-1",
+          "scene": "Tersangka masuk stasiun pukul 18.12. Pertemuan pukul 18.20.",
+          "q": "Berapa menit waktu yang tersisa?",
+          "choices": ["6", "8", "10", "12"],
+          "answer": 1,
+          "skill": "Waktu",
+          "difficulty": "Mudah",
+          "type": "speedster",
+          "correct": "18:20 – 18:12 = 8 menit. Pengejaran dimulai!",
+          "wrong": [
+            "Hitung menit ke-12 sampai ke-20.",
+            "8 menit — tepat!",
+            "Itu berakhir pukul 18.22.",
+            "Itu berakhir pukul 18.24."
+          ],
+          "clue": "Tersangka punya 8 menit sebelum pertemuan."
+        },
+        {
+          "id": "q5-2",
+          "scene": "Dua tangga menuju peron.",
+          "q": "Tangga A: 36 anak. Tangga B 25% lebih sedikit. Berapa anak tangga B?",
+          "choices": ["9", "18", "27", "30"],
+          "answer": 2,
+          "skill": "Persentase",
+          "difficulty": "Sedang",
+          "type": "speedster",
+          "correct": "25% dari 36 = 9. 36 – 9 = 27 anak tangga.",
+          "wrong": [
+            "9 adalah yang dikurangi, bukan sisanya.",
+            "18 = setengah dari 36.",
+            "27 — tepat!",
+            "30 bukan 25% lebih sedikit."
+          ],
+          "clue": "Tersangka memilih tangga yang lebih pendek."
+        },
+        {
+          "id": "q5-3",
+          "scene": "Papan jadwal: kereta menempuh 180 km dalam 3 jam.",
+          "q": "Berapa kecepatan rata-ratanya?",
+          "choices": ["50 km/jam", "60 km/jam", "90 km/jam", "540 km/jam"],
+          "answer": 1,
+          "skill": "Laju",
+          "difficulty": "Sedang",
+          "type": "speedster",
+          "correct": "180 ÷ 3 = 60 km/jam. Kereta pelarian berhasil dikenali!",
+          "wrong": [
+            "Kecepatan = jarak ÷ waktu.",
+            "180 ÷ 3 = 60 — tepat!",
+            "90 → akan menempuh 270 km.",
+            "540 = perkalian, bukan pembagian."
+          ],
+          "clue": "Kereta pelarian berkecepatan 60 km/jam."
+        },
+        {
+          "id": "q5-4",
+          "scene": "Tersangka menjatuhkan tas berisi kartu akses: 5 merah, 3 biru, 2 hijau.",
+          "q": "Peluang mengambil kartu biru secara acak?",
+          "choices": ["2/10", "3/10", "5/10", "7/10"],
+          "answer": 1,
+          "skill": "Peluang",
+          "difficulty": "Sedang",
+          "type": "investigator",
+          "correct": "3 dari 10 kartu berwarna biru. Kartu biru membuka koridor!",
+          "wrong": [
+            "Total 10 kartu, 3 biru.",
+            "3/10 — tepat!",
+            "5/10 = peluang kartu merah.",
+            "7/10 = semua yang bukan biru."
+          ],
+          "clue": "Kartu biru membuka koridor pemeliharaan."
+        },
+        {
+          "id": "q5-5",
+          "scene": "Koridor bercabang tiga rute di peta.",
+          "q": "Rute A: 450 m. Rute B: 0,6 km. Rute C: 520 m. Mana yang terpendek?",
+          "choices": ["Rute A", "Rute B", "Rute C", "Sama semua"],
+          "answer": 0,
+          "skill": "Pengukuran",
+          "difficulty": "Sedang",
+          "type": "explorer",
+          "correct": "Rute A = 450 m, paling pendek! Jalur tersangka dipotong.",
+          "wrong": [
+            "450 m terpendek — tepat!",
+            "0,6 km = 600 m.",
+            "520 m > 450 m.",
+            "Ketiganya berbeda."
+          ],
+          "clue": "Rute A paling cepat untuk mencegat tersangka."
+        }
+      ]
+    },
+    {
+      "id": "bab-6",
+      "title": "Bab 6 — Deduksi Akhir",
+      "questions": [
+        {
+          "id": "q6-1",
+          "scene": "Tersangka bilang 4/6 < 2/3. Benarkan?",
+          "q": "Apakah 4/6 lebih kecil dari 2/3?",
+          "choices": ["Ya", "Tidak"],
+          "answer": 1,
+          "skill": "Pecahan",
+          "difficulty": "Sedang",
+          "type": "investigator",
+          "correct": "Tidak! 4/6 = 2/3. Nilainya sama. Tersangka berbohong!",
+          "wrong": [
+            "Sederhanakan 4/6 ÷ 2 = 2/3.",
+            "Nilainya sama — tepat!"
+          ],
+          "clue": "Satu tersangka berbohong soal pecahan senilai."
+        },
+        {
+          "id": "q6-2",
+          "scene": "Jejak kaki di taman: panjang 24 cm. Foto skala 1:3.",
+          "q": "Berapa panjang jejak kaki di foto?",
+          "choices": ["6 cm", "8 cm", "12 cm", "72 cm"],
+          "answer": 1,
+          "skill": "Rasio",
+          "difficulty": "Sulit",
+          "type": "analyst",
+          "correct": "24 ÷ 3 = 8 cm. Ukurannya cocok dengan berkas Theo!",
+          "wrong": [
+            "Skala 1:3 → foto = asli ÷ 3.",
+            "24 ÷ 3 = 8 — tepat!",
+            "12 = setengah, bukan sepertiga.",
+            "72 = diperbesar, bukan diperkecil."
+          ],
+          "clue": "Jejak kaki cocok dengan data Theo."
+        },
+        {
+          "id": "q6-3",
+          "scene": "Tiket kereta: harga setelah diskon 10% = Rp18.000.",
+          "q": "Berapa harga awal tiket?",
+          "choices": ["Rp19.000", "Rp20.000", "Rp21.000", "Rp22.000"],
+          "answer": 1,
+          "skill": "Persentase",
+          "difficulty": "Sulit",
+          "type": "analyst",
+          "correct": "0,9 × harga = 18.000. Harga awal = 20.000. Tiket milik orang lain!",
+          "wrong": [
+            "Setelah diskon 10%, harga = 90% dari asli.",
+            "0,9 × 20.000 = 18.000 — tepat!",
+            "Diskon 10% dari 21.000 = 18.900.",
+            "Diskon 10% dari 22.000 = 19.800."
+          ],
+          "clue": "Harga asal tiket Rp20.000."
+        },
+        {
+          "id": "q6-4",
+          "scene": "Log akses chip tercatat: 6, 8, 7, 9, 10.",
+          "q": "Berapa rata-ratanya?",
+          "choices": ["7", "8", "8,5", "9"],
+          "answer": 1,
+          "skill": "Data",
+          "difficulty": "Sedang",
+          "type": "investigator",
+          "correct": "(6+8+7+9+10) ÷ 5 = 40 ÷ 5 = 8. Klaim tersangka terbantahkan!",
+          "wrong": [
+            "Jumlahkan semua lalu bagi 5.",
+            "40 ÷ 5 = 8 — tepat!",
+            "8,5 bukan rata-rata yang tepat.",
+            "9 terlalu besar."
+          ],
+          "clue": "Rata-rata akses sebenarnya adalah 8."
+        },
+        {
+          "id": "q6-5",
+          "scene": "Pelaku mencoba kabur lewat gerbang berkode.",
+          "q": "Kode gerbang = 5² + 3 × 4. Berapa hasilnya?",
+          "choices": ["32", "37", "44", "112"],
+          "answer": 1,
+          "skill": "Urutan Operasi",
+          "difficulty": "Sulit",
+          "type": "codebreaker",
+          "correct": "5² = 25, 3 × 4 = 12. 25 + 12 = 37! Gerbang terkunci sebelum pelaku kabur.",
+          "wrong": [
+            "5² = 25. Hitung 3 × 4 dulu.",
+            "25 + 12 = 37 — tepat!",
+            "44 salah urutan operasi.",
+            "112 mengabaikan urutan operasi."
+          ],
+          "clue": "Kode gerbang pelarian adalah 37."
+        }
+      ]
+    }
+  ]
+}

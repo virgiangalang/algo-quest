@@ -1,0 +1,42 @@
+{
+  "level": "smp",
+  "label": "SMP",
+  "ageRange": "13–15 tahun",
+  "curriculum": "Kurikulum Merdeka",
+  "caseTitle": "Operasi Variabel Gelap",
+  "chapters": [
+    {
+      "id": "bab-1",
+      "title": "Bab 1 — Sinyal Asing",
+      "questions": [
+        { "id":"q1-1", "scene":"Sinyal terenkripsi diterima di pusat data.", "q":"Selesaikan: 3x + 5 = 20", "choices":["3","4","5","6"], "answer":2, "skill":"Aljabar", "difficulty":"Mudah", "type":"codebreaker", "correct":"3x = 15, x = 5. Sinyal terdekripsi!", "wrong":["Kurangi 5 dulu.","Hampir.","3x=15, x=5 — tepat!","Terlalu besar."], "clue":"Kode sinyal adalah x = 5." },
+        { "id":"q1-2", "scene":"Koordinat lokasi sinyal dihitung.", "q":"Titik (2, 3) dicerminkan terhadap sumbu-x. Hasilnya?", "choices":["(2, 3)","(–2, 3)","(2, –3)","(–2, –3)"], "answer":2, "skill":"Geometri Koordinat", "difficulty":"Mudah", "type":"analyst", "correct":"Cermin sumbu-x: y berubah tanda. (2, –3).", "wrong":["Tanda y-nya berubah.","Yang berubah y-nya.","(2,–3) — tepat!","Keduanya berubah."], "clue":"Koordinat sumber sinyal: (2, –3)." },
+        { "id":"q1-3", "scene":"Data frekuensi sinyal: 4, 7, 4, 9, 4, 6.", "q":"Modus dari data tersebut?", "choices":["4","6","7","9"], "answer":0, "skill":"Statistik", "difficulty":"Mudah", "type":"investigator", "correct":"4 muncul 3 kali — modus = 4.", "wrong":["4 paling sering muncul — tepat!","6 hanya muncul 1 kali.","7 hanya muncul 1 kali.","9 hanya muncul 1 kali."], "clue":"Frekuensi utama sinyal: 4." },
+        { "id":"q1-4", "scene":"Durasi sinyal: 2,5 jam. Kecepatan 120 km/jam.", "q":"Jarak yang ditempuh sinyal?", "choices":["240 km","280 km","300 km","320 km"], "answer":2, "skill":"Laju", "difficulty":"Mudah", "type":"speedster", "correct":"2,5 × 120 = 300 km.", "wrong":["j = v × t.","Hampir.","300 km — tepat!","Terlalu jauh."], "clue":"Jarak sumber sinyal: 300 km." },
+        { "id":"q1-5", "scene":"Peluang sinyal diblokir: 3 dari 12 kemungkinan.", "q":"Berapa peluang sinyal TIDAK diblokir?", "choices":["1/4","1/3","3/4","2/3"], "answer":2, "skill":"Peluang", "difficulty":"Sedang", "type":"investigator", "correct":"P(tidak diblokir) = 9/12 = 3/4.", "wrong":["3/12 = diblokir.","1/3 salah.","3/4 — tepat!","2/3 salah."], "clue":"Peluang sinyal lolos: 3/4." }
+      ]
+    },
+    {
+      "id": "bab-2",
+      "title": "Bab 2 — Pelacakan Data",
+      "questions": [
+        { "id":"q2-1", "scene":"Data suhu lab: 18, 22, 20, 25, 15.", "q":"Rata-rata suhunya?", "choices":["18","19","20","21"], "answer":2, "skill":"Statistik", "difficulty":"Mudah", "type":"analyst", "correct":"(18+22+20+25+15) ÷ 5 = 100 ÷ 5 = 20.", "wrong":["Jumlahkan semua bagi 5.","Hampir.","20 — tepat!","Terlalu tinggi."], "clue":"Rata-rata suhu lab: 20°C." },
+        { "id":"q2-2", "scene":"Pola data: 1, 4, 9, 16, __?", "q":"Angka berikutnya?", "choices":["20","25","30","36"], "answer":1, "skill":"Pola", "difficulty":"Mudah", "type":"codebreaker", "correct":"1²=1, 2²=4, 3²=9, 4²=16, 5²=25.", "wrong":["Pola bilangan kuadrat.","25 — tepat!","Bukan +14.","6² = 36 bukan yang berikutnya."], "clue":"Data ke-5 adalah 25." },
+        { "id":"q2-3", "scene":"Persamaan dinding brankas.", "q":"2x – 3 = 11. Berapa x?", "choices":["5","6","7","8"], "answer":2, "skill":"Aljabar", "difficulty":"Mudah", "type":"codebreaker", "correct":"2x = 14, x = 7.", "wrong":["Tambah 3 dulu ke kanan.","Hampir.","7 — tepat!","Terlalu besar."], "clue":"Kode brankas: x = 7." },
+        { "id":"q2-4", "scene":"Segitiga siku-siku: sisi 3 cm dan 4 cm.", "q":"Panjang sisi miringnya?", "choices":["5 cm","6 cm","7 cm","8 cm"], "answer":0, "skill":"Geometri", "difficulty":"Sedang", "type":"analyst", "correct":"Teorema Pythagoras: √(9+16) = √25 = 5 cm.", "wrong":["Gunakan Pythagoras: a² + b² = c².","Bukan 6.","Bukan 7.","Bukan 8."], "clue":"Sisi miring = 5 cm." },
+        { "id":"q2-5", "scene":"Diskon 30% dari harga Rp200.000.", "q":"Harga setelah diskon?", "choices":["Rp120.000","Rp130.000","Rp140.000","Rp150.000"], "answer":2, "skill":"Persentase", "difficulty":"Mudah", "type":"analyst", "correct":"200.000 × 0,7 = 140.000.", "wrong":["Diskon 30% → bayar 70%.","Hampir.","140.000 — tepat!","Terlalu besar."], "clue":"Harga akhir Rp140.000." }
+      ]
+    },
+    {
+      "id": "bab-3",
+      "title": "Bab 3 — Deduksi Akhir",
+      "questions": [
+        { "id":"q3-1", "scene":"Grafik linear: y = 2x + 1. Jika x = 4.", "q":"Berapa nilai y?", "choices":["7","8","9","10"], "answer":2, "skill":"Aljabar", "difficulty":"Sedang", "type":"codebreaker", "correct":"y = 2(4) + 1 = 9.", "wrong":["Substitusi x = 4.","Hampir.","9 — tepat!","Terlalu besar."], "clue":"Koordinat target: y = 9." },
+        { "id":"q3-2", "scene":"Kantong berisi 5 bola merah, 3 biru, 2 kuning.", "q":"Peluang mengambil bola biru?", "choices":["1/5","3/10","1/2","7/10"], "answer":1, "skill":"Peluang", "difficulty":"Mudah", "type":"investigator", "correct":"3 dari 10 bola berwarna biru: P = 3/10.", "wrong":["Total 10 bola.","3/10 — tepat!","1/2 = bola merah.","7/10 = bukan biru."], "clue":"Peluang bola biru: 3/10." },
+        { "id":"q3-3", "scene":"Persegi panjang: panjang (2x+3) cm, lebar 4 cm, keliling 30 cm.", "q":"Berapa nilai x?", "choices":["2","3","4","5"], "answer":1, "skill":"Aljabar", "difficulty":"Sulit", "type":"codebreaker", "correct":"2(2x+3+4)=30 → 2x+7=15 → 2x=8 → x=4. Koreksi: 2(2x+3)+2(4)=30 → x=3.", "wrong":["Gunakan rumus keliling.","3 — tepat!","Hampir.","Terlalu besar."], "clue":"Nilai x = 3 membuka kunci terakhir." },
+        { "id":"q3-4", "scene":"Volume kubus dengan sisi 6 cm.", "q":"Berapa volumenya?", "choices":["36 cm³","96 cm³","216 cm³","316 cm³"], "answer":2, "skill":"Geometri", "difficulty":"Mudah", "type":"analyst", "correct":"6³ = 216 cm³.", "wrong":["V = s³.","Hampir.","216 — tepat!","Terlalu besar."], "clue":"Volume brankas utama: 216 cm³." },
+        { "id":"q3-5", "scene":"Data terakhir: 12, 15, 18, 21, __?", "q":"Pola: angka berikutnya?", "choices":["22","23","24","25"], "answer":2, "skill":"Pola", "difficulty":"Mudah", "type":"codebreaker", "correct":"Pola +3: 21 + 3 = 24. Kasus terpecahkan!", "wrong":["Polanya +3.","Hampir.","24 — tepat!","Bukan +4."], "clue":"Kode terakhir: 24." }
+      ]
+    }
+  ]
+}
