@@ -72,6 +72,27 @@ input{font:inherit}
   color:#61586a;border:1px solid #c9c0b4;background:#f3efe8;
   padding:6px 10px;border-radius:7px;
 }
+.topbar-actions{display:flex;align-items:center;gap:8px}
+.btn-mute{
+  font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.04em;border:1px solid #c9c0b4;background:#f3efe8;color:#61586a;
+  padding:6px 10px;border-radius:7px;cursor:pointer;
+}
+.btn-mute[aria-pressed="true"]{background:#efe6e8;color:#7a4050;border-color:#e0c4cb}
+.btn-tts{
+  border:1px solid #d5ccc0;background:#fff;color:var(--plum);border-radius:8px;
+  padding:8px 12px;font-size:12px;font-weight:700;cursor:pointer;
+  font-family:"IBM Plex Sans",system-ui,sans-serif;
+}
+.btn-tts:hover{border-color:var(--plum-3)}
+.q-tools{display:flex;gap:8px;align-items:center;margin:10px 0 4px;flex-wrap:wrap}
+.btn-hint{
+  border:1px dashed #c9bdd4;background:#f7f2fb;color:var(--plum);border-radius:8px;
+  padding:8px 12px;font-size:12px;font-weight:700;cursor:pointer;
+  font-family:"IBM Plex Sans",system-ui,sans-serif;display:none;
+}
+.btn-hint.show{display:inline-block}
+.attempt-pill{font-size:11px;color:var(--muted);font-weight:600}
 
 .card{
   background:var(--paper);border:1px solid #cfc7bb;
@@ -123,6 +144,7 @@ input{font:inherit}
 @keyframes stampIn{from{opacity:0;transform:scale(1.35) rotate(-12deg)}to{opacity:1;transform:scale(1) rotate(-4deg)}}
 @keyframes slidePanel{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}
 @keyframes inkPulse{0%,100%{opacity:.35}50%{opacity:.55}}
+@keyframes algoConfetti{to{transform:translateY(110vh) rotate(420deg);opacity:0}}
 .phase-enter{animation:fadeUp .45s ease both}
 .dossier{animation:dossierIn .55s cubic-bezier(.2,.7,.2,1) both}
 .stamp-pop{animation:stampIn .55s cubic-bezier(.2,.8,.2,1) both}
@@ -447,69 +469,84 @@ input{font:inherit}
    PHASE: CERTIFICATE
 ───────────────────────────────────────────── */
 #phase-certificate{display:none}
-.cert-actions{display:flex;justify-content:center;gap:12px;padding:20px 0}
+.cert-actions{display:flex;justify-content:center;gap:12px;padding:20px 0;flex-wrap:wrap}
 .cert-page{
   background:#fff;border:1px solid #d8d0c4;border-radius:12px;
-  max-width:800px;margin:0 auto;overflow:hidden;
+  max-width:860px;margin:0 auto;overflow:hidden;
+  background-image:
+    radial-gradient(circle at 12% 18%,rgba(75,43,104,.06),transparent 40%),
+    radial-gradient(circle at 88% 82%,rgba(155,107,31,.06),transparent 36%);
 }
 .cert-border{
-  margin:24px;border:3px solid var(--plum);border-radius:8px;padding:40px 48px;
-  position:relative;background:#fff;
+  margin:22px;border:3px solid var(--plum);border-radius:8px;padding:36px 44px 32px;
+  position:relative;background:rgba(255,255,255,.92);
+  box-shadow:inset 0 0 0 8px #f3edf9;
 }
 .cert-border::before,.cert-border::after{
-  content:"";position:absolute;width:20px;height:20px;border-radius:50%;
-  background:var(--plum);opacity:.25;
+  content:"";position:absolute;width:22px;height:22px;border-radius:50%;
+  background:var(--plum);opacity:.28;
 }
-.cert-border::before{top:-10px;left:-10px}
-.cert-border::after{bottom:-10px;right:-10px}
-.cert-header{text-align:center;margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid #e8e0f0}
+.cert-border::before{top:-11px;left:-11px}
+.cert-border::after{bottom:-11px;right:-11px}
+.cert-watermark{
+  position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;
+  font-family:Georgia,serif;font-size:92px;font-weight:700;color:rgba(75,43,104,.05);
+  letter-spacing:.08em;transform:rotate(-12deg);
+}
+.cert-header{text-align:center;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid #e8e0f0;position:relative;z-index:1}
 .cert-logo{
-  width:52px;height:52px;border-radius:10px;
+  width:56px;height:56px;border-radius:12px;
   background:linear-gradient(135deg,#6b3fa0,var(--plum));
   display:grid;place-items:center;margin:0 auto 10px;
-  font-family:Georgia,serif;font-size:26px;color:#fff;font-weight:700;
+  font-family:Georgia,serif;font-size:28px;color:#fff;font-weight:700;
+  box-shadow:0 4px 0 #311b47;
 }
-.cert-issuer{font-size:13px;color:var(--plum-3);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.cert-issuer{font-size:12px;color:var(--plum-3);font-weight:700;letter-spacing:.12em;text-transform:uppercase}
 .cert-headline{
-  font-family:Georgia,serif;font-size:32px;color:var(--plum);
-  margin:10px 0 4px;letter-spacing:-.3px;
+  font-family:Georgia,serif;font-size:34px;color:var(--plum);
+  margin:10px 0 4px;letter-spacing:-.4px;
 }
-.cert-sub{font-size:13px;color:var(--muted)}
-.cert-body{text-align:center;padding:20px 0}
+.cert-sub{font-size:13px;color:#746d78}
+.cert-body{text-align:center;padding:18px 0;position:relative;z-index:1}
 .cert-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .cert-name{
-  font-family:Georgia,serif;font-size:36px;color:var(--ink);
-  margin:6px 0 20px;font-weight:700;letter-spacing:-.3px;
+  font-family:Georgia,serif;font-size:40px;color:var(--ink);
+  margin:6px 0 14px;font-weight:700;letter-spacing:-.4px;
 }
 .cert-statement{
-  font-size:15px;color:#5e5660;line-height:1.7;max-width:520px;
-  margin:0 auto 24px;
+  font-size:15px;color:#5e5660;line-height:1.75;max-width:560px;
+  margin:0 auto 18px;
+}
+.cert-char-line{
+  display:inline-block;margin:0 auto 20px;padding:8px 14px;border-radius:999px;
+  background:var(--plum-light);border:1px solid #d4bfe8;color:var(--plum);
+  font-size:13px;font-weight:700;
 }
 .cert-badges{
-  display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin:20px 0 28px;
+  display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:16px 0 22px;
 }
 .cert-badge{
-  background:var(--plum-light);border:1px solid #d4bfe8;border-radius:10px;
-  padding:14px 20px;min-width:120px;
+  background:#fff;border:1px solid #d4bfe8;border-radius:12px;
+  padding:14px 18px;min-width:124px;box-shadow:0 6px 16px rgba(75,43,104,.06);
 }
-.cert-badge .cb-val{font-family:Georgia,serif;font-size:24px;font-weight:700;color:var(--plum)}
+.cert-badge .cb-val{font-family:Georgia,serif;font-size:26px;font-weight:700;color:var(--plum)}
 .cert-badge .cb-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--plum-3);margin-top:2px}
 .cert-footer{
-  display:flex;justify-content:space-between;align-items:flex-end;
-  border-top:1px solid #e8e0f0;margin-top:20px;padding-top:20px;
+  display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;
+  border-top:1px solid #e8e0f0;margin-top:12px;padding-top:20px;position:relative;z-index:1;
 }
 .cert-sign{text-align:center}
 .cert-sign-line{width:120px;height:1px;background:var(--ink);margin:0 auto 4px}
 .cert-sign-name{font-family:Georgia,serif;font-size:14px;font-weight:700}
 .cert-sign-role{font-size:10px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
 .cert-seal{
-  width:70px;height:70px;border-radius:50%;
+  width:76px;height:76px;border-radius:50%;
   border:2px solid var(--plum);display:grid;place-items:center;
   color:var(--plum);font-size:11px;font-weight:800;
   letter-spacing:.06em;text-transform:uppercase;text-align:center;
-  line-height:1.3;
+  line-height:1.3;background:rgba(243,237,249,.7);transform:rotate(-8deg);
 }
-.cert-id{text-align:center;margin-top:14px;font-size:11px;color:var(--muted)}
+.cert-id{text-align:center;margin-top:14px;font-size:11px;color:var(--muted);letter-spacing:.04em}
 
 /* ─────────────────────────────────────────────
    LOADING
@@ -574,7 +611,10 @@ input{font:inherit}
       <div class="brandMark">A</div>
       <div>Algonova <span class="brandSub">Misteri Matematika</span></div>
     </div>
-    <div class="badge" id="topbar-badge" style="display:none"></div>
+    <div class="topbar-actions">
+      <button type="button" class="btn-mute" id="btn-mute" aria-pressed="false" onclick="toggleMute()">Suara: Nyala</button>
+      <div class="badge" id="topbar-badge" style="display:none"></div>
+    </div>
   </div>
 
   <!-- ═══════════════════════════════════════
@@ -775,6 +815,11 @@ input{font:inherit}
               <span class="pill" id="game-skill">Matematika</span>
               <span class="pill" id="game-difficulty">Tingkat</span>
             </div>
+            <div class="q-tools">
+              <button type="button" class="btn-tts" id="btn-tts" onclick="speakCurrentQuestion()">Dengarkan soal</button>
+              <button type="button" class="btn-hint" id="btn-hint" onclick="useHint()">Tampilkan hint</button>
+              <span class="attempt-pill" id="attempt-pill"></span>
+            </div>
             <div class="question" id="game-question"></div>
             <div class="choices" id="game-choices"></div>
             <div class="feedback" id="game-feedback"></div>
@@ -819,6 +864,7 @@ input{font:inherit}
     </div>
     <div class="cert-page">
       <div class="cert-border">
+        <div class="cert-watermark">ALGO</div>
         <div class="cert-header">
           <div class="cert-logo">A</div>
           <div class="cert-issuer">Algonova · Biro Investigasi Matematika</div>
@@ -834,6 +880,7 @@ input{font:inherit}
             <strong id="cert-level">SD Kelas 4–6</strong> dan terbukti mampu
             memecahkan kasus matematika sebagai <strong id="cert-char">Sang Analis</strong>.
           </div>
+          <div class="cert-char-line" id="cert-char-line">Karakter detektif: Sang Analis</div>
 
           <div class="cert-badges">
             <div class="cert-badge">
@@ -880,15 +927,21 @@ input{font:inherit}
 <script src="src/lib/questions.js"></script>
 <script src="src/lib/diagnostic.js"></script>
 <script src="src/lib/story.js"></script>
+<script src="src/lib/audio.js"></script>
+<script src="src/lib/ui.js"></script>
 <script src="src/lib/certificate.js"></script>
 <script>
 /* ─── CONFIG ─── */
 window.ALGONOVA_CONFIG = {
   appsScriptUrl: "https://script.google.com/macros/s/AKfycbzjXGev3pevaaCWk_Ob16isnpM2M_-uQHKlC-f8VE8gdS_WvJ0-bUWzwRxy1wbn43AZDQ/exec",
   // false = pakai Google Sheet VALID/USED
+  // ?dev=1 di URL memaksa skip Sheet (untuk tes lokal)
   devMode: false,
 };
 const CONFIG = window.ALGONOVA_CONFIG;
+try {
+  if (new URLSearchParams(location.search).get("dev") === "1") CONFIG.devMode = true;
+} catch (_) {}
 
 /** POST ke Apps Script tanpa preflight CORS (text/plain) */
 async function appsScriptPost(payload) {
@@ -956,6 +1009,27 @@ function setTopbarBadge(text) {
   const el = document.getElementById("topbar-badge");
   el.textContent = text;
   el.style.display = text ? "block" : "none";
+}
+
+function toggleMute() {
+  if (typeof AlgoAudio === "undefined") return;
+  AlgoAudio.setMuted(!AlgoAudio.isMuted());
+  AlgoAudio.play("click");
+}
+
+function speakCurrentQuestion() {
+  if (typeof AlgoAudio === "undefined") return;
+  AlgoAudio.unlock();
+  const q = STATE.questions[STATE.qIndex];
+  if (!q) return;
+  const text = `${q.scene || ""}. Soal: ${q.q || ""}`;
+  AlgoAudio.speak(text);
+}
+
+// Unlock audio on first interaction
+if (typeof AlgoAudio !== "undefined") {
+  AlgoAudio.bindUnlockOnce();
+  AlgoAudio.setMuted(AlgoAudio.isMuted());
 }
 
 /* ─── LOGIN ─── */
@@ -1172,6 +1246,8 @@ function answerDiag(idx, btn, q) {
   });
   if (!ok) btn.classList.add("wrong");
 
+  if (typeof AlgoAudio !== "undefined") AlgoAudio.play(ok ? "correct" : "wrong");
+
   const fb = document.getElementById("diag-feedback");
   fb.className = `feedback ${ok ? "good" : "bad"} show`;
   fb.innerHTML = ok
@@ -1346,6 +1422,7 @@ function maybeShowChapterStory(forceFirst) {
   document.getElementById("story-body").textContent = story.body;
   document.getElementById("story-overlay").classList.add("show");
   STATE.pendingChapterStory = idx;
+  if (typeof AlgoAudio !== "undefined") AlgoAudio.play(idx === 0 ? "level-up" : "bab-clear");
 }
 
 function dismissChapterStory() {
@@ -1370,6 +1447,8 @@ function updateChapterSidebar(activeIdx) {
 
 function renderQuestion() {
   STATE.answered = false;
+  STATE.attemptsLeft = 2;
+  STATE.hintUsed = false;
   const q = STATE.questions[STATE.qIndex];
   if (!q) return;
   const total = STATE.questions.length;
@@ -1395,32 +1474,67 @@ function renderQuestion() {
   document.getElementById("game-feedback").className = "feedback";
   document.getElementById("game-feedback").innerHTML = "";
   document.getElementById("game-next-btn").className = "btn-next";
+  document.getElementById("btn-hint").className = "btn-hint";
+  document.getElementById("attempt-pill").textContent = "Percobaan: 2";
 
   const activeIdx = getChapterIndexForQuestion(STATE.qIndex);
   updateChapterSidebar(activeIdx);
   updateSidebar();
 }
 
+function useHint() {
+  const q = STATE.questions[STATE.qIndex];
+  if (!q || STATE.answered || STATE.hintUsed) return;
+  STATE.hintUsed = true;
+  document.getElementById("btn-hint").classList.remove("show");
+  const safe = typeof q.answer === "number" ? "ABCD"[q.answer] : "?";
+  if (typeof AlgoUI !== "undefined") {
+    AlgoUI.toast(`Hint: fokus opsi ${safe} — cek ulang hitunganmu.`, "info");
+  }
+  if (typeof AlgoAudio !== "undefined") AlgoAudio.play("click");
+}
+
 function answerQuestion(idx, btn, q) {
   if (STATE.answered) return;
-  STATE.answered = true;
 
   const ok = idx === q.answer;
+
+  if (!ok && STATE.attemptsLeft > 1) {
+    STATE.attemptsLeft--;
+    btn.classList.add("wrong");
+    btn.classList.add("disabled");
+    document.getElementById("attempt-pill").textContent = `Percobaan: ${STATE.attemptsLeft}`;
+    document.getElementById("btn-hint").classList.add("show");
+    if (typeof AlgoAudio !== "undefined") AlgoAudio.play("wrong");
+    if (typeof AlgoUI !== "undefined") AlgoUI.toast("Belum tepat — masih ada 1 percobaan + hint.", "bad");
+    return;
+  }
+
+  STATE.answered = true;
+
   document.querySelectorAll("#game-choices .choice").forEach((b, j) => {
     b.classList.add("disabled");
     if (j === q.answer) b.classList.add("correct");
   });
   if (!ok) btn.classList.add("wrong");
 
+  if (typeof AlgoAudio !== "undefined") AlgoAudio.play(ok ? "correct" : "wrong");
+
   if (ok) {
     STATE.correct++;
     STATE.clues++;
-    STATE.xp += 100;
+    STATE.xp += STATE.hintUsed ? 70 : 100;
     STATE.typeScores[q.type] = (STATE.typeScores[q.type] || 0) + 2;
+    if (typeof AlgoUI !== "undefined") {
+      AlgoUI.confettiBurst();
+      AlgoUI.stampFlash("BUKTI TERKONFIRMASI");
+      AlgoUI.toast(STATE.hintUsed ? "Petunjuk terbuka · +70 XP" : "Petunjuk terbuka · +100 XP", "ok");
+    }
   } else {
     STATE.xp += 35;
     STATE.typeScores.explorer = (STATE.typeScores.explorer || 0) + 1;
     STATE.typeScores[q.type] = (STATE.typeScores[q.type] || 0) + 0.5;
+    if (typeof AlgoUI !== "undefined") AlgoUI.toast("Bukti perlu ditinjau · +35 XP", "bad");
   }
 
   if (!STATE.skillScores[q.skill]) STATE.skillScores[q.skill] = { c: 0, t: 0 };
@@ -1430,12 +1544,13 @@ function answerQuestion(idx, btn, q) {
   const fb = document.getElementById("game-feedback");
   if (ok) {
     fb.className = "feedback good show";
-    fb.innerHTML = `<b>Bukti terkonfirmasi · +100 XP</b><br>${q.correct}<div class="clue">Petunjuk tercatat: ${q.clue}</div>`;
+    fb.innerHTML = `<b>Bukti terkonfirmasi · +${STATE.hintUsed ? 70 : 100} XP</b><br>${q.correct}<div class="clue">Petunjuk tercatat: ${q.clue}</div>`;
   } else {
     fb.className = "feedback bad show";
     fb.innerHTML = `<b>Bukti perlu ditinjau · +35 XP</b><br>${q.wrong[idx] || "Coba hitung kembali."}<div class="clue">Catatan: ${q.wrong[q.answer] || q.correct}</div>`;
   }
 
+  document.getElementById("btn-hint").classList.remove("show");
   document.getElementById("game-next-btn").classList.add("show");
   updateSidebar();
 }
@@ -1476,6 +1591,7 @@ function updateSidebar() {
 /* ─── RESULT ─── */
 async function finishGame() {
   showPhase("result");
+  if (typeof AlgoAudio !== "undefined") AlgoAudio.play("level-up");
 
   const accuracy = Math.round(STATE.correct / STATE.questions.length * 100);
   const best = (typeof pickCharacter === "function")
@@ -1572,6 +1688,7 @@ function loadSavedResult(data) {
 function showCertificate() {
   populateCertificate();
   showPhase("certificate");
+  if (typeof AlgoAudio !== "undefined") AlgoAudio.play("certificate");
 }
 
 function populateCertificate() {
@@ -1599,12 +1716,14 @@ function populateCertificate() {
   document.getElementById("cert-name").textContent = data.studentName;
   document.getElementById("cert-level").textContent = levelLabel;
   document.getElementById("cert-char").textContent = char.name;
+  const charLine = document.getElementById("cert-char-line");
+  if (charLine) charLine.textContent = `Karakter detektif: ${char.name} — ${char.tag}`;
   document.getElementById("cert-accuracy").textContent = data.accuracy + "%";
   document.getElementById("cert-xp").textContent = data.xp + " XP";
   document.getElementById("cert-level-badge").textContent = levelLabel;
   document.getElementById("cert-date").textContent = date;
   document.getElementById("cert-id").textContent =
-    `ID: ${data.username || STATE.username} · Diverifikasi oleh Algonova`;
+    `ID: ${generateCertId ? generateCertId(data.username || STATE.username) : (data.username || STATE.username)} · Diverifikasi Algonova`;
 }
 </script>
 </body>

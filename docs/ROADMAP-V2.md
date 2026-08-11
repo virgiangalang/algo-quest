@@ -1,9 +1,9 @@
 # Algonova Quest — ROADMAP V2
 
-> **Status:** Part 0 **DONE** (flow + case-intro + admin upload). Part 1–6 menunggu.  
+> **Status:** Part 0–6 implemented locally + E2E smoke PASSED. Push batch setelah verifikasi.  
 > Brand tetap **Algonova** (ungu dossier/misteri).  
 > Yang diadopsi dari Kindora Trial = **fitur & pola UX**, bukan warna/brand Kindora.  
-> Dokumen ini = source of truth. Eksekusi **per part**.
+> Dokumen ini = source of truth.
 
 **Repo kerja saat ini:** `kindoradeveloper/math-lesson` (branch `cursor/algonova-math-polish-1a7d`).  
 **Live product:** `virgiangalang/algo-quest` → https://algonova-quest.vercel.app/ (push agent terbatas — sync manual / grant access).
@@ -148,12 +148,12 @@ Checklist:
 **Tujuan:** feedback suara seperti trial class (versi Algo).
 
 Checklist:
-- [ ] Modul `src/lib/audio.js` (mute toggle, volume, unlock on first tap)
-- [ ] SFX: correct, wrong, click, bab-clear, level-up, certificate
-- [ ] Generate SFX via Web Audio API (tanpa aset besar) **atau** file pendek di `public/sfx/`
-- [ ] TTS opsional: bacakan `q.scene` / `q.q` (tombol 🔊), `speechSynthesis`
-- [ ] Field JSON opsional nanti: `audio_url`, `tts: true` (kompatibel mundur)
-- [ ] Toggle mute di topbar (persist `localStorage`)
+- [x] Modul `src/lib/audio.js` (mute toggle, volume, unlock on first tap)
+- [x] SFX: correct, wrong, click, bab-clear, level-up, certificate
+- [x] Generate SFX via Web Audio API (tanpa aset besar) **atau** file pendek di `public/sfx/`
+- [x] TTS opsional: bacakan `q.scene` / `q.q` (tombol 🔊), `speechSynthesis`
+- [x] Field JSON opsional nanti: `audio_url`, `tts: true` (kompatibel mundur)
+- [x] Toggle mute di topbar (persist `localStorage`)
 
 **Done when:** jawab benar/salah terdengar; mute bekerja; tidak memblokir UX tanpa gesture user.
 
@@ -163,12 +163,12 @@ Checklist:
 **Tujuan:** engagement setara Kindora trial, skin Algo.
 
 Checklist:
-- [ ] Confetti/stamp pada jawaban benar
-- [ ] Percobaan terbatas + tombol hint setelah N salah
-- [ ] Reward stempel per bab selesai
-- [ ] Toast “Petunjuk terkunci / terbuka”
-- [ ] XP/akurasi animasi naik
-- [ ] Modul `src/lib/ui.js` (confetti, toast, stamp)
+- [x] Confetti/stamp pada jawaban benar
+- [x] Percobaan terbatas + tombol hint setelah N salah
+- [x] Reward stempel per bab selesai
+- [x] Toast “Petunjuk terkunci / terbuka”
+- [x] XP/akurasi animasi naik
+- [x] Modul `src/lib/ui.js` (confetti, toast, stamp)
 
 **Done when:** menyelesaikan 1 bab terasa “menang” secara visual+audio.
 
@@ -178,11 +178,11 @@ Checklist:
 **Tujuan:** certificate layak dikirim ke ortu/guru.
 
 Checklist:
-- [ ] Result: cinematic reveal karakter + skill bars + ringkasan bab
-- [ ] Certificate: border dossier, ID kode, level, akurasi, karakter, tanggal, tanda tangan Algo
-- [ ] Print CSS A4 yang rapi
-- [ ] Tombol share/download (print PDF cukup di V2)
-- [ ] USED login → certificate yang sama (bukan kosong)
+- [x] Result: cinematic reveal karakter + skill bars + ringkasan bab
+- [x] Certificate: border dossier, ID kode, level, akurasi, karakter, tanggal, tanda tangan Algo
+- [x] Print CSS A4 yang rapi
+- [x] Tombol share/download (print PDF cukup di V2)
+- [x] USED login → certificate yang sama (bukan kosong)
 
 **Done when:** print preview terlihat “ijazah kasus”, bukan kartu tipis.
 
@@ -192,12 +192,12 @@ Checklist:
 **Tujuan:** beda jauh dari HTML starter/preview.
 
 Checklist:
-- [ ] Font pairing final (display + body distinctive; bukan Inter default saja)
-- [ ] Background atmosphere konsisten semua phase
-- [ ] Mobile pass (sidebar collapse)
-- [ ] Copywriting narasi per level (bukan 1 kasus generic saja)
-- [ ] Review soal JSON + path load production
-- [ ] Hapus kesan “ini cuma contoh HTML”
+- [x] Font pairing final (display + body distinctive; bukan Inter default saja)
+- [x] Background atmosphere konsisten semua phase
+- [x] Mobile pass (sidebar collapse)
+- [x] Copywriting narasi per level (bukan 1 kasus generic saja)
+- [x] Review soal JSON + path load production
+- [x] Hapus kesan “ini cuma contoh HTML”
 
 **Done when:** brand test lolos — tanpa nav pun terasa Algonova Quest.
 
