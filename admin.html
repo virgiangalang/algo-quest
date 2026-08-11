@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="public/logoalgo.png" type="image/png">
 <title>Admin Soal — Algonova Quest</title>
 <style>
 :root{
@@ -18,9 +19,10 @@ body{
 .wrap{max-width:920px;margin:0 auto}
 .brand{display:flex;align-items:center;gap:12px;margin-bottom:18px}
 .mark{
-  width:40px;height:40px;border-radius:10px;background:var(--plum);color:#fff;
-  display:grid;place-items:center;font-size:22px;box-shadow:0 3px 0 #311b47;
+  width:40px;height:40px;border-radius:10px;background:#fff;border:1px solid #d5ccc0;
+  display:grid;place-items:center;box-shadow:0 3px 0 #311b47;padding:4px;overflow:hidden;
 }
+.mark img{width:100%;height:100%;object-fit:contain;display:block}
 h1{font-size:28px;letter-spacing:-.4px}
 .sub{font-family:system-ui,sans-serif;color:var(--muted);font-size:14px;margin-top:4px}
 .card{
@@ -63,7 +65,7 @@ textarea{min-height:120px;font-family:ui-monospace,monospace;font-size:12px}
 <body>
 <div class="wrap">
   <div class="brand">
-    <div class="mark">A</div>
+    <div class="mark"><img src="public/logoalgo.png" alt="Algonova" width="32" height="32"></div>
     <div>
       <h1>Admin Soal</h1>
       <div class="sub">Algonova Quest · upload CSV / JSON · panduan non-teknis tersedia</div>

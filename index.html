@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Algonova Math — Misteri Matematika</title>
-<link rel="icon" href="public/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="public/logoalgo.png" type="image/png">
+<link rel="apple-touch-icon" href="public/logoalgo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -61,11 +62,11 @@ input{font:inherit}
 .brand{display:flex;align-items:center;gap:12px;font-weight:760;letter-spacing:-.2px;color:#211928}
 .brandMark{
   width:36px;height:36px;border-radius:9px;
-  background:var(--plum);
-  display:grid;place-items:center;color:#fff;
-  font-family:Georgia,serif;font-size:20px;font-weight:700;
-  box-shadow:0 3px 0 #311b47;
+  background:#fff;border:1px solid #d5ccc0;
+  display:grid;place-items:center;overflow:hidden;
+  box-shadow:0 3px 0 #311b47;padding:3px;
 }
+.brandMark img{width:100%;height:100%;object-fit:contain;display:block}
 .brandSub{color:var(--plum-3);font-weight:600;font-size:14px}
 .badge{
   font-size:11px;letter-spacing:.08em;text-transform:uppercase;
@@ -199,10 +200,11 @@ input{font:inherit}
   font-size:13px;letter-spacing:.12em;padding:6px 9px;transform:rotate(-7deg);opacity:.75;
 }
 .dossier-icon{
-  width:68px;height:68px;border:1px solid #82798a;border-radius:50%;
+  width:72px;height:72px;border:1px solid #82798a;border-radius:14px;
   display:grid;place-items:center;margin-bottom:30px;
-  font-family:Georgia,serif;font-size:30px;
+  background:#fff;padding:8px;overflow:hidden;
 }
+.dossier-icon img{width:100%;height:100%;object-fit:contain;display:block}
 .dossier-lines{display:grid;gap:8px;margin:14px 0 50px}
 .dossier-lines i{display:block;height:6px;background:#c7beb2;border-radius:1px}
 .dossier-lines i:nth-child(2){width:80%}
@@ -520,12 +522,12 @@ input{font:inherit}
 }
 .cert-header{text-align:center;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid #e8e0f0;position:relative;z-index:1}
 .cert-logo{
-  width:56px;height:56px;border-radius:12px;
-  background:linear-gradient(135deg,#6b3fa0,var(--plum));
+  width:64px;height:64px;border-radius:12px;
+  background:#fff;border:1px solid #d4bfe8;
   display:grid;place-items:center;margin:0 auto 10px;
-  font-family:Georgia,serif;font-size:28px;color:#fff;font-weight:700;
-  box-shadow:0 4px 0 #311b47;
+  box-shadow:0 4px 0 #311b47;padding:6px;overflow:hidden;
 }
+.cert-logo img{width:100%;height:100%;object-fit:contain;display:block}
 .cert-issuer{font-size:12px;color:var(--plum-3);font-weight:700;letter-spacing:.12em;text-transform:uppercase}
 .cert-headline{
   font-family:Georgia,serif;font-size:34px;color:var(--plum);
@@ -633,7 +635,7 @@ input{font:inherit}
   <!-- ═══ TOPBAR ═══ -->
   <div class="topbar">
     <div class="brand">
-      <div class="brandMark">A</div>
+      <div class="brandMark"><img src="public/logoalgo.png" alt="Algonova" width="36" height="36"></div>
       <div>Algonova <span class="brandSub" data-i18n="brand.sub">Misteri Matematika</span></div>
     </div>
     <div class="topbar-actions">
@@ -692,7 +694,7 @@ input{font:inherit}
 
       <div class="login-visual">
         <div class="dossier">
-          <div class="dossier-icon">A</div>
+          <div class="dossier-icon"><img src="public/logoalgo.png" alt="Algonova" width="56" height="56"></div>
           <div class="eyebrow" style="color:#5d5064">Biro Investigasi Algonova</div>
           <div style="font-family:Georgia,serif;font-size:30px;font-weight:700;margin-top:8px">Chip AI yang Hilang</div>
           <div class="dossier-lines"><i></i><i></i><i></i></div>
@@ -905,7 +907,7 @@ input{font:inherit}
       <div class="cert-border">
         <div class="cert-watermark">ALGO</div>
         <div class="cert-header">
-          <div class="cert-logo">A</div>
+          <div class="cert-logo"><img src="public/logoalgo.png" alt="Algonova" width="52" height="52"></div>
           <div class="cert-issuer">Algonova · Biro Investigasi Matematika</div>
           <div class="cert-headline">Certificate of Achievement</div>
           <div class="cert-sub">Misteri Matematika — Kode yang Hilang</div>
