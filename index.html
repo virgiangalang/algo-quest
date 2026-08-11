@@ -673,12 +673,22 @@ input{font:inherit}
 <script>
 /* ─── CONFIG ─── */
 window.ALGONOVA_CONFIG = {
-  // Ganti dengan URL Apps Script Web App setelah deploy
-  appsScriptUrl: "YOUR_APPS_SCRIPT_WEB_APP_URL",
-  // true = skip Sheet (login bebas); set false setelah Apps Script siap
-  devMode: true,
+  appsScriptUrl: "https://script.google.com/macros/s/AKfycbzjXGev3pevaaCWk_Ob16isnpM2M_-uQHKlC-f8VE8gdS_WvJ0-bUWzwRxy1wbn43AZDQ/exec",
+  // false = pakai Google Sheet VALID/USED
+  devMode: false,
 };
 const CONFIG = window.ALGONOVA_CONFIG;
+
+/** POST ke Apps Script tanpa preflight CORS (text/plain) */
+async function appsScriptPost(payload) {
+  const resp = await fetch(CONFIG.appsScriptUrl, {
+    method: "POST",
+    redirect: "follow",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify(payload),
+  });
+  return resp.json();
+}
 
 /* ─── STATE ─── */
 let STATE = {
@@ -745,12 +755,7 @@ async function handleLogin() {
       // Dev mode: skip validation, set level berdasarkan umur
       result = { valid: true, used: false, studentName: name, level: guessLevelByAge(age) };
     } else {
-      const resp = await fetch(CONFIG.appsScriptUrl, {
-        method: "POST",
-        body: JSON.stringify({ action: "validate", username, name, age }),
-        headers: { "Content-Type": "application/json" },
-      });
-      result = await resp.json();
+      result = await appsScriptPost({ action: "validate", username, name, age });
     }
 
     loadEl.classList.remove("show");
@@ -1063,22 +1068,18 @@ async function finishGame() {
   // Submit to Apps Script
   if (!CONFIG.devMode) {
     try {
-      await fetch(CONFIG.appsScriptUrl, {
-        method: "POST",
-        body: JSON.stringify({
-          action: "submit",
-          username: STATE.username,
-          name: STATE.studentName,
-          nama: STATE.studentName,
-          age: STATE.age,
-          umur: STATE.age,
-          level: STATE.level,
-          score: STATE.xp,
-          accuracy,
-          character: best,
-          skills: STATE.skillScores,
-        }),
-        headers: { "Content-Type": "application/json" },
+      await appsScriptPost({
+        action: "submit",
+        username: STATE.username,
+        name: STATE.studentName,
+        nama: STATE.studentName,
+        age: STATE.age,
+        umur: STATE.age,
+        level: STATE.level,
+        score: STATE.xp,
+        accuracy,
+        character: best,
+        skills: STATE.skillScores,
       });
     } catch (e) { /* silent fail */ }
   }
