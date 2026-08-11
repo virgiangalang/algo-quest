@@ -117,12 +117,12 @@ Checklist:
 **Tujuan:** user memilih level sebelum bermain.
 
 Checklist:
-- [ ] Phase baru `level-select` setelah login (jika belum USED)
-- [ ] Kartu level: SD 1–3, SD 4–6, SMP, SMA, Dewasa (copy Algo)
-- [ ] Badge “Disarankan” dari umur
-- [ ] Diagnostic memakai level terpilih (bukan hanya umur)
-- [ ] `adjustLevel` tetap boleh naik/turun 1 tingkat setelah diagnostic
-- [ ] Sheet kolom `Level` diisi saat submit
+- [x] Phase baru `level-select` setelah login (jika belum USED)
+- [x] Kartu level: SD 1–3, SD 4–6, SMP, SMA, Dewasa (copy Algo)
+- [x] Badge “Disarankan” dari umur
+- [x] Diagnostic memakai level terpilih (bukan hanya umur)
+- [x] `adjustLevel` tetap boleh naik/turun 1 tingkat setelah diagnostic
+- [x] Sheet kolom `Level` diisi saat submit (sudah di `appsScriptPost` submit)
 
 **Done when:** bisa pilih SMP meski umur 11; diagnostic & bank soal mengikuti.
 
