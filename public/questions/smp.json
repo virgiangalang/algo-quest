@@ -30,7 +30,9 @@
             "3x=15, x=5 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Kode sinyal adalah x = 5."
+          "clue": "Kode sinyal adalah x = 5.",
+          "type_ui": "numeric",
+          "answer_value": 5
         },
         {
           "id": "q1-2",
@@ -151,7 +153,9 @@
             "20 — tepat!",
             "Terlalu tinggi."
           ],
-          "clue": "Rata-rata suhu lab: 20°C."
+          "clue": "Rata-rata suhu lab: 20°C.",
+          "type_ui": "numeric",
+          "answer_value": 20
         },
         {
           "id": "q2-2",
@@ -373,27 +377,40 @@
       "title": "Bab 4 — Peta Koordinat",
       "questions": [
         {
-          "scene": "Geser titik di peta.",
-          "q": "(3,5) digeser 2 satuan ke kanan?",
+          "scene": "Catatan lab memuat pecahan yang harus diurutkan sebelum dibuka.",
+          "q": "Urutkan pecahan dari yang terkecil ke terbesar.",
           "choices": [
-            "(5,5)",
-            "(3,7)",
-            "(5,7)",
-            "(1,5)"
+            "1/4",
+            "1/3",
+            "1/2",
+            "3/4"
           ],
           "answer": 0,
-          "skill": "Geometri Koordinat",
-          "difficulty": "Mudah",
-          "type": "explorer",
-          "correct": "(5,5).",
+          "skill": "Pecahan",
+          "difficulty": "Sedang",
+          "type": "analyst",
+          "correct": "1/4 < 1/3 < 1/2 < 3/4. Brankas terbuka!",
           "wrong": [
             "Tepat!",
             "Itu ke atas.",
             "Kedua sumbu berubah.",
             "Ke kiri."
           ],
-          "clue": "Posisi (5,5).",
-          "id": "q4-1"
+          "clue": "Kode pecahan cocok dengan rekaman kamera.",
+          "id": "q4-1",
+          "type_ui": "order",
+          "items": [
+            "1/4",
+            "1/3",
+            "1/2",
+            "3/4"
+          ],
+          "answer_order": [
+            0,
+            1,
+            2,
+            3
+          ]
         },
         {
           "scene": "Hitung jarak.",

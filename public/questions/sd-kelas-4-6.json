@@ -13,7 +13,12 @@
           "id": "q1-1",
           "scene": "Pintu laboratorium terkunci rapat. Sebuah keypad menyala di sampingnya.",
           "q": "Sebuah kotak berisi 240 microchip. Sebanyak 3/8 di antaranya berwarna biru. Berapa jumlah chip biru?",
-          "choices": ["80", "90", "120", "150"],
+          "choices": [
+            "80",
+            "90",
+            "120",
+            "150"
+          ],
           "answer": 1,
           "skill": "Pecahan",
           "difficulty": "Mudah",
@@ -25,13 +30,20 @@
             "Itu setengah dari 240.",
             "Terlalu besar. Mulai dari 1/8."
           ],
-          "clue": "Jejak kaki berlumpur ditemukan di dekat meja Prof. Nova."
+          "clue": "Jejak kaki berlumpur ditemukan di dekat meja Prof. Nova.",
+          "type_ui": "numeric",
+          "answer_value": 90
         },
         {
           "id": "q1-2",
           "scene": "Jam digital rusak berhenti tepat saat chip menghilang.",
           "q": "Jam berhenti pukul 14.35. Petugas memeriksa 47 menit sebelumnya. Pukul berapa?",
-          "choices": ["13:38", "13:48", "14:02", "14:12"],
+          "choices": [
+            "13:38",
+            "13:48",
+            "14:02",
+            "14:12"
+          ],
           "answer": 1,
           "skill": "Waktu",
           "difficulty": "Mudah",
@@ -49,7 +61,12 @@
           "id": "q1-3",
           "scene": "Di atas meja terdapat empat baterai berlabel angka.",
           "q": "Manakah yang nilainya paling besar?",
-          "choices": ["3,09", "3,9", "3,19", "3,099"],
+          "choices": [
+            "3,09",
+            "3,9",
+            "3,19",
+            "3,099"
+          ],
           "answer": 1,
           "skill": "Desimal",
           "difficulty": "Mudah",
@@ -67,7 +84,12 @@
           "id": "q1-4",
           "scene": "Lampu UV memperlihatkan pola kode di lantai.",
           "q": "Lengkapi pola: 18, 24, 30, 36, __",
-          "choices": ["40", "41", "42", "44"],
+          "choices": [
+            "40",
+            "41",
+            "42",
+            "44"
+          ],
           "answer": 2,
           "skill": "Pola",
           "difficulty": "Mudah",
@@ -85,7 +107,12 @@
           "id": "q1-5",
           "scene": "Nomor ID pada kartu tamu sebagian rusak.",
           "q": "Bilangan dibulatkan jadi 4.700 (ke ratusan terdekat). Mana yang mungkin?",
-          "choices": ["4.641", "4.749", "4.751", "4.801"],
+          "choices": [
+            "4.641",
+            "4.749",
+            "4.751",
+            "4.801"
+          ],
           "answer": 1,
           "skill": "Pembulatan",
           "difficulty": "Sedang",
@@ -109,7 +136,12 @@
           "id": "q2-1",
           "scene": "Mira mengaku berada di perpustakaan selama 0,75 jam.",
           "q": "0,75 jam = berapa menit?",
-          "choices": ["35", "40", "45", "75"],
+          "choices": [
+            "35",
+            "40",
+            "45",
+            "75"
+          ],
           "answer": 2,
           "skill": "Desimal",
           "difficulty": "Mudah",
@@ -121,13 +153,20 @@
             "Tepat: 45 menit.",
             "75 adalah angka desimalnya, bukan menit."
           ],
-          "clue": "Waktu Mira di perpustakaan sesuai rekaman CCTV."
+          "clue": "Waktu Mira di perpustakaan sesuai rekaman CCTV.",
+          "type_ui": "numeric",
+          "answer_value": 45
         },
         {
           "id": "q2-2",
           "scene": "Rafi membeli makan di kafe. Sebagian struk terbakar.",
           "q": "Minuman Rp12.000 dan sandwich Rp19.250. Totalnya?",
-          "choices": ["Rp29.250", "Rp30.750", "Rp31.250", "Rp32.000"],
+          "choices": [
+            "Rp29.250",
+            "Rp30.750",
+            "Rp31.250",
+            "Rp32.000"
+          ],
           "answer": 2,
           "skill": "Penjumlahan",
           "difficulty": "Mudah",
@@ -145,7 +184,12 @@
           "id": "q2-3",
           "scene": "Luna mengaku menyalin 2/5 laporan setebal 150 halaman.",
           "q": "Berapa halaman yang disalin Luna?",
-          "choices": ["30", "50", "60", "75"],
+          "choices": [
+            "30",
+            "50",
+            "60",
+            "75"
+          ],
           "answer": 2,
           "skill": "Pecahan",
           "difficulty": "Mudah",
@@ -163,7 +207,12 @@
           "id": "q2-4",
           "scene": "Theo bersepeda 12 km dalam 40 menit.",
           "q": "Dengan kecepatan sama, berapa km dalam 10 menit?",
-          "choices": ["2 km", "3 km", "4 km", "6 km"],
+          "choices": [
+            "2 km",
+            "3 km",
+            "4 km",
+            "6 km"
+          ],
           "answer": 1,
           "skill": "Rasio",
           "difficulty": "Sedang",
@@ -181,7 +230,12 @@
           "id": "q2-5",
           "scene": "Tersangka memberi pernyataan soal kamera keamanan.",
           "q": "25% dari 80 kamera tidak aktif. Berapa yang mati?",
-          "choices": ["15", "20", "25", "30"],
+          "choices": [
+            "15",
+            "20",
+            "25",
+            "30"
+          ],
           "answer": 1,
           "skill": "Persentase",
           "difficulty": "Mudah",
@@ -205,7 +259,12 @@
           "id": "q3-1",
           "scene": "Peta kompleks penelitian ditemukan di bawah karpet.",
           "q": "Ruang penyimpanan 8 m × 5 m. Berapa kelilingnya?",
-          "choices": ["13 m", "26 m", "40 m", "80 m"],
+          "choices": [
+            "13 m",
+            "26 m",
+            "40 m",
+            "80 m"
+          ],
           "answer": 1,
           "skill": "Geometri",
           "difficulty": "Mudah",
@@ -223,7 +282,12 @@
           "id": "q3-2",
           "scene": "Denah ruangan ditemukan di balik panel.",
           "q": "Ruangan 8 m × 5 m. Berapa luasnya?",
-          "choices": ["13 m²", "26 m²", "40 m²", "80 m²"],
+          "choices": [
+            "13 m²",
+            "26 m²",
+            "40 m²",
+            "80 m²"
+          ],
           "answer": 2,
           "skill": "Geometri",
           "difficulty": "Mudah",
@@ -241,7 +305,12 @@
           "id": "q3-3",
           "scene": "Tabung ukur bersegel memuat kode tersembunyi.",
           "q": "1,5 liter = berapa mililiter?",
-          "choices": ["150 mL", "500 mL", "1.050 mL", "1.500 mL"],
+          "choices": [
+            "150 mL",
+            "500 mL",
+            "1.050 mL",
+            "1.500 mL"
+          ],
           "answer": 3,
           "skill": "Pengukuran",
           "difficulty": "Mudah",
@@ -259,7 +328,12 @@
           "id": "q3-4",
           "scene": "Brankas meminta jawaban berat paket.",
           "q": "Paket 2,75 kg = berapa gram?",
-          "choices": ["275 g", "2.075 g", "2.750 g", "27.500 g"],
+          "choices": [
+            "275 g",
+            "2.075 g",
+            "2.750 g",
+            "27.500 g"
+          ],
           "answer": 2,
           "skill": "Pengukuran",
           "difficulty": "Sedang",
@@ -277,7 +351,12 @@
           "id": "q3-5",
           "scene": "Jaringan laser menjaga pintu ruangan.",
           "q": "Sinar laser membentuk sudut siku-siku. Berapa derajatnya?",
-          "choices": ["45°", "60°", "90°", "180°"],
+          "choices": [
+            "45°",
+            "60°",
+            "90°",
+            "180°"
+          ],
           "answer": 2,
           "skill": "Geometri",
           "difficulty": "Mudah",
@@ -299,27 +378,53 @@
       "questions": [
         {
           "id": "q4-1",
-          "scene": "Tiket kereta memuat deret terenkripsi.",
-          "q": "Angka berikutnya: 3, 6, 12, 24, __",
-          "choices": ["30", "36", "42", "48"],
-          "answer": 3,
+          "scene": "Tiket kereta memuat deret terenkripsi yang acak.",
+          "q": "Urutkan langkah pola dari awal sampai akhir (×2 tiap langkah).",
+          "choices": [
+            "3",
+            "6",
+            "12",
+            "24",
+            "48"
+          ],
+          "answer": 0,
           "skill": "Pola",
           "difficulty": "Mudah",
           "type": "codebreaker",
-          "correct": "× 2 setiap kali. 24 × 2 = 48. Peron terkonfirmasi!",
+          "correct": "3 → 6 → 12 → 24 → 48. Peron terkonfirmasi!",
           "wrong": [
             "Pola ini perkalian, bukan penjumlahan.",
             "12 × 2 = 24.",
             "42 bukan hasil ×2.",
             "48 — tepat!"
           ],
-          "clue": "Tersangka menggunakan Peron 48."
+          "clue": "Tersangka menggunakan Peron 48.",
+          "type_ui": "order",
+          "items": [
+            "3",
+            "6",
+            "12",
+            "24",
+            "48"
+          ],
+          "answer_order": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
         },
         {
           "id": "q4-2",
           "scene": "Loker di stasiun meminta nilai x.",
           "q": "x + 17 = 45. Berapa x?",
-          "choices": ["18", "28", "52", "62"],
+          "choices": [
+            "18",
+            "28",
+            "52",
+            "62"
+          ],
           "answer": 1,
           "skill": "Aljabar",
           "difficulty": "Mudah",
@@ -337,7 +442,12 @@
           "id": "q4-3",
           "scene": "Ponsel menampilkan sandi perkalian.",
           "q": "6 × n = 54. Berapa n?",
-          "choices": ["7", "8", "9", "10"],
+          "choices": [
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
           "answer": 2,
           "skill": "Aljabar",
           "difficulty": "Mudah",
@@ -355,7 +465,12 @@
           "id": "q4-4",
           "scene": "Pesan rahasia: 'Hanya yang mengenal bilangan prima bisa melihat kebenaran.'",
           "q": "Mana yang merupakan bilangan prima?",
-          "choices": ["21", "27", "29", "39"],
+          "choices": [
+            "21",
+            "27",
+            "29",
+            "39"
+          ],
           "answer": 2,
           "skill": "Bilangan",
           "difficulty": "Sedang",
@@ -373,7 +488,12 @@
           "id": "q4-5",
           "scene": "Sandi terakhir memakai mesin fungsi sederhana.",
           "q": "Mesin: kalikan 3, lalu tambah 2. Masukan = 7. Hasilnya?",
-          "choices": ["21", "23", "27", "29"],
+          "choices": [
+            "21",
+            "23",
+            "27",
+            "29"
+          ],
           "answer": 1,
           "skill": "Aljabar",
           "difficulty": "Sedang",
@@ -397,7 +517,12 @@
           "id": "q5-1",
           "scene": "Tersangka masuk stasiun pukul 18.12. Pertemuan pukul 18.20.",
           "q": "Berapa menit waktu yang tersisa?",
-          "choices": ["6", "8", "10", "12"],
+          "choices": [
+            "6",
+            "8",
+            "10",
+            "12"
+          ],
           "answer": 1,
           "skill": "Waktu",
           "difficulty": "Mudah",
@@ -415,7 +540,12 @@
           "id": "q5-2",
           "scene": "Dua tangga menuju peron.",
           "q": "Tangga A: 36 anak. Tangga B 25% lebih sedikit. Berapa anak tangga B?",
-          "choices": ["9", "18", "27", "30"],
+          "choices": [
+            "9",
+            "18",
+            "27",
+            "30"
+          ],
           "answer": 2,
           "skill": "Persentase",
           "difficulty": "Sedang",
@@ -433,7 +563,12 @@
           "id": "q5-3",
           "scene": "Papan jadwal: kereta menempuh 180 km dalam 3 jam.",
           "q": "Berapa kecepatan rata-ratanya?",
-          "choices": ["50 km/jam", "60 km/jam", "90 km/jam", "540 km/jam"],
+          "choices": [
+            "50 km/jam",
+            "60 km/jam",
+            "90 km/jam",
+            "540 km/jam"
+          ],
           "answer": 1,
           "skill": "Laju",
           "difficulty": "Sedang",
@@ -451,7 +586,12 @@
           "id": "q5-4",
           "scene": "Tersangka menjatuhkan tas berisi kartu akses: 5 merah, 3 biru, 2 hijau.",
           "q": "Peluang mengambil kartu biru secara acak?",
-          "choices": ["2/10", "3/10", "5/10", "7/10"],
+          "choices": [
+            "2/10",
+            "3/10",
+            "5/10",
+            "7/10"
+          ],
           "answer": 1,
           "skill": "Peluang",
           "difficulty": "Sedang",
@@ -469,7 +609,12 @@
           "id": "q5-5",
           "scene": "Koridor bercabang tiga rute di peta.",
           "q": "Rute A: 450 m. Rute B: 0,6 km. Rute C: 520 m. Mana yang terpendek?",
-          "choices": ["Rute A", "Rute B", "Rute C", "Sama semua"],
+          "choices": [
+            "Rute A",
+            "Rute B",
+            "Rute C",
+            "Sama semua"
+          ],
           "answer": 0,
           "skill": "Pengukuran",
           "difficulty": "Sedang",
@@ -493,7 +638,10 @@
           "id": "q6-1",
           "scene": "Tersangka bilang 4/6 < 2/3. Benarkan?",
           "q": "Apakah 4/6 lebih kecil dari 2/3?",
-          "choices": ["Ya", "Tidak"],
+          "choices": [
+            "Ya",
+            "Tidak"
+          ],
           "answer": 1,
           "skill": "Pecahan",
           "difficulty": "Sedang",
@@ -509,7 +657,12 @@
           "id": "q6-2",
           "scene": "Jejak kaki di taman: panjang 24 cm. Foto skala 1:3.",
           "q": "Berapa panjang jejak kaki di foto?",
-          "choices": ["6 cm", "8 cm", "12 cm", "72 cm"],
+          "choices": [
+            "6 cm",
+            "8 cm",
+            "12 cm",
+            "72 cm"
+          ],
           "answer": 1,
           "skill": "Rasio",
           "difficulty": "Sulit",
@@ -527,7 +680,12 @@
           "id": "q6-3",
           "scene": "Tiket kereta: harga setelah diskon 10% = Rp18.000.",
           "q": "Berapa harga awal tiket?",
-          "choices": ["Rp19.000", "Rp20.000", "Rp21.000", "Rp22.000"],
+          "choices": [
+            "Rp19.000",
+            "Rp20.000",
+            "Rp21.000",
+            "Rp22.000"
+          ],
           "answer": 1,
           "skill": "Persentase",
           "difficulty": "Sulit",
@@ -545,7 +703,12 @@
           "id": "q6-4",
           "scene": "Log akses chip tercatat: 6, 8, 7, 9, 10.",
           "q": "Berapa rata-ratanya?",
-          "choices": ["7", "8", "8,5", "9"],
+          "choices": [
+            "7",
+            "8",
+            "8,5",
+            "9"
+          ],
           "answer": 1,
           "skill": "Data",
           "difficulty": "Sedang",
@@ -563,7 +726,12 @@
           "id": "q6-5",
           "scene": "Pelaku mencoba kabur lewat gerbang berkode.",
           "q": "Kode gerbang = 5² + 3 × 4. Berapa hasilnya?",
-          "choices": ["32", "37", "44", "112"],
+          "choices": [
+            "32",
+            "37",
+            "44",
+            "112"
+          ],
           "answer": 1,
           "skill": "Urutan Operasi",
           "difficulty": "Sulit",

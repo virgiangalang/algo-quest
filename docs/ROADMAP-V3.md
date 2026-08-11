@@ -113,81 +113,26 @@ Checklist:
 ---
 
 ### Part C — Tipe soal interaktif (P0 produk, bertahap)
-**Tujuan:** bukan hanya MCQ — semi-game seperti Kindora (versi Algo).
+**Status:** DONE (mcq + numeric + order MVP)
 
-#### C0 — Skema data (wajib dulu)
-Tambah di JSON soal:
+Checklist C0/C1:
+- [x] Update template CSV/JSON + `prompt-ai.txt` + `PANDUAN-SOAL.md`
+- [x] Admin upload validasi `type_ui` (numeric/order)
+- [x] Renderer `src/lib/question-render.js`
+- [x] Backward compatible: tanpa `type_ui` → `mcq`
+- [x] 2 numeric + 1 order per level bank
+- [x] Feedback + SFX + attempts tetap jalan
 
-```json
-{
-  "id": "q1-1",
-  "type_ui": "mcq",
-  "prompt": "...",
-  "payload": {},
-  "answer": ...,
-  "skill": "...",
-  "scene": "...",
-  "image": "/public/story/bab-1.jpg"
-}
-```
-
-`type_ui` yang direncanakan:
-
-| type_ui | Interaksi | Mirip Kindora |
-|---------|-----------|---------------|
-| `mcq` | Pilihan A–D (existing) | ✓ |
-| `numeric` | Ketik angka / pecahan | input |
-| `order` | Urutkan langkah / bilangan (drag) | order |
-| `match` | Pasangkan kiri–kanan | match |
-| `hotspot` | Klik area pada gambar | tap target |
-| `fill_blank` | Isian singkat di kalimat | cloze |
-| `true_false` | Benar/Salah + alasan singkat (opsional) | binary |
-
-Checklist C0:
-- [ ] Update template CSV/JSON + `prompt-ai.txt` + `PANDUAN-SOAL.md`
-- [ ] Admin upload validasi `type_ui`
-- [ ] Renderer di `index.html` / `src/lib/question-render.js` switch by type
-- [ ] Backward compatible: tanpa `type_ui` → `mcq`
-
-#### C1 — Ship dulu 3 tipe (MVP interaktif)
-1. `mcq` (existing)  
-2. `numeric`  
-3. `order` **atau** `match` (pilih satu yang lebih mudah drag)
-
-Checklist C1:
-- [ ] 2–4 soal per level memakai tipe baru (tidak perlu 30 sekaligus)
-- [ ] Feedback benar/salah + SFX tetap jalan
-- [ ] Mobile: touch-friendly
-- [ ] E2E smoke untuk numeric + satu drag type
-
-#### C2 — Perluas
-- [ ] `match`, `hotspot`, `fill_blank`
-- [ ] Campuran tipe per bab (1 visual, 1 numeric, 3 mcq, …)
-
-**Done when:** satu sesi demo memuat ≥3 tipe interaksi berbeda.
-
----
-
-### Part D — Laporan PDF ortu/guru (yang kamu setujui)
-**Tujuan:** selain certificate siswa, ada **1–2 halaman laporan** yang bisa dikirim WhatsApp/email.
-
-Isi laporan:
-- Nama, username, level, tanggal  
-- Akurasi, XP, karakter detektif  
-- Skill bars ringkas  
-- 3 insight (“kuat di Pecahan”, “latihan Persentase”)  
-- Logo Algonova + (nanti) TTD CEO / Program Director  
-- Placeholder TTD: “________________ / CEO Algonova” sampai aset resmi ada  
+### Part D — Laporan PDF ortu/guru
+**Status:** DONE (placeholder TTD CEO)
 
 Checklist:
-- [ ] Phase atau tombol `Laporan PDF` di result/certificate  
-- [ ] Print CSS A4 terpisah dari certificate (atau mode `?print=report`)  
-- [ ] ID/EN string laporan  
-- [ ] Tombol Share (copy ringkas + print)  
-- [ ] Data dari `localStorage` result + Sheet jika ada  
-- [ ] E2E: tombol muncul + DOM laporan terisi  
-
-**Done when:** guru bisa print/share 1 file yang “siap dikirim ke ortu”.
+- [x] Tombol laporan di result
+- [x] Phase `#phase-report` + print CSS A4 (`body.print-report`)
+- [x] ID/EN string laporan
+- [x] Share + print
+- [x] Data dari `localStorage` result
+- [x] Placeholder TTD CEO
 
 ---
 

@@ -30,7 +30,9 @@
             "Terlalu besar.",
             "Terlalu besar."
           ],
-          "clue": "Kunci bernomor 5."
+          "clue": "Kunci bernomor 5.",
+          "type_ui": "numeric",
+          "answer_value": 5
         },
         {
           "id": "q1-2",
@@ -151,7 +153,9 @@
             "13 — tepat!",
             "14? Cek."
           ],
-          "clue": "13 pintu bisa dilalui."
+          "clue": "13 pintu bisa dilalui.",
+          "type_ui": "numeric",
+          "answer_value": 13
         },
         {
           "id": "q2-2",
@@ -374,26 +378,39 @@
       "questions": [
         {
           "id": "q4-1",
-          "scene": "Petunjuk baru: Pintu kebun terkunci. Ada angka di kunci.",
-          "q": "2 + 3 = ?",
+          "scene": "Kartu angka berserakan di meja detektif.",
+          "q": "Urutkan angka dari yang terkecil ke terbesar.",
           "choices": [
-            "4",
-            "5",
-            "6",
-            "7"
+            "3",
+            "7",
+            "12",
+            "20"
           ],
-          "answer": 1,
-          "skill": "Penjumlahan",
+          "answer": 0,
+          "skill": "Urutan Bilangan",
           "difficulty": "Mudah",
-          "type": "analyst",
-          "correct": "2 + 3 = 5. Pintu terbuka!",
+          "type": "codebreaker",
+          "correct": "3 → 7 → 12 → 20. Urutan bilangan terkunci!",
           "wrong": [
             "Coba hitung lagi.",
             "5 — tepat!",
             "Terlalu besar.",
             "Terlalu besar."
           ],
-          "clue": "Kunci bernomor 5."
+          "clue": "Kunci brankas memakai urutan 3-7-12-20.",
+          "type_ui": "order",
+          "items": [
+            "3",
+            "7",
+            "12",
+            "20"
+          ],
+          "answer_order": [
+            0,
+            1,
+            2,
+            3
+          ]
         },
         {
           "id": "q4-2",

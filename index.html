@@ -119,6 +119,29 @@ input{font:inherit}
 }
 .btn-hint.show{display:inline-block}
 .attempt-pill{font-size:11px;color:var(--muted);font-weight:600}
+.interactive-block{display:block;max-width:560px}
+.numeric-wrap,.order-wrap{background:#fff;border:1px solid #d7cfc3;border-radius:10px;padding:16px}
+.numeric-label,.order-hint,.numeric-hint{font-size:12px;color:var(--muted);margin-bottom:8px;display:block}
+.numeric-row{display:flex;gap:8px;flex-wrap:wrap}
+.numeric-input{
+  flex:1;min-width:160px;padding:11px 12px;border:1.5px solid #d5ccc0;border-radius:8px;
+  font-size:16px;font-family:"IBM Plex Sans",system-ui,sans-serif;
+}
+.numeric-input:focus{outline:none;border-color:var(--plum-3);box-shadow:0 0 0 3px var(--plum-glow)}
+.order-list{display:grid;gap:8px}
+.order-item{
+  display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid #d7cfc3;
+  border-radius:9px;background:#faf8f4;
+}
+.order-pos{
+  width:24px;height:24px;border-radius:6px;background:var(--plum-light);color:var(--plum);
+  display:grid;place-items:center;font-size:11px;font-weight:800;
+}
+.order-label{flex:1;font-weight:600}
+.order-actions button{
+  border:1px solid #d5ccc0;background:#fff;border-radius:6px;width:28px;height:28px;cursor:pointer;
+}
+.order-actions button:hover{border-color:var(--plum-3)}
 
 .card{
   background:var(--paper);border:1px solid #cfc7bb;
@@ -523,6 +546,50 @@ input{font:inherit}
    PHASE: CERTIFICATE
 ───────────────────────────────────────────── */
 #phase-certificate{display:none}
+#phase-report{display:none}
+.report-page{
+  background:#fff;border:1px solid #cfc7bb;border-radius:12px;max-width:820px;margin:0 auto;
+  box-shadow:0 12px 40px rgba(40,20,60,.08);overflow:hidden;
+}
+.report-border{padding:36px 40px 28px;position:relative}
+.report-header{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.report-header img{width:52px;height:52px;object-fit:contain}
+.report-kicker{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--plum);font-weight:700}
+.report-title{font-family:"Fraunces",Georgia,serif;font-size:28px;color:#2a2430;margin:2px 0 0;line-height:1.2}
+.report-sub{color:var(--muted);font-size:14px;margin-top:4px}
+.report-meta{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;
+  padding:14px 0 18px;border-top:1px solid #e6dfd4;border-bottom:1px solid #e6dfd4;margin-bottom:18px;
+}
+.report-meta dt{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.report-meta dd{margin:2px 0 0;font-weight:700;color:#2a2430}
+.report-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:22px}
+.report-stat{
+  background:linear-gradient(180deg,#faf7f2,#f3eee6);border:1px solid #e0d7ca;border-radius:10px;padding:12px;
+  text-align:center;
+}
+.report-stat .v{font-size:22px;font-weight:800;color:var(--plum);font-family:"Fraunces",Georgia,serif}
+.report-stat .l{font-size:11px;color:var(--muted);margin-top:2px}
+.report-section-title{
+  font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--plum);margin:0 0 10px;
+}
+.report-skill{margin-bottom:10px}
+.report-skill-head{display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px}
+.report-skill-bg{height:8px;background:#ebe4da;border-radius:99px;overflow:hidden}
+.report-skill-fg{height:100%;background:linear-gradient(90deg,var(--plum),#7a4fa3);border-radius:99px}
+.report-insights{margin:0;padding-left:18px;color:#3a3340;line-height:1.55}
+.report-insights li{margin-bottom:6px}
+.report-muted{color:var(--muted);font-size:13px}
+.report-sign-row{
+  display:flex;justify-content:space-between;gap:24px;margin-top:28px;padding-top:18px;border-top:1px solid #e6dfd4;
+  flex-wrap:wrap;
+}
+.report-sign{min-width:180px}
+.report-sign-line{height:1px;background:#2a2430;margin:36px 0 8px;opacity:.55}
+.report-sign-name{font-weight:700;font-size:13px}
+.report-sign-role{font-size:11px;color:var(--muted)}
+.report-note{font-size:11px;color:var(--muted);font-style:italic;margin-top:4px}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:0 0 16px}
 .cert-actions{display:flex;justify-content:center;gap:12px;padding:20px 0;flex-wrap:wrap}
 .cert-page{
   background:#fff;border:1px solid #d8d0c4;border-radius:12px;
@@ -648,11 +715,15 @@ input{font:inherit}
 @media print{
   body{background:#fff!important;min-height:auto}
   .app{padding:0!important;max-width:none}
-  .topbar,.cert-actions,.footer{display:none!important}
+  .topbar,.cert-actions,.report-actions,.footer,.resume-overlay{display:none!important}
   #phase-login,#phase-level-select,#phase-briefing,#phase-diagnostic,#phase-case-intro,#phase-game,#phase-result{display:none!important}
-  #phase-certificate{display:block!important}
-  .cert-page{border:none;border-radius:0;max-width:none;box-shadow:none}
-  .cert-border{margin:16px;border:2px solid var(--plum)}
+  body.print-report #phase-certificate{display:none!important}
+  body.print-report #phase-report{display:block!important}
+  body:not(.print-report) #phase-certificate{display:block!important}
+  body:not(.print-report) #phase-report{display:none!important}
+  .cert-page,.report-page{border:none;border-radius:0;max-width:none;box-shadow:none}
+  .cert-border,.report-border{margin:12px;border:2px solid var(--plum)}
+  .report-stats{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
 </style>
 </head>
@@ -922,8 +993,9 @@ input{font:inherit}
         <div class="result-box"><div class="small-label" data-i18n="game.clues">Petunjuk</div><div class="big-label" id="res-clues">—</div></div>
       </div>
       <div class="skill-bars" id="res-skills"></div>
-      <div style="margin-top:12px">
+      <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
         <button class="btn-cert" onclick="showCertificate()" data-i18n="result.cert">Lihat & Cetak Certificate</button>
+        <button class="btn-cert" style="background:#68418a" onclick="showReport()" data-i18n="result.report">Laporan PDF ortu/guru</button>
       </div>
     </div>
   </div>
@@ -933,7 +1005,7 @@ input{font:inherit}
   ════════════════════════════════════════ -->
   <div id="phase-certificate">
     <div class="cert-actions">
-      <button class="btn-primary" onclick="window.print()" data-i18n="cert.print">Cetak / Simpan PDF</button>
+      <button class="btn-primary" onclick="document.body.classList.remove('print-report');window.print()" data-i18n="cert.print">Cetak / Simpan PDF</button>
       <button class="btn-primary" style="background:#68418a" onclick="shareResult()" data-i18n="cert.share">Bagikan hasil</button>
       <button class="btn-retry" onclick="showPhase('result')" data-i18n="cert.back">← Kembali ke Hasil</button>
     </div>
@@ -993,6 +1065,63 @@ input{font:inherit}
     </div>
   </div>
 
+  <!-- ═══════════════════════════════════════
+       PHASE: PARENT / TEACHER REPORT
+  ════════════════════════════════════════ -->
+  <div id="phase-report">
+    <div class="report-actions">
+      <button class="btn-primary" onclick="printReport()" data-i18n="report.print">Cetak / Simpan laporan PDF</button>
+      <button class="btn-primary" style="background:#68418a" onclick="shareResult()" data-i18n="cert.share">Bagikan hasil</button>
+      <button class="btn-retry" onclick="showPhase('result')" data-i18n="report.back">← Kembali ke Hasil</button>
+    </div>
+    <div class="report-page">
+      <div class="report-border">
+        <div class="report-header">
+          <img src="public/logoalgo.png" alt="Algonova" width="52" height="52">
+          <div>
+            <div class="report-kicker" data-i18n="report.for">Untuk orang tua / guru</div>
+            <h1 class="report-title" data-i18n="report.title">Laporan Hasil Belajar</h1>
+            <div class="report-sub">Algonova Quest · Misteri Matematika</div>
+          </div>
+        </div>
+
+        <dl class="report-meta">
+          <div><dt>Nama</dt><dd id="report-name">—</dd></div>
+          <div><dt>Username</dt><dd id="report-username">—</dd></div>
+          <div><dt>Level</dt><dd id="report-level">—</dd></div>
+          <div><dt>Tanggal</dt><dd id="report-date">—</dd></div>
+        </dl>
+
+        <div class="report-stats">
+          <div class="report-stat"><div class="v" id="report-accuracy">—</div><div class="l" data-i18n="game.accuracy">Akurasi</div></div>
+          <div class="report-stat"><div class="v" id="report-xp">—</div><div class="l" data-i18n="game.xp">XP Detektif</div></div>
+          <div class="report-stat"><div class="v" id="report-clues">—</div><div class="l" data-i18n="game.clues">Petunjuk</div></div>
+          <div class="report-stat"><div class="v" id="report-char" style="font-size:15px;line-height:1.25">—</div><div class="l">Karakter</div></div>
+        </div>
+
+        <div class="report-section-title" data-i18n="result.skills">Profil Matematikamu</div>
+        <div id="report-skills"></div>
+
+        <div class="report-section-title" style="margin-top:20px" data-i18n="report.insights">Insight singkat</div>
+        <ul class="report-insights" id="report-insights"></ul>
+
+        <div class="report-sign-row">
+          <div class="report-sign">
+            <div class="report-sign-line"></div>
+            <div class="report-sign-name">________________</div>
+            <div class="report-sign-role" data-i18n="report.signCeo">CEO Algonova</div>
+            <div class="report-note" data-i18n="report.signNote">(Tanda tangan resmi menyusul)</div>
+          </div>
+          <div class="report-sign">
+            <div class="report-sign-line"></div>
+            <div class="report-sign-name">Tim Algonova</div>
+            <div class="report-sign-role">Program Director</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="footer" data-i18n="footer">© Algonova by Algorithmics · Misteri Matematika · Kurikulum Merdeka</div>
 </div>
 
@@ -1020,7 +1149,9 @@ input{font:inherit}
 <script src="src/lib/ui.js"></script>
 <script src="src/lib/i18n.js"></script>
 <script src="src/lib/persist.js"></script>
+<script src="src/lib/question-render.js"></script>
 <script src="src/lib/certificate.js"></script>
+<script src="src/lib/report.js"></script>
 <script>
 /* ─── CONFIG ─── */
 window.ALGONOVA_CONFIG = {
@@ -1072,11 +1203,14 @@ let STATE = {
 };
 
 /* ─── UTILS ─── */
-const PHASES = ["login","level-select","briefing","diagnostic","case-intro","game","result","certificate"];
+const PHASES = ["login","level-select","briefing","diagnostic","case-intro","game","result","certificate","report"];
 
 function showPhase(name) {
   if (name === "login" && STATE.phase && STATE.phase !== "login") {
     console.info("[algo] showPhase(login) dipanggil dari", STATE.phase);
+  }
+  if (name !== "report" && name !== "certificate") {
+    document.body.classList.remove("print-report");
   }
   PHASES.forEach(p => {
     const el = document.getElementById(`phase-${p}`);
@@ -1614,26 +1748,98 @@ function renderQuestion() {
   document.getElementById("game-scene").textContent = lq.scene;
   document.getElementById("game-question").textContent = lq.q;
   document.getElementById("game-skill").textContent = lq.skill;
-  document.getElementById("game-difficulty").textContent = lq.difficulty;
+  const typeUi = (typeof QuestionRender !== "undefined") ? QuestionRender.typeOf(q) : "mcq";
+  document.getElementById("game-difficulty").textContent =
+    `${lq.difficulty}${typeUi !== "mcq" ? " · " + typeUi : ""}`;
 
   const box = document.getElementById("game-choices");
-  box.innerHTML = "";
-  lq.choices.forEach((c, idx) => {
-    const btn = document.createElement("button");
-    btn.className = "choice";
-    btn.innerHTML = `<span class="choice-key">${"ABCD"[idx]}</span>${c}`;
-    btn.onclick = () => answerQuestion(idx, btn, q);
-    box.appendChild(btn);
-  });
+  if (typeof QuestionRender !== "undefined") {
+    QuestionRender.render(box, lq, (payload) => submitInteractive(payload, q));
+  } else {
+    box.innerHTML = "";
+    (lq.choices || []).forEach((c, idx) => {
+      const btn = document.createElement("button");
+      btn.className = "choice";
+      btn.innerHTML = `<span class="choice-key">${"ABCD"[idx]}</span>${c}`;
+      btn.onclick = () => answerQuestion(idx, btn, q);
+      box.appendChild(btn);
+    });
+  }
 
   document.getElementById("game-feedback").className = "feedback";
   document.getElementById("game-feedback").innerHTML = "";
   document.getElementById("game-next-btn").className = "btn-next";
   document.getElementById("btn-hint").className = "btn-hint";
+  document.getElementById("btn-hint").style.display = typeUi === "mcq" ? "" : "none";
   document.getElementById("attempt-pill").textContent = tt("game.attempts", { n: STATE.attemptsLeft });
 
   const activeIdx = getChapterIndexForQuestion(STATE.qIndex);
   updateChapterSidebar(activeIdx);
+  updateSidebar();
+  persistSession();
+}
+
+function submitInteractive(payload, q) {
+  if (STATE.answered) return;
+  if (payload.kind === "mcq") {
+    return answerQuestion(payload.index, payload.btn, q);
+  }
+  if (typeof QuestionRender === "undefined") return;
+
+  const result = QuestionRender.grade(q, payload);
+  if (!result.ok && STATE.attemptsLeft > 1) {
+    STATE.attemptsLeft--;
+    document.getElementById("attempt-pill").textContent = tt("game.attempts", { n: STATE.attemptsLeft });
+    if (typeof AlgoAudio !== "undefined") AlgoAudio.play("wrong");
+    if (typeof AlgoUI !== "undefined") AlgoUI.toast(tt("toast.retry"), "bad");
+    persistSession();
+    return;
+  }
+
+  STATE.answered = true;
+  const ok = result.ok;
+  if (typeof AlgoAudio !== "undefined") AlgoAudio.play(ok ? "correct" : "wrong");
+
+  if (ok) {
+    STATE.correct++;
+    STATE.clues++;
+    STATE.xp += STATE.hintUsed ? 70 : 100;
+    STATE.typeScores[q.type] = (STATE.typeScores[q.type] || 0) + 2;
+    const xpGain = STATE.hintUsed ? 70 : 100;
+    if (typeof AlgoUI !== "undefined") {
+      AlgoUI.confettiBurst();
+      AlgoUI.stampFlash(tt("stamp.ok"));
+      AlgoUI.toast(tt("toast.clueOk", { xp: xpGain }), "ok");
+    }
+  } else {
+    STATE.xp += 35;
+    STATE.typeScores.explorer = (STATE.typeScores.explorer || 0) + 1;
+    STATE.typeScores[q.type] = (STATE.typeScores[q.type] || 0) + 0.5;
+    if (typeof AlgoUI !== "undefined") AlgoUI.toast(tt("toast.clueBad"), "bad");
+  }
+
+  if (!STATE.skillScores[q.skill]) STATE.skillScores[q.skill] = { c: 0, t: 0 };
+  STATE.skillScores[q.skill].t++;
+  if (ok) STATE.skillScores[q.skill].c++;
+
+  const lq = (typeof AlgoI18n !== "undefined") ? AlgoI18n.localizeQ(q) : q;
+  const fb = document.getElementById("game-feedback");
+  const xpGain = STATE.hintUsed ? 70 : 100;
+  if (ok) {
+    fb.className = "feedback good show";
+    fb.innerHTML = `<b>${tt("feedback.ok", { xp: xpGain })}</b><br>${lq.correct}<div class="clue">${lq.clue}</div>`;
+  } else {
+    const en = (typeof AlgoI18n !== "undefined" && AlgoI18n.getLang() === "en");
+    const note = payload.kind === "numeric"
+      ? (en ? `Correct answer: ${result.detail.expected}` : `Jawaban benar: ${result.detail.expected}`)
+      : (en ? "Order is not correct yet." : "Urutan masih belum tepat.");
+    fb.className = "feedback bad show";
+    fb.innerHTML = `<b>${tt("feedback.bad")}</b><br>${note}<div class="clue">${lq.correct || lq.clue || ""}</div>`;
+  }
+
+  document.querySelectorAll("#game-choices input, #game-choices button").forEach((el) => { el.disabled = true; });
+  document.getElementById("btn-hint").classList.remove("show");
+  document.getElementById("game-next-btn").classList.add("show");
   updateSidebar();
   persistSession();
 }
@@ -1847,9 +2053,51 @@ function loadSavedResult(data) {
 
 /* ─── CERTIFICATE ─── */
 function showCertificate() {
+  document.body.classList.remove("print-report");
   populateCertificate();
   showPhase("certificate");
   if (typeof AlgoAudio !== "undefined") AlgoAudio.play("certificate");
+}
+
+function getReportPayload() {
+  const key = STATE.username ? `algo_result_${STATE.username}` : null;
+  let saved = null;
+  try { saved = key ? JSON.parse(localStorage.getItem(key) || "null") : null; } catch (_) {}
+  if (saved && saved.studentName) {
+    return {
+      ...saved,
+      levelLabel: (typeof AlgoReport !== "undefined")
+        ? AlgoReport.levelLabel(saved.level)
+        : saved.level,
+    };
+  }
+  if (typeof AlgoReport !== "undefined") {
+    return AlgoReport.buildPayloadFromState(STATE, typeof CHARACTERS !== "undefined" ? CHARACTERS : {});
+  }
+  return {
+    studentName: STATE.studentName,
+    username: STATE.username,
+    level: STATE.level,
+    accuracy: 0,
+    xp: STATE.xp,
+    clues: STATE.clues,
+    total: STATE.questions?.length || 0,
+    charName: "—",
+    skillScores: STATE.skillScores || {},
+    finishedAt: new Date().toISOString(),
+  };
+}
+
+function showReport() {
+  const data = getReportPayload();
+  if (typeof AlgoReport !== "undefined") AlgoReport.populate(data);
+  document.body.classList.add("print-report");
+  showPhase("report");
+}
+
+function printReport() {
+  document.body.classList.add("print-report");
+  window.print();
 }
 
 function populateCertificate() {

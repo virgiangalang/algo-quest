@@ -11,7 +11,7 @@ Halaman admin: **`/admin.html`** (password di Vercel env `ADMIN_PASSWORD`).
 
 1. Buka template CSV: [`/public/templates/soal-template.csv`](../public/templates/soal-template.csv)
 2. (Opsional) Pakai AI: salin prompt di [`/public/templates/prompt-ai.txt`](../public/templates/prompt-ai.txt), ganti `{{LEVEL}}`, minta AI isi CSV
-3. Cek kolom `answer` (A/B/C/D) dan pastikan ada 4 pilihan
+3. Cek kolom sesuai `type_ui` (mcq / numeric / order)
 4. Login ke `/admin.html` → pilih level → upload CSV atau JSON
 5. Klik **Publish** (atau **Unduh JSON** kalau belum ada Blob/GitHub token)
 
@@ -48,14 +48,29 @@ Satu file = **satu level**.
 | `id` | ya | `q1-1` | ID unik soal |
 | `scene` | ya | `Pintu lab terkunci…` | Cerita singkat sebelum soal |
 | `q` | ya | `3/8 dari 240 = ?` | Pertanyaan |
-| `choice_a` … `choice_d` | ya | `80` | Empat pilihan |
-| `answer` | ya | `B` atau `1` | Jawaban benar (huruf A–D atau angka 0–3) |
+| `type_ui` | tidak | `mcq` / `numeric` / `order` | Default `mcq` jika kosong |
+| `choice_a` … `choice_d` | ya (mcq) | `80` | Empat pilihan (mcq) |
+| `answer` | ya (mcq) | `B` atau `1` | Jawaban benar (huruf A–D atau angka 0–3) |
+| `answer_value` | ya (numeric) | `90` | Angka benar untuk `numeric` |
+| `answer_tolerance` | tidak | `0` | Toleransi absolut (numeric) |
+| `items` | ya (order) | `3\|6\|12\|24` | Item urutan benar, dipisah `\|` |
+| `answer_order` | tidak | `0\|1\|2\|3` | Index urutan; kosong = sudah benar |
 | `skill` | ya | `Pecahan` | Topik skill bar |
 | `difficulty` | ya | `Mudah` | Mudah / Sedang / Sulit |
 | `type` | ya | `analyst` | `analyst`, `speedster`, `investigator`, `codebreaker`, `explorer` |
 | `correct` | ya | `Benar! …` | Feedback jika benar |
-| `wrong` | ya | `salah A\|salah B\|…` | 4 feedback dipisah `\|` |
+| `wrong` | ya (mcq) | `salah A\|salah B\|…` | 4 feedback dipisah `\|` |
 | `clue` | ya | `Jejak kaki…` | Petunjuk cerita |
+
+### Tipe soal interaktif (`type_ui`)
+
+| type_ui | Siswa melakukan | Field wajib |
+|---------|-----------------|-------------|
+| `mcq` | Pilih A–D | `choices` + `answer` |
+| `numeric` | Ketik angka | `answer_value` |
+| `order` | Urutkan item ↑↓ | `items` (+ opsional `answer_order`) |
+
+Bank bawaan tiap level sudah berisi contoh **2 numeric + 1 order**.
 
 **Tips:** Mulai dari 5 soal dulu untuk uji upload, baru perluas ke ~30 soal (6 bab × 5).
 
@@ -78,8 +93,11 @@ Kalau AI menambah penjelasan di luar tabel, **hapus** teks di luar header+baris 
 
 Pakai template: [`public/templates/soal-template.json`](../public/templates/soal-template.json)
 
-- `answer` di JSON = **angka index** (0 = A, 1 = B, 2 = C, 3 = D)
-- `wrong` = array 4 string
+- `answer` di JSON = **angka index** (0 = A, 1 = B, 2 = C, 3 = D) untuk `mcq`
+- `type_ui`: `mcq` | `numeric` | `order`
+- `numeric`: pakai `answer_value` (angka)
+- `order`: pakai `items` + `answer_order`
+- `wrong` = array 4 string (mcq)
 - Upload file `.json` di admin
 
 ---
@@ -126,7 +144,7 @@ File statis default tetap ada di `public/questions/*.json` sebagai cadangan.
 | Gejala | Solusi |
 |--------|--------|
 | Password ditolak | Cek `ADMIN_PASSWORD` di Vercel + redeploy |
-| Upload “schema invalid” | Cek `answer`, 4 choices, kolom `q` tidak kosong |
+| Upload “schema invalid” | Cek `type_ui`, `answer`/`answer_value`/`items`, kolom `q` |
 | Setelah diagnostic “bank soal gagal” | File JSON level itu belum ada / path salah / belum publish |
 | Masih terasa “contoh HTML” | Berarti fallback lama; pastikan Part 0 + bank ≥ 20 soal ter-load |
 | CSV aneh di Excel Indonesia | Simpan ulang UTF-8; jangan pakai pemisah `;` kecuali kamu ubah parser |

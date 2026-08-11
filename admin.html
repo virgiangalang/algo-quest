@@ -220,10 +220,58 @@ function rowsToBank(level, rows, caseTitle) {
     const bab = row.bab_title || row.chapter || "Bab 1";
     const babId = row.bab_id || `bab-${byChapter.size + 1}`;
     if (!byChapter.has(bab)) byChapter.set(bab, { id: babId, title: bab, questions: [] });
+    if (!row.q && !row.question) throw new Error(`Baris data ke-${idx + 1}: kolom q kosong`);
+
+    const typeUi = String(row.type_ui || "mcq").trim().toLowerCase() || "mcq";
+    const base = {
+      id: row.id || `q-${idx + 1}`,
+      type_ui: typeUi,
+      scene: row.scene || "Petunjuk baru muncul di lokasi kasus.",
+      q: row.q || row.question,
+      skill: row.skill || "Matematika",
+      difficulty: row.difficulty || "Sedang",
+      type: row.type || "analyst",
+      correct: row.correct || "Benar! Bukti terkonfirmasi.",
+      clue: row.clue || "Petunjuk tercatat.",
+    };
+
+    if (typeUi === "numeric") {
+      const answerValue = Number(String(row.answer_value ?? row.answer ?? "").trim().replace(",", "."));
+      if (Number.isNaN(answerValue)) throw new Error(`Baris ${idx + 1}: numeric butuh answer_value angka`);
+      base.answer_value = answerValue;
+      if (row.answer_tolerance !== undefined && String(row.answer_tolerance).trim() !== "") {
+        base.answer_tolerance = Number(row.answer_tolerance);
+      }
+      byChapter.get(bab).questions.push(base);
+      return;
+    }
+
+    if (typeUi === "order") {
+      const items = String(row.items || "")
+        .split("|")
+        .map((s) => s.trim())
+        .filter(Boolean);
+      if (items.length < 2) throw new Error(`Baris ${idx + 1}: order butuh items dipisah |`);
+      let answerOrder;
+      if (row.answer_order && String(row.answer_order).trim() !== "") {
+        answerOrder = String(row.answer_order).split("|").map((s) => Number(s.trim()));
+      } else {
+        answerOrder = items.map((_, i) => i);
+      }
+      if (answerOrder.some((n) => Number.isNaN(n) || n < 0 || n >= items.length)) {
+        throw new Error(`Baris ${idx + 1}: answer_order tidak valid`);
+      }
+      base.items = items;
+      base.answer_order = answerOrder;
+      base.choices = items;
+      base.answer = 0;
+      byChapter.get(bab).questions.push(base);
+      return;
+    }
+
     const choices = [row.choice_a, row.choice_b, row.choice_c, row.choice_d]
       .map((x) => String(x ?? "").trim())
       .filter((x) => x !== "");
-    if (!row.q && !row.question) throw new Error(`Baris data ke-${idx + 1}: kolom q kosong`);
     if (choices.length < 2) throw new Error(`Baris ${idx + 1}: minimal 2 pilihan`);
     let answer = row.answer;
     if (typeof answer === "string" && /^[A-Da-d]$/.test(answer.trim())) {
@@ -236,19 +284,10 @@ function rowsToBank(level, rows, caseTitle) {
     if (row.wrong && row.wrong.includes("|")) wrong = row.wrong.split("|").map((s) => s.trim());
     else wrong = choices.map((_, j) => (j === answer ? "" : "Coba hitung kembali."));
     while (wrong.length < choices.length) wrong.push("Coba hitung kembali.");
-    byChapter.get(bab).questions.push({
-      id: row.id || `q-${idx + 1}`,
-      scene: row.scene || "Petunjuk baru muncul di lokasi kasus.",
-      q: row.q || row.question,
-      choices,
-      answer,
-      skill: row.skill || "Matematika",
-      difficulty: row.difficulty || "Sedang",
-      type: row.type || "analyst",
-      correct: row.correct || "Benar! Bukti terkonfirmasi.",
-      wrong,
-      clue: row.clue || "Petunjuk tercatat.",
-    });
+    base.choices = choices;
+    base.answer = answer;
+    base.wrong = wrong;
+    byChapter.get(bab).questions.push(base);
   });
   return {
     level,

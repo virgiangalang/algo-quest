@@ -11,6 +11,7 @@
       "questions": [
         {
           "id": "q1-1",
+          "type_ui": "mcq",
           "scene": "Pintu laboratorium terkunci rapat. Sebuah keypad menyala di sampingnya.",
           "q": "Sebuah kotak berisi 240 microchip. Sebanyak 3/8 di antaranya berwarna biru. Berapa jumlah chip biru?",
           "choices": ["80", "90", "120", "150"],
@@ -26,6 +27,32 @@
             "Terlalu besar. Mulai dari 1/8."
           ],
           "clue": "Jejak kaki berlumpur ditemukan di dekat meja Prof. Nova."
+        },
+        {
+          "id": "q1-2",
+          "type_ui": "numeric",
+          "scene": "Keypad meminta angka keliling ruang aman.",
+          "q": "Ruang 8 m × 5 m. Berapa kelilingnya? (tulis angka saja)",
+          "answer_value": 26,
+          "answer_tolerance": 0,
+          "skill": "Geometri",
+          "difficulty": "Mudah",
+          "type": "explorer",
+          "correct": "2 × (8 + 5) = 26. Panel terbuka!",
+          "clue": "Panel tersembunyi di sudut 26 m."
+        },
+        {
+          "id": "q1-3",
+          "type_ui": "order",
+          "scene": "Tiket kereta memuat deret terenkripsi yang acak.",
+          "q": "Urutkan pola ×2 dari awal sampai akhir.",
+          "items": ["3", "6", "12", "24", "48"],
+          "answer_order": [0, 1, 2, 3, 4],
+          "skill": "Pola",
+          "difficulty": "Mudah",
+          "type": "codebreaker",
+          "correct": "3 → 6 → 12 → 24 → 48. Peron terkonfirmasi!",
+          "clue": "Tersangka menggunakan Peron 48."
         }
       ]
     }
