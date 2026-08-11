@@ -32,7 +32,25 @@
           ],
           "clue": "Jejak kaki berlumpur ditemukan di dekat meja Prof. Nova.",
           "type_ui": "numeric",
-          "answer_value": 90
+          "answer_value": 90,
+          "scene_en": "The laboratory door is locked tight. A keypad glows beside it.",
+          "q_en": "A box contains 240 microchips. 3/8 of them are blue. How many blue chips are there?",
+          "correct_en": "ACCESS GRANTED. 3/8 × 240 = 90. You counted the fractional part perfectly!",
+          "clue_en": "Muddy footprints are found near Prof. Nova's desk.",
+          "skill_en": "Fractions",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "80",
+            "90",
+            "120",
+            "150"
+          ],
+          "wrong_en": [
+            "That is 1/3 of 240, not 3/8.",
+            "Check again: 1/8 of 240 = 30, so 3/8 = 90.",
+            "That is half of 240.",
+            "Too big. Start with 1/8."
+          ]
         },
         {
           "id": "q1-2",
@@ -55,7 +73,25 @@
             "Itu hanya 33 menit sebelumnya.",
             "Itu hanya 23 menit sebelumnya."
           ],
-          "clue": "Ruangan masih aman pada pukul 13.48."
+          "clue": "Ruangan masih aman pada pukul 13.48.",
+          "scene_en": "The broken digital clock stopped right when the chip disappeared.",
+          "q_en": "The clock stopped at 14:35. The guard checked 47 minutes earlier. What time was that?",
+          "correct_en": "Exactly! 14:35 – 47 minutes = 13:48. The timeline is rebuilt.",
+          "clue_en": "The room was still secure at 13:48.",
+          "skill_en": "Time",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "13:38",
+            "13:48",
+            "14:02",
+            "14:12"
+          ],
+          "wrong_en": [
+            "Subtract 47 minutes from 14:35 carefully.",
+            "The hour is right, but the minutes are off.",
+            "That is only 33 minutes earlier.",
+            "That is only 23 minutes earlier."
+          ]
         },
         {
           "id": "q1-3",
@@ -78,7 +114,25 @@
             "3,19 < 3,90.",
             "3,099 sedikit lebih besar dari 3,09, tapi masih kecil dari 3,9."
           ],
-          "clue": "Sidik jari ditemukan di meja lab."
+          "clue": "Sidik jari ditemukan di meja lab.",
+          "scene_en": "Four batteries labeled with numbers lie on the table.",
+          "q_en": "Which value is the greatest?",
+          "correct_en": "Correct! 3,9 = 3,90. Compare the tenths place first.",
+          "clue_en": "Fingerprints are found on the lab table.",
+          "skill_en": "Decimals",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "3,09",
+            "3,9",
+            "3,19",
+            "3,099"
+          ],
+          "wrong_en": [
+            "Compare the tenths place first.",
+            "3,9 is the greatest!",
+            "3,19 < 3,90.",
+            "3,099 is a little bigger than 3,09, but still less than 3,9."
+          ]
         },
         {
           "id": "q1-4",
@@ -101,7 +155,25 @@
             "42 — tepat!",
             "Polanya bukan +8."
           ],
-          "clue": "Kartu pengunjung sobek ditemukan di dalam laci."
+          "clue": "Kartu pengunjung sobek ditemukan di dalam laci.",
+          "scene_en": "UV light reveals a code pattern on the floor.",
+          "q_en": "Complete the pattern: 18, 24, 30, 36, __",
+          "correct_en": "36 + 6 = 42! A hidden drawer opens.",
+          "clue_en": "A torn visitor card is found inside the drawer.",
+          "skill_en": "Patterns",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "40",
+            "41",
+            "42",
+            "44"
+          ],
+          "wrong_en": [
+            "Notice the increase is always the same.",
+            "Each number increases by 6.",
+            "42 — correct!",
+            "The pattern is not +8."
+          ]
         },
         {
           "id": "q1-5",
@@ -124,9 +196,28 @@
             "4.751 → 4.800.",
             "4.801 → 4.800."
           ],
-          "clue": "ID tersangka antara 4.650 dan 4.749."
+          "clue": "ID tersangka antara 4.650 dan 4.749.",
+          "scene_en": "The ID number on the guest card is partly damaged.",
+          "q_en": "A number rounds to 4.700 (to the nearest hundred). Which one could it be?",
+          "correct_en": "4.749 rounds to 4.700. That card matches!",
+          "clue_en": "The suspect ID is between 4.650 and 4.749.",
+          "skill_en": "Rounding",
+          "difficulty_en": "Medium",
+          "choices_en": [
+            "4.641",
+            "4.749",
+            "4.751",
+            "4.801"
+          ],
+          "wrong_en": [
+            "4.641 → 4.600.",
+            "4.749 → 4.700. Correct!",
+            "4.751 → 4.800.",
+            "4.801 → 4.800."
+          ]
         }
-      ]
+      ],
+      "title_en": "Chapter 1 — The Lab Incident"
     },
     {
       "id": "bab-2",
@@ -155,7 +246,25 @@
           ],
           "clue": "Waktu Mira di perpustakaan sesuai rekaman CCTV.",
           "type_ui": "numeric",
-          "answer_value": 45
+          "answer_value": 45,
+          "scene_en": "Mira claims she was in the library for 0,75 hours.",
+          "q_en": "0,75 hours = how many minutes?",
+          "correct_en": "0,75 × 60 = 45 minutes. Mira's alibi checks out.",
+          "clue_en": "Mira's time in the library matches the CCTV recording.",
+          "skill_en": "Decimals",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "35",
+            "40",
+            "45",
+            "75"
+          ],
+          "wrong_en": [
+            "Multiply the hours by 60.",
+            "0,75 × 60 = 45.",
+            "Correct: 45 minutes.",
+            "75 is the decimal number, not the minutes."
+          ]
         },
         {
           "id": "q2-2",
@@ -178,7 +287,25 @@
             "Tepat: 31.250.",
             "Terlalu besar."
           ],
-          "clue": "Rafi memang berada di kafe saat kejadian."
+          "clue": "Rafi memang berada di kafe saat kejadian.",
+          "scene_en": "Rafi bought food at the cafe. Part of the receipt is burned.",
+          "q_en": "A drink costs Rp12.000 and a sandwich costs Rp19.250. What is the total?",
+          "correct_en": "12.000 + 19.250 = 31.250. The receipt total matches!",
+          "clue_en": "Rafi really was at the cafe when it happened.",
+          "skill_en": "Addition",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "Rp29.250",
+            "Rp30.750",
+            "Rp31.250",
+            "Rp32.000"
+          ],
+          "wrong_en": [
+            "Line up the same place values.",
+            "Check again.",
+            "Correct: 31.250.",
+            "Too big."
+          ]
         },
         {
           "id": "q2-3",
@@ -201,7 +328,25 @@
             "60 — tepat!",
             "75 = setengah dari 150."
           ],
-          "clue": "Log pencetakan Luna terbukti asli."
+          "clue": "Log pencetakan Luna terbukti asli.",
+          "scene_en": "Luna claims she copied 2/5 of a 150-page report.",
+          "q_en": "How many pages did Luna copy?",
+          "correct_en": "150 ÷ 5 × 2 = 60 pages. The printer log confirms it.",
+          "clue_en": "Luna's print log is proven real.",
+          "skill_en": "Fractions",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "30",
+            "50",
+            "60",
+            "75"
+          ],
+          "wrong_en": [
+            "Find 1/5 first: 150 ÷ 5 = 30.",
+            "50 = 1/3 of 150.",
+            "60 — correct!",
+            "75 = half of 150."
+          ]
         },
         {
           "id": "q2-4",
@@ -224,7 +369,25 @@
             "4 km → kecepatan lebih tinggi.",
             "6 km = setengah jarak."
           ],
-          "clue": "Perkiraan GPS Theo masuk akal."
+          "clue": "Perkiraan GPS Theo masuk akal.",
+          "scene_en": "Theo rode his bike 12 km in 40 minutes.",
+          "q_en": "At the same speed, how many km in 10 minutes?",
+          "correct_en": "10 minutes = 1/4 of 40 minutes. 12 ÷ 4 = 3 km.",
+          "clue_en": "Theo's GPS estimate makes sense.",
+          "skill_en": "Ratios",
+          "difficulty_en": "Medium",
+          "choices_en": [
+            "2 km",
+            "3 km",
+            "4 km",
+            "6 km"
+          ],
+          "wrong_en": [
+            "10 minutes is one quarter of 40.",
+            "12 ÷ 4 = 3.",
+            "4 km means a higher speed.",
+            "6 km = half the distance."
+          ]
         },
         {
           "id": "q2-5",
@@ -247,9 +410,28 @@
             "25 adalah persentasenya.",
             "30 = 37,5% dari 80."
           ],
-          "clue": "20 kamera tidak aktif saat kejadian."
+          "clue": "20 kamera tidak aktif saat kejadian.",
+          "scene_en": "A suspect gives a statement about the security cameras.",
+          "q_en": "25% of 80 cameras were inactive. How many were off?",
+          "correct_en": "25% = 1/4. 80 ÷ 4 = 20 cameras.",
+          "clue_en": "20 cameras were inactive during the incident.",
+          "skill_en": "Percentages",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "15",
+            "20",
+            "25",
+            "30"
+          ],
+          "wrong_en": [
+            "25% = one quarter.",
+            "80 ÷ 4 = 20 — correct!",
+            "25 is the percent.",
+            "30 = 37,5% of 80."
+          ]
         }
-      ]
+      ],
+      "title_en": "Chapter 2 — Hunting the Suspect"
     },
     {
       "id": "bab-3",
@@ -276,7 +458,25 @@
             "40 adalah luasnya.",
             "80 bukan keliling maupun luas."
           ],
-          "clue": "Panel tersembunyi di sudut 26 m."
+          "clue": "Panel tersembunyi di sudut 26 m.",
+          "scene_en": "A map of the research complex is found under the carpet.",
+          "q_en": "The storage room is 8 m × 5 m. What is its perimeter?",
+          "correct_en": "2 × (8 + 5) = 26 m. A loose wall panel is found!",
+          "clue_en": "A hidden panel is at the 26 m corner.",
+          "skill_en": "Geometry",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "13 m",
+            "26 m",
+            "40 m",
+            "80 m"
+          ],
+          "wrong_en": [
+            "Perimeter is the sum of all sides.",
+            "2 × (8+5) = 26 — correct!",
+            "40 is the area.",
+            "80 is neither the perimeter nor the area."
+          ]
         },
         {
           "id": "q3-2",
@@ -299,7 +499,25 @@
             "8 × 5 = 40 — tepat!",
             "80 = dua kali luas."
           ],
-          "clue": "Ruang rahasia seluas 40 m²."
+          "clue": "Ruang rahasia seluas 40 m².",
+          "scene_en": "A room plan is found behind the panel.",
+          "q_en": "The room is 8 m × 5 m. What is its area?",
+          "correct_en": "8 × 5 = 40 m². The hidden room is confirmed.",
+          "clue_en": "The secret room has an area of 40 m².",
+          "skill_en": "Geometry",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "13 m²",
+            "26 m²",
+            "40 m²",
+            "80 m²"
+          ],
+          "wrong_en": [
+            "Area = length × width.",
+            "26 is the perimeter.",
+            "8 × 5 = 40 — correct!",
+            "80 = twice the area."
+          ]
         },
         {
           "id": "q3-3",
@@ -322,7 +540,25 @@
             "1.050 mL = 1,05 L.",
             "1.500 mL — tepat!"
           ],
-          "clue": "Kunci ditemukan di mekanisme tabung."
+          "clue": "Kunci ditemukan di mekanisme tabung.",
+          "scene_en": "A sealed measuring tube contains a hidden code.",
+          "q_en": "1,5 liters = how many milliliters?",
+          "correct_en": "1 liter = 1.000 mL. 1,5 × 1.000 = 1.500 mL!",
+          "clue_en": "A key is found in the tube mechanism.",
+          "skill_en": "Measurement",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "150 mL",
+            "500 mL",
+            "1.050 mL",
+            "1.500 mL"
+          ],
+          "wrong_en": [
+            "1 liter = 1.000 mL.",
+            "0,5 L = 500 mL.",
+            "1.050 mL = 1,05 L.",
+            "1.500 mL — correct!"
+          ]
         },
         {
           "id": "q3-4",
@@ -345,7 +581,25 @@
             "2.750 — tepat!",
             "Itu × 10.000."
           ],
-          "clue": "Tiket kereta ada di dalam brankas."
+          "clue": "Tiket kereta ada di dalam brankas.",
+          "scene_en": "The safe asks for the package weight answer.",
+          "q_en": "A 2,75 kg package = how many grams?",
+          "correct_en": "2,75 × 1.000 = 2.750 g. The safe opens!",
+          "clue_en": "A train ticket is inside the safe.",
+          "skill_en": "Measurement",
+          "difficulty_en": "Medium",
+          "choices_en": [
+            "275 g",
+            "2.075 g",
+            "2.750 g",
+            "27.500 g"
+          ],
+          "wrong_en": [
+            "1 kg = 1.000 g.",
+            "2.075 = 2,075 kg.",
+            "2.750 — correct!",
+            "That is × 10.000."
+          ]
         },
         {
           "id": "q3-5",
@@ -368,9 +622,28 @@
             "90° — tepat!",
             "180° = sudut lurus."
           ],
-          "clue": "Cermin di sudut 90° mengalihkan laser."
+          "clue": "Cermin di sudut 90° mengalihkan laser.",
+          "scene_en": "A laser grid guards the room door.",
+          "q_en": "A laser beam forms a right angle. How many degrees is it?",
+          "correct_en": "90° — a right angle! You turn the mirror perfectly.",
+          "clue_en": "A mirror at 90° redirects the laser.",
+          "skill_en": "Geometry",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "45°",
+            "60°",
+            "90°",
+            "180°"
+          ],
+          "wrong_en": [
+            "45° = half a right angle.",
+            "60° = an acute angle.",
+            "90° — correct!",
+            "180° = a straight angle."
+          ]
         }
-      ]
+      ],
+      "title_en": "Chapter 3 — Hidden Evidence"
     },
     {
       "id": "bab-4",
@@ -413,6 +686,32 @@
             2,
             3,
             4
+          ],
+          "scene_en": "A train ticket contains a scrambled encrypted sequence.",
+          "q_en": "Order the pattern steps from start to finish (×2 each step).",
+          "correct_en": "3 → 6 → 12 → 24 → 48. The platform is confirmed!",
+          "clue_en": "The suspect used Platform 48.",
+          "skill_en": "Patterns",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "3",
+            "6",
+            "12",
+            "24",
+            "48"
+          ],
+          "items_en": [
+            "3",
+            "6",
+            "12",
+            "24",
+            "48"
+          ],
+          "wrong_en": [
+            "This pattern uses multiplication, not addition.",
+            "12 × 2 = 24.",
+            "42 is not the result of ×2.",
+            "48 — correct!"
           ]
         },
         {
@@ -436,7 +735,25 @@
             "52 = penjumlahan, bukan pengurangan.",
             "62 = 17 ditambah dua kali."
           ],
-          "clue": "Ponsel berkode ditemukan di loker 28."
+          "clue": "Ponsel berkode ditemukan di loker 28.",
+          "scene_en": "A locker at the station asks for the value of x.",
+          "q_en": "x + 17 = 45. What is x?",
+          "correct_en": "45 – 17 = 28. Locker number 28 opens!",
+          "clue_en": "A coded phone is found in locker 28.",
+          "skill_en": "Algebra",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "18",
+            "28",
+            "52",
+            "62"
+          ],
+          "wrong_en": [
+            "Subtract 17 from 45.",
+            "28 — correct!",
+            "52 is addition, not subtraction.",
+            "62 is 17 added twice."
+          ]
         },
         {
           "id": "q4-3",
@@ -459,7 +776,25 @@
             "6 × 9 = 54 — tepat!",
             "6 × 10 = 60."
           ],
-          "clue": "PIN ponsel mengandung angka 9."
+          "clue": "PIN ponsel mengandung angka 9.",
+          "scene_en": "The phone displays a multiplication password.",
+          "q_en": "6 × n = 54. What is n?",
+          "correct_en": "54 ÷ 6 = 9. The code digit is confirmed!",
+          "clue_en": "The phone PIN contains the number 9.",
+          "skill_en": "Algebra",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "wrong_en": [
+            "54 ÷ 6 = n.",
+            "6 × 8 = 48.",
+            "6 × 9 = 54 — correct!",
+            "6 × 10 = 60."
+          ]
         },
         {
           "id": "q4-4",
@@ -482,7 +817,25 @@
             "29 — prima!",
             "39 = 3 × 13."
           ],
-          "clue": "Pesan rahasia: 'Bertemu pukul 18.20'."
+          "clue": "Pesan rahasia: 'Bertemu pukul 18.20'.",
+          "scene_en": "Secret message: 'Only those who know prime numbers can see the truth.'",
+          "q_en": "Which one is a prime number?",
+          "correct_en": "29 is divisible only by 1 and 29. The encrypted message opens!",
+          "clue_en": "Secret message: 'Meet at 18:20'.",
+          "skill_en": "Numbers",
+          "difficulty_en": "Medium",
+          "choices_en": [
+            "21",
+            "27",
+            "29",
+            "39"
+          ],
+          "wrong_en": [
+            "21 = 3 × 7.",
+            "27 = 3 × 9.",
+            "29 — prime!",
+            "39 = 3 × 13."
+          ]
         },
         {
           "id": "q4-5",
@@ -505,9 +858,28 @@
             "27 berarti +6, bukan +2.",
             "29 terlalu besar."
           ],
-          "clue": "Rekaman menyebut ransel merah."
+          "clue": "Rekaman menyebut ransel merah.",
+          "scene_en": "The last cipher uses a simple function machine.",
+          "q_en": "Machine: multiply by 3, then add 2. Input = 7. What is the output?",
+          "correct_en": "3 × 7 + 2 = 23. The secret audio recording plays!",
+          "clue_en": "The recording mentions a red backpack.",
+          "skill_en": "Algebra",
+          "difficulty_en": "Medium",
+          "choices_en": [
+            "21",
+            "23",
+            "27",
+            "29"
+          ],
+          "wrong_en": [
+            "Do not forget +2 after multiplying.",
+            "3 × 7 + 2 = 23 — correct!",
+            "27 means +6, not +2.",
+            "29 is too big."
+          ]
         }
-      ]
+      ],
+      "title_en": "Chapter 4 — Crack the Code"
     },
     {
       "id": "bab-5",
@@ -534,7 +906,25 @@
             "Itu berakhir pukul 18.22.",
             "Itu berakhir pukul 18.24."
           ],
-          "clue": "Tersangka punya 8 menit sebelum pertemuan."
+          "clue": "Tersangka punya 8 menit sebelum pertemuan.",
+          "scene_en": "The suspect enters the station at 18:12. The meeting is at 18:20.",
+          "q_en": "How many minutes are left?",
+          "correct_en": "18:20 – 18:12 = 8 minutes. The chase begins!",
+          "clue_en": "The suspect has 8 minutes before the meeting.",
+          "skill_en": "Time",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "6",
+            "8",
+            "10",
+            "12"
+          ],
+          "wrong_en": [
+            "Count from minute 12 to minute 20.",
+            "8 minutes — correct!",
+            "That ends at 18:22.",
+            "That ends at 18:24."
+          ]
         },
         {
           "id": "q5-2",
@@ -557,7 +947,25 @@
             "27 — tepat!",
             "30 bukan 25% lebih sedikit."
           ],
-          "clue": "Tersangka memilih tangga yang lebih pendek."
+          "clue": "Tersangka memilih tangga yang lebih pendek.",
+          "scene_en": "Two stairways lead to the platform.",
+          "q_en": "Stairs A: 36 steps. Stairs B has 25% fewer. How many steps are on stairs B?",
+          "correct_en": "25% of 36 = 9. 36 – 9 = 27 steps.",
+          "clue_en": "The suspect chooses the shorter stairs.",
+          "skill_en": "Percentages",
+          "difficulty_en": "Medium",
+          "choices_en": [
+            "9",
+            "18",
+            "27",
+            "30"
+          ],
+          "wrong_en": [
+            "9 is the amount removed, not the rest.",
+            "18 = half of 36.",
+            "27 — correct!",
+            "30 is not 25% fewer."
+          ]
         },
         {
           "id": "q5-3",
@@ -580,7 +988,25 @@
             "90 → akan menempuh 270 km.",
             "540 = perkalian, bukan pembagian."
           ],
-          "clue": "Kereta pelarian berkecepatan 60 km/jam."
+          "clue": "Kereta pelarian berkecepatan 60 km/jam.",
+          "scene_en": "Schedule board: a train travels 180 km in 3 hours.",
+          "q_en": "What is its average speed?",
+          "correct_en": "180 ÷ 3 = 60 km/hour. The getaway train is identified!",
+          "clue_en": "The getaway train travels at 60 km/hour.",
+          "skill_en": "Speed",
+          "difficulty_en": "Medium",
+          "choices_en": [
+            "50 km/hour",
+            "60 km/hour",
+            "90 km/hour",
+            "540 km/hour"
+          ],
+          "wrong_en": [
+            "Speed = distance ÷ time.",
+            "180 ÷ 3 = 60 — correct!",
+            "90 would travel 270 km.",
+            "540 is multiplication, not division."
+          ]
         },
         {
           "id": "q5-4",
@@ -603,7 +1029,25 @@
             "5/10 = peluang kartu merah.",
             "7/10 = semua yang bukan biru."
           ],
-          "clue": "Kartu biru membuka koridor pemeliharaan."
+          "clue": "Kartu biru membuka koridor pemeliharaan.",
+          "scene_en": "The suspect drops a bag with access cards: 5 red, 3 blue, 2 green.",
+          "q_en": "What is the probability of randomly drawing a blue card?",
+          "correct_en": "3 out of 10 cards are blue. The blue card opens the corridor!",
+          "clue_en": "The blue card opens the maintenance corridor.",
+          "skill_en": "Probability",
+          "difficulty_en": "Medium",
+          "choices_en": [
+            "2/10",
+            "3/10",
+            "5/10",
+            "7/10"
+          ],
+          "wrong_en": [
+            "There are 10 cards total, 3 blue.",
+            "3/10 — correct!",
+            "5/10 = probability of a red card.",
+            "7/10 = everything that is not blue."
+          ]
         },
         {
           "id": "q5-5",
@@ -626,9 +1070,28 @@
             "520 m > 450 m.",
             "Ketiganya berbeda."
           ],
-          "clue": "Rute A paling cepat untuk mencegat tersangka."
+          "clue": "Rute A paling cepat untuk mencegat tersangka.",
+          "scene_en": "The corridor splits into three routes on the map.",
+          "q_en": "Route A: 450 m. Route B: 0,6 km. Route C: 520 m. Which is shortest?",
+          "correct_en": "Route A = 450 m, the shortest! You cut off the suspect's path.",
+          "clue_en": "Route A is the fastest way to intercept the suspect.",
+          "skill_en": "Measurement",
+          "difficulty_en": "Medium",
+          "choices_en": [
+            "Route A",
+            "Route B",
+            "Route C",
+            "All the same"
+          ],
+          "wrong_en": [
+            "450 m is shortest — correct!",
+            "0,6 km = 600 m.",
+            "520 m > 450 m.",
+            "All three are different."
+          ]
         }
-      ]
+      ],
+      "title_en": "Chapter 5 — The Chase"
     },
     {
       "id": "bab-6",
@@ -651,7 +1114,21 @@
             "Sederhanakan 4/6 ÷ 2 = 2/3.",
             "Nilainya sama — tepat!"
           ],
-          "clue": "Satu tersangka berbohong soal pecahan senilai."
+          "clue": "Satu tersangka berbohong soal pecahan senilai.",
+          "scene_en": "The suspect says 4/6 < 2/3. Is that true?",
+          "q_en": "Is 4/6 smaller than 2/3?",
+          "correct_en": "No! 4/6 = 2/3. They have the same value. The suspect lied!",
+          "clue_en": "One suspect lied about equivalent fractions.",
+          "skill_en": "Fractions",
+          "difficulty_en": "Medium",
+          "choices_en": [
+            "Yes",
+            "No"
+          ],
+          "wrong_en": [
+            "Simplify 4/6 ÷ 2 = 2/3.",
+            "They are equal — correct!"
+          ]
         },
         {
           "id": "q6-2",
@@ -674,7 +1151,25 @@
             "12 = setengah, bukan sepertiga.",
             "72 = diperbesar, bukan diperkecil."
           ],
-          "clue": "Jejak kaki cocok dengan data Theo."
+          "clue": "Jejak kaki cocok dengan data Theo.",
+          "scene_en": "Footprint in the garden: length 24 cm. Photo scale 1:3.",
+          "q_en": "How long is the footprint in the photo?",
+          "correct_en": "24 ÷ 3 = 8 cm. The size matches Theo's file!",
+          "clue_en": "The footprint matches Theo's data.",
+          "skill_en": "Ratios",
+          "difficulty_en": "Hard",
+          "choices_en": [
+            "6 cm",
+            "8 cm",
+            "12 cm",
+            "72 cm"
+          ],
+          "wrong_en": [
+            "Scale 1:3 → photo = original ÷ 3.",
+            "24 ÷ 3 = 8 — correct!",
+            "12 = half, not one third.",
+            "72 = enlarged, not reduced."
+          ]
         },
         {
           "id": "q6-3",
@@ -697,7 +1192,25 @@
             "Diskon 10% dari 21.000 = 18.900.",
             "Diskon 10% dari 22.000 = 19.800."
           ],
-          "clue": "Harga asal tiket Rp20.000."
+          "clue": "Harga asal tiket Rp20.000.",
+          "scene_en": "Train ticket: price after a 10% discount = Rp18.000.",
+          "q_en": "What was the original ticket price?",
+          "correct_en": "0,9 × price = 18.000. Original price = 20.000. The ticket belongs to someone else!",
+          "clue_en": "Original ticket price: Rp20.000.",
+          "skill_en": "Percentages",
+          "difficulty_en": "Hard",
+          "choices_en": [
+            "Rp19.000",
+            "Rp20.000",
+            "Rp21.000",
+            "Rp22.000"
+          ],
+          "wrong_en": [
+            "After a 10% discount, the price is 90% of the original.",
+            "0,9 × 20.000 = 18.000 — correct!",
+            "A 10% discount from 21.000 = 18.900.",
+            "A 10% discount from 22.000 = 19.800."
+          ]
         },
         {
           "id": "q6-4",
@@ -720,7 +1233,25 @@
             "8,5 bukan rata-rata yang tepat.",
             "9 terlalu besar."
           ],
-          "clue": "Rata-rata akses sebenarnya adalah 8."
+          "clue": "Rata-rata akses sebenarnya adalah 8.",
+          "scene_en": "Chip access log recorded: 6, 8, 7, 9, 10.",
+          "q_en": "What is the average?",
+          "correct_en": "(6+8+7+9+10) ÷ 5 = 40 ÷ 5 = 8. The suspect's claim is disproved!",
+          "clue_en": "The real access average is 8.",
+          "skill_en": "Data",
+          "difficulty_en": "Medium",
+          "choices_en": [
+            "7",
+            "8",
+            "8,5",
+            "9"
+          ],
+          "wrong_en": [
+            "Add them all, then divide by 5.",
+            "40 ÷ 5 = 8 — correct!",
+            "8,5 is not the right average.",
+            "9 is too big."
+          ]
         },
         {
           "id": "q6-5",
@@ -743,9 +1274,32 @@
             "44 salah urutan operasi.",
             "112 mengabaikan urutan operasi."
           ],
-          "clue": "Kode gerbang pelarian adalah 37."
+          "clue": "Kode gerbang pelarian adalah 37.",
+          "scene_en": "The culprit tries to escape through a coded gate.",
+          "q_en": "Gate code = 5² + 3 × 4. What is the result?",
+          "correct_en": "5² = 25, 3 × 4 = 12. 25 + 12 = 37! The gate locks before the culprit escapes.",
+          "clue_en": "The escape gate code is 37.",
+          "skill_en": "Order of Operations",
+          "difficulty_en": "Hard",
+          "choices_en": [
+            "32",
+            "37",
+            "44",
+            "112"
+          ],
+          "wrong_en": [
+            "5² = 25. Also calculate 3 × 4 first.",
+            "25 + 12 = 37 — correct!",
+            "44 uses the wrong order of operations.",
+            "112 ignores the order of operations."
+          ]
         }
-      ]
+      ],
+      "title_en": "Chapter 6 — Final Deduction"
     }
-  ]
+  ],
+  "label_en": "Elementary Grades 4-6",
+  "caseTitle_en": "The Missing Code",
+  "ageRange_en": "Ages 10-12",
+  "curriculum_en": "Merdeka Curriculum"
 }

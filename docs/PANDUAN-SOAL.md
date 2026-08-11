@@ -72,7 +72,7 @@ Satu file = **satu level**.
 
 Bank bawaan tiap level sudah berisi contoh **2 numeric + 1 order**.
 
-**Tips:** Mulai dari 5 soal dulu untuk uji upload, baru perluas ke ~30 soal (6 bab × 5).
+**Tips bilingual:** tambah field `*_en` (`q_en`, `scene_en`, `choices_en`, `correct_en`, `clue_en`, `skill_en`, `difficulty_en`, `items_en`). UI tombol **EN** akan memakai field itu.
 
 ---
 

@@ -64,6 +64,11 @@ const AlgoI18n = (() => {
       "result.cert": "Lihat & Cetak Certificate",
       "result.report": "Laporan PDF ortu/guru",
       "result.skills": "Profil Matematikamu",
+      "intro.loadingEyebrow": "Kalibrasi selesai · Menyiapkan berkas",
+      "intro.loadingTitle": "Membuka berkas kasus…",
+      "intro.loadingLead": "Hasil diagnostic sedang dipakai untuk menyesuaikan tingkat kesulitan investigasi.",
+      "intro.readyEyebrow": "Kalibrasi selesai · Kasus siap",
+      "intro.readyLead": "Chip AI eksperimental milik Profesor Nova menghilang. Kamu akan menelusuri {chapters} bab bukti ({count} misi matematika) pada level {level}.",
       "cert.print": "Cetak / Simpan PDF",
       "cert.back": "← Kembali ke Hasil",
       "cert.share": "Bagikan hasil",
@@ -158,6 +163,11 @@ const AlgoI18n = (() => {
       "result.cert": "View & Print Certificate",
       "result.report": "Parent/teacher PDF report",
       "result.skills": "Your Math Profile",
+      "intro.loadingEyebrow": "Calibration done · Preparing the case file",
+      "intro.loadingTitle": "Opening the case file…",
+      "intro.loadingLead": "Diagnostic results are being used to tune the investigation difficulty.",
+      "intro.readyEyebrow": "Calibration done · Case ready",
+      "intro.readyLead": "Professor Nova's experimental AI chip is missing. You will follow {chapters} evidence chapters ({count} math missions) at the {level} level.",
       "cert.print": "Print / Save PDF",
       "cert.back": "← Back to Results",
       "cert.share": "Share result",
@@ -256,5 +266,39 @@ const AlgoI18n = (() => {
     };
   }
 
-  return { t, setLang, getLang, applyDom, localizeQ, STR };
+  /** Localize bank metadata (case title, chapter titles, labels). */
+  function localizeBank(bank) {
+    if (!bank || lang !== "en") return bank;
+    return {
+      ...bank,
+      label: bank.label_en || bank.label,
+      caseTitle: bank.caseTitle_en || bank.caseTitle,
+      ageRange: bank.ageRange_en || bank.ageRange,
+      curriculum: bank.curriculum_en || bank.curriculum,
+      chapters: (bank.chapters || []).map((ch) => ({
+        ...ch,
+        title: ch.title_en || ch.title,
+      })),
+    };
+  }
+
+  function levelLabel(level) {
+    const id = {
+      "sd-kelas-1-3": "SD Kelas 1–3",
+      "sd-kelas-4-6": "SD Kelas 4–6",
+      smp: "SMP",
+      sma: "SMA",
+      dewasa: "Dewasa",
+    };
+    const en = {
+      "sd-kelas-1-3": "Elementary 1–3",
+      "sd-kelas-4-6": "Elementary 4–6",
+      smp: "Junior High",
+      sma: "Senior High",
+      dewasa: "Adult",
+    };
+    return (lang === "en" ? en : id)[level] || level;
+  }
+
+  return { t, setLang, getLang, applyDom, localizeQ, localizeBank, levelLabel, STR };
 })();

@@ -32,7 +32,25 @@
           ],
           "clue": "Kode sinyal adalah x = 5.",
           "type_ui": "numeric",
-          "answer_value": 5
+          "answer_value": 5,
+          "scene_en": "An encrypted signal is received at the data center.",
+          "q_en": "Solve: 3x + 5 = 20",
+          "correct_en": "3x = 15, x = 5. Signal decrypted!",
+          "clue_en": "The signal code is x = 5.",
+          "skill_en": "Algebra",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "wrong_en": [
+            "Subtract 5 first.",
+            "Almost.",
+            "3x=15, x=5 — correct!",
+            "Too big."
+          ]
         },
         {
           "id": "q1-2",
@@ -55,7 +73,25 @@
             "(2,–3) — tepat!",
             "Keduanya berubah."
           ],
-          "clue": "Koordinat sumber sinyal: (2, –3)."
+          "clue": "Koordinat sumber sinyal: (2, –3).",
+          "scene_en": "The signal location coordinates are calculated.",
+          "q_en": "Point (2, 3) is reflected across the x-axis. What is the result?",
+          "correct_en": "Reflection over the x-axis: y changes sign. (2, –3).",
+          "clue_en": "Signal source coordinates: (2, –3).",
+          "skill_en": "Coordinate Geometry",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "(2, 3)",
+            "(–2, 3)",
+            "(2, –3)",
+            "(–2, –3)"
+          ],
+          "wrong_en": [
+            "The y sign changes.",
+            "The y-coordinate is the one that changes.",
+            "(2,–3) — correct!",
+            "Both coordinates changed."
+          ]
         },
         {
           "id": "q1-3",
@@ -78,7 +114,25 @@
             "7 hanya muncul 1 kali.",
             "9 hanya muncul 1 kali."
           ],
-          "clue": "Frekuensi utama sinyal: 4."
+          "clue": "Frekuensi utama sinyal: 4.",
+          "scene_en": "Signal frequency data: 4, 7, 4, 9, 4, 6.",
+          "q_en": "What is the mode of the data?",
+          "correct_en": "4 appears 3 times — mode = 4.",
+          "clue_en": "Main signal frequency: 4.",
+          "skill_en": "Statistics",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "4",
+            "6",
+            "7",
+            "9"
+          ],
+          "wrong_en": [
+            "4 appears most often — correct!",
+            "6 appears only 1 time.",
+            "7 appears only 1 time.",
+            "9 appears only 1 time."
+          ]
         },
         {
           "id": "q1-4",
@@ -101,7 +155,25 @@
             "300 km — tepat!",
             "Terlalu jauh."
           ],
-          "clue": "Jarak sumber sinyal: 300 km."
+          "clue": "Jarak sumber sinyal: 300 km.",
+          "scene_en": "Signal duration: 2,5 hours. Speed 120 km/hour.",
+          "q_en": "How far did the signal travel?",
+          "correct_en": "2,5 × 120 = 300 km.",
+          "clue_en": "Signal source distance: 300 km.",
+          "skill_en": "Speed",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "240 km",
+            "280 km",
+            "300 km",
+            "320 km"
+          ],
+          "wrong_en": [
+            "d = v × t.",
+            "Almost.",
+            "300 km — correct!",
+            "Too far."
+          ]
         },
         {
           "id": "q1-5",
@@ -124,9 +196,28 @@
             "3/4 — tepat!",
             "2/3 salah."
           ],
-          "clue": "Peluang sinyal lolos: 3/4."
+          "clue": "Peluang sinyal lolos: 3/4.",
+          "scene_en": "Chance the signal is blocked: 3 out of 12 possibilities.",
+          "q_en": "What is the probability the signal is NOT blocked?",
+          "correct_en": "P(not blocked) = 9/12 = 3/4.",
+          "clue_en": "Chance the signal gets through: 3/4.",
+          "skill_en": "Probability",
+          "difficulty_en": "Medium",
+          "choices_en": [
+            "1/4",
+            "1/3",
+            "3/4",
+            "2/3"
+          ],
+          "wrong_en": [
+            "3/12 = blocked.",
+            "1/3 is wrong.",
+            "3/4 — correct!",
+            "2/3 is wrong."
+          ]
         }
-      ]
+      ],
+      "title_en": "Chapter 1 — Strange Signal"
     },
     {
       "id": "bab-2",
@@ -155,7 +246,25 @@
           ],
           "clue": "Rata-rata suhu lab: 20°C.",
           "type_ui": "numeric",
-          "answer_value": 20
+          "answer_value": 20,
+          "scene_en": "Lab temperature data: 18, 22, 20, 25, 15.",
+          "q_en": "What is the average temperature?",
+          "correct_en": "(18+22+20+25+15) ÷ 5 = 100 ÷ 5 = 20.",
+          "clue_en": "Average lab temperature: 20°C.",
+          "skill_en": "Statistics",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "18",
+            "19",
+            "20",
+            "21"
+          ],
+          "wrong_en": [
+            "Add them all and divide by 5.",
+            "Almost.",
+            "20 — correct!",
+            "Too high."
+          ]
         },
         {
           "id": "q2-2",
@@ -178,7 +287,25 @@
             "Bukan +14.",
             "6² = 36 bukan yang berikutnya."
           ],
-          "clue": "Data ke-5 adalah 25."
+          "clue": "Data ke-5 adalah 25.",
+          "scene_en": "Data pattern: 1, 4, 9, 16, __?",
+          "q_en": "Next number?",
+          "correct_en": "1²=1, 2²=4, 3²=9, 4²=16, 5²=25.",
+          "clue_en": "The 5th data point is 25.",
+          "skill_en": "Patterns",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "20",
+            "25",
+            "30",
+            "36"
+          ],
+          "wrong_en": [
+            "It is a square-number pattern.",
+            "25 — correct!",
+            "Not +14.",
+            "6² = 36, but that is not next."
+          ]
         },
         {
           "id": "q2-3",
@@ -201,7 +328,25 @@
             "7 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Kode brankas: x = 7."
+          "clue": "Kode brankas: x = 7.",
+          "scene_en": "Equation on the safe wall.",
+          "q_en": "2x – 3 = 11. What is x?",
+          "correct_en": "2x = 14, x = 7.",
+          "clue_en": "Safe code: x = 7.",
+          "skill_en": "Algebra",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "wrong_en": [
+            "Add 3 to the right side first.",
+            "Almost.",
+            "7 — correct!",
+            "Too big."
+          ]
         },
         {
           "id": "q2-4",
@@ -224,7 +369,25 @@
             "Bukan 7.",
             "Bukan 8."
           ],
-          "clue": "Sisi miring = 5 cm."
+          "clue": "Sisi miring = 5 cm.",
+          "scene_en": "Right triangle: sides 3 cm and 4 cm.",
+          "q_en": "What is the length of the hypotenuse?",
+          "correct_en": "Pythagorean theorem: √(9+16) = √25 = 5 cm.",
+          "clue_en": "Hypotenuse = 5 cm.",
+          "skill_en": "Geometry",
+          "difficulty_en": "Medium",
+          "choices_en": [
+            "5 cm",
+            "6 cm",
+            "7 cm",
+            "8 cm"
+          ],
+          "wrong_en": [
+            "Use Pythagoras: a² + b² = c².",
+            "Not 6.",
+            "Not 7.",
+            "Not 8."
+          ]
         },
         {
           "id": "q2-5",
@@ -247,9 +410,28 @@
             "140.000 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Harga akhir Rp140.000."
+          "clue": "Harga akhir Rp140.000.",
+          "scene_en": "30% discount from Rp200.000.",
+          "q_en": "Price after discount?",
+          "correct_en": "200.000 × 0,7 = 140.000.",
+          "clue_en": "Final price: Rp140.000.",
+          "skill_en": "Percentages",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "Rp120.000",
+            "Rp130.000",
+            "Rp140.000",
+            "Rp150.000"
+          ],
+          "wrong_en": [
+            "30% discount → pay 70%.",
+            "Almost.",
+            "140.000 — correct!",
+            "Too big."
+          ]
         }
-      ]
+      ],
+      "title_en": "Chapter 2 — Data Tracking"
     },
     {
       "id": "bab-3",
@@ -276,7 +458,25 @@
             "9 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Koordinat target: y = 9."
+          "clue": "Koordinat target: y = 9.",
+          "scene_en": "Linear graph: y = 2x + 1. If x = 4.",
+          "q_en": "What is the value of y?",
+          "correct_en": "y = 2(4) + 1 = 9.",
+          "clue_en": "Target coordinate: y = 9.",
+          "skill_en": "Algebra",
+          "difficulty_en": "Medium",
+          "choices_en": [
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "wrong_en": [
+            "Substitute x = 4.",
+            "Almost.",
+            "9 — correct!",
+            "Too big."
+          ]
         },
         {
           "id": "q3-2",
@@ -299,7 +499,25 @@
             "1/2 = bola merah.",
             "7/10 = bukan biru."
           ],
-          "clue": "Peluang bola biru: 3/10."
+          "clue": "Peluang bola biru: 3/10.",
+          "scene_en": "A bag contains 5 red balls, 3 blue balls, and 2 yellow balls.",
+          "q_en": "Probability of drawing a blue ball?",
+          "correct_en": "3 out of 10 balls are blue: P = 3/10.",
+          "clue_en": "Chance of a blue ball: 3/10.",
+          "skill_en": "Probability",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "1/5",
+            "3/10",
+            "1/2",
+            "7/10"
+          ],
+          "wrong_en": [
+            "There are 10 balls total.",
+            "3/10 — correct!",
+            "1/2 = red balls.",
+            "7/10 = not blue."
+          ]
         },
         {
           "id": "q3-3",
@@ -322,7 +540,25 @@
             "Hampir.",
             "Terlalu besar."
           ],
-          "clue": "Nilai x = 3 membuka kunci terakhir."
+          "clue": "Nilai x = 3 membuka kunci terakhir.",
+          "scene_en": "Rectangle: length (2x+3) cm, width 4 cm, perimeter 30 cm.",
+          "q_en": "What is the value of x?",
+          "correct_en": "Use the perimeter formula to isolate x. x = 3 unlocks the last lock.",
+          "clue_en": "The value x = 3 opens the last lock.",
+          "skill_en": "Algebra",
+          "difficulty_en": "Hard",
+          "choices_en": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "wrong_en": [
+            "Use the perimeter formula.",
+            "3 — correct!",
+            "Almost.",
+            "Too big."
+          ]
         },
         {
           "id": "q3-4",
@@ -345,7 +581,25 @@
             "216 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Volume brankas utama: 216 cm³."
+          "clue": "Volume brankas utama: 216 cm³.",
+          "scene_en": "Cube volume with side 6 cm.",
+          "q_en": "What is its volume?",
+          "correct_en": "6³ = 216 cm³.",
+          "clue_en": "Main safe volume: 216 cm³.",
+          "skill_en": "Geometry",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "36 cm³",
+            "96 cm³",
+            "216 cm³",
+            "316 cm³"
+          ],
+          "wrong_en": [
+            "V = s³.",
+            "Almost.",
+            "216 — correct!",
+            "Too big."
+          ]
         },
         {
           "id": "q3-5",
@@ -368,9 +622,28 @@
             "24 — tepat!",
             "Bukan +4."
           ],
-          "clue": "Kode terakhir: 24."
+          "clue": "Kode terakhir: 24.",
+          "scene_en": "Final data: 12, 15, 18, 21, __?",
+          "q_en": "Pattern: next number?",
+          "correct_en": "Pattern +3: 21 + 3 = 24. Case solved!",
+          "clue_en": "Final code: 24.",
+          "skill_en": "Patterns",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "22",
+            "23",
+            "24",
+            "25"
+          ],
+          "wrong_en": [
+            "The pattern is +3.",
+            "Almost.",
+            "24 — correct!",
+            "Not +4."
+          ]
         }
-      ]
+      ],
+      "title_en": "Chapter 3 — First Deduction"
     },
     {
       "id": "bab-4",
@@ -410,6 +683,30 @@
             1,
             2,
             3
+          ],
+          "scene_en": "The lab note contains fractions that must be ordered before it opens.",
+          "q_en": "Order the fractions from smallest to largest.",
+          "correct_en": "1/4 < 1/3 < 1/2 < 3/4. The safe opens!",
+          "clue_en": "The fraction code matches the camera recording.",
+          "skill_en": "Fractions",
+          "difficulty_en": "Medium",
+          "choices_en": [
+            "1/4",
+            "1/3",
+            "1/2",
+            "3/4"
+          ],
+          "items_en": [
+            "1/4",
+            "1/3",
+            "1/2",
+            "3/4"
+          ],
+          "wrong_en": [
+            "Correct!",
+            "That goes upward.",
+            "Both axes change.",
+            "To the left."
           ]
         },
         {
@@ -433,7 +730,25 @@
             "Bukan 16."
           ],
           "clue": "Jarak 10.",
-          "id": "q4-2"
+          "id": "q4-2",
+          "scene_en": "Calculate the distance.",
+          "q_en": "Distance from (0,0) to (6,8)?",
+          "correct_en": "√(36+64)=10.",
+          "clue_en": "Distance 10.",
+          "skill_en": "Geometry",
+          "difficulty_en": "Medium",
+          "choices_en": [
+            "10",
+            "12",
+            "14",
+            "16"
+          ],
+          "wrong_en": [
+            "10 — correct!",
+            "Not 12.",
+            "Not 14.",
+            "Not 16."
+          ]
         },
         {
           "scene": "Persamaan dinding.",
@@ -456,7 +771,25 @@
             "Terlalu besar."
           ],
           "clue": "x=12.",
-          "id": "q4-3"
+          "id": "q4-3",
+          "scene_en": "Wall equation.",
+          "q_en": "x/4 = 3. Value of x?",
+          "correct_en": "x=12.",
+          "clue_en": "x=12.",
+          "skill_en": "Algebra",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "7",
+            "10",
+            "12",
+            "14"
+          ],
+          "wrong_en": [
+            "Almost.",
+            "Almost.",
+            "12 — correct!",
+            "Too big."
+          ]
         },
         {
           "scene": "Data median.",
@@ -479,7 +812,25 @@
             "Maksimum."
           ],
           "clue": "Median 7.",
-          "id": "q4-4"
+          "id": "q4-4",
+          "scene_en": "Median data.",
+          "q_en": "Median of 3,5,7,9,11?",
+          "correct_en": "7.",
+          "clue_en": "Median 7.",
+          "skill_en": "Statistics",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "5",
+            "7",
+            "9",
+            "11"
+          ],
+          "wrong_en": [
+            "Q1.",
+            "7 — correct!",
+            "Q3.",
+            "Maximum."
+          ]
         },
         {
           "scene": "Persentase energi.",
@@ -502,9 +853,28 @@
             "Terlalu besar."
           ],
           "clue": "50 unit.",
-          "id": "q4-5"
+          "id": "q4-5",
+          "scene_en": "Energy percentage.",
+          "q_en": "25% of 200?",
+          "correct_en": "50.",
+          "clue_en": "50 units.",
+          "skill_en": "Percentages",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "25",
+            "40",
+            "50",
+            "75"
+          ],
+          "wrong_en": [
+            "12,5%.",
+            "Almost.",
+            "50 — correct!",
+            "Too big."
+          ]
         }
-      ]
+      ],
+      "title_en": "Chapter 4 — Coordinate Map"
     },
     {
       "id": "bab-5",
@@ -531,7 +901,25 @@
             "Terlalu cepat."
           ],
           "clue": "60 km/jam.",
-          "id": "q5-1"
+          "id": "q5-1",
+          "scene_en": "Signal train.",
+          "q_en": "150 km in 2,5 hours. Average speed?",
+          "correct_en": "60 km/hour.",
+          "clue_en": "60 km/hour.",
+          "skill_en": "Speed",
+          "difficulty_en": "Medium",
+          "choices_en": [
+            "50",
+            "60",
+            "70",
+            "75"
+          ],
+          "wrong_en": [
+            "Almost.",
+            "60 — correct!",
+            "Too fast.",
+            "Too fast."
+          ]
         },
         {
           "scene": "Pembagian rasio.",
@@ -554,7 +942,25 @@
             "Itu 4/7."
           ],
           "clue": "Bagian 10.",
-          "id": "q5-2"
+          "id": "q5-2",
+          "scene_en": "Ratio division.",
+          "q_en": "Ratio 2:5 from 35 — first part?",
+          "correct_en": "10.",
+          "clue_en": "Part 10.",
+          "skill_en": "Ratios",
+          "difficulty_en": "Medium",
+          "choices_en": [
+            "10",
+            "14",
+            "15",
+            "20"
+          ],
+          "wrong_en": [
+            "10 — correct!",
+            "Almost.",
+            "That is 3/7.",
+            "That is 4/7."
+          ]
         },
         {
           "scene": "Offset bilangan.",
@@ -577,7 +983,25 @@
             "Salah."
           ],
           "clue": "Offset 5.",
-          "id": "q5-3"
+          "id": "q5-3",
+          "scene_en": "Number offset.",
+          "q_en": "−3 + 8 = ?",
+          "correct_en": "5.",
+          "clue_en": "Offset 5.",
+          "skill_en": "Numbers",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "−11",
+            "5",
+            "11",
+            "−5"
+          ],
+          "wrong_en": [
+            "Wrong sign.",
+            "5 — correct!",
+            "Wrong.",
+            "Wrong."
+          ]
         },
         {
           "scene": "Panel persegi.",
@@ -600,7 +1024,25 @@
             "81 — tepat!"
           ],
           "clue": "81 cm².",
-          "id": "q5-4"
+          "id": "q5-4",
+          "scene_en": "Square panel.",
+          "q_en": "Area of a square with side 9 cm?",
+          "correct_en": "81 cm².",
+          "clue_en": "81 cm².",
+          "skill_en": "Geometry",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "18",
+            "36",
+            "72",
+            "81"
+          ],
+          "wrong_en": [
+            "Perimeter/2.",
+            "Perimeter.",
+            "Almost.",
+            "81 — correct!"
+          ]
         },
         {
           "scene": "Dadu keamanan.",
@@ -623,9 +1065,28 @@
             "Terlalu besar."
           ],
           "clue": "Peluang 1/2.",
-          "id": "q5-5"
+          "id": "q5-5",
+          "scene_en": "Security die.",
+          "q_en": "Probability of rolling an even number?",
+          "correct_en": "1/2.",
+          "clue_en": "Probability 1/2.",
+          "skill_en": "Probability",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "1/6",
+            "1/3",
+            "1/2",
+            "2/3"
+          ],
+          "wrong_en": [
+            "One side.",
+            "Almost.",
+            "1/2 — correct!",
+            "Too big."
+          ]
         }
-      ]
+      ],
+      "title_en": "Chapter 5 — Signal Speed"
     },
     {
       "id": "bab-6",
@@ -652,7 +1113,25 @@
             "Terlalu besar."
           ],
           "clue": "x=6.",
-          "id": "q6-1"
+          "id": "q6-1",
+          "scene_en": "Gate equation.",
+          "q_en": "5(x − 2) = 20. Value of x?",
+          "correct_en": "x=6.",
+          "clue_en": "x=6.",
+          "skill_en": "Algebra",
+          "difficulty_en": "Medium",
+          "choices_en": [
+            "4",
+            "5",
+            "6",
+            "8"
+          ],
+          "wrong_en": [
+            "Almost.",
+            "Almost.",
+            "6 — correct!",
+            "Too big."
+          ]
         },
         {
           "scene": "FPB kode.",
@@ -675,7 +1154,25 @@
             "Salah satu bilangan."
           ],
           "clue": "FPB 6.",
-          "id": "q6-2"
+          "id": "q6-2",
+          "scene_en": "GCD code.",
+          "q_en": "GCD of 12 and 18?",
+          "correct_en": "6.",
+          "clue_en": "GCD 6.",
+          "skill_en": "Numbers",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "3",
+            "6",
+            "9",
+            "12"
+          ],
+          "wrong_en": [
+            "Not 3.",
+            "6 — correct!",
+            "Almost the LCM.",
+            "One of the numbers."
+          ]
         },
         {
           "scene": "KPK kunci.",
@@ -698,7 +1195,25 @@
             "Produk."
           ],
           "clue": "KPK 12.",
-          "id": "q6-3"
+          "id": "q6-3",
+          "scene_en": "LCM key.",
+          "q_en": "LCM of 4 and 6?",
+          "correct_en": "12.",
+          "clue_en": "LCM 12.",
+          "skill_en": "Numbers",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "8",
+            "10",
+            "12",
+            "24"
+          ],
+          "wrong_en": [
+            "Almost.",
+            "Almost.",
+            "12 — correct!",
+            "Product."
+          ]
         },
         {
           "scene": "Cermin laser.",
@@ -721,7 +1236,25 @@
             "Sudut lurus."
           ],
           "clue": "90°.",
-          "id": "q6-4"
+          "id": "q6-4",
+          "scene_en": "Laser mirror.",
+          "q_en": "Measure of a right angle?",
+          "correct_en": "90°.",
+          "clue_en": "90°.",
+          "skill_en": "Geometry",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "45°",
+            "60°",
+            "90°",
+            "180°"
+          ],
+          "wrong_en": [
+            "Half.",
+            "Acute.",
+            "90° — correct!",
+            "Straight angle."
+          ]
         },
         {
           "scene": "Rata-rata akhir.",
@@ -744,9 +1277,32 @@
             "Tinggi."
           ],
           "clue": "Rata-rata 9.",
-          "id": "q6-5"
+          "id": "q6-5",
+          "scene_en": "Final average.",
+          "q_en": "Average of 6, 8, 10, 12?",
+          "correct_en": "9. Case closed!",
+          "clue_en": "Average 9.",
+          "skill_en": "Statistics",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "wrong_en": [
+            "Almost.",
+            "9 — correct!",
+            "High.",
+            "High."
+          ]
         }
-      ]
+      ],
+      "title_en": "Chapter 6 — Final Variable"
     }
-  ]
+  ],
+  "label_en": "Middle School",
+  "caseTitle_en": "Operation Dark Variable",
+  "ageRange_en": "Ages 13-15",
+  "curriculum_en": "Merdeka Curriculum"
 }

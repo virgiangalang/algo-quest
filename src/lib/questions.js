@@ -113,7 +113,11 @@ async function loadQuestions(level) {
 function flattenQuestions(data) {
   if (!data || !data.chapters) return [];
   return data.chapters.flatMap((ch) =>
-    (ch.questions || []).map((q) => ({ ...q, chapter: ch.title }))
+    (ch.questions || []).map((q) => ({
+      ...q,
+      chapter: ch.title,
+      chapter_en: ch.title_en || q.chapter_en || ch.title,
+    }))
   );
 }
 

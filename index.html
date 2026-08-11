@@ -1252,8 +1252,10 @@ function setAppLang(lang) {
   if (STATE.phase === "level-select") showLevelSelect();
   else if (STATE.phase === "briefing") renderBriefing();
   else if (STATE.phase === "diagnostic") renderDiagQuestion();
-  else if (STATE.phase === "game" && STATE.questions?.length) renderQuestion();
-  else if (STATE.phase === "case-intro" && STATE.caseData) {
+  else if (STATE.phase === "game" && STATE.questions?.length) {
+    if (STATE.caseData) setupChapters(STATE.caseData);
+    renderQuestion();
+  } else if (STATE.phase === "case-intro" && STATE.caseData) {
     const check = validateQuestionBank(STATE.caseData);
     populateCaseIntroReady(STATE.caseData, check);
   }
@@ -1488,7 +1490,7 @@ function renderDiagQuestion() {
 
   const box = document.getElementById("diag-choices");
   box.innerHTML = "";
-  q.choices.forEach((c, idx) => {
+  (lq.choices || q.choices || []).forEach((c, idx) => {
     const btn = document.createElement("button");
     btn.className = "choice";
     btn.innerHTML = `<span class="choice-key">${"ABCD"[idx]}</span>${c}`;
@@ -1517,11 +1519,12 @@ function answerDiag(idx, btn, q) {
 
   if (typeof AlgoAudio !== "undefined") AlgoAudio.play(ok ? "correct" : "wrong");
 
+  const lq = (typeof AlgoI18n !== "undefined") ? AlgoI18n.localizeQ(q) : q;
   const fb = document.getElementById("diag-feedback");
   fb.className = `feedback ${ok ? "good" : "bad"} show`;
   fb.innerHTML = ok
-    ? `<b>${tt("diag.good")}</b> ${q.correct}`
-    : `<b>${tt("diag.bad")}</b> ${q.wrong[idx] || ""}`;
+    ? `<b>${tt("diag.good")}</b> ${lq.correct}`
+    : `<b>${tt("diag.bad")}</b> ${(lq.wrong && lq.wrong[idx]) || ""}`;
 
   document.getElementById("diag-next-btn").classList.add("show");
   persistSession();
@@ -1594,7 +1597,7 @@ async function finishDiagnostic() {
     setupChapters(data);
     startBtn.disabled = false;
     startBtn.textContent = tt("intro.start");
-    setTopbarBadge((LEVEL_LABELS[STATE.level] || STATE.level) + " · " + STATE.questions.length + " misi");
+    setTopbarBadge(uiLevelLabel(STATE.level) + " · " + STATE.questions.length + " misi");
     persistSession();
   } catch (e) {
     console.error("[algo] finishDiagnostic load failed", e);
@@ -1608,14 +1611,23 @@ async function finishDiagnostic() {
   }
 }
 
+function uiLevelLabel(level) {
+  if (typeof AlgoI18n !== "undefined" && AlgoI18n.levelLabel) return AlgoI18n.levelLabel(level);
+  return (typeof LEVEL_LABELS !== "undefined" && LEVEL_LABELS[level]) ? LEVEL_LABELS[level] : level;
+}
+
+function uiBank(data) {
+  if (!data) return data;
+  return (typeof AlgoI18n !== "undefined" && AlgoI18n.localizeBank)
+    ? AlgoI18n.localizeBank(data)
+    : data;
+}
+
 function populateCaseIntroPending() {
-  const label = (typeof LEVEL_LABELS !== "undefined" && LEVEL_LABELS[STATE.level])
-    ? LEVEL_LABELS[STATE.level]
-    : STATE.level;
-  document.getElementById("intro-eyebrow").textContent = "Kalibrasi selesai · Menyiapkan berkas";
-  document.getElementById("intro-title").textContent = "Membuka berkas kasus…";
-  document.getElementById("intro-lead").textContent =
-    "Hasil diagnostic sedang dipakai untuk menyesuaikan tingkat kesulitan investigasi.";
+  const label = uiLevelLabel(STATE.level);
+  document.getElementById("intro-eyebrow").textContent = tt("intro.loadingEyebrow");
+  document.getElementById("intro-title").textContent = tt("intro.loadingTitle");
+  document.getElementById("intro-lead").textContent = tt("intro.loadingLead");
   document.getElementById("intro-level").textContent = label;
   document.getElementById("intro-diag").textContent =
     `${STATE.diagCorrect}/${STATE.diagQuestions.length}`;
@@ -1623,15 +1635,15 @@ function populateCaseIntroPending() {
 }
 
 function populateCaseIntroReady(data, check) {
-  const label = (typeof LEVEL_LABELS !== "undefined" && LEVEL_LABELS[STATE.level])
-    ? LEVEL_LABELS[STATE.level]
-    : STATE.level;
-  document.getElementById("intro-eyebrow").textContent = "Kalibrasi selesai · Kasus siap";
-  document.getElementById("intro-title").textContent = data.caseTitle || "Kode yang Hilang";
-  document.getElementById("intro-lead").textContent =
-    `Chip AI eksperimental milik Profesor Nova menghilang. ` +
-    `Kamu akan menelusuri ${(data.chapters || []).length} bab bukti ` +
-    `(${check.count} misi matematika) pada level ${label}.`;
+  const label = uiLevelLabel(STATE.level);
+  const bank = uiBank(data);
+  document.getElementById("intro-eyebrow").textContent = tt("intro.readyEyebrow");
+  document.getElementById("intro-title").textContent = bank.caseTitle || "Kode yang Hilang";
+  document.getElementById("intro-lead").textContent = tt("intro.readyLead", {
+    chapters: String((data.chapters || []).length),
+    count: String(check.count),
+    level: label,
+  });
   document.getElementById("intro-level").textContent = label;
   document.getElementById("intro-diag").textContent =
     `${STATE.diagCorrect}/${STATE.diagQuestions.length}`;
@@ -1656,13 +1668,16 @@ function enterGame() {
 
 /* ─── GAME ─── */
 function setupChapters(data) {
-  const chapters = data.chapters || [];
+  const bank = uiBank(data);
+  const chapters = bank.chapters || [];
   STATE.chapterTitles = chapters.map((ch) => ch.title);
-  document.getElementById("chapter-list").innerHTML = chapters.map((ch, k) =>
-    `<div class="chap" id="ch-${k}">${ch.title.replace("Bab ","").replace(" — "," · ")}</div>`
-  ).join("");
+  document.getElementById("chapter-list").innerHTML = chapters.map((ch, k) => {
+    const raw = ch.title || "";
+    const short = raw.replace(/^Bab\s+/i, "").replace(/^Chapter\s+/i, "").replace(" — ", " · ").replace(" - ", " · ");
+    return `<div class="chap" id="ch-${k}">${short}</div>`;
+  }).join("");
   document.getElementById("sb-total").textContent = STATE.questions.length;
-  document.getElementById("game-title").textContent = data.caseTitle || "Kode yang Hilang";
+  document.getElementById("game-title").textContent = bank.caseTitle || "Kode yang Hilang";
 }
 
 function getChapterIndexForQuestion(qIndex) {

@@ -32,7 +32,25 @@
           ],
           "clue": "Kunci bernomor 5.",
           "type_ui": "numeric",
-          "answer_value": 5
+          "answer_value": 5,
+          "scene_en": "The garden gate is locked. There is a number on the lock.",
+          "q_en": "2 + 3 = ?",
+          "correct_en": "2 + 3 = 5. The gate opens!",
+          "clue_en": "The lock is numbered 5.",
+          "skill_en": "Addition",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "wrong_en": [
+            "Try counting again.",
+            "5 — correct!",
+            "Too big.",
+            "Too big."
+          ]
         },
         {
           "id": "q1-2",
@@ -55,7 +73,25 @@
             "5 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Tersisa 5 apel."
+          "clue": "Tersisa 5 apel.",
+          "scene_en": "There are 8 apples. 3 are taken.",
+          "q_en": "8 – 3 = ?",
+          "correct_en": "8 – 3 = 5 apples are left.",
+          "clue_en": "5 apples are left.",
+          "skill_en": "Subtraction",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "wrong_en": [
+            "Try subtracting.",
+            "Almost.",
+            "5 — correct!",
+            "Too big."
+          ]
         },
         {
           "id": "q1-3",
@@ -78,7 +114,25 @@
             "10 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Pesan ada di bunga ke-10."
+          "clue": "Pesan ada di bunga ke-10.",
+          "scene_en": "Flowers line up in the garden.",
+          "q_en": "5 + 5 = ?",
+          "correct_en": "5 + 5 = 10! The secret message opens.",
+          "clue_en": "The message is on the 10th flower.",
+          "skill_en": "Addition",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "wrong_en": [
+            "Almost.",
+            "Try again.",
+            "10 — correct!",
+            "Too big."
+          ]
         },
         {
           "id": "q1-4",
@@ -101,7 +155,25 @@
             "8 — tepat!",
             "9? Cek kembali."
           ],
-          "clue": "8 papan pagar masih baik."
+          "clue": "8 papan pagar masih baik.",
+          "scene_en": "The garden fence has 12 boards. 4 are broken.",
+          "q_en": "12 – 4 = ?",
+          "correct_en": "12 – 4 = 8 good boards.",
+          "clue_en": "8 fence boards are still good.",
+          "skill_en": "Subtraction",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "wrong_en": [
+            "Subtract again.",
+            "7? Almost.",
+            "8 — correct!",
+            "9? Check again."
+          ]
         },
         {
           "id": "q1-5",
@@ -124,9 +196,28 @@
             "9 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Ada 9 bola di kotak."
+          "clue": "Ada 9 bola di kotak.",
+          "scene_en": "The box is filled with colored balls.",
+          "q_en": "3 + 4 + 2 = ?",
+          "correct_en": "3 + 4 + 2 = 9 balls.",
+          "clue_en": "There are 9 balls in the box.",
+          "skill_en": "Addition",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "wrong_en": [
+            "Add them all.",
+            "Almost.",
+            "9 — correct!",
+            "Too big."
+          ]
         }
-      ]
+      ],
+      "title_en": "Chapter 1 — The Magic Garden"
     },
     {
       "id": "bab-2",
@@ -155,7 +246,25 @@
           ],
           "clue": "13 pintu bisa dilalui.",
           "type_ui": "numeric",
-          "answer_value": 13
+          "answer_value": 13,
+          "scene_en": "The maze has 20 doors. 7 are locked.",
+          "q_en": "20 – 7 = ?",
+          "correct_en": "20 – 7 = 13 open doors.",
+          "clue_en": "13 doors can be passed through.",
+          "skill_en": "Subtraction",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "11",
+            "12",
+            "13",
+            "14"
+          ],
+          "wrong_en": [
+            "Almost.",
+            "12? Try again.",
+            "13 — correct!",
+            "14? Check."
+          ]
         },
         {
           "id": "q2-2",
@@ -178,7 +287,25 @@
             "Bukan +3.",
             "Bukan +4."
           ],
-          "clue": "Angka berikutnya: 10."
+          "clue": "Angka berikutnya: 10.",
+          "scene_en": "A number pattern is written on the maze wall.",
+          "q_en": "2, 4, 6, 8, __?",
+          "correct_en": "8 + 2 = 10! Pattern +2.",
+          "clue_en": "The next number is 10.",
+          "skill_en": "Patterns",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "9",
+            "10",
+            "11",
+            "12"
+          ],
+          "wrong_en": [
+            "The pattern is +2.",
+            "10 — correct!",
+            "Not +3.",
+            "Not +4."
+          ]
         },
         {
           "id": "q2-3",
@@ -201,7 +328,25 @@
             "9 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "9 koin masih tersisa."
+          "clue": "9 koin masih tersisa.",
+          "scene_en": "There are 15 gold coins on the floor.",
+          "q_en": "15 – 6 = ?",
+          "correct_en": "15 – 6 = 9 coins are left.",
+          "clue_en": "9 coins are still left.",
+          "skill_en": "Subtraction",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "wrong_en": [
+            "Subtract again.",
+            "Almost.",
+            "9 — correct!",
+            "Too big."
+          ]
         },
         {
           "id": "q2-4",
@@ -224,7 +369,25 @@
             "15 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Lentera ke-3 ada di langkah ke-15."
+          "clue": "Lentera ke-3 ada di langkah ke-15.",
+          "scene_en": "A lantern appears every 5 steps.",
+          "q_en": "5 × 3 = ?",
+          "correct_en": "5 × 3 = 15. You find the third lantern!",
+          "clue_en": "The 3rd lantern is at step 15.",
+          "skill_en": "Multiplication",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "10",
+            "12",
+            "15",
+            "20"
+          ],
+          "wrong_en": [
+            "Almost.",
+            "Try again.",
+            "15 — correct!",
+            "Too big."
+          ]
         },
         {
           "id": "q2-5",
@@ -247,9 +410,28 @@
             "5 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Tiap bagian berisi 5 benda."
+          "clue": "Tiap bagian berisi 5 benda.",
+          "scene_en": "The treasure box has two equal parts.",
+          "q_en": "10 ÷ 2 = ?",
+          "correct_en": "10 ÷ 2 = 5 in each part.",
+          "clue_en": "Each part has 5 objects.",
+          "skill_en": "Division",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "wrong_en": [
+            "Split it equally in two.",
+            "Almost.",
+            "5 — correct!",
+            "Too big."
+          ]
         }
-      ]
+      ],
+      "title_en": "Chapter 2 — Number Maze"
     },
     {
       "id": "bab-3",
@@ -276,7 +458,25 @@
             "Bukan +3.",
             "Bukan +4."
           ],
-          "clue": "Angka berikutnya: 9."
+          "clue": "Angka berikutnya: 9.",
+          "scene_en": "The treasure map has a number sequence.",
+          "q_en": "1, 3, 5, 7, __?",
+          "correct_en": "7 + 2 = 9! It is an odd-number pattern.",
+          "clue_en": "The next number is 9.",
+          "skill_en": "Patterns",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "wrong_en": [
+            "The pattern is +2.",
+            "9 — correct!",
+            "Not +3.",
+            "Not +4."
+          ]
         },
         {
           "id": "q3-2",
@@ -299,7 +499,25 @@
             "12 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Total 12 kupu-kupu di taman."
+          "clue": "Total 12 kupu-kupu di taman.",
+          "scene_en": "There are 4 groups of butterflies, 3 in each group.",
+          "q_en": "4 × 3 = ?",
+          "correct_en": "4 × 3 = 12 butterflies.",
+          "clue_en": "There are 12 butterflies in the garden.",
+          "skill_en": "Multiplication",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "7",
+            "10",
+            "12",
+            "14"
+          ],
+          "wrong_en": [
+            "Multiply, do not add.",
+            "Almost.",
+            "12 — correct!",
+            "Too big."
+          ]
         },
         {
           "id": "q3-3",
@@ -322,7 +540,25 @@
             "15 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Kode peti adalah 15."
+          "clue": "Kode peti adalah 15.",
+          "scene_en": "The treasure chest opens if you know the total.",
+          "q_en": "7 + 8 = ?",
+          "correct_en": "7 + 8 = 15. The chest opens!",
+          "clue_en": "The chest code is 15.",
+          "skill_en": "Addition",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "13",
+            "14",
+            "15",
+            "16"
+          ],
+          "wrong_en": [
+            "Almost.",
+            "Try again.",
+            "15 — correct!",
+            "Too big."
+          ]
         },
         {
           "id": "q3-4",
@@ -345,7 +581,25 @@
             "6 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Tiap orang dapat 6 koin."
+          "clue": "Tiap orang dapat 6 koin.",
+          "scene_en": "The treasure is shared equally among 3 people from 18 coins.",
+          "q_en": "18 ÷ 3 = ?",
+          "correct_en": "18 ÷ 3 = 6 coins per person.",
+          "clue_en": "Each person gets 6 coins.",
+          "skill_en": "Division",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "wrong_en": [
+            "Divide 18 by 3.",
+            "Almost.",
+            "6 — correct!",
+            "Too big."
+          ]
         },
         {
           "id": "q3-5",
@@ -368,9 +622,28 @@
             "7 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Kode pintu terakhir: 7."
+          "clue": "Kode pintu terakhir: 7.",
+          "scene_en": "The final door needs a two-number code.",
+          "q_en": "What is 20 – 13?",
+          "correct_en": "20 – 13 = 7! The door opens.",
+          "clue_en": "Final door code: 7.",
+          "skill_en": "Subtraction",
+          "difficulty_en": "Medium",
+          "choices_en": [
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "wrong_en": [
+            "Almost.",
+            "Try subtracting.",
+            "7 — correct!",
+            "Too big."
+          ]
         }
-      ]
+      ],
+      "title_en": "Chapter 3 — Hidden Treasure"
     },
     {
       "id": "bab-4",
@@ -410,6 +683,30 @@
             1,
             2,
             3
+          ],
+          "scene_en": "Number cards are scattered across the detective's table.",
+          "q_en": "Put the numbers in order from smallest to largest.",
+          "correct_en": "3 → 7 → 12 → 20. The number order is locked in!",
+          "clue_en": "The safe key uses the order 3-7-12-20.",
+          "skill_en": "Number Ordering",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "3",
+            "7",
+            "12",
+            "20"
+          ],
+          "items_en": [
+            "3",
+            "7",
+            "12",
+            "20"
+          ],
+          "wrong_en": [
+            "Try counting again.",
+            "5 — correct!",
+            "Too big.",
+            "Too big."
           ]
         },
         {
@@ -433,7 +730,25 @@
             "5 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Tersisa 5 apel."
+          "clue": "Tersisa 5 apel.",
+          "scene_en": "New clue: There are 8 apples. 3 are taken.",
+          "q_en": "8 – 3 = ?",
+          "correct_en": "8 – 3 = 5 apples are left.",
+          "clue_en": "5 apples are left.",
+          "skill_en": "Subtraction",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "wrong_en": [
+            "Try subtracting.",
+            "Almost.",
+            "5 — correct!",
+            "Too big."
+          ]
         },
         {
           "id": "q4-3",
@@ -456,7 +771,25 @@
             "10 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Pesan ada di bunga ke-10."
+          "clue": "Pesan ada di bunga ke-10.",
+          "scene_en": "New clue: Flowers line up in the garden.",
+          "q_en": "5 + 5 = ?",
+          "correct_en": "5 + 5 = 10! The secret message opens.",
+          "clue_en": "The message is on the 10th flower.",
+          "skill_en": "Addition",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "wrong_en": [
+            "Almost.",
+            "Try again.",
+            "10 — correct!",
+            "Too big."
+          ]
         },
         {
           "id": "q4-4",
@@ -479,7 +812,25 @@
             "8 — tepat!",
             "9? Cek kembali."
           ],
-          "clue": "8 papan pagar masih baik."
+          "clue": "8 papan pagar masih baik.",
+          "scene_en": "New clue: The garden fence has 12 boards. 4 are broken.",
+          "q_en": "12 – 4 = ?",
+          "correct_en": "12 – 4 = 8 good boards.",
+          "clue_en": "8 fence boards are still good.",
+          "skill_en": "Subtraction",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "wrong_en": [
+            "Subtract again.",
+            "7? Almost.",
+            "8 — correct!",
+            "9? Check again."
+          ]
         },
         {
           "id": "q4-5",
@@ -502,9 +853,28 @@
             "9 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Ada 9 bola di kotak."
+          "clue": "Ada 9 bola di kotak.",
+          "scene_en": "New clue: The box is filled with colored balls.",
+          "q_en": "3 + 4 + 2 = ?",
+          "correct_en": "3 + 4 + 2 = 9 balls.",
+          "clue_en": "There are 9 balls in the box.",
+          "skill_en": "Addition",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "wrong_en": [
+            "Add them all.",
+            "Almost.",
+            "9 — correct!",
+            "Too big."
+          ]
         }
-      ]
+      ],
+      "title_en": "Chapter 4 — Mystery Clock"
     },
     {
       "id": "bab-5",
@@ -531,7 +901,25 @@
             "Terlalu besar.",
             "Terlalu besar."
           ],
-          "clue": "Kunci bernomor 5."
+          "clue": "Kunci bernomor 5.",
+          "scene_en": "New clue: The garden gate is locked. There is a number on the lock.",
+          "q_en": "2 + 3 = ?",
+          "correct_en": "2 + 3 = 5. The gate opens!",
+          "clue_en": "The lock is numbered 5.",
+          "skill_en": "Addition",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "wrong_en": [
+            "Try counting again.",
+            "5 — correct!",
+            "Too big.",
+            "Too big."
+          ]
         },
         {
           "id": "q5-2",
@@ -554,7 +942,25 @@
             "5 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Tersisa 5 apel."
+          "clue": "Tersisa 5 apel.",
+          "scene_en": "New clue: There are 8 apples. 3 are taken.",
+          "q_en": "8 – 3 = ?",
+          "correct_en": "8 – 3 = 5 apples are left.",
+          "clue_en": "5 apples are left.",
+          "skill_en": "Subtraction",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "wrong_en": [
+            "Try subtracting.",
+            "Almost.",
+            "5 — correct!",
+            "Too big."
+          ]
         },
         {
           "id": "q5-3",
@@ -577,7 +983,25 @@
             "10 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Pesan ada di bunga ke-10."
+          "clue": "Pesan ada di bunga ke-10.",
+          "scene_en": "New clue: Flowers line up in the garden.",
+          "q_en": "5 + 5 = ?",
+          "correct_en": "5 + 5 = 10! The secret message opens.",
+          "clue_en": "The message is on the 10th flower.",
+          "skill_en": "Addition",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "wrong_en": [
+            "Almost.",
+            "Try again.",
+            "10 — correct!",
+            "Too big."
+          ]
         },
         {
           "id": "q5-4",
@@ -600,7 +1024,25 @@
             "8 — tepat!",
             "9? Cek kembali."
           ],
-          "clue": "8 papan pagar masih baik."
+          "clue": "8 papan pagar masih baik.",
+          "scene_en": "New clue: The garden fence has 12 boards. 4 are broken.",
+          "q_en": "12 – 4 = ?",
+          "correct_en": "12 – 4 = 8 good boards.",
+          "clue_en": "8 fence boards are still good.",
+          "skill_en": "Subtraction",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "wrong_en": [
+            "Subtract again.",
+            "7? Almost.",
+            "8 — correct!",
+            "9? Check again."
+          ]
         },
         {
           "id": "q5-5",
@@ -623,9 +1065,28 @@
             "9 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Ada 9 bola di kotak."
+          "clue": "Ada 9 bola di kotak.",
+          "scene_en": "New clue: The box is filled with colored balls.",
+          "q_en": "3 + 4 + 2 = ?",
+          "correct_en": "3 + 4 + 2 = 9 balls.",
+          "clue_en": "There are 9 balls in the box.",
+          "skill_en": "Addition",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "wrong_en": [
+            "Add them all.",
+            "Almost.",
+            "9 — correct!",
+            "Too big."
+          ]
         }
-      ]
+      ],
+      "title_en": "Chapter 5 — Secret Shapes"
     },
     {
       "id": "bab-6",
@@ -652,7 +1113,25 @@
             "Terlalu besar.",
             "Terlalu besar."
           ],
-          "clue": "Kunci bernomor 5."
+          "clue": "Kunci bernomor 5.",
+          "scene_en": "New clue: The garden gate is locked. There is a number on the lock.",
+          "q_en": "2 + 3 = ?",
+          "correct_en": "2 + 3 = 5. The gate opens!",
+          "clue_en": "The lock is numbered 5.",
+          "skill_en": "Addition",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "wrong_en": [
+            "Try counting again.",
+            "5 — correct!",
+            "Too big.",
+            "Too big."
+          ]
         },
         {
           "id": "q6-2",
@@ -675,7 +1154,25 @@
             "5 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Tersisa 5 apel."
+          "clue": "Tersisa 5 apel.",
+          "scene_en": "New clue: There are 8 apples. 3 are taken.",
+          "q_en": "8 – 3 = ?",
+          "correct_en": "8 – 3 = 5 apples are left.",
+          "clue_en": "5 apples are left.",
+          "skill_en": "Subtraction",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "wrong_en": [
+            "Try subtracting.",
+            "Almost.",
+            "5 — correct!",
+            "Too big."
+          ]
         },
         {
           "id": "q6-3",
@@ -698,7 +1195,25 @@
             "10 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Pesan ada di bunga ke-10."
+          "clue": "Pesan ada di bunga ke-10.",
+          "scene_en": "New clue: Flowers line up in the garden.",
+          "q_en": "5 + 5 = ?",
+          "correct_en": "5 + 5 = 10! The secret message opens.",
+          "clue_en": "The message is on the 10th flower.",
+          "skill_en": "Addition",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "wrong_en": [
+            "Almost.",
+            "Try again.",
+            "10 — correct!",
+            "Too big."
+          ]
         },
         {
           "id": "q6-4",
@@ -721,7 +1236,25 @@
             "8 — tepat!",
             "9? Cek kembali."
           ],
-          "clue": "8 papan pagar masih baik."
+          "clue": "8 papan pagar masih baik.",
+          "scene_en": "New clue: The garden fence has 12 boards. 4 are broken.",
+          "q_en": "12 – 4 = ?",
+          "correct_en": "12 – 4 = 8 good boards.",
+          "clue_en": "8 fence boards are still good.",
+          "skill_en": "Subtraction",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "wrong_en": [
+            "Subtract again.",
+            "7? Almost.",
+            "8 — correct!",
+            "9? Check again."
+          ]
         },
         {
           "id": "q6-5",
@@ -744,9 +1277,32 @@
             "9 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Ada 9 bola di kotak."
+          "clue": "Ada 9 bola di kotak.",
+          "scene_en": "New clue: The box is filled with colored balls.",
+          "q_en": "3 + 4 + 2 = ?",
+          "correct_en": "3 + 4 + 2 = 9 balls.",
+          "clue_en": "There are 9 balls in the box.",
+          "skill_en": "Addition",
+          "difficulty_en": "Easy",
+          "choices_en": [
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "wrong_en": [
+            "Add them all.",
+            "Almost.",
+            "9 — correct!",
+            "Too big."
+          ]
         }
-      ]
+      ],
+      "title_en": "Chapter 6 — Final Code"
     }
-  ]
+  ],
+  "label_en": "Elementary Grades 1-3",
+  "caseTitle_en": "Mystery in the Number Garden",
+  "ageRange_en": "Ages 6-9",
+  "curriculum_en": "Merdeka Curriculum"
 }
