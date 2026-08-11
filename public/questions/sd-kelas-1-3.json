@@ -9,33 +9,726 @@
       "id": "bab-1",
       "title": "Bab 1 — Kebun Ajaib",
       "questions": [
-        { "id":"q1-1", "scene":"Pintu kebun terkunci. Ada angka di kunci.", "q":"2 + 3 = ?", "choices":["4","5","6","7"], "answer":1, "skill":"Penjumlahan", "difficulty":"Mudah", "type":"analyst", "correct":"2 + 3 = 5. Pintu terbuka!", "wrong":["Coba hitung lagi.","5 — tepat!","Terlalu besar.","Terlalu besar."], "clue":"Kunci bernomor 5." },
-        { "id":"q1-2", "scene":"Ada 8 buah apel. 3 diambil.", "q":"8 – 3 = ?", "choices":["3","4","5","6"], "answer":2, "skill":"Pengurangan", "difficulty":"Mudah", "type":"analyst", "correct":"8 – 3 = 5 apel tersisa.", "wrong":["Coba kurangi.","Hampir.","5 — tepat!","Terlalu besar."], "clue":"Tersisa 5 apel." },
-        { "id":"q1-3", "scene":"Bunga berjejer di kebun.", "q":"5 + 5 = ?", "choices":["8","9","10","11"], "answer":2, "skill":"Penjumlahan", "difficulty":"Mudah", "type":"codebreaker", "correct":"5 + 5 = 10! Pesan rahasia terbuka.", "wrong":["Hampir.","Coba lagi.","10 — tepat!","Terlalu besar."], "clue":"Pesan ada di bunga ke-10." },
-        { "id":"q1-4", "scene":"Pagar kebun ada 12 papan. 4 rusak.", "q":"12 – 4 = ?", "choices":["6","7","8","9"], "answer":2, "skill":"Pengurangan", "difficulty":"Mudah", "type":"analyst", "correct":"12 – 4 = 8 papan baik.", "wrong":["Kurangi lagi.","7? Hampir.","8 — tepat!","9? Cek kembali."], "clue":"8 papan pagar masih baik." },
-        { "id":"q1-5", "scene":"Kotak berisi bola berwarna.", "q":"3 + 4 + 2 = ?", "choices":["7","8","9","10"], "answer":2, "skill":"Penjumlahan", "difficulty":"Mudah", "type":"analyst", "correct":"3 + 4 + 2 = 9 bola.", "wrong":["Tambahkan semua.","Hampir.","9 — tepat!","Terlalu besar."], "clue":"Ada 9 bola di kotak." }
+        {
+          "id": "q1-1",
+          "scene": "Pintu kebun terkunci. Ada angka di kunci.",
+          "q": "2 + 3 = ?",
+          "choices": [
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "answer": 1,
+          "skill": "Penjumlahan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "2 + 3 = 5. Pintu terbuka!",
+          "wrong": [
+            "Coba hitung lagi.",
+            "5 — tepat!",
+            "Terlalu besar.",
+            "Terlalu besar."
+          ],
+          "clue": "Kunci bernomor 5."
+        },
+        {
+          "id": "q1-2",
+          "scene": "Ada 8 buah apel. 3 diambil.",
+          "q": "8 – 3 = ?",
+          "choices": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "answer": 2,
+          "skill": "Pengurangan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "8 – 3 = 5 apel tersisa.",
+          "wrong": [
+            "Coba kurangi.",
+            "Hampir.",
+            "5 — tepat!",
+            "Terlalu besar."
+          ],
+          "clue": "Tersisa 5 apel."
+        },
+        {
+          "id": "q1-3",
+          "scene": "Bunga berjejer di kebun.",
+          "q": "5 + 5 = ?",
+          "choices": [
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "answer": 2,
+          "skill": "Penjumlahan",
+          "difficulty": "Mudah",
+          "type": "codebreaker",
+          "correct": "5 + 5 = 10! Pesan rahasia terbuka.",
+          "wrong": [
+            "Hampir.",
+            "Coba lagi.",
+            "10 — tepat!",
+            "Terlalu besar."
+          ],
+          "clue": "Pesan ada di bunga ke-10."
+        },
+        {
+          "id": "q1-4",
+          "scene": "Pagar kebun ada 12 papan. 4 rusak.",
+          "q": "12 – 4 = ?",
+          "choices": [
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "answer": 2,
+          "skill": "Pengurangan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "12 – 4 = 8 papan baik.",
+          "wrong": [
+            "Kurangi lagi.",
+            "7? Hampir.",
+            "8 — tepat!",
+            "9? Cek kembali."
+          ],
+          "clue": "8 papan pagar masih baik."
+        },
+        {
+          "id": "q1-5",
+          "scene": "Kotak berisi bola berwarna.",
+          "q": "3 + 4 + 2 = ?",
+          "choices": [
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "answer": 2,
+          "skill": "Penjumlahan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "3 + 4 + 2 = 9 bola.",
+          "wrong": [
+            "Tambahkan semua.",
+            "Hampir.",
+            "9 — tepat!",
+            "Terlalu besar."
+          ],
+          "clue": "Ada 9 bola di kotak."
+        }
       ]
     },
     {
       "id": "bab-2",
       "title": "Bab 2 — Labirin Angka",
       "questions": [
-        { "id":"q2-1", "scene":"Labirin punya 20 pintu. 7 terkunci.", "q":"20 – 7 = ?", "choices":["11","12","13","14"], "answer":2, "skill":"Pengurangan", "difficulty":"Mudah", "type":"explorer", "correct":"20 – 7 = 13 pintu terbuka.", "wrong":["Hampir.","12? Coba lagi.","13 — tepat!","14? Cek."], "clue":"13 pintu bisa dilalui." },
-        { "id":"q2-2", "scene":"Pola angka di dinding labirin.", "q":"2, 4, 6, 8, __?", "choices":["9","10","11","12"], "answer":1, "skill":"Pola", "difficulty":"Mudah", "type":"codebreaker", "correct":"8 + 2 = 10! Pola +2.", "wrong":["Polanya +2.","10 — tepat!","Bukan +3.","Bukan +4."], "clue":"Angka berikutnya: 10." },
-        { "id":"q2-3", "scene":"Ada 15 koin emas di lantai.", "q":"15 – 6 = ?", "choices":["7","8","9","10"], "answer":2, "skill":"Pengurangan", "difficulty":"Mudah", "type":"analyst", "correct":"15 – 6 = 9 koin tersisa.", "wrong":["Kurangi lagi.","Hampir.","9 — tepat!","Terlalu besar."], "clue":"9 koin masih tersisa." },
-        { "id":"q2-4", "scene":"Lentera ada di setiap 5 langkah.", "q":"5 × 3 = ?", "choices":["10","12","15","20"], "answer":2, "skill":"Perkalian", "difficulty":"Mudah", "type":"analyst", "correct":"5 × 3 = 15. Kamu menemukan lentera ketiga!", "wrong":["Hampir.","Coba lagi.","15 — tepat!","Terlalu besar."], "clue":"Lentera ke-3 ada di langkah ke-15." },
-        { "id":"q2-5", "scene":"Kotak harta berisi dua bagian sama besar.", "q":"10 ÷ 2 = ?", "choices":["3","4","5","6"], "answer":2, "skill":"Pembagian", "difficulty":"Mudah", "type":"analyst", "correct":"10 ÷ 2 = 5 tiap bagian.", "wrong":["Bagi dua sama rata.","Hampir.","5 — tepat!","Terlalu besar."], "clue":"Tiap bagian berisi 5 benda." }
+        {
+          "id": "q2-1",
+          "scene": "Labirin punya 20 pintu. 7 terkunci.",
+          "q": "20 – 7 = ?",
+          "choices": [
+            "11",
+            "12",
+            "13",
+            "14"
+          ],
+          "answer": 2,
+          "skill": "Pengurangan",
+          "difficulty": "Mudah",
+          "type": "explorer",
+          "correct": "20 – 7 = 13 pintu terbuka.",
+          "wrong": [
+            "Hampir.",
+            "12? Coba lagi.",
+            "13 — tepat!",
+            "14? Cek."
+          ],
+          "clue": "13 pintu bisa dilalui."
+        },
+        {
+          "id": "q2-2",
+          "scene": "Pola angka di dinding labirin.",
+          "q": "2, 4, 6, 8, __?",
+          "choices": [
+            "9",
+            "10",
+            "11",
+            "12"
+          ],
+          "answer": 1,
+          "skill": "Pola",
+          "difficulty": "Mudah",
+          "type": "codebreaker",
+          "correct": "8 + 2 = 10! Pola +2.",
+          "wrong": [
+            "Polanya +2.",
+            "10 — tepat!",
+            "Bukan +3.",
+            "Bukan +4."
+          ],
+          "clue": "Angka berikutnya: 10."
+        },
+        {
+          "id": "q2-3",
+          "scene": "Ada 15 koin emas di lantai.",
+          "q": "15 – 6 = ?",
+          "choices": [
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "answer": 2,
+          "skill": "Pengurangan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "15 – 6 = 9 koin tersisa.",
+          "wrong": [
+            "Kurangi lagi.",
+            "Hampir.",
+            "9 — tepat!",
+            "Terlalu besar."
+          ],
+          "clue": "9 koin masih tersisa."
+        },
+        {
+          "id": "q2-4",
+          "scene": "Lentera ada di setiap 5 langkah.",
+          "q": "5 × 3 = ?",
+          "choices": [
+            "10",
+            "12",
+            "15",
+            "20"
+          ],
+          "answer": 2,
+          "skill": "Perkalian",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "5 × 3 = 15. Kamu menemukan lentera ketiga!",
+          "wrong": [
+            "Hampir.",
+            "Coba lagi.",
+            "15 — tepat!",
+            "Terlalu besar."
+          ],
+          "clue": "Lentera ke-3 ada di langkah ke-15."
+        },
+        {
+          "id": "q2-5",
+          "scene": "Kotak harta berisi dua bagian sama besar.",
+          "q": "10 ÷ 2 = ?",
+          "choices": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "answer": 2,
+          "skill": "Pembagian",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "10 ÷ 2 = 5 tiap bagian.",
+          "wrong": [
+            "Bagi dua sama rata.",
+            "Hampir.",
+            "5 — tepat!",
+            "Terlalu besar."
+          ],
+          "clue": "Tiap bagian berisi 5 benda."
+        }
       ]
     },
     {
       "id": "bab-3",
       "title": "Bab 3 — Harta Tersembunyi",
       "questions": [
-        { "id":"q3-1", "scene":"Peta harta punya urutan angka.", "q":"1, 3, 5, 7, __?", "choices":["8","9","10","11"], "answer":1, "skill":"Pola", "difficulty":"Mudah", "type":"codebreaker", "correct":"7 + 2 = 9! Pola bilangan ganjil.", "wrong":["Polanya +2.","9 — tepat!","Bukan +3.","Bukan +4."], "clue":"Angka berikutnya: 9." },
-        { "id":"q3-2", "scene":"Ada 4 kelompok kupu-kupu, tiap kelompok 3.", "q":"4 × 3 = ?", "choices":["7","10","12","14"], "answer":2, "skill":"Perkalian", "difficulty":"Mudah", "type":"analyst", "correct":"4 × 3 = 12 kupu-kupu.", "wrong":["Kalikan, bukan jumlahkan.","Hampir.","12 — tepat!","Terlalu besar."], "clue":"Total 12 kupu-kupu di taman." },
-        { "id":"q3-3", "scene":"Peti harta terbuka jika tahu jumlah semua.", "q":"7 + 8 = ?", "choices":["13","14","15","16"], "answer":2, "skill":"Penjumlahan", "difficulty":"Mudah", "type":"analyst", "correct":"7 + 8 = 15. Peti terbuka!", "wrong":["Hampir.","Coba lagi.","15 — tepat!","Terlalu besar."], "clue":"Kode peti adalah 15." },
-        { "id":"q3-4", "scene":"Harta dibagi rata untuk 3 orang dari 18 koin.", "q":"18 ÷ 3 = ?", "choices":["4","5","6","7"], "answer":2, "skill":"Pembagian", "difficulty":"Mudah", "type":"analyst", "correct":"18 ÷ 3 = 6 koin per orang.", "wrong":["Bagi 18 dengan 3.","Hampir.","6 — tepat!","Terlalu besar."], "clue":"Tiap orang dapat 6 koin." },
-        { "id":"q3-5", "scene":"Pintu terakhir perlu kode dua angka.", "q":"Berapa 20 – 13?", "choices":["5","6","7","8"], "answer":2, "skill":"Pengurangan", "difficulty":"Sedang", "type":"analyst", "correct":"20 – 13 = 7! Pintu terbuka.", "wrong":["Hampir.","Coba kurangi.","7 — tepat!","Terlalu besar."], "clue":"Kode pintu terakhir: 7." }
+        {
+          "id": "q3-1",
+          "scene": "Peta harta punya urutan angka.",
+          "q": "1, 3, 5, 7, __?",
+          "choices": [
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "answer": 1,
+          "skill": "Pola",
+          "difficulty": "Mudah",
+          "type": "codebreaker",
+          "correct": "7 + 2 = 9! Pola bilangan ganjil.",
+          "wrong": [
+            "Polanya +2.",
+            "9 — tepat!",
+            "Bukan +3.",
+            "Bukan +4."
+          ],
+          "clue": "Angka berikutnya: 9."
+        },
+        {
+          "id": "q3-2",
+          "scene": "Ada 4 kelompok kupu-kupu, tiap kelompok 3.",
+          "q": "4 × 3 = ?",
+          "choices": [
+            "7",
+            "10",
+            "12",
+            "14"
+          ],
+          "answer": 2,
+          "skill": "Perkalian",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "4 × 3 = 12 kupu-kupu.",
+          "wrong": [
+            "Kalikan, bukan jumlahkan.",
+            "Hampir.",
+            "12 — tepat!",
+            "Terlalu besar."
+          ],
+          "clue": "Total 12 kupu-kupu di taman."
+        },
+        {
+          "id": "q3-3",
+          "scene": "Peti harta terbuka jika tahu jumlah semua.",
+          "q": "7 + 8 = ?",
+          "choices": [
+            "13",
+            "14",
+            "15",
+            "16"
+          ],
+          "answer": 2,
+          "skill": "Penjumlahan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "7 + 8 = 15. Peti terbuka!",
+          "wrong": [
+            "Hampir.",
+            "Coba lagi.",
+            "15 — tepat!",
+            "Terlalu besar."
+          ],
+          "clue": "Kode peti adalah 15."
+        },
+        {
+          "id": "q3-4",
+          "scene": "Harta dibagi rata untuk 3 orang dari 18 koin.",
+          "q": "18 ÷ 3 = ?",
+          "choices": [
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "answer": 2,
+          "skill": "Pembagian",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "18 ÷ 3 = 6 koin per orang.",
+          "wrong": [
+            "Bagi 18 dengan 3.",
+            "Hampir.",
+            "6 — tepat!",
+            "Terlalu besar."
+          ],
+          "clue": "Tiap orang dapat 6 koin."
+        },
+        {
+          "id": "q3-5",
+          "scene": "Pintu terakhir perlu kode dua angka.",
+          "q": "Berapa 20 – 13?",
+          "choices": [
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "answer": 2,
+          "skill": "Pengurangan",
+          "difficulty": "Sedang",
+          "type": "analyst",
+          "correct": "20 – 13 = 7! Pintu terbuka.",
+          "wrong": [
+            "Hampir.",
+            "Coba kurangi.",
+            "7 — tepat!",
+            "Terlalu besar."
+          ],
+          "clue": "Kode pintu terakhir: 7."
+        }
+      ]
+    },
+    {
+      "id": "bab-4",
+      "title": "Bab 4 — Jam Misteri",
+      "questions": [
+        {
+          "id": "q4-1",
+          "scene": "Petunjuk baru: Pintu kebun terkunci. Ada angka di kunci.",
+          "q": "2 + 3 = ?",
+          "choices": [
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "answer": 1,
+          "skill": "Penjumlahan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "2 + 3 = 5. Pintu terbuka!",
+          "wrong": [
+            "Coba hitung lagi.",
+            "5 — tepat!",
+            "Terlalu besar.",
+            "Terlalu besar."
+          ],
+          "clue": "Kunci bernomor 5."
+        },
+        {
+          "id": "q4-2",
+          "scene": "Petunjuk baru: Ada 8 buah apel. 3 diambil.",
+          "q": "8 – 3 = ?",
+          "choices": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "answer": 2,
+          "skill": "Pengurangan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "8 – 3 = 5 apel tersisa.",
+          "wrong": [
+            "Coba kurangi.",
+            "Hampir.",
+            "5 — tepat!",
+            "Terlalu besar."
+          ],
+          "clue": "Tersisa 5 apel."
+        },
+        {
+          "id": "q4-3",
+          "scene": "Petunjuk baru: Bunga berjejer di kebun.",
+          "q": "5 + 5 = ?",
+          "choices": [
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "answer": 2,
+          "skill": "Penjumlahan",
+          "difficulty": "Mudah",
+          "type": "codebreaker",
+          "correct": "5 + 5 = 10! Pesan rahasia terbuka.",
+          "wrong": [
+            "Hampir.",
+            "Coba lagi.",
+            "10 — tepat!",
+            "Terlalu besar."
+          ],
+          "clue": "Pesan ada di bunga ke-10."
+        },
+        {
+          "id": "q4-4",
+          "scene": "Petunjuk baru: Pagar kebun ada 12 papan. 4 rusak.",
+          "q": "12 – 4 = ?",
+          "choices": [
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "answer": 2,
+          "skill": "Pengurangan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "12 – 4 = 8 papan baik.",
+          "wrong": [
+            "Kurangi lagi.",
+            "7? Hampir.",
+            "8 — tepat!",
+            "9? Cek kembali."
+          ],
+          "clue": "8 papan pagar masih baik."
+        },
+        {
+          "id": "q4-5",
+          "scene": "Petunjuk baru: Kotak berisi bola berwarna.",
+          "q": "3 + 4 + 2 = ?",
+          "choices": [
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "answer": 2,
+          "skill": "Penjumlahan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "3 + 4 + 2 = 9 bola.",
+          "wrong": [
+            "Tambahkan semua.",
+            "Hampir.",
+            "9 — tepat!",
+            "Terlalu besar."
+          ],
+          "clue": "Ada 9 bola di kotak."
+        }
+      ]
+    },
+    {
+      "id": "bab-5",
+      "title": "Bab 5 — Bentuk Rahasia",
+      "questions": [
+        {
+          "id": "q5-1",
+          "scene": "Petunjuk baru: Pintu kebun terkunci. Ada angka di kunci.",
+          "q": "2 + 3 = ?",
+          "choices": [
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "answer": 1,
+          "skill": "Penjumlahan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "2 + 3 = 5. Pintu terbuka!",
+          "wrong": [
+            "Coba hitung lagi.",
+            "5 — tepat!",
+            "Terlalu besar.",
+            "Terlalu besar."
+          ],
+          "clue": "Kunci bernomor 5."
+        },
+        {
+          "id": "q5-2",
+          "scene": "Petunjuk baru: Ada 8 buah apel. 3 diambil.",
+          "q": "8 – 3 = ?",
+          "choices": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "answer": 2,
+          "skill": "Pengurangan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "8 – 3 = 5 apel tersisa.",
+          "wrong": [
+            "Coba kurangi.",
+            "Hampir.",
+            "5 — tepat!",
+            "Terlalu besar."
+          ],
+          "clue": "Tersisa 5 apel."
+        },
+        {
+          "id": "q5-3",
+          "scene": "Petunjuk baru: Bunga berjejer di kebun.",
+          "q": "5 + 5 = ?",
+          "choices": [
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "answer": 2,
+          "skill": "Penjumlahan",
+          "difficulty": "Mudah",
+          "type": "codebreaker",
+          "correct": "5 + 5 = 10! Pesan rahasia terbuka.",
+          "wrong": [
+            "Hampir.",
+            "Coba lagi.",
+            "10 — tepat!",
+            "Terlalu besar."
+          ],
+          "clue": "Pesan ada di bunga ke-10."
+        },
+        {
+          "id": "q5-4",
+          "scene": "Petunjuk baru: Pagar kebun ada 12 papan. 4 rusak.",
+          "q": "12 – 4 = ?",
+          "choices": [
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "answer": 2,
+          "skill": "Pengurangan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "12 – 4 = 8 papan baik.",
+          "wrong": [
+            "Kurangi lagi.",
+            "7? Hampir.",
+            "8 — tepat!",
+            "9? Cek kembali."
+          ],
+          "clue": "8 papan pagar masih baik."
+        },
+        {
+          "id": "q5-5",
+          "scene": "Petunjuk baru: Kotak berisi bola berwarna.",
+          "q": "3 + 4 + 2 = ?",
+          "choices": [
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "answer": 2,
+          "skill": "Penjumlahan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "3 + 4 + 2 = 9 bola.",
+          "wrong": [
+            "Tambahkan semua.",
+            "Hampir.",
+            "9 — tepat!",
+            "Terlalu besar."
+          ],
+          "clue": "Ada 9 bola di kotak."
+        }
+      ]
+    },
+    {
+      "id": "bab-6",
+      "title": "Bab 6 — Kode Akhir",
+      "questions": [
+        {
+          "id": "q6-1",
+          "scene": "Petunjuk baru: Pintu kebun terkunci. Ada angka di kunci.",
+          "q": "2 + 3 = ?",
+          "choices": [
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "answer": 1,
+          "skill": "Penjumlahan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "2 + 3 = 5. Pintu terbuka!",
+          "wrong": [
+            "Coba hitung lagi.",
+            "5 — tepat!",
+            "Terlalu besar.",
+            "Terlalu besar."
+          ],
+          "clue": "Kunci bernomor 5."
+        },
+        {
+          "id": "q6-2",
+          "scene": "Petunjuk baru: Ada 8 buah apel. 3 diambil.",
+          "q": "8 – 3 = ?",
+          "choices": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "answer": 2,
+          "skill": "Pengurangan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "8 – 3 = 5 apel tersisa.",
+          "wrong": [
+            "Coba kurangi.",
+            "Hampir.",
+            "5 — tepat!",
+            "Terlalu besar."
+          ],
+          "clue": "Tersisa 5 apel."
+        },
+        {
+          "id": "q6-3",
+          "scene": "Petunjuk baru: Bunga berjejer di kebun.",
+          "q": "5 + 5 = ?",
+          "choices": [
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "answer": 2,
+          "skill": "Penjumlahan",
+          "difficulty": "Mudah",
+          "type": "codebreaker",
+          "correct": "5 + 5 = 10! Pesan rahasia terbuka.",
+          "wrong": [
+            "Hampir.",
+            "Coba lagi.",
+            "10 — tepat!",
+            "Terlalu besar."
+          ],
+          "clue": "Pesan ada di bunga ke-10."
+        },
+        {
+          "id": "q6-4",
+          "scene": "Petunjuk baru: Pagar kebun ada 12 papan. 4 rusak.",
+          "q": "12 – 4 = ?",
+          "choices": [
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "answer": 2,
+          "skill": "Pengurangan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "12 – 4 = 8 papan baik.",
+          "wrong": [
+            "Kurangi lagi.",
+            "7? Hampir.",
+            "8 — tepat!",
+            "9? Cek kembali."
+          ],
+          "clue": "8 papan pagar masih baik."
+        },
+        {
+          "id": "q6-5",
+          "scene": "Petunjuk baru: Kotak berisi bola berwarna.",
+          "q": "3 + 4 + 2 = ?",
+          "choices": [
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "answer": 2,
+          "skill": "Penjumlahan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "3 + 4 + 2 = 9 bola.",
+          "wrong": [
+            "Tambahkan semua.",
+            "Hampir.",
+            "9 — tepat!",
+            "Terlalu besar."
+          ],
+          "clue": "Ada 9 bola di kotak."
+        }
       ]
     }
   ]

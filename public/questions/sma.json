@@ -1,1 +1,735 @@
-{"level":"sma","label":"SMA","ageRange":"16–18 tahun","curriculum":"Kurikulum Merdeka","caseTitle":"Operasi Fungsi Rahasia","chapters":[{"id":"bab-1","title":"Bab 1 — Analisis Fungsi","questions":[{"id":"q1-1","scene":"Fungsi tersembunyi di server.","q":"f(x) = 2x² – 3x + 1. Berapa f(2)?","choices":["2","3","4","5"],"answer":1,"skill":"Fungsi","difficulty":"Mudah","type":"analyst","correct":"2(4)–3(2)+1 = 8–6+1 = 3.","wrong":["Substitusi x=2.","3 — tepat!","Hampir.","Terlalu besar."],"clue":"Nilai fungsi di titik kritis: 3."},{"id":"q1-2","scene":"Limit fungsi pada kecepatan data.","q":"lim (x→2) dari (x²–4)/(x–2) = ?","choices":["0","2","4","tidak ada"],"answer":2,"skill":"Limit","difficulty":"Sedang","type":"analyst","correct":"Faktorkan: (x+2)(x–2)/(x–2) = x+2. Limit = 4.","wrong":["Faktorkan pembilang.","Hampir.","4 — tepat!","Limitnya ada."],"clue":"Batas kecepatan data: 4 unit."},{"id":"q1-3","scene":"Turunan untuk cari kecepatan maksimum.","q":"f(x) = 3x² + 2x. Turunannya?","choices":["3x + 2","6x + 2","6x","3x"],"answer":1,"skill":"Kalkulus","difficulty":"Mudah","type":"codebreaker","correct":"f'(x) = 6x + 2.","wrong":["Pakai aturan pangkat.","6x+2 — tepat!","Lupa konstanta.","Lupa koefisien."],"clue":"Fungsi kecepatan: f'(x) = 6x+2."},{"id":"q1-4","scene":"Sudut elevasi antena.","q":"sin 30° + cos 60° = ?","choices":["0","0,5","1","1,5"],"answer":2,"skill":"Trigonometri","difficulty":"Mudah","type":"analyst","correct":"sin 30° = 0,5; cos 60° = 0,5. Total = 1.","wrong":["Nilai sin dan cos 30°/60°.","Hampir.","1 — tepat!","Terlalu besar."],"clue":"Sudut terkonfirmasi: total = 1."},{"id":"q1-5","scene":"Probabilitas enkripsi berhasil.","q":"Dari 100 percobaan, P(berhasil) = 0,7. Perkiraan berhasil?","choices":["50","60","70","80"],"answer":2,"skill":"Statistik","difficulty":"Mudah","type":"investigator","correct":"100 × 0,7 = 70 percobaan.","wrong":["E = n × p.","Hampir.","70 — tepat!","Terlalu besar."],"clue":"Enkripsi berhasil 70 dari 100 kali."}]},{"id":"bab-2","title":"Bab 2 — Operasi Matriks","questions":[{"id":"q2-1","scene":"Matriks kode akses.","q":"Determinan [[2,1],[3,4]] = ?","choices":["4","5","6","7"],"answer":1,"skill":"Matriks","difficulty":"Sedang","type":"codebreaker","correct":"(2×4)–(1×3) = 8–3 = 5.","wrong":["det = ad–bc.","5 — tepat!","Hampir.","Terlalu besar."],"clue":"Kode akses determinan: 5."},{"id":"q2-2","scene":"Persamaan eksponen di sistem.","q":"2ˣ = 32. Berapa x?","choices":["4","5","6","7"],"answer":1,"skill":"Eksponen","difficulty":"Mudah","type":"analyst","correct":"2⁵ = 32. x = 5.","wrong":["2ˣ = 32.","5 — tepat!","2⁶ = 64.","2⁷ = 128."],"clue":"Eksponen kunci: x = 5."},{"id":"q2-3","scene":"Deret aritmetika data enkripsi.","q":"Suku ke-10 dari 3, 7, 11, 15, ... ?","choices":["37","39","41","43"],"answer":1,"skill":"Barisan","difficulty":"Sedang","type":"codebreaker","correct":"a=3, b=4. Suku ke-10 = 3+(9×4) = 39.","wrong":["Suku ke-n = a+(n-1)b.","39 — tepat!","Hampir.","Terlalu besar."],"clue":"Suku ke-10 adalah 39."},{"id":"q2-4","scene":"Luas daerah di bawah kurva.","q":"∫₀² 2x dx = ?","choices":["2","4","6","8"],"answer":1,"skill":"Kalkulus","difficulty":"Sedang","type":"analyst","correct":"[x²]₀² = 4 – 0 = 4.","wrong":["Gunakan teorema fundamental.","4 — tepat!","Hampir.","Terlalu besar."],"clue":"Luas area kritis: 4 satuan."},{"id":"q2-5","scene":"Soal terakhir sebelum kasus terpecahkan.","q":"log₃ 81 = ?","choices":["3","4","5","6"],"answer":1,"skill":"Logaritma","difficulty":"Mudah","type":"codebreaker","correct":"3⁴ = 81. log₃ 81 = 4.","wrong":["3ˣ = 81.","4 — tepat!","3⁵ = 243.","Terlalu besar."],"clue":"Kode akhir: log = 4."}]}]}
+{
+  "level": "sma",
+  "label": "SMA",
+  "ageRange": "16–18 tahun",
+  "curriculum": "Kurikulum Merdeka",
+  "caseTitle": "Operasi Fungsi Rahasia",
+  "chapters": [
+    {
+      "id": "bab-1",
+      "title": "Bab 1 — Analisis Fungsi",
+      "questions": [
+        {
+          "id": "q1-1",
+          "scene": "Fungsi tersembunyi di server.",
+          "q": "f(x) = 2x² – 3x + 1. Berapa f(2)?",
+          "choices": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "answer": 1,
+          "skill": "Fungsi",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "2(4)–3(2)+1 = 8–6+1 = 3.",
+          "wrong": [
+            "Substitusi x=2.",
+            "3 — tepat!",
+            "Hampir.",
+            "Terlalu besar."
+          ],
+          "clue": "Nilai fungsi di titik kritis: 3."
+        },
+        {
+          "id": "q1-2",
+          "scene": "Limit fungsi pada kecepatan data.",
+          "q": "lim (x→2) dari (x²–4)/(x–2) = ?",
+          "choices": [
+            "0",
+            "2",
+            "4",
+            "tidak ada"
+          ],
+          "answer": 2,
+          "skill": "Limit",
+          "difficulty": "Sedang",
+          "type": "analyst",
+          "correct": "Faktorkan: (x+2)(x–2)/(x–2) = x+2. Limit = 4.",
+          "wrong": [
+            "Faktorkan pembilang.",
+            "Hampir.",
+            "4 — tepat!",
+            "Limitnya ada."
+          ],
+          "clue": "Batas kecepatan data: 4 unit."
+        },
+        {
+          "id": "q1-3",
+          "scene": "Turunan untuk cari kecepatan maksimum.",
+          "q": "f(x) = 3x² + 2x. Turunannya?",
+          "choices": [
+            "3x + 2",
+            "6x + 2",
+            "6x",
+            "3x"
+          ],
+          "answer": 1,
+          "skill": "Kalkulus",
+          "difficulty": "Mudah",
+          "type": "codebreaker",
+          "correct": "f'(x) = 6x + 2.",
+          "wrong": [
+            "Pakai aturan pangkat.",
+            "6x+2 — tepat!",
+            "Lupa konstanta.",
+            "Lupa koefisien."
+          ],
+          "clue": "Fungsi kecepatan: f'(x) = 6x+2."
+        },
+        {
+          "id": "q1-4",
+          "scene": "Sudut elevasi antena.",
+          "q": "sin 30° + cos 60° = ?",
+          "choices": [
+            "0",
+            "0,5",
+            "1",
+            "1,5"
+          ],
+          "answer": 2,
+          "skill": "Trigonometri",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "sin 30° = 0,5; cos 60° = 0,5. Total = 1.",
+          "wrong": [
+            "Nilai sin dan cos 30°/60°.",
+            "Hampir.",
+            "1 — tepat!",
+            "Terlalu besar."
+          ],
+          "clue": "Sudut terkonfirmasi: total = 1."
+        },
+        {
+          "id": "q1-5",
+          "scene": "Probabilitas enkripsi berhasil.",
+          "q": "Dari 100 percobaan, P(berhasil) = 0,7. Perkiraan berhasil?",
+          "choices": [
+            "50",
+            "60",
+            "70",
+            "80"
+          ],
+          "answer": 2,
+          "skill": "Statistik",
+          "difficulty": "Mudah",
+          "type": "investigator",
+          "correct": "100 × 0,7 = 70 percobaan.",
+          "wrong": [
+            "E = n × p.",
+            "Hampir.",
+            "70 — tepat!",
+            "Terlalu besar."
+          ],
+          "clue": "Enkripsi berhasil 70 dari 100 kali."
+        }
+      ]
+    },
+    {
+      "id": "bab-2",
+      "title": "Bab 2 — Operasi Matriks",
+      "questions": [
+        {
+          "id": "q2-1",
+          "scene": "Matriks kode akses.",
+          "q": "Determinan [[2,1],[3,4]] = ?",
+          "choices": [
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "answer": 1,
+          "skill": "Matriks",
+          "difficulty": "Sedang",
+          "type": "codebreaker",
+          "correct": "(2×4)–(1×3) = 8–3 = 5.",
+          "wrong": [
+            "det = ad–bc.",
+            "5 — tepat!",
+            "Hampir.",
+            "Terlalu besar."
+          ],
+          "clue": "Kode akses determinan: 5."
+        },
+        {
+          "id": "q2-2",
+          "scene": "Persamaan eksponen di sistem.",
+          "q": "2ˣ = 32. Berapa x?",
+          "choices": [
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "answer": 1,
+          "skill": "Eksponen",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "2⁵ = 32. x = 5.",
+          "wrong": [
+            "2ˣ = 32.",
+            "5 — tepat!",
+            "2⁶ = 64.",
+            "2⁷ = 128."
+          ],
+          "clue": "Eksponen kunci: x = 5."
+        },
+        {
+          "id": "q2-3",
+          "scene": "Deret aritmetika data enkripsi.",
+          "q": "Suku ke-10 dari 3, 7, 11, 15, ... ?",
+          "choices": [
+            "37",
+            "39",
+            "41",
+            "43"
+          ],
+          "answer": 1,
+          "skill": "Barisan",
+          "difficulty": "Sedang",
+          "type": "codebreaker",
+          "correct": "a=3, b=4. Suku ke-10 = 3+(9×4) = 39.",
+          "wrong": [
+            "Suku ke-n = a+(n-1)b.",
+            "39 — tepat!",
+            "Hampir.",
+            "Terlalu besar."
+          ],
+          "clue": "Suku ke-10 adalah 39."
+        },
+        {
+          "id": "q2-4",
+          "scene": "Luas daerah di bawah kurva.",
+          "q": "∫₀² 2x dx = ?",
+          "choices": [
+            "2",
+            "4",
+            "6",
+            "8"
+          ],
+          "answer": 1,
+          "skill": "Kalkulus",
+          "difficulty": "Sedang",
+          "type": "analyst",
+          "correct": "[x²]₀² = 4 – 0 = 4.",
+          "wrong": [
+            "Gunakan teorema fundamental.",
+            "4 — tepat!",
+            "Hampir.",
+            "Terlalu besar."
+          ],
+          "clue": "Luas area kritis: 4 satuan."
+        },
+        {
+          "id": "q2-5",
+          "scene": "Soal terakhir sebelum kasus terpecahkan.",
+          "q": "log₃ 81 = ?",
+          "choices": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "answer": 1,
+          "skill": "Logaritma",
+          "difficulty": "Mudah",
+          "type": "codebreaker",
+          "correct": "3⁴ = 81. log₃ 81 = 4.",
+          "wrong": [
+            "3ˣ = 81.",
+            "4 — tepat!",
+            "3⁵ = 243.",
+            "Terlalu besar."
+          ],
+          "clue": "Kode akhir: log = 4."
+        }
+      ]
+    },
+    {
+      "id": "bab-3",
+      "title": "Bab 3 — Deret & Limit",
+      "questions": [
+        {
+          "scene": "Deret cepat.",
+          "q": "1+2+3+4 = ?",
+          "choices": [
+            "8",
+            "9",
+            "10",
+            "12"
+          ],
+          "answer": 2,
+          "skill": "Deret",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "10.",
+          "wrong": [
+            "Hampir.",
+            "Hampir.",
+            "10 — tepat!",
+            "Besar."
+          ],
+          "clue": "Σ=10.",
+          "id": "q3-1"
+        },
+        {
+          "scene": "Pola ganda.",
+          "q": "2, 4, 8, 16, __",
+          "choices": [
+            "24",
+            "30",
+            "32",
+            "36"
+          ],
+          "answer": 2,
+          "skill": "Pola",
+          "difficulty": "Mudah",
+          "type": "codebreaker",
+          "correct": "32.",
+          "wrong": [
+            "Bukan +8.",
+            "Bukan.",
+            "32 — tepat!",
+            "Bukan."
+          ],
+          "clue": "32.",
+          "id": "q3-2"
+        },
+        {
+          "scene": "Limit sederhana.",
+          "q": "lim x→2 (x+3) = ?",
+          "choices": [
+            "2",
+            "5",
+            "6",
+            "3"
+          ],
+          "answer": 1,
+          "skill": "Limit",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "5.",
+          "wrong": [
+            "Itu x.",
+            "5 — tepat!",
+            "Besar.",
+            "+1."
+          ],
+          "clue": "Limit 5.",
+          "id": "q3-3"
+        },
+        {
+          "scene": "Barisan aritmetika.",
+          "q": "a=3, b=2. Suku ke-3?",
+          "choices": [
+            "5",
+            "7",
+            "9",
+            "11"
+          ],
+          "answer": 1,
+          "skill": "Deret",
+          "difficulty": "Mudah",
+          "type": "codebreaker",
+          "correct": "7.",
+          "wrong": [
+            "Hampir.",
+            "7 — tepat!",
+            "Besar.",
+            "Besar."
+          ],
+          "clue": "U3=7.",
+          "id": "q3-4"
+        },
+        {
+          "scene": "Mean.",
+          "q": "Rata-rata 10, 20, 30?",
+          "choices": [
+            "15",
+            "20",
+            "25",
+            "30"
+          ],
+          "answer": 1,
+          "skill": "Statistik",
+          "difficulty": "Mudah",
+          "type": "investigator",
+          "correct": "20.",
+          "wrong": [
+            "Hampir.",
+            "20 — tepat!",
+            "Tinggi.",
+            "Maks."
+          ],
+          "clue": "Mean 20.",
+          "id": "q3-5"
+        }
+      ]
+    },
+    {
+      "id": "bab-4",
+      "title": "Bab 4 — Peluang & Data",
+      "questions": [
+        {
+          "scene": "Dadu.",
+          "q": "P(muncul 6)?",
+          "choices": [
+            "1/6",
+            "1/3",
+            "1/2",
+            "1"
+          ],
+          "answer": 0,
+          "skill": "Peluang",
+          "difficulty": "Mudah",
+          "type": "investigator",
+          "correct": "1/6.",
+          "wrong": [
+            "1/6 — tepat!",
+            "Besar.",
+            "Besar.",
+            "Pasti."
+          ],
+          "clue": "1/6.",
+          "id": "q4-1"
+        },
+        {
+          "scene": "Varians.",
+          "q": "Varians data 2,2,2?",
+          "choices": [
+            "0",
+            "1",
+            "2",
+            "4"
+          ],
+          "answer": 0,
+          "skill": "Statistik",
+          "difficulty": "Sedang",
+          "type": "analyst",
+          "correct": "0.",
+          "wrong": [
+            "0 — tepat!",
+            "Bukan.",
+            "Bukan.",
+            "Bukan."
+          ],
+          "clue": "Varians 0.",
+          "id": "q4-2"
+        },
+        {
+          "scene": "Kombinasi.",
+          "q": "C(5,1) = ?",
+          "choices": [
+            "1",
+            "5",
+            "10",
+            "20"
+          ],
+          "answer": 1,
+          "skill": "Peluang",
+          "difficulty": "Mudah",
+          "type": "codebreaker",
+          "correct": "5.",
+          "wrong": [
+            "Hampir.",
+            "5 — tepat!",
+            "C(5,2).",
+            "Besar."
+          ],
+          "clue": "C=5.",
+          "id": "q4-3"
+        },
+        {
+          "scene": "Modus.",
+          "q": "Modus 1,2,2,3,4?",
+          "choices": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": 1,
+          "skill": "Statistik",
+          "difficulty": "Mudah",
+          "type": "investigator",
+          "correct": "2.",
+          "wrong": [
+            "Bukan.",
+            "2 — tepat!",
+            "Bukan.",
+            "Bukan."
+          ],
+          "clue": "Modus 2.",
+          "id": "q4-4"
+        },
+        {
+          "scene": "Komplemen.",
+          "q": "P(A)=0,3 maka P(A′)?",
+          "choices": [
+            "0,3",
+            "0,5",
+            "0,7",
+            "1"
+          ],
+          "answer": 2,
+          "skill": "Peluang",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "0,7.",
+          "wrong": [
+            "P(A).",
+            "Hampir.",
+            "0,7 — tepat!",
+            "Besar."
+          ],
+          "clue": "0,7.",
+          "id": "q4-5"
+        }
+      ]
+    },
+    {
+      "id": "bab-5",
+      "title": "Bab 5 — Trig & Geometri",
+      "questions": [
+        {
+          "scene": "Trigonometri.",
+          "q": "cos 60° = ?",
+          "choices": [
+            "0",
+            "1/2",
+            "√2/2",
+            "√3/2"
+          ],
+          "answer": 1,
+          "skill": "Trigonometri",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "1/2.",
+          "wrong": [
+            "cos 90.",
+            "1/2 — tepat!",
+            "cos 45.",
+            "cos 30."
+          ],
+          "clue": "1/2.",
+          "id": "q5-1"
+        },
+        {
+          "scene": "Trigonometri.",
+          "q": "tan 45° = ?",
+          "choices": [
+            "0",
+            "1",
+            "√3",
+            "tak terdefinisi"
+          ],
+          "answer": 1,
+          "skill": "Trigonometri",
+          "difficulty": "Mudah",
+          "type": "codebreaker",
+          "correct": "1.",
+          "wrong": [
+            "tan 0.",
+            "1 — tepat!",
+            "tan 60.",
+            "tan 90."
+          ],
+          "clue": "tan=1.",
+          "id": "q5-2"
+        },
+        {
+          "scene": "Lingkaran.",
+          "q": "Keliling r=7 (π=22/7)?",
+          "choices": [
+            "22",
+            "44",
+            "154",
+            "308"
+          ],
+          "answer": 1,
+          "skill": "Geometri",
+          "difficulty": "Mudah",
+          "type": "explorer",
+          "correct": "44.",
+          "wrong": [
+            "πr.",
+            "44 — tepat!",
+            "Luas.",
+            "Besar."
+          ],
+          "clue": "44.",
+          "id": "q5-3"
+        },
+        {
+          "scene": "Segitiga.",
+          "q": "Luas alas 6 tinggi 4?",
+          "choices": [
+            "10",
+            "12",
+            "24",
+            "48"
+          ],
+          "answer": 1,
+          "skill": "Geometri",
+          "difficulty": "Mudah",
+          "type": "explorer",
+          "correct": "12.",
+          "wrong": [
+            "Hampir.",
+            "12 — tepat!",
+            "Lupa ½.",
+            "Besar."
+          ],
+          "clue": "12.",
+          "id": "q5-4"
+        },
+        {
+          "scene": "Pythagoras.",
+          "q": "Sisi 5 dan 12, miring?",
+          "choices": [
+            "10",
+            "12",
+            "13",
+            "15"
+          ],
+          "answer": 2,
+          "skill": "Geometri",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "13.",
+          "wrong": [
+            "Hampir.",
+            "Hampir.",
+            "13 — tepat!",
+            "Besar."
+          ],
+          "clue": "13.",
+          "id": "q5-5"
+        }
+      ]
+    },
+    {
+      "id": "bab-6",
+      "title": "Bab 6 — Deduksi Akhir",
+      "questions": [
+        {
+          "scene": "Anti-turunan.",
+          "q": "Jika f′=6x, f bisa berupa?",
+          "choices": [
+            "3x² + C",
+            "6x²",
+            "x³",
+            "6"
+          ],
+          "answer": 0,
+          "skill": "Kalkulus",
+          "difficulty": "Sedang",
+          "type": "analyst",
+          "correct": "3x² + C.",
+          "wrong": [
+            "3x²+C — tepat!",
+            "Kurang konstanta.",
+            "Salah.",
+            "Salah."
+          ],
+          "clue": "Memuat 3x².",
+          "id": "q6-1"
+        },
+        {
+          "scene": "Eksponen.",
+          "q": "2³ × 2² = ?",
+          "choices": [
+            "2⁵",
+            "2⁶",
+            "8",
+            "4"
+          ],
+          "answer": 0,
+          "skill": "Eksponen",
+          "difficulty": "Mudah",
+          "type": "codebreaker",
+          "correct": "2⁵.",
+          "wrong": [
+            "2⁵ — tepat!",
+            "Salah jumlah.",
+            "Nilai bukan bentuk diminta.",
+            "Kecil."
+          ],
+          "clue": "Eksponen 5.",
+          "id": "q6-2"
+        },
+        {
+          "scene": "Garis.",
+          "q": "Gradien 2 lewat (0,1). Persamaan y?",
+          "choices": [
+            "2x",
+            "2x + 1",
+            "x + 2",
+            "2x − 1"
+          ],
+          "answer": 1,
+          "skill": "Fungsi",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "y=2x+1.",
+          "wrong": [
+            "Lupa c.",
+            "2x+1 — tepat!",
+            "Salah.",
+            "Salah."
+          ],
+          "clue": "y=2x+1.",
+          "id": "q6-3"
+        },
+        {
+          "scene": "Invers.",
+          "q": "Invers f(x)=x+4?",
+          "choices": [
+            "x − 4",
+            "x + 4",
+            "4 − x",
+            "4x"
+          ],
+          "answer": 0,
+          "skill": "Fungsi",
+          "difficulty": "Mudah",
+          "type": "codebreaker",
+          "correct": "x−4.",
+          "wrong": [
+            "x-4 — tepat!",
+            "Itu f.",
+            "Salah.",
+            "Salah."
+          ],
+          "clue": "f⁻¹=x−4.",
+          "id": "q6-4"
+        },
+        {
+          "scene": "Mutlak.",
+          "q": "|−7| = ?",
+          "choices": [
+            "−7",
+            "7",
+            "0",
+            "1"
+          ],
+          "answer": 1,
+          "skill": "Bilangan",
+          "difficulty": "Mudah",
+          "type": "investigator",
+          "correct": "7. Kasus selesai!",
+          "wrong": [
+            "Tanda tetap.",
+            "7 — tepat!",
+            "Bukan.",
+            "Bukan."
+          ],
+          "clue": "Kode 7.",
+          "id": "q6-5"
+        }
+      ]
+    }
+  ]
+}

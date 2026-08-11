@@ -68,6 +68,10 @@ function validateStudent(body) {
       studentName: String(row[1]).trim() || body.name,
       age: Number(row[2]) || body.age || null,
       level: levelFromSheet,
+      score: row[7] || 0,
+      character: String(row[8] || "").trim(),
+      accuracy: row[9] || 0,
+      usedAt: row[6] ? String(row[6]) : "",
       message: used ? "Akun sudah digunakan." : "OK",
     };
   }
@@ -91,13 +95,18 @@ function submitResult(body) {
     if (String(data[i][0]).trim().toUpperCase() !== username) continue;
 
     const row = i + 1; // 1-indexed untuk sheet
+    sheet.getRange(row, 2).setValue(body.name || body.nama || data[i][1]); // Nama
+    if (body.age != null || body.umur != null) {
+      sheet.getRange(row, 3).setValue(body.age != null ? body.age : body.umur);
+    }
+    if (body.level) sheet.getRange(row, 4).setValue(body.level);
     sheet.getRange(row, 6).setValue(true);                             // USED = TRUE
     sheet.getRange(row, 7).setValue(new Date().toISOString());          // Used At
     sheet.getRange(row, 8).setValue(body.score || 0);                   // Score
     sheet.getRange(row, 9).setValue(body.character || "");              // Character
     sheet.getRange(row, 10).setValue((body.accuracy || 0) + "%");       // Accuracy
 
-    return { success: true };
+    return { success: true, ok: true, usedAt: sheet.getRange(row, 7).getValue() };
   }
 
   return { success: false, message: "Username tidak ditemukan untuk submit." };

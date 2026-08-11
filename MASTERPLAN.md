@@ -241,21 +241,21 @@ Saat submit hasil:
 - Font: Inter (body) + Georgia (heading/serif aksen)
 - Sidebar gelap: `#23202a`
 - Aesthetic: **detektif / misteri matematika** — dossier, stempel CONFIDENTIAL, case file
-- Referensi visual: `preview__11__c7c7.html` yang sudah ada
+- Referensi visual: `docs/reference/algonova-preview.html`
 
 ---
 
 ## 13. Definition of Done
 
-- [ ] Login form → validasi Apps Script → OK / error jelas
-- [ ] Diagnostic 5 soal → level ditentukan → soal utama di-load dari JSON
-- [ ] Selesai soal → skill bar + karakter → certificate muncul
-- [ ] Certificate bisa dicetak / save PDF
-- [ ] Login kedua (USED) → langsung ke certificate download
-- [ ] Apps Script: validate + submit + builder semua jalan
-- [ ] JSON soal: minimal 1 level lengkap (SD Kelas 4–6, 30 soal, 6 bab)
-- [ ] README deploy instructions lengkap
-- [ ] Hosting di GitHub Pages bisa akses tanpa error
+- [x] Login form → validasi Apps Script → OK / error jelas
+- [x] Diagnostic 5 soal → level ditentukan → soal utama di-load dari JSON
+- [x] Selesai soal → skill bar + karakter → certificate muncul
+- [x] Certificate bisa dicetak / save PDF
+- [x] Login kedua (USED) → langsung ke certificate download
+- [x] Apps Script: validate + submit + builder semua jalan
+- [x] JSON soal: semua level ≥ 30 soal / 6 bab (termasuk SD 4–6)
+- [x] README deploy instructions lengkap
+- [x] Hosting di GitHub Pages bisa akses tanpa error (static root)
 
 ---
 

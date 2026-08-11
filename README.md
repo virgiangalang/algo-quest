@@ -1,123 +1,137 @@
 # Algonova Math — Misteri Matematika
 
-> Platform asesmen matematika berbasis cerita detektif untuk murid Algonova.  
-> Murid mengerjakan soal → menerima **diagnostic report** → mencetak **certificate resmi**.
+Asesmen matematika berbasis cerita detektif untuk murid **Algonova** (bukan Kindora).  
+Flow: Login → Diagnostic → Game → Result (skill bars) → Certificate.
+
+Arsitektur lengkap: [MASTERPLAN.md](./MASTERPLAN.md)  
+Acuan visual: [docs/reference/algonova-preview.html](./docs/reference/algonova-preview.html)
 
 ---
 
-## Demo cepat (tanpa server)
+## Jalankan lokal
 
 ```bash
-# Clone
 git clone https://github.com/kindoradeveloper/math-lesson.git
 cd math-lesson
-
-# Jalankan server lokal
 python3 -m http.server 8080
-# buka http://localhost:8080
 ```
 
-`devMode: true` sudah aktif — login dengan nama dan username apapun, tanpa perlu Google Sheet.
+Buka [http://localhost:8080](http://localhost:8080)
+
+`devMode: true` (default) — login dengan username + nama apa saja, tanpa Google Sheet.
+
+---
+
+## Deploy ke GitHub Pages
+
+1. Pastikan semua file ada di root branch `main` (`index.html` di root, bukan di subfolder `docs/` untuk hosting).
+2. Repo **Settings → Pages**
+3. **Build and deployment → Source:** Deploy from a branch
+4. Branch: **`main`** · Folder: **`/ (root)`**
+5. Save → tunggu 1–2 menit
+6. URL tipikal: `https://kindoradeveloper.github.io/math-lesson/`
+
+### Setelah Pages live (produksi)
+
+Di `index.html`:
+
+```js
+window.ALGONOVA_CONFIG = {
+  appsScriptUrl: "https://script.google.com/macros/s/XXXX/exec",
+  devMode: false
+};
+```
+
+Commit + push lagi ke `main`. Setup Sheet: [google-apps-script/SETUP.md](./google-apps-script/SETUP.md).
+
+### Checklist Pages
+
+- [ ] `index.html` terbuka tanpa 404
+- [ ] `public/questions/*.json` ter-load (cek Network)
+- [ ] `src/lib/*.js` ter-load
+- [ ] Login → Diagnostic jalan di `devMode`
+- [ ] Setelah `devMode: false`, validate/submit ke Apps Script OK
+
+> Catatan: file di `docs/reference/` hanya acuan desain untuk agent/developer, bukan entry Pages.
+
+---
+
+## User flow
+
+```
+Login (Username Algo + Nama + Umur opsional)
+  ├─ USED=true  → Certificate (langsung)
+  └─ VALID + belum USED
+        → Diagnostic (5 soal)
+        → Game cerita detektif (JSON lokal)
+        → Result + skill bars + karakter
+        → Certificate (print / PDF)
+        → Sheet di-mark USED=true
+```
 
 ---
 
 ## Struktur
 
 ```
-math-lesson/
-├── index.html                   ← Semua fase ada di sini (login, diagnostic, game, result, certificate)
-├── src/lib/
-│   ├── questions.js             ← Fetch + parse JSON soal
-│   ├── diagnostic.js            ← Scoring + penentuan level + karakter detektif
-│   └── certificate.js          ← Helper certificate
-├── public/questions/
-│   ├── sd-kelas-1-3.json       ← Soal SD 1–3 (15 soal, 3 bab)
-│   ├── sd-kelas-4-6.json       ← Soal SD 4–6 (30 soal, 6 bab) ← lengkap
-│   ├── smp.json                ← Soal SMP (15 soal, 3 bab)
-│   ├── sma.json                ← Soal SMA (10 soal, 2 bab)
-│   └── dewasa.json             ← Soal Dewasa (10 soal, 2 bab)
-├── google-apps-script/
-│   ├── Code.gs                 ← Web App: validate + submit
-│   ├── builder.gs              ← Generate JSON dari Google Sheet
-│   └── SETUP.md                ← Panduan deploy Apps Script
-└── MASTERPLAN.md               ← Arsitektur lengkap
+index.html
+MASTERPLAN.md
+README.md
+src/lib/questions.js
+src/lib/diagnostic.js
+src/lib/certificate.js
+public/questions/          ← 5 level, masing-masing 30 soal / 6 bab
+google-apps-script/        ← Code.gs + builder.gs + SETUP.md
+docs/reference/            ← preview UI Algo (acuan desain)
 ```
 
 ---
 
-## Level & Kurikulum
+## Level & soal
 
-| Level | Usia | Topik |
-|---|---|---|
-| SD Kelas 1–3 | 6–9 th | Operasi dasar, pola bilangan, geometri awal |
-| SD Kelas 4–6 | 10–12 th | Pecahan, desimal, persentase, perimeter & luas |
-| SMP | 13–15 th | Aljabar, statistik, peluang, geometri koordinat |
-| SMA | 16–18 th | Fungsi, kalkulus dasar, trigonometri, matriks |
-| Dewasa | 18+ th | Keuangan, logika, statistik aplikatif |
+| Level | File | Soal |
+|-------|------|------|
+| SD 1–3 | `public/questions/sd-kelas-1-3.json` | 30 / 6 bab |
+| SD 4–6 | `public/questions/sd-kelas-4-6.json` | 30 / 6 bab |
+| SMP | `public/questions/smp.json` | 30 / 6 bab |
+| SMA | `public/questions/sma.json` | 30 / 6 bab |
+| Dewasa | `public/questions/dewasa.json` | 30 / 6 bab |
 
----
-
-## User Flow
-
-```
-Login (username Algonova)
-  → Diagnostic 5 soal → Level ditentukan
-  → Soal utama per bab (JSON lokal)
-  → Hasil + Skill profil + Karakter detektif
-  → Certificate (cetak / PDF)
-```
-
-Login kedua (username USED) → langsung ke certificate download.
+Soal sengaja tidak terlalu susah (fokus prolongation).
 
 ---
 
-## Google Sheet + Apps Script
+## Google Sheet (VALID / USED)
 
-Lihat **[google-apps-script/SETUP.md](google-apps-script/SETUP.md)** untuk:
-- Format tab `Credentials` (VALID/USED)
-- Deploy Web App
-- Pakai builder untuk generate JSON soal dari Sheet
+Kolom: `Username | Nama | Umur | Level | VALID | USED | Used At | Score | Character | Accuracy`
 
----
+- **VALID=TRUE** → boleh login  
+- **USED=FALSE** → kerjakan asesmen  
+- **USED=TRUE** → login berikutnya langsung certificate  
 
-## Deploy ke GitHub Pages
-
-1. Push ke GitHub
-2. Settings → Pages → Source: **main / root**
-3. Akses di: `https://kindoradeveloper.github.io/math-lesson/`
+Detail: [google-apps-script/SETUP.md](./google-apps-script/SETUP.md)
 
 ---
 
-## Tambah Soal
+## Karakter detektif
 
-**Cara 1 — Edit JSON langsung:**
-Edit file di `public/questions/[level].json`. Format soal ada di `MASTERPLAN.md §5`.
-
-**Cara 2 — Dari Google Sheet:**
-Isi tab `Questions_SD46` → jalankan `buildQuestionsSD46()` di Apps Script → copy JSON ke repo.
-
----
-
-## Karakter Detektif
-
-| Karakter | Emoji | Muncul jika |
-|---|---|---|
-| Sang Analis | A | Banyak benar soal tipe `analyst` |
-| Si Pemikir Cepat | S | Banyak benar tipe `speedster` |
-| Sang Investigator | I | Banyak benar tipe `investigator` |
-| Sang Pemecah Kode | C | Banyak benar tipe `codebreaker` |
-| Sang Penjelajah | E | Banyak mencoba (tipe `explorer`) |
+| Karakter | Muncul jika banyak benar tipe |
+|----------|-------------------------------|
+| Sang Analis | `analyst` |
+| Si Pemikir Cepat | `speedster` |
+| Sang Investigator | `investigator` |
+| Sang Pemecah Kode | `codebreaker` |
+| Sang Penjelajah | `explorer` |
 
 ---
 
 ## Teknologi
 
-- **Static HTML** — tidak butuh server, tidak butuh database
-- **Google Apps Script** — validasi username & simpan hasil ke Sheet
-- **localStorage** — state sesi & data certificate
-- **window.print()** — cetak certificate (CSS `@media print`)
-- **JSON** — soal per level, mudah diedit & di-upload
+- Static HTML/CSS/JS — tanpa Supabase, tanpa analytics/dashboard
+- Auth: Google Apps Script Web App + Sheet
+- Soal: JSON lokal
+- Certificate: `window.print()` + CSS `@media print`
 
 ---
 
-*Algonova by Algorithmics · Kurikulum Merdeka*
+*Algonova · Kurikulum Merdeka · Misteri Matematika*

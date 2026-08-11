@@ -1,1 +1,435 @@
-{"level":"dewasa","label":"Dewasa","ageRange":"18+ tahun","curriculum":"Kurikulum Merdeka","caseTitle":"Operasi Numerik Elite","chapters":[{"id":"bab-1","title":"Bab 1 — Keuangan & Logika","questions":[{"id":"q1-1","scene":"Investasi awal Rp5.000.000, bunga majemuk 10%/tahun selama 2 tahun.","q":"Berapa nilai akhir investasi?","choices":["Rp5.500.000","Rp6.000.000","Rp6.050.000","Rp6.100.000"],"answer":2,"skill":"Keuangan","difficulty":"Sedang","type":"analyst","correct":"5.000.000 × (1,1)² = 6.050.000.","wrong":["Bunga majemuk: P(1+r)ⁿ.","Itu bunga sederhana.","6.050.000 — tepat!","Hampir."],"clue":"Nilai investasi: Rp6.050.000."},{"id":"q1-2","scene":"Gaji naik 15% dari Rp4.000.000.","q":"Gaji baru berapa?","choices":["Rp4.400.000","Rp4.500.000","Rp4.600.000","Rp4.700.000"],"answer":2,"skill":"Persentase","difficulty":"Mudah","type":"analyst","correct":"4.000.000 × 1,15 = 4.600.000.","wrong":["Kalikan dengan (1 + 0,15).","Hampir.","4.600.000 — tepat!","Terlalu besar."],"clue":"Gaji baru Rp4.600.000."},{"id":"q1-3","scene":"Data populasi 5 tahun: 200, 220, 242, 266, 293.","q":"Persentase kenaikan dari tahun 1 ke 2?","choices":["5%","10%","15%","20%"],"answer":1,"skill":"Statistik","difficulty":"Mudah","type":"analyst","correct":"(220-200)/200 × 100% = 10%.","wrong":["Kenaikan/nilai awal × 100%.","10% — tepat!","Hampir.","Terlalu besar."],"clue":"Laju pertumbuhan awal: 10%."},{"id":"q1-4","scene":"Logika: semua A adalah B. Semua B adalah C.","q":"Kesimpulan yang pasti benar?","choices":["Semua C adalah A","Semua A adalah C","Sebagian B bukan A","Tidak ada kesimpulan"],"answer":1,"skill":"Logika","difficulty":"Sedang","type":"investigator","correct":"Silogisme: A→B dan B→C maka A→C.","wrong":["C bisa lebih luas.","A⊂B⊂C — tepat!","Salah.","Ada kesimpulan."],"clue":"Rantai logika terkonfirmasi."},{"id":"q1-5","scene":"Break-even: biaya tetap Rp2.000.000, laba per unit Rp50.000.","q":"Berapa unit harus dijual untuk BEP?","choices":["30","35","40","50"],"answer":2,"skill":"Keuangan","difficulty":"Sedang","type":"analyst","correct":"2.000.000 ÷ 50.000 = 40 unit.","wrong":["BEP = biaya tetap ÷ laba per unit.","Hampir.","40 — tepat!","Terlalu banyak."],"clue":"BEP: 40 unit."}]},{"id":"bab-2","title":"Bab 2 — Analisis Lanjutan","questions":[{"id":"q2-1","scene":"Tren data kuartalan: Q1=100, Q2=120, Q3=144.","q":"Q4 jika tumbuh 20% tiap kuartal?","choices":["160","172","172,8","180"],"answer":2,"skill":"Statistik","difficulty":"Sedang","type":"analyst","correct":"144 × 1,2 = 172,8.","wrong":["Kalikan dengan 1,2.","Hampir.","172,8 — tepat!","Terlalu besar."],"clue":"Q4 = 172,8."},{"id":"q2-2","scene":"Modal Rp10.000.000. Produksi: 1000 unit @ Rp8.000. HPP per unit?","choices":["Rp8.000","Rp10.000","Rp18.000","Rp20.000"],"answer":1,"skill":"Keuangan","difficulty":"Sedang","type":"analyst","correct":"(10.000.000 + 8.000.000) ÷ 1000 = 18.000. Modal+biaya produksi dibagi unit.","wrong":["Sertakan biaya modal.","Hampir.","18.000 — tepat!","Terlalu besar."],"clue":"HPP per unit: Rp18.000."},{"id":"q2-3","scene":"Dari 500 pelanggan, 60% pria, 40% wanita. 30% pria beli premium.","q":"Berapa pria yang beli premium?","choices":["60","80","90","100"],"answer":2,"skill":"Statistik","difficulty":"Sedang","type":"analyst","correct":"500 × 0,6 = 300 pria. 300 × 0,3 = 90.","wrong":["Hitung pria dulu, lalu 30% dari pria.","Hampir.","90 — tepat!","Terlalu banyak."],"clue":"90 pria pelanggan premium."},{"id":"q2-4","scene":"ROI = (laba/modal) × 100%. Laba Rp3.000.000, modal Rp15.000.000.","q":"ROI berapa persen?","choices":["15%","20%","25%","30%"],"answer":1,"skill":"Keuangan","difficulty":"Mudah","type":"analyst","correct":"3.000.000/15.000.000 × 100% = 20%.","wrong":["ROI = laba/modal × 100%.","20% — tepat!","Hampir.","Terlalu tinggi."],"clue":"ROI proyek: 20%."},{"id":"q2-5","scene":"Soal penutup kasus.","q":"Jika P(A) = 0,4 dan P(B) = 0,5, dan A,B independen. P(A dan B) = ?","choices":["0,1","0,2","0,3","0,9"],"answer":1,"skill":"Peluang","difficulty":"Sedang","type":"investigator","correct":"P(A∩B) = P(A) × P(B) = 0,4 × 0,5 = 0,2.","wrong":["Kalikan karena independen.","0,2 — tepat!","Terlalu besar.","Itu P(A∪B) bukan P(A∩B)."],"clue":"Peluang gabungan: 0,2."}]}]}
+{
+  "level": "dewasa",
+  "label": "Dewasa",
+  "ageRange": "18+ tahun",
+  "curriculum": "Kurikulum Merdeka",
+  "caseTitle": "Audit Angka Tersembunyi",
+  "chapters": [
+    {
+      "id": "bab-1",
+      "title": "Bab 1 — Keuangan & Logika",
+      "questions": [
+        {
+          "id": "q1-1",
+          "scene": "Struk belanja ditemukan di berkas kasus.",
+          "q": "Diskon 20% dari harga Rp150.000. Harga akhirnya?",
+          "choices": ["Rp100.000", "Rp120.000", "Rp130.000", "Rp135.000"],
+          "answer": 1,
+          "skill": "Keuangan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "150.000 × 0,8 = 120.000.",
+          "wrong": ["Diskon terlalu besar.", "Rp120.000 — tepat!", "Hampir.", "Hampir."],
+          "clue": "Harga akhir Rp120.000."
+        },
+        {
+          "id": "q1-2",
+          "scene": "Rekening tabungan terbuka.",
+          "q": "Bunga sederhana 5%/tahun pada Rp2.000.000 selama 3 tahun?",
+          "choices": ["Rp200.000", "Rp250.000", "Rp300.000", "Rp350.000"],
+          "answer": 2,
+          "skill": "Keuangan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "2.000.000 × 5% × 3 = 300.000.",
+          "wrong": ["Hampir.", "Hampir.", "Rp300.000 — tepat!", "Terlalu besar."],
+          "clue": "Bunga Rp300.000."
+        },
+        {
+          "id": "q1-3",
+          "scene": "Laporan bulanan.",
+          "q": "Rata-rata dari 10, 20, 30, 40, 50?",
+          "choices": ["25", "30", "35", "40"],
+          "answer": 1,
+          "skill": "Statistik",
+          "difficulty": "Mudah",
+          "type": "investigator",
+          "correct": "150 ÷ 5 = 30.",
+          "wrong": ["Hampir.", "30 — tepat!", "Terlalu tinggi.", "Terlalu tinggi."],
+          "clue": "Rata-rata 30."
+        },
+        {
+          "id": "q1-4",
+          "scene": "Jadwal rapat bentrok.",
+          "q": "KPK dari 4 dan 6?",
+          "choices": ["8", "10", "12", "24"],
+          "answer": 2,
+          "skill": "Logika",
+          "difficulty": "Mudah",
+          "type": "codebreaker",
+          "correct": "KPK(4, 6) = 12.",
+          "wrong": ["Hampir.", "Hampir.", "12 — tepat!", "Itu hasil kali."],
+          "clue": "KPK = 12."
+        },
+        {
+          "id": "q1-5",
+          "scene": "Cek cepat di papan tulis.",
+          "q": "3² + 4² = ?",
+          "choices": ["14", "25", "30", "49"],
+          "answer": 1,
+          "skill": "Aritmetika",
+          "difficulty": "Mudah",
+          "type": "speedster",
+          "correct": "9 + 16 = 25.",
+          "wrong": ["Hanya menjumlahkan basis.", "25 — tepat!", "Hampir.", "Itu 7²."],
+          "clue": "Hasil 25."
+        }
+      ]
+    },
+    {
+      "id": "bab-2",
+      "title": "Bab 2 — Analisis Lanjutan",
+      "questions": [
+        {
+          "id": "q2-1",
+          "scene": "Nota pajak di meja.",
+          "q": "Pajak 10% dari Rp500.000?",
+          "choices": ["Rp40.000", "Rp50.000", "Rp60.000", "Rp100.000"],
+          "answer": 1,
+          "skill": "Keuangan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "10% × 500.000 = 50.000.",
+          "wrong": ["Hampir.", "Rp50.000 — tepat!", "Hampir.", "Terlalu besar."],
+          "clue": "Pajak Rp50.000."
+        },
+        {
+          "id": "q2-2",
+          "scene": "Pembagian anggaran proyek.",
+          "q": "Rasio 3:5 dari total 40 — berapa bagian yang 3?",
+          "choices": ["12", "15", "18", "24"],
+          "answer": 1,
+          "skill": "Rasio",
+          "difficulty": "Mudah",
+          "type": "investigator",
+          "correct": "3/8 × 40 = 15.",
+          "wrong": ["Hampir.", "15 — tepat!", "Hampir.", "Itu bagian 5."],
+          "clue": "Bagian A = 15."
+        },
+        {
+          "id": "q2-3",
+          "scene": "Catatan logika di dossier.",
+          "q": "Semua A adalah B. x adalah A. Maka?",
+          "choices": ["x pasti B", "x bukan B", "tidak tahu", "x = A saja"],
+          "answer": 0,
+          "skill": "Logika",
+          "difficulty": "Mudah",
+          "type": "investigator",
+          "correct": "Deduksi: x pasti B.",
+          "wrong": ["x pasti B — tepat!", "Kontradiksi.", "Bisa disimpulkan.", "Lebih dari itu."],
+          "clue": "Kesimpulan: x adalah B."
+        },
+        {
+          "id": "q2-4",
+          "scene": "Margin toko.",
+          "q": "Margin 25% dari modal Rp800.000. Berapa untungnya?",
+          "choices": ["Rp100.000", "Rp150.000", "Rp200.000", "Rp250.000"],
+          "answer": 2,
+          "skill": "Keuangan",
+          "difficulty": "Sedang",
+          "type": "analyst",
+          "correct": "25% × 800.000 = 200.000.",
+          "wrong": ["Hampir.", "Hampir.", "Rp200.000 — tepat!", "Terlalu besar."],
+          "clue": "Untung Rp200.000."
+        },
+        {
+          "id": "q2-5",
+          "scene": "Kode faktor di brankas.",
+          "q": "FPB dari 15 dan 25?",
+          "choices": ["5", "10", "15", "25"],
+          "answer": 0,
+          "skill": "Bilangan",
+          "difficulty": "Mudah",
+          "type": "codebreaker",
+          "correct": "FPB = 5.",
+          "wrong": ["5 — tepat!", "Bukan.", "Itu salah satu bilangan.", "Itu salah satu bilangan."],
+          "clue": "FPB = 5."
+        }
+      ]
+    },
+    {
+      "id": "bab-3",
+      "title": "Bab 3 — Data Kantor",
+      "questions": [
+        {
+          "id": "q3-1",
+          "scene": "Spreadsheet karyawan.",
+          "q": "Median dari 4, 8, 10, 12, 20?",
+          "choices": ["8", "10", "12", "14"],
+          "answer": 1,
+          "skill": "Statistik",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "Nilai tengah = 10.",
+          "wrong": ["Bukan.", "10 — tepat!", "Bukan.", "Bukan."],
+          "clue": "Median 10."
+        },
+        {
+          "id": "q3-2",
+          "scene": "Progress report.",
+          "q": "45 dari 90 sama dengan berapa persen?",
+          "choices": ["40%", "45%", "50%", "55%"],
+          "answer": 2,
+          "skill": "Persentase",
+          "difficulty": "Mudah",
+          "type": "speedster",
+          "correct": "45/90 = 50%.",
+          "wrong": ["Hampir.", "Hampir.", "50% — tepat!", "Terlalu besar."],
+          "clue": "Progress 50%."
+        },
+        {
+          "id": "q3-3",
+          "scene": "Log kehadiran.",
+          "q": "Dari pukul 09.20 ke 10.05 berapa menit?",
+          "choices": ["35 menit", "40 menit", "45 menit", "50 menit"],
+          "answer": 2,
+          "skill": "Waktu",
+          "difficulty": "Mudah",
+          "type": "investigator",
+          "correct": "45 menit.",
+          "wrong": ["Hampir.", "Hampir.", "45 — tepat!", "Terlalu lama."],
+          "clue": "Selisih 45 menit."
+        },
+        {
+          "id": "q3-4",
+          "scene": "Anggaran departemen Rp12.000.000.",
+          "q": "Sudah terpakai 3/4. Berapa sisa?",
+          "choices": ["Rp2.000.000", "Rp3.000.000", "Rp4.000.000", "Rp6.000.000"],
+          "answer": 1,
+          "skill": "Keuangan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "Sisa 1/4 = Rp3.000.000.",
+          "wrong": ["Hampir.", "Rp3.000.000 — tepat!", "Itu 1/3.", "Itu setengah."],
+          "clue": "Sisa Rp3.000.000."
+        },
+        {
+          "id": "q3-5",
+          "scene": "Pola nomor tiket.",
+          "q": "100, 90, 80, 70, __?",
+          "choices": ["50", "55", "60", "65"],
+          "answer": 2,
+          "skill": "Pola",
+          "difficulty": "Mudah",
+          "type": "codebreaker",
+          "correct": "Polanya −10, jadi 60.",
+          "wrong": ["Bukan −20.", "Hampir.", "60 — tepat!", "Hampir."],
+          "clue": "Suku berikutnya 60."
+        }
+      ]
+    },
+    {
+      "id": "bab-4",
+      "title": "Bab 4 — Keputusan Cepat",
+      "questions": [
+        {
+          "id": "q4-1",
+          "scene": "Strategi harga promo.",
+          "q": "Umumnya lebih hemat jika…",
+          "choices": ["Sama saja", "Diskon dulu lalu pajak", "Pajak dulu selalu lebih hemat", "Tidak bisa dihitung"],
+          "answer": 1,
+          "skill": "Keuangan",
+          "difficulty": "Sedang",
+          "type": "analyst",
+          "correct": "Urutan memengaruhi hasil; diskon dulu biasanya lebih hemat.",
+          "wrong": ["Tidak selalu sama.", "Diskon dulu — tepat!", "Tidak selalu.", "Bisa dihitung."],
+          "clue": "Strategi: diskon dulu."
+        },
+        {
+          "id": "q4-2",
+          "scene": "Estimasi tenaga kerja.",
+          "q": "3 pekerja selesai 12 hari. 6 pekerja (laju sama) butuh?",
+          "choices": ["3 hari", "4 hari", "6 hari", "8 hari"],
+          "answer": 2,
+          "skill": "Rasio",
+          "difficulty": "Sedang",
+          "type": "speedster",
+          "correct": "3 × 12 = 36; 36 ÷ 6 = 6 hari.",
+          "wrong": ["Hampir.", "Hampir.", "6 hari — tepat!", "Terlalu lama."],
+          "clue": "Selesai dalam 6 hari."
+        },
+        {
+          "id": "q4-3",
+          "scene": "Catatan inflasi.",
+          "q": "Inflasi 2% dari Rp1.000.000?",
+          "choices": ["Rp20.000", "Rp10.000", "Rp2.000", "Rp200.000"],
+          "answer": 0,
+          "skill": "Keuangan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "2% × 1.000.000 = 20.000.",
+          "wrong": ["Rp20.000 — tepat!", "Itu 1%.", "Itu 0,2%.", "Itu 20%."],
+          "clue": "Naik Rp20.000."
+        },
+        {
+          "id": "q4-4",
+          "scene": "Deduksi di ruang interogasi.",
+          "q": "Jika hujan maka basah. Tidak basah. Maka?",
+          "choices": ["Pasti hujan", "Pasti tidak hujan", "Tidak tahu", "Pasti basah"],
+          "answer": 1,
+          "skill": "Logika",
+          "difficulty": "Sedang",
+          "type": "investigator",
+          "correct": "Modus tollens: pasti tidak hujan.",
+          "wrong": ["Kontradiksi.", "Tidak hujan — tepat!", "Bisa disimpulkan.", "Kontradiksi."],
+          "clue": "Kesimpulan: tidak hujan."
+        },
+        {
+          "id": "q4-5",
+          "scene": "Nomor berkas perlu dibulatkan.",
+          "q": "2.450 dibulatkan ke ratusan terdekat?",
+          "choices": ["2.400", "2.500", "2.450", "2.000"],
+          "answer": 1,
+          "skill": "Pembulatan",
+          "difficulty": "Mudah",
+          "type": "codebreaker",
+          "correct": "Puluhan 5 → naik menjadi 2.500.",
+          "wrong": ["Ke bawah tidak tepat di sini.", "2.500 — tepat!", "Belum dibulatkan.", "Terlalu kasar."],
+          "clue": "Nilai 2.500."
+        }
+      ]
+    },
+    {
+      "id": "bab-5",
+      "title": "Bab 5 — Ukuran & Grafik",
+      "questions": [
+        {
+          "id": "q5-1",
+          "scene": "Durasi meeting.",
+          "q": "1,5 jam = berapa menit?",
+          "choices": ["60", "75", "90", "120"],
+          "answer": 2,
+          "skill": "Pengukuran",
+          "difficulty": "Mudah",
+          "type": "speedster",
+          "correct": "1,5 × 60 = 90.",
+          "wrong": ["Itu 1 jam.", "Hampir.", "90 — tepat!", "Itu 2 jam."],
+          "clue": "90 menit."
+        },
+        {
+          "id": "q5-2",
+          "scene": "Paket barang.",
+          "q": "2,75 kg = berapa gram?",
+          "choices": ["275", "2.075", "2.750", "27.500"],
+          "answer": 2,
+          "skill": "Pengukuran",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "2,75 × 1.000 = 2.750 g.",
+          "wrong": ["Lupa nol.", "Hampir.", "2.750 — tepat!", "Kali 10.000."],
+          "clue": "2.750 gram."
+        },
+        {
+          "id": "q5-3",
+          "scene": "Denah ruang arsip 8 m × 5 m.",
+          "q": "Berapa kelilingnya?",
+          "choices": ["13 m", "26 m", "40 m", "80 m"],
+          "answer": 1,
+          "skill": "Geometri",
+          "difficulty": "Mudah",
+          "type": "explorer",
+          "correct": "2 × (8 + 5) = 26.",
+          "wrong": ["Itu jumlah sisi saja.", "26 — tepat!", "Itu luas.", "Terlalu besar."],
+          "clue": "Keliling 26 m."
+        },
+        {
+          "id": "q5-4",
+          "scene": "Luas lantai yang sama.",
+          "q": "Luas ruang 8 m × 5 m?",
+          "choices": ["13 m²", "26 m²", "40 m²", "80 m²"],
+          "answer": 2,
+          "skill": "Geometri",
+          "difficulty": "Mudah",
+          "type": "explorer",
+          "correct": "8 × 5 = 40.",
+          "wrong": ["Jumlah.", "Keliling.", "40 — tepat!", "Terlalu besar."],
+          "clue": "Luas 40 m²."
+        },
+        {
+          "id": "q5-5",
+          "scene": "Grafik proporsi.",
+          "q": "0,75 sebagai pecahan?",
+          "choices": ["1/2", "2/3", "3/4", "4/5"],
+          "answer": 2,
+          "skill": "Desimal",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "0,75 = 3/4.",
+          "wrong": ["Itu 0,5.", "≈0,67.", "3/4 — tepat!", "Itu 0,8."],
+          "clue": "Pecahan 3/4."
+        }
+      ]
+    },
+    {
+      "id": "bab-6",
+      "title": "Bab 6 — Closing Case",
+      "questions": [
+        {
+          "id": "q6-1",
+          "scene": "Hitung ROI proyek.",
+          "q": "Untung Rp50 dari modal Rp200. Persentase ROI?",
+          "choices": ["20%", "25%", "30%", "50%"],
+          "answer": 1,
+          "skill": "Keuangan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "50/200 = 25%.",
+          "wrong": ["Hampir.", "25% — tepat!", "Hampir.", "Salah hitung."],
+          "clue": "ROI 25%."
+        },
+        {
+          "id": "q6-2",
+          "scene": "Total cicilan.",
+          "q": "4 × Rp250.000 = ?",
+          "choices": ["Rp750.000", "Rp900.000", "Rp1.000.000", "Rp1.250.000"],
+          "answer": 2,
+          "skill": "Keuangan",
+          "difficulty": "Mudah",
+          "type": "speedster",
+          "correct": "4 × 250.000 = 1.000.000.",
+          "wrong": ["Hampir.", "Hampir.", "Rp1.000.000 — tepat!", "Terlalu besar."],
+          "clue": "Total Rp1.000.000."
+        },
+        {
+          "id": "q6-3",
+          "scene": "Filter bilangan di terminal.",
+          "q": "Manakah bilangan prima?",
+          "choices": ["21", "27", "29", "39"],
+          "answer": 2,
+          "skill": "Bilangan",
+          "difficulty": "Sedang",
+          "type": "codebreaker",
+          "correct": "29 hanya punya faktor 1 dan 29.",
+          "wrong": ["21 = 3 × 7.", "27 = 3 × 9.", "29 — tepat!", "39 = 3 × 13."],
+          "clue": "Prima 29."
+        },
+        {
+          "id": "q6-4",
+          "scene": "Kode gerbang terakhir.",
+          "q": "Nilai dari 5² + 3 × 4?",
+          "choices": ["32", "37", "44", "112"],
+          "answer": 1,
+          "skill": "Urutan Operasi",
+          "difficulty": "Sedang",
+          "type": "codebreaker",
+          "correct": "25 + 12 = 37.",
+          "wrong": ["Hampir.", "37 — tepat!", "Urutan operasi salah.", "Mengabaikan urutan."],
+          "clue": "Kode gerbang 37."
+        },
+        {
+          "id": "q6-5",
+          "scene": "Ringkasan audit akhir.",
+          "q": "Rata-rata dari 6, 8, 7, 9, 10?",
+          "choices": ["7", "8", "8,5", "9"],
+          "answer": 1,
+          "skill": "Statistik",
+          "difficulty": "Mudah",
+          "type": "investigator",
+          "correct": "40 ÷ 5 = 8. Audit selesai!",
+          "wrong": ["Hampir.", "8 — tepat!", "Bukan.", "Terlalu tinggi."],
+          "clue": "Rata-rata akhir 8."
+        }
+      ]
+    }
+  ]
+}

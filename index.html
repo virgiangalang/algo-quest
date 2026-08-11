@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Algonova Math — Misteri Matematika</title>
+<link rel="icon" href="public/favicon.svg" type="image/svg+xml">
 <style>
 /* ─────────────────────────────────────────────
    TOKENS
@@ -48,8 +49,8 @@ input{font:inherit}
 }
 .brand{display:flex;align-items:center;gap:12px;font-weight:760;letter-spacing:-.2px;color:#211928}
 .brandMark{
-  width:38px;height:38px;border-radius:9px;
-  background:linear-gradient(135deg,#6b3fa0 0%,var(--plum) 100%);
+  width:36px;height:36px;border-radius:9px;
+  background:var(--plum);
   display:grid;place-items:center;color:#fff;
   font-family:Georgia,serif;font-size:20px;font-weight:700;
   box-shadow:0 3px 0 #311b47;
@@ -84,7 +85,7 @@ input{font:inherit}
 }
 .login-copy h1{
   font-family:Georgia,"Times New Roman",serif;
-  font-size:46px;line-height:1.06;margin:10px 0 14px;letter-spacing:-.6px;
+  font-size:52px;line-height:1.03;margin:9px 0 16px;letter-spacing:-.8px;
 }
 .login-copy p{max-width:480px;color:#665f68;line-height:1.72;font-size:15px;margin:0 0 26px}
 
@@ -99,13 +100,17 @@ input{font:inherit}
 .form-note{font-size:11px;color:#8b828d;margin-top:5px}
 
 .btn-primary{
-  border:0;border-radius:9px;background:linear-gradient(135deg,#6b3fa0,var(--plum));
-  color:#fff;font-weight:760;padding:13px 22px;
-  box-shadow:0 3px 0 #311b47;transition:.15s;
+  border:0;border-radius:8px;background:#4d2e61;
+  color:#fff;font-weight:760;padding:12px 18px;
+  box-shadow:0 3px 0 #321e40;transition:.15s;
   display:inline-flex;align-items:center;gap:8px;
 }
-.btn-primary:hover{transform:translateY(-1px);background:linear-gradient(135deg,#7a4db3,#5c3580)}
+.btn-primary:hover{transform:translateY(-1px);background:#5b3772}
 .btn-primary:disabled{opacity:.5;pointer-events:none}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes dossierIn{from{opacity:0;transform:rotate(-6deg) translateY(18px)}to{opacity:1;transform:rotate(-2deg)}}
+.phase-enter{animation:fadeUp .45s ease both}
+.dossier{animation:dossierIn .55s cubic-bezier(.2,.7,.2,1) both}
 
 .login-visual{
   background:#23202a;position:relative;
@@ -173,10 +178,10 @@ input{font:inherit}
 .detective{border-bottom:1px solid #3b3544;padding:2px 0 14px;margin-bottom:14px}
 .profile-row{display:flex;gap:10px;align-items:center}
 .avatar{
-  width:46px;height:46px;border-radius:10px;
-  display:grid;place-items:center;font-size:20px;
-  background:linear-gradient(135deg,#6b3fa0,var(--plum));
-  color:#fff;font-family:Georgia,serif;font-weight:700;
+  width:48px;height:48px;border-radius:10px;
+  display:grid;place-items:center;font-size:21px;
+  background:#f4efe8;color:#34233f;
+  font-family:Georgia,serif;font-weight:700;
 }
 .small-label{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:#9f96a6}
 .big-label{font-size:17px;font-weight:760;letter-spacing:-.2px}
@@ -184,7 +189,7 @@ input{font:inherit}
 .stat{background:#2b2731;border:1px solid #3b3643;border-radius:9px;padding:10px}
 .stat b{display:block;font-size:16px;margin-top:2px}
 .progress-bar{height:5px;background:#3a3541;border-radius:10px;overflow:hidden;margin-top:6px}
-.progress-bar > div{height:100%;background:linear-gradient(90deg,#7a4db3,var(--plum-3));width:0;transition:width .3s ease}
+.progress-bar > div{height:100%;background:#6f4c8d;width:0;transition:width .25s ease}
 .chapter-label{margin:4px 0 8px;color:#8f8497;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
 .chapter-list{display:grid;gap:3px}
 .chap{
@@ -256,7 +261,7 @@ input{font:inherit}
 .clue{margin-top:10px;padding-top:9px;border-top:1px dashed currentColor;color:#76561c;font-size:13px}
 .actions{display:flex;justify-content:flex-end;margin-top:18px}
 .btn-next{
-  border:0;border-radius:8px;background:linear-gradient(135deg,#6b3fa0,var(--plum));
+  border:0;border-radius:8px;background:#4d2e61;
   color:#fff;font-weight:760;padding:12px 18px;
   box-shadow:0 3px 0 #321e40;transition:.15s;display:none;
 }
@@ -267,40 +272,49 @@ input{font:inherit}
    PHASE: RESULT
 ───────────────────────────────────────────── */
 #phase-result{display:none}
-.result-wrap{padding:52px 32px;text-align:center}
+.result-wrap{
+  padding:58px 34px;text-align:center;
+  background:#23202a;color:#f5f1f7;border-radius:14px;
+  border:1px solid #302b38;
+}
+.result-wrap .eyebrow{color:#c4a7da}
 .result-avatar{
-  width:100px;height:100px;border-radius:12px;display:grid;place-items:center;
-  margin:auto;font-family:Georgia,serif;font-size:42px;
-  background:linear-gradient(135deg,#6b3fa0,#311b47);
-  color:#fff;border:1px solid #39323f;box-shadow:0 10px 28px rgba(20,15,25,.20);
+  width:104px;height:104px;border-radius:12px;display:grid;place-items:center;
+  margin:18px auto 0;font-family:Georgia,serif;font-size:44px;
+  background:#28232d;color:#fff;border:1px solid #39323f;
+  box-shadow:0 12px 30px rgba(20,15,25,.18);
+  animation:fadeUp .5s ease both;
 }
 .result-title{
   font-family:Georgia,serif;font-size:44px;line-height:1.05;
-  margin:14px 0 8px;letter-spacing:-.6px;
+  margin:14px 0 8px;letter-spacing:-.6px;color:#fff;
 }
-.result-tag{font-size:19px;color:#c4a7da;font-weight:750;margin-bottom:10px}
-.result-desc{color:#b8a9ca;max-width:600px;line-height:1.6;margin:0 auto 28px}
+.result-tag{font-size:20px;color:#d9c7f4;font-weight:750;margin-bottom:10px}
+.result-desc{color:#b8a9ca;max-width:650px;line-height:1.6;margin:0 auto 28px}
 .result-grid{
   display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
-  width:min(680px,100%);margin:0 auto 28px;
+  width:min(700px,100%);margin:0 auto 28px;
 }
-.result-box{background:#fff;border:1px solid #d8d0c4;border-radius:9px;padding:14px}
-.skill-bars{width:min(700px,100%);text-align:left;margin:0 auto 30px}
-.skill-line{margin:12px 0}
-.skill-head{display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px}
-.skill-bg{height:8px;background:#e8e0f0;border-radius:10px;overflow:hidden}
-.skill-fg{height:100%;background:linear-gradient(90deg,#8b5aac,var(--plum));border-radius:10px;transition:width .6s ease}
+.result-box{background:#2b2731;border:1px solid #3b3643;border-radius:9px;padding:16px;color:#f5f1f7}
+.result-box .small-label{color:#9f96a6}
+.skill-bars{width:min(720px,100%);text-align:left;margin:0 auto 30px}
+.skill-line{margin:13px 0}
+.skill-head{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;color:#e8e0f0}
+.skill-bg{height:8px;background:#3a3541;border-radius:10px;overflow:hidden}
+.skill-fg{height:100%;background:#6f4c8d;border-radius:10px;transition:width .6s ease}
 .btn-cert{
-  border:0;border-radius:9px;
-  background:linear-gradient(135deg,#9b6b1f,#7a5318);
-  color:#fff;font-weight:760;padding:13px 26px;font-size:15px;
-  box-shadow:0 3px 0 #5a3b10;transition:.15s;
+  border:0;border-radius:8px;background:#4d2e61;
+  color:#fff;font-weight:760;padding:13px 22px;font-size:15px;
+  box-shadow:0 3px 0 #321e40;transition:.15s;
   display:inline-flex;align-items:center;gap:8px;margin-right:12px;
 }
-.btn-cert:hover{transform:translateY(-1px)}
+.btn-cert:hover{transform:translateY(-1px);background:#5b3772}
 .btn-retry{
-  border:1.5px solid var(--line);background:var(--paper);color:var(--ink);
+  border:1.5px solid #3b3643;background:#2b2731;color:#f5f1f7;
   border-radius:9px;padding:12px 22px;font-weight:600;
+}
+.cert-actions .btn-retry{
+  border:1.5px solid var(--line);background:var(--paper);color:var(--ink);
 }
 
 /* ─────────────────────────────────────────────
@@ -442,9 +456,9 @@ input{font:inherit}
   <div id="phase-login">
     <div class="card login-wrap">
       <div class="login-copy">
-        <div class="eyebrow">Biro Investigasi Algonova · Edisi Siswa</div>
-        <h1>Misteri Matematika</h1>
-        <p>Selesaikan tantangan matematika, ungkap kasus tersembunyi, dan buktikan kemampuanmu dengan certificate resmi dari Algonova.</p>
+        <div class="eyebrow">Berkas Kasus 001 · Edisi Siswa</div>
+        <h1>Kode yang Hilang</h1>
+        <p>Chip AI eksperimental milik Profesor Nova telah menghilang. Ikuti petunjuk dalam bab-bab kasus, selesaikan tantangan matematika, dan temukan karakter detektifmu di akhir investigasi.</p>
 
         <div class="form-group">
           <label for="input-username">Username Algonova</label>
@@ -473,9 +487,9 @@ input{font:inherit}
 
       <div class="login-visual">
         <div class="dossier">
-          <div class="dossier-icon">🔢</div>
+          <div class="dossier-icon">A</div>
           <div class="eyebrow" style="color:#5d5064">Biro Investigasi Algonova</div>
-          <div style="font-family:Georgia,serif;font-size:26px;font-weight:700;margin-top:7px">Kode yang Hilang</div>
+          <div style="font-family:Georgia,serif;font-size:30px;font-weight:700;margin-top:8px">Chip AI yang Hilang</div>
           <div class="dossier-lines"><i></i><i></i><i></i></div>
           <div style="font-size:12px;color:#665e68;line-height:1.6">Analisis bukti · Penalaran matematika · Deduksi kasus</div>
         </div>
@@ -568,7 +582,7 @@ input{font:inherit}
   ════════════════════════════════════════ -->
   <div id="phase-result">
     <div class="card result-wrap">
-      <div class="eyebrow">Kasus Terpecahkan ✦</div>
+      <div class="eyebrow">Kasus Terpecahkan</div>
       <div class="result-avatar" id="res-avatar">A</div>
       <div class="result-title" id="res-title">Sang Analis</div>
       <div class="result-tag" id="res-tag"></div>
@@ -580,7 +594,7 @@ input{font:inherit}
       </div>
       <div class="skill-bars" id="res-skills"></div>
       <div style="margin-top:12px">
-        <button class="btn-cert" onclick="showCertificate()">🎓 Lihat & Cetak Certificate</button>
+        <button class="btn-cert" onclick="showCertificate()">Lihat & Cetak Certificate</button>
       </div>
     </div>
   </div>
@@ -590,7 +604,7 @@ input{font:inherit}
   ════════════════════════════════════════ -->
   <div id="phase-certificate">
     <div class="cert-actions">
-      <button class="btn-primary" onclick="window.print()">🖨️ Cetak / Simpan PDF</button>
+      <button class="btn-primary" onclick="window.print()">Cetak / Simpan PDF</button>
       <button class="btn-retry" onclick="showPhase('result')">← Kembali ke Hasil</button>
     </div>
     <div class="cert-page">
@@ -640,7 +654,7 @@ input{font:inherit}
               <div class="cert-sign-role">Tanggal Penyelesaian</div>
             </div>
           </div>
-          <div class="cert-seal">ALGO<br>VERIFIED<br>✦</div>
+          <div class="cert-seal">ALGO<br>VERIFIED</div>
         </div>
       </div>
       <div class="cert-id" id="cert-id"></div>
@@ -658,12 +672,13 @@ input{font:inherit}
 <script src="src/lib/certificate.js"></script>
 <script>
 /* ─── CONFIG ─── */
-const CONFIG = {
+window.ALGONOVA_CONFIG = {
   // Ganti dengan URL Apps Script Web App setelah deploy
-  appsScriptUrl: "https://script.google.com/macros/s/REPLACE_WITH_YOUR_DEPLOYMENT_ID/exec",
-  // Fallback: true = skip Apps Script (mode offline/dev)
+  appsScriptUrl: "YOUR_APPS_SCRIPT_WEB_APP_URL",
+  // true = skip Sheet (login bebas); set false setelah Apps Script siap
   devMode: true,
 };
+const CONFIG = window.ALGONOVA_CONFIG;
 
 /* ─── STATE ─── */
 let STATE = {
@@ -688,9 +703,13 @@ let STATE = {
 /* ─── UTILS ─── */
 function showPhase(name) {
   ["login","diagnostic","game","result","certificate"].forEach(p => {
-    document.getElementById(`phase-${p}`).style.display = "none";
+    const el = document.getElementById(`phase-${p}`);
+    el.style.display = "none";
+    el.classList.remove("phase-enter");
   });
-  document.getElementById(`phase-${name}`).style.display = "block";
+  const active = document.getElementById(`phase-${name}`);
+  active.style.display = "block";
+  active.classList.add("phase-enter");
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -748,13 +767,22 @@ async function handleLogin() {
     if (result.used) {
       // Sudah pernah mengerjakan → langsung ke certificate
       const saved = JSON.parse(localStorage.getItem(`algo_result_${username}`) || "null");
-      if (saved) {
-        loadSavedResult(saved);
-        showPhase("result");
-      } else {
-        showError("Akun ini sudah digunakan. Hubungi Algonova untuk reset.");
-        document.getElementById("btn-login").disabled = false;
-      }
+      const fromSheet = {
+        username,
+        studentName: result.studentName || name,
+        level: result.level || guessLevelByAge(age),
+        accuracy: Number(String(result.accuracy || "0").replace("%","")) || 0,
+        xp: Number(result.score) || 0,
+        clues: 0,
+        total: 0,
+        character: result.character || "analyst",
+        finishedAt: result.usedAt || new Date().toISOString(),
+        skillScores: {},
+      };
+      const data = saved || fromSheet;
+      loadSavedResult(data);
+      populateCertificate();
+      showPhase("certificate");
       return;
     }
 
@@ -775,6 +803,7 @@ function showError(msg) {
 }
 
 function guessLevelByAge(age) {
+  if (typeof levelFromAge === "function") return levelFromAge(age);
   if (!age) return "sd-kelas-4-6";
   if (age <= 9) return "sd-kelas-1-3";
   if (age <= 12) return "sd-kelas-4-6";
@@ -990,7 +1019,9 @@ async function finishGame() {
   showPhase("result");
 
   const accuracy = Math.round(STATE.correct / STATE.questions.length * 100);
-  const best = Object.entries(STATE.typeScores).sort((a, b) => b[1] - a[1])[0][0];
+  const best = (typeof pickCharacter === "function")
+    ? pickCharacter(STATE.typeScores)
+    : Object.entries(STATE.typeScores).sort((a, b) => b[1] - a[1])[0][0];
   const char = CHARACTERS[best];
 
   document.getElementById("res-avatar").textContent = char.emoji;
@@ -1037,6 +1068,11 @@ async function finishGame() {
         body: JSON.stringify({
           action: "submit",
           username: STATE.username,
+          name: STATE.studentName,
+          nama: STATE.studentName,
+          age: STATE.age,
+          umur: STATE.age,
+          level: STATE.level,
           score: STATE.xp,
           accuracy,
           character: best,

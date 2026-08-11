@@ -49,6 +49,21 @@ const CHARACTERS = {
 };
 
 /**
+ * Tentukan level awal dari umur (Kurikulum Merdeka).
+ * @param {number|null} age
+ * @returns {string}
+ */
+function levelFromAge(age) {
+  if (!age && age !== 0) return "sd-kelas-4-6";
+  const n = Number(age);
+  if (!n || n <= 9) return "sd-kelas-1-3";
+  if (n <= 12) return "sd-kelas-4-6";
+  if (n <= 15) return "smp";
+  if (n <= 18) return "sma";
+  return "dewasa";
+}
+
+/**
  * Sesuaikan level berdasarkan skor diagnostic.
  * @param {string} baseLevel  - Level awal dari umur
  * @param {number} score      - Jumlah benar (0–total)
@@ -119,4 +134,16 @@ function getDiagnosticQuestions(level) {
   // Shuffle dan ambil 5
   const shuffled = [...bank].sort(() => Math.random() - 0.5);
   return shuffled.slice(0, 5);
+}
+
+/**
+ * Pilih karakter detektif dari skor tipe soal.
+ * @param {Object} typeScores
+ * @returns {string} key karakter
+ */
+function pickCharacter(typeScores) {
+  const entries = Object.entries(typeScores || {});
+  if (!entries.length) return "analyst";
+  entries.sort((a, b) => b[1] - a[1]);
+  return entries[0][0] in CHARACTERS ? entries[0][0] : "analyst";
 }
