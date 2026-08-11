@@ -117,21 +117,21 @@
           "clue": "Sidik jari ditemukan di meja lab.",
           "scene_en": "Four batteries labeled with numbers lie on the table.",
           "q_en": "Which value is the greatest?",
-          "correct_en": "Correct! 3,9 = 3,90. Compare the tenths place first.",
+          "correct_en": "Correct! 3.9 = 3.90. Compare the tenths place first.",
           "clue_en": "Fingerprints are found on the lab table.",
           "skill_en": "Decimals",
           "difficulty_en": "Easy",
           "choices_en": [
-            "3,09",
-            "3,9",
-            "3,19",
-            "3,099"
+            "3.09",
+            "3.9",
+            "3.19",
+            "3.099"
           ],
           "wrong_en": [
             "Compare the tenths place first.",
-            "3,9 is the greatest!",
-            "3,19 < 3,90.",
-            "3,099 is a little bigger than 3,09, but still less than 3,9."
+            "3.9 is the greatest!",
+            "3.19 < 3.90.",
+            "3.099 is a little bigger than 3.09, but still less than 3.9."
           ]
         },
         {
@@ -247,9 +247,9 @@
           "clue": "Waktu Mira di perpustakaan sesuai rekaman CCTV.",
           "type_ui": "numeric",
           "answer_value": 45,
-          "scene_en": "Mira claims she was in the library for 0,75 hours.",
-          "q_en": "0,75 hours = how many minutes?",
-          "correct_en": "0,75 × 60 = 45 minutes. Mira's alibi checks out.",
+          "scene_en": "Mira claims she was in the library for 0.75 hours.",
+          "q_en": "0.75 hours = how many minutes?",
+          "correct_en": "0.75 × 60 = 45 minutes. Mira's alibi checks out.",
           "clue_en": "Mira's time in the library matches the CCTV recording.",
           "skill_en": "Decimals",
           "difficulty_en": "Easy",
@@ -261,7 +261,7 @@
           ],
           "wrong_en": [
             "Multiply the hours by 60.",
-            "0,75 × 60 = 45.",
+            "0.75 × 60 = 45.",
             "Correct: 45 minutes.",
             "75 is the decimal number, not the minutes."
           ]
@@ -427,7 +427,7 @@
             "25% = one quarter.",
             "80 ÷ 4 = 20 — correct!",
             "25 is the percent.",
-            "30 = 37,5% of 80."
+            "30 = 37.5% of 80."
           ]
         }
       ],
@@ -542,8 +542,8 @@
           ],
           "clue": "Kunci ditemukan di mekanisme tabung.",
           "scene_en": "A sealed measuring tube contains a hidden code.",
-          "q_en": "1,5 liters = how many milliliters?",
-          "correct_en": "1 liter = 1.000 mL. 1,5 × 1.000 = 1.500 mL!",
+          "q_en": "1.5 liters = how many milliliters?",
+          "correct_en": "1 liter = 1.000 mL. 1.5 × 1.000 = 1.500 mL!",
           "clue_en": "A key is found in the tube mechanism.",
           "skill_en": "Measurement",
           "difficulty_en": "Easy",
@@ -555,8 +555,8 @@
           ],
           "wrong_en": [
             "1 liter = 1.000 mL.",
-            "0,5 L = 500 mL.",
-            "1.050 mL = 1,05 L.",
+            "0.5 L = 500 mL.",
+            "1.050 mL = 1.05 L.",
             "1.500 mL — correct!"
           ]
         },
@@ -583,8 +583,8 @@
           ],
           "clue": "Tiket kereta ada di dalam brankas.",
           "scene_en": "The safe asks for the package weight answer.",
-          "q_en": "A 2,75 kg package = how many grams?",
-          "correct_en": "2,75 × 1.000 = 2.750 g. The safe opens!",
+          "q_en": "A 2.75 kg package = how many grams?",
+          "correct_en": "2.75 × 1.000 = 2.750 g. The safe opens!",
           "clue_en": "A train ticket is inside the safe.",
           "skill_en": "Measurement",
           "difficulty_en": "Medium",
@@ -596,7 +596,7 @@
           ],
           "wrong_en": [
             "1 kg = 1.000 g.",
-            "2.075 = 2,075 kg.",
+            "2.075 = 2.075 kg.",
             "2.750 — correct!",
             "That is × 10.000."
           ]
@@ -1072,7 +1072,7 @@
           ],
           "clue": "Rute A paling cepat untuk mencegat tersangka.",
           "scene_en": "The corridor splits into three routes on the map.",
-          "q_en": "Route A: 450 m. Route B: 0,6 km. Route C: 520 m. Which is shortest?",
+          "q_en": "Route A: 450 m. Route B: 0.6 km. Route C: 520 m. Which is shortest?",
           "correct_en": "Route A = 450 m, the shortest! You cut off the suspect's path.",
           "clue_en": "Route A is the fastest way to intercept the suspect.",
           "skill_en": "Measurement",
@@ -1085,7 +1085,7 @@
           ],
           "wrong_en": [
             "450 m is shortest — correct!",
-            "0,6 km = 600 m.",
+            "0.6 km = 600 m.",
             "520 m > 450 m.",
             "All three are different."
           ]
@@ -1195,7 +1195,7 @@
           "clue": "Harga asal tiket Rp20.000.",
           "scene_en": "Train ticket: price after a 10% discount = Rp18.000.",
           "q_en": "What was the original ticket price?",
-          "correct_en": "0,9 × price = 18.000. Original price = 20.000. The ticket belongs to someone else!",
+          "correct_en": "0.9 × price = 18.000. Original price = 20.000. The ticket belongs to someone else!",
           "clue_en": "Original ticket price: Rp20.000.",
           "skill_en": "Percentages",
           "difficulty_en": "Hard",
@@ -1207,7 +1207,7 @@
           ],
           "wrong_en": [
             "After a 10% discount, the price is 90% of the original.",
-            "0,9 × 20.000 = 18.000 — correct!",
+            "0.9 × 20.000 = 18.000 — correct!",
             "A 10% discount from 21.000 = 18.900.",
             "A 10% discount from 22.000 = 19.800."
           ]
@@ -1243,13 +1243,13 @@
           "choices_en": [
             "7",
             "8",
-            "8,5",
+            "8.5",
             "9"
           ],
           "wrong_en": [
             "Add them all, then divide by 5.",
             "40 ÷ 5 = 8 — correct!",
-            "8,5 is not the right average.",
+            "8.5 is not the right average.",
             "9 is too big."
           ]
         },

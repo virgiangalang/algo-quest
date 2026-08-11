@@ -718,7 +718,7 @@
           "scene": "Varians.",
           "scene_en": "Variance check.",
           "q": "Varians data 2,2,2?",
-          "q_en": "Variance of data 2.2,2?",
+          "q_en": "Variance of data 2.2.2?",
           "choices": [
             "0",
             "1",
@@ -800,7 +800,7 @@
           "scene": "Modus.",
           "scene_en": "Mode check.",
           "q": "Modus 1,2,2,3,4?",
-          "q_en": "Mode of 1.2,2.3,4?",
+          "q_en": "Mode of 1.2.2.3.4?",
           "choices": [
             "1",
             "2",
