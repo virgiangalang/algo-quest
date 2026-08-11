@@ -1,19 +1,32 @@
 {
   "level": "sma",
   "label": "SMA",
+  "label_en": "High School",
   "ageRange": "16–18 tahun",
+  "ageRange_en": "16-18 years",
   "curriculum": "Kurikulum Merdeka",
+  "curriculum_en": "Merdeka Curriculum",
   "caseTitle": "Operasi Fungsi Rahasia",
+  "caseTitle_en": "Secret Function Operation",
   "chapters": [
     {
       "id": "bab-1",
       "title": "Bab 1 — Analisis Fungsi",
+      "title_en": "Chapter 1 - Function Analysis",
       "questions": [
         {
           "id": "q1-1",
           "scene": "Fungsi tersembunyi di server.",
+          "scene_en": "A hidden function is buried in the server.",
           "q": "f(x) = 2x² – 3x + 1. Berapa f(2)?",
+          "q_en": "f(x) = 2x² - 3x + 1. What is f(2)?",
           "choices": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "choices_en": [
             "2",
             "3",
             "4",
@@ -21,47 +34,83 @@
           ],
           "answer": 1,
           "skill": "Fungsi",
+          "skill_en": "Functions",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "analyst",
           "correct": "2(4)–3(2)+1 = 8–6+1 = 3.",
+          "correct_en": "2(4)-3(2)+1 = 8-6+1 = 3.",
           "wrong": [
             "Substitusi x=2.",
             "3 — tepat!",
             "Hampir.",
             "Terlalu besar."
           ],
+          "wrong_en": [
+            "Substitute x=2.",
+            "3 - correct!",
+            "Close.",
+            "Too high."
+          ],
           "clue": "Nilai fungsi di titik kritis: 3.",
+          "clue_en": "Function value at the critical point: 3.",
           "type_ui": "numeric",
           "answer_value": 3
         },
         {
           "id": "q1-2",
           "scene": "Limit fungsi pada kecepatan data.",
+          "scene_en": "A function limit is guarding the data-speed logs.",
           "q": "lim (x→2) dari (x²–4)/(x–2) = ?",
+          "q_en": "lim (x→2) of (x²-4)/(x-2) = ?",
           "choices": [
             "0",
             "2",
             "4",
             "tidak ada"
           ],
+          "choices_en": [
+            "0",
+            "2",
+            "4",
+            "does not exist"
+          ],
           "answer": 2,
           "skill": "Limit",
+          "skill_en": "Limits",
           "difficulty": "Sedang",
+          "difficulty_en": "Medium",
           "type": "analyst",
           "correct": "Faktorkan: (x+2)(x–2)/(x–2) = x+2. Limit = 4.",
+          "correct_en": "Factor it: (x+2)(x-2)/(x-2) = x+2. The limit is 4.",
           "wrong": [
             "Faktorkan pembilang.",
             "Hampir.",
             "4 — tepat!",
             "Limitnya ada."
           ],
-          "clue": "Batas kecepatan data: 4 unit."
+          "wrong_en": [
+            "Factor the numerator.",
+            "Close.",
+            "4 - correct!",
+            "The limit exists."
+          ],
+          "clue": "Batas kecepatan data: 4 unit.",
+          "clue_en": "The data-speed boundary is 4 units."
         },
         {
           "id": "q1-3",
           "scene": "Turunan untuk cari kecepatan maksimum.",
+          "scene_en": "A derivative reveals the maximum-speed trail.",
           "q": "f(x) = 3x² + 2x. Turunannya?",
+          "q_en": "f(x) = 3x² + 2x. What is its derivative?",
           "choices": [
+            "3x + 2",
+            "6x + 2",
+            "6x",
+            "3x"
+          ],
+          "choices_en": [
             "3x + 2",
             "6x + 2",
             "6x",
@@ -69,45 +118,81 @@
           ],
           "answer": 1,
           "skill": "Kalkulus",
+          "skill_en": "Calculus",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "codebreaker",
           "correct": "f'(x) = 6x + 2.",
+          "correct_en": "f'(x) = 6x + 2.",
           "wrong": [
             "Pakai aturan pangkat.",
             "6x+2 — tepat!",
             "Lupa konstanta.",
             "Lupa koefisien."
           ],
-          "clue": "Fungsi kecepatan: f'(x) = 6x+2."
+          "wrong_en": [
+            "Use the power rule.",
+            "6x+2 - correct!",
+            "The constant term was missed.",
+            "The coefficient was missed."
+          ],
+          "clue": "Fungsi kecepatan: f'(x) = 6x+2.",
+          "clue_en": "Speed function: f'(x) = 6x+2."
         },
         {
           "id": "q1-4",
           "scene": "Sudut elevasi antena.",
+          "scene_en": "The antenna elevation angle becomes a clue.",
           "q": "sin 30° + cos 60° = ?",
+          "q_en": "sin 30° + cos 60° = ?",
           "choices": [
             "0",
             "0,5",
             "1",
             "1,5"
           ],
+          "choices_en": [
+            "0",
+            "0.5",
+            "1",
+            "1.5"
+          ],
           "answer": 2,
           "skill": "Trigonometri",
+          "skill_en": "Trigonometry",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "analyst",
           "correct": "sin 30° = 0,5; cos 60° = 0,5. Total = 1.",
+          "correct_en": "sin 30° = 0.5; cos 60° = 0.5. Total = 1.",
           "wrong": [
             "Nilai sin dan cos 30°/60°.",
             "Hampir.",
             "1 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Sudut terkonfirmasi: total = 1."
+          "wrong_en": [
+            "Recall the sin and cos values for 30°/60°.",
+            "Close.",
+            "1 - correct!",
+            "Too high."
+          ],
+          "clue": "Sudut terkonfirmasi: total = 1.",
+          "clue_en": "Angle confirmed: total = 1."
         },
         {
           "id": "q1-5",
           "scene": "Probabilitas enkripsi berhasil.",
+          "scene_en": "The probability that the encryption succeeds is on file.",
           "q": "Dari 100 percobaan, P(berhasil) = 0,7. Perkiraan berhasil?",
+          "q_en": "Out of 100 trials, P(success) = 0.7. How many successes are expected?",
           "choices": [
+            "50",
+            "60",
+            "70",
+            "80"
+          ],
+          "choices_en": [
             "50",
             "60",
             "70",
@@ -115,28 +200,47 @@
           ],
           "answer": 2,
           "skill": "Statistik",
+          "skill_en": "Statistics",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "investigator",
           "correct": "100 × 0,7 = 70 percobaan.",
+          "correct_en": "100 × 0.7 = 70 trials.",
           "wrong": [
             "E = n × p.",
             "Hampir.",
             "70 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Enkripsi berhasil 70 dari 100 kali."
+          "wrong_en": [
+            "E = n × p.",
+            "Close.",
+            "70 - correct!",
+            "Too high."
+          ],
+          "clue": "Enkripsi berhasil 70 dari 100 kali.",
+          "clue_en": "Encryption succeeds 70 out of 100 times."
         }
       ]
     },
     {
       "id": "bab-2",
       "title": "Bab 2 — Operasi Matriks",
+      "title_en": "Chapter 2 - Matrix Operations",
       "questions": [
         {
           "id": "q2-1",
           "scene": "Matriks kode akses.",
+          "scene_en": "An access-code matrix flashes on the case terminal.",
           "q": "Determinan [[2,1],[3,4]] = ?",
+          "q_en": "Determinant of [[2,1],[3,4]] = ?",
           "choices": [
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "choices_en": [
             "4",
             "5",
             "6",
@@ -144,24 +248,42 @@
           ],
           "answer": 1,
           "skill": "Matriks",
+          "skill_en": "Matrices",
           "difficulty": "Sedang",
+          "difficulty_en": "Medium",
           "type": "codebreaker",
           "correct": "(2×4)–(1×3) = 8–3 = 5.",
+          "correct_en": "(2×4)-(1×3) = 8-3 = 5.",
           "wrong": [
             "det = ad–bc.",
             "5 — tepat!",
             "Hampir.",
             "Terlalu besar."
           ],
+          "wrong_en": [
+            "det = ad-bc.",
+            "5 - correct!",
+            "Close.",
+            "Too high."
+          ],
           "clue": "Kode akses determinan: 5.",
+          "clue_en": "Determinant access code: 5.",
           "type_ui": "numeric",
           "answer_value": 5
         },
         {
           "id": "q2-2",
           "scene": "Persamaan eksponen di sistem.",
+          "scene_en": "An exponent equation blocks the system.",
           "q": "2ˣ = 32. Berapa x?",
+          "q_en": "2ˣ = 32. What is x?",
           "choices": [
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "choices_en": [
             "4",
             "5",
             "6",
@@ -169,22 +291,40 @@
           ],
           "answer": 1,
           "skill": "Eksponen",
+          "skill_en": "Exponents",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "analyst",
           "correct": "2⁵ = 32. x = 5.",
+          "correct_en": "2⁵ = 32. x = 5.",
           "wrong": [
             "2ˣ = 32.",
             "5 — tepat!",
             "2⁶ = 64.",
             "2⁷ = 128."
           ],
-          "clue": "Eksponen kunci: x = 5."
+          "wrong_en": [
+            "Solve 2ˣ = 32.",
+            "5 - correct!",
+            "2⁶ = 64.",
+            "2⁷ = 128."
+          ],
+          "clue": "Eksponen kunci: x = 5.",
+          "clue_en": "Key exponent: x = 5."
         },
         {
           "id": "q2-3",
           "scene": "Deret aritmetika data enkripsi.",
+          "scene_en": "An arithmetic sequence is woven through the encrypted data.",
           "q": "Suku ke-10 dari 3, 7, 11, 15, ... ?",
+          "q_en": "The 10th term of 3, 7, 11, 15, ... ?",
           "choices": [
+            "37",
+            "39",
+            "41",
+            "43"
+          ],
+          "choices_en": [
             "37",
             "39",
             "41",
@@ -192,22 +332,40 @@
           ],
           "answer": 1,
           "skill": "Barisan",
+          "skill_en": "Sequences",
           "difficulty": "Sedang",
+          "difficulty_en": "Medium",
           "type": "codebreaker",
           "correct": "a=3, b=4. Suku ke-10 = 3+(9×4) = 39.",
+          "correct_en": "a=3, b=4. The 10th term = 3+(9×4) = 39.",
           "wrong": [
             "Suku ke-n = a+(n-1)b.",
             "39 — tepat!",
             "Hampir.",
             "Terlalu besar."
           ],
-          "clue": "Suku ke-10 adalah 39."
+          "wrong_en": [
+            "nth term = a+(n-1)b.",
+            "39 - correct!",
+            "Close.",
+            "Too high."
+          ],
+          "clue": "Suku ke-10 adalah 39.",
+          "clue_en": "The 10th term is 39."
         },
         {
           "id": "q2-4",
           "scene": "Luas daerah di bawah kurva.",
+          "scene_en": "A hidden region under the curve marks the next lead.",
           "q": "∫₀² 2x dx = ?",
+          "q_en": "∫₀² 2x dx = ?",
           "choices": [
+            "2",
+            "4",
+            "6",
+            "8"
+          ],
+          "choices_en": [
             "2",
             "4",
             "6",
@@ -215,22 +373,40 @@
           ],
           "answer": 1,
           "skill": "Kalkulus",
+          "skill_en": "Calculus",
           "difficulty": "Sedang",
+          "difficulty_en": "Medium",
           "type": "analyst",
           "correct": "[x²]₀² = 4 – 0 = 4.",
+          "correct_en": "[x²]₀² = 4 - 0 = 4.",
           "wrong": [
             "Gunakan teorema fundamental.",
             "4 — tepat!",
             "Hampir.",
             "Terlalu besar."
           ],
-          "clue": "Luas area kritis: 4 satuan."
+          "wrong_en": [
+            "Use the fundamental theorem.",
+            "4 - correct!",
+            "Close.",
+            "Too high."
+          ],
+          "clue": "Luas area kritis: 4 satuan.",
+          "clue_en": "Critical area: 4 square units."
         },
         {
           "id": "q2-5",
           "scene": "Soal terakhir sebelum kasus terpecahkan.",
+          "scene_en": "One final log clue stands before the case breaks open.",
           "q": "log₃ 81 = ?",
+          "q_en": "log₃ 81 = ?",
           "choices": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "choices_en": [
             "3",
             "4",
             "5",
@@ -238,27 +414,46 @@
           ],
           "answer": 1,
           "skill": "Logaritma",
+          "skill_en": "Logarithms",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "codebreaker",
           "correct": "3⁴ = 81. log₃ 81 = 4.",
+          "correct_en": "3⁴ = 81. log₃ 81 = 4.",
           "wrong": [
             "3ˣ = 81.",
             "4 — tepat!",
             "3⁵ = 243.",
             "Terlalu besar."
           ],
-          "clue": "Kode akhir: log = 4."
+          "wrong_en": [
+            "Solve 3ˣ = 81.",
+            "4 - correct!",
+            "3⁵ = 243.",
+            "Too high."
+          ],
+          "clue": "Kode akhir: log = 4.",
+          "clue_en": "Final code: log = 4."
         }
       ]
     },
     {
       "id": "bab-3",
       "title": "Bab 3 — Deret & Limit",
+      "title_en": "Chapter 3 - Series & Limits",
       "questions": [
         {
           "scene": "Deret cepat.",
+          "scene_en": "A quick series flashes across the evidence board.",
           "q": "1+2+3+4 = ?",
+          "q_en": "1+2+3+4 = ?",
           "choices": [
+            "8",
+            "9",
+            "10",
+            "12"
+          ],
+          "choices_en": [
             "8",
             "9",
             "10",
@@ -266,22 +461,40 @@
           ],
           "answer": 2,
           "skill": "Deret",
+          "skill_en": "Series",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "analyst",
           "correct": "10.",
+          "correct_en": "10.",
           "wrong": [
             "Hampir.",
             "Hampir.",
             "10 — tepat!",
             "Besar."
           ],
+          "wrong_en": [
+            "Close.",
+            "Close.",
+            "10 - correct!",
+            "Too high."
+          ],
           "clue": "Σ=10.",
+          "clue_en": "Σ=10.",
           "id": "q3-1"
         },
         {
           "scene": "Pola ganda.",
+          "scene_en": "A doubling pattern hides in the cipher.",
           "q": "2, 4, 8, 16, __",
+          "q_en": "2, 4, 8, 16, __",
           "choices": [
+            "24",
+            "30",
+            "32",
+            "36"
+          ],
+          "choices_en": [
             "24",
             "30",
             "32",
@@ -289,22 +502,40 @@
           ],
           "answer": 2,
           "skill": "Pola",
+          "skill_en": "Patterns",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "codebreaker",
           "correct": "32.",
+          "correct_en": "32.",
           "wrong": [
             "Bukan +8.",
             "Bukan.",
             "32 — tepat!",
             "Bukan."
           ],
+          "wrong_en": [
+            "Not +8.",
+            "No.",
+            "32 - correct!",
+            "No."
+          ],
           "clue": "32.",
+          "clue_en": "32.",
           "id": "q3-2"
         },
         {
           "scene": "Limit sederhana.",
+          "scene_en": "A simple limit checks the alibi.",
           "q": "lim x→2 (x+3) = ?",
+          "q_en": "lim x→2 (x+3) = ?",
           "choices": [
+            "2",
+            "5",
+            "6",
+            "3"
+          ],
+          "choices_en": [
             "2",
             "5",
             "6",
@@ -312,22 +543,40 @@
           ],
           "answer": 1,
           "skill": "Limit",
+          "skill_en": "Limits",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "analyst",
           "correct": "5.",
+          "correct_en": "5.",
           "wrong": [
             "Itu x.",
             "5 — tepat!",
             "Besar.",
             "+1."
           ],
+          "wrong_en": [
+            "That is x.",
+            "5 - correct!",
+            "Too high.",
+            "+1."
+          ],
           "clue": "Limit 5.",
+          "clue_en": "Limit 5.",
           "id": "q3-3"
         },
         {
           "scene": "Barisan aritmetika.",
+          "scene_en": "An arithmetic sequence points to the next room.",
           "q": "a=3, b=2. Suku ke-3?",
+          "q_en": "a=3, b=2. The 3rd term?",
           "choices": [
+            "5",
+            "7",
+            "9",
+            "11"
+          ],
+          "choices_en": [
             "5",
             "7",
             "9",
@@ -335,22 +584,40 @@
           ],
           "answer": 1,
           "skill": "Deret",
+          "skill_en": "Series",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "codebreaker",
           "correct": "7.",
+          "correct_en": "7.",
           "wrong": [
             "Hampir.",
             "7 — tepat!",
             "Besar.",
             "Besar."
           ],
+          "wrong_en": [
+            "Close.",
+            "7 - correct!",
+            "Too high.",
+            "Too high."
+          ],
           "clue": "U3=7.",
+          "clue_en": "U3=7.",
           "id": "q3-4"
         },
         {
           "scene": "Mean.",
+          "scene_en": "The mean of a data trail must be checked.",
           "q": "Rata-rata 10, 20, 30?",
+          "q_en": "Mean of 10, 20, 30?",
           "choices": [
+            "15",
+            "20",
+            "25",
+            "30"
+          ],
+          "choices_en": [
             "15",
             "20",
             "25",
@@ -358,16 +625,26 @@
           ],
           "answer": 1,
           "skill": "Statistik",
+          "skill_en": "Statistics",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "investigator",
           "correct": "20.",
+          "correct_en": "20.",
           "wrong": [
             "Hampir.",
             "20 — tepat!",
             "Tinggi.",
             "Maks."
           ],
+          "wrong_en": [
+            "Close.",
+            "20 - correct!",
+            "High.",
+            "Maximum."
+          ],
           "clue": "Mean 20.",
+          "clue_en": "Mean 20.",
           "id": "q3-5"
         }
       ]
@@ -375,28 +652,47 @@
     {
       "id": "bab-4",
       "title": "Bab 4 — Peluang & Data",
+      "title_en": "Chapter 4 - Probability & Data",
       "questions": [
         {
           "scene": "Langkah penyelesaian persamaan harus disusun ulang.",
+          "scene_en": "The equation-solving steps have been scrambled by the suspect.",
           "q": "Urutkan langkah menyelesaikan 2x + 6 = 18 dari awal ke akhir.",
+          "q_en": "Order the steps for solving 2x + 6 = 18 from start to finish.",
           "choices": [
             "2x + 6 = 18",
             "2x = 12",
             "x = 6",
             "Cek: 2(6)+6=18"
           ],
+          "choices_en": [
+            "2x + 6 = 18",
+            "2x = 12",
+            "x = 6",
+            "Check: 2(6)+6=18"
+          ],
           "answer": 0,
           "skill": "Aljabar",
+          "skill_en": "Algebra",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "codebreaker",
           "correct": "Langkah aljabar berurutan — akses diberikan.",
+          "correct_en": "The algebra steps are in order - access granted.",
           "wrong": [
             "1/6 — tepat!",
             "Besar.",
             "Besar.",
             "Pasti."
           ],
+          "wrong_en": [
+            "Start with the original equation.",
+            "Subtract 6 before dividing.",
+            "Solve for x after isolating 2x.",
+            "Finish by checking the solution."
+          ],
           "clue": "Nilai x = 6 membuka panel kedua.",
+          "clue_en": "The value x = 6 opens the second panel.",
           "id": "q4-1",
           "type_ui": "order",
           "items": [
@@ -404,6 +700,12 @@
             "2x = 12",
             "x = 6",
             "Cek: 2(6)+6=18"
+          ],
+          "items_en": [
+            "2x + 6 = 18",
+            "2x = 12",
+            "x = 6",
+            "Check: 2(6)+6=18"
           ],
           "answer_order": [
             0,
@@ -414,8 +716,16 @@
         },
         {
           "scene": "Varians.",
+          "scene_en": "A variance check tests the data trail.",
           "q": "Varians data 2,2,2?",
+          "q_en": "Variance of the data 2,2,2?",
           "choices": [
+            "0",
+            "1",
+            "2",
+            "4"
+          ],
+          "choices_en": [
             "0",
             "1",
             "2",
@@ -423,22 +733,40 @@
           ],
           "answer": 0,
           "skill": "Statistik",
+          "skill_en": "Statistics",
           "difficulty": "Sedang",
+          "difficulty_en": "Medium",
           "type": "analyst",
           "correct": "0.",
+          "correct_en": "0.",
           "wrong": [
             "0 — tepat!",
             "Bukan.",
             "Bukan.",
             "Bukan."
           ],
+          "wrong_en": [
+            "0 - correct!",
+            "No.",
+            "No.",
+            "No."
+          ],
           "clue": "Varians 0.",
+          "clue_en": "Variance 0.",
           "id": "q4-2"
         },
         {
           "scene": "Kombinasi.",
+          "scene_en": "A combination lock guards the next clue.",
           "q": "C(5,1) = ?",
+          "q_en": "C(5,1) = ?",
           "choices": [
+            "1",
+            "5",
+            "10",
+            "20"
+          ],
+          "choices_en": [
             "1",
             "5",
             "10",
@@ -446,22 +774,40 @@
           ],
           "answer": 1,
           "skill": "Peluang",
+          "skill_en": "Probability",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "codebreaker",
           "correct": "5.",
+          "correct_en": "5.",
           "wrong": [
             "Hampir.",
             "5 — tepat!",
             "C(5,2).",
             "Besar."
           ],
+          "wrong_en": [
+            "Close.",
+            "5 - correct!",
+            "That is C(5,2).",
+            "Too high."
+          ],
           "clue": "C=5.",
+          "clue_en": "C=5.",
           "id": "q4-3"
         },
         {
           "scene": "Modus.",
+          "scene_en": "The mode of the evidence list must be identified.",
           "q": "Modus 1,2,2,3,4?",
+          "q_en": "Mode of 1,2,2,3,4?",
           "choices": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "choices_en": [
             "1",
             "2",
             "3",
@@ -469,39 +815,67 @@
           ],
           "answer": 1,
           "skill": "Statistik",
+          "skill_en": "Statistics",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "investigator",
           "correct": "2.",
+          "correct_en": "2.",
           "wrong": [
             "Bukan.",
             "2 — tepat!",
             "Bukan.",
             "Bukan."
           ],
+          "wrong_en": [
+            "No.",
+            "2 - correct!",
+            "No.",
+            "No."
+          ],
           "clue": "Modus 2.",
+          "clue_en": "Mode 2.",
           "id": "q4-4"
         },
         {
           "scene": "Komplemen.",
+          "scene_en": "A complementary probability closes the gap.",
           "q": "P(A)=0,3 maka P(A′)?",
+          "q_en": "If P(A)=0.3, what is P(A′)?",
           "choices": [
             "0,3",
             "0,5",
             "0,7",
             "1"
           ],
+          "choices_en": [
+            "0.3",
+            "0.5",
+            "0.7",
+            "1"
+          ],
           "answer": 2,
           "skill": "Peluang",
+          "skill_en": "Probability",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "analyst",
           "correct": "0,7.",
+          "correct_en": "0.7.",
           "wrong": [
             "P(A).",
             "Hampir.",
             "0,7 — tepat!",
             "Besar."
           ],
+          "wrong_en": [
+            "That is P(A).",
+            "Close.",
+            "0.7 - correct!",
+            "Too high."
+          ],
           "clue": "0,7.",
+          "clue_en": "0.7.",
           "id": "q4-5"
         }
       ]
@@ -509,11 +883,20 @@
     {
       "id": "bab-5",
       "title": "Bab 5 — Trig & Geometri",
+      "title_en": "Chapter 5 - Trig & Geometry",
       "questions": [
         {
           "scene": "Trigonometri.",
+          "scene_en": "A trigonometry clue waits in the dossier.",
           "q": "cos 60° = ?",
+          "q_en": "cos 60° = ?",
           "choices": [
+            "0",
+            "1/2",
+            "√2/2",
+            "√3/2"
+          ],
+          "choices_en": [
             "0",
             "1/2",
             "√2/2",
@@ -521,45 +904,81 @@
           ],
           "answer": 1,
           "skill": "Trigonometri",
+          "skill_en": "Trigonometry",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "analyst",
           "correct": "1/2.",
+          "correct_en": "1/2.",
           "wrong": [
             "cos 90.",
             "1/2 — tepat!",
             "cos 45.",
             "cos 30."
           ],
+          "wrong_en": [
+            "cos 90.",
+            "1/2 - correct!",
+            "cos 45.",
+            "cos 30."
+          ],
           "clue": "1/2.",
+          "clue_en": "1/2.",
           "id": "q5-1"
         },
         {
           "scene": "Trigonometri.",
+          "scene_en": "A trigonometry trace points to a familiar angle.",
           "q": "tan 45° = ?",
+          "q_en": "tan 45° = ?",
           "choices": [
             "0",
             "1",
             "√3",
             "tak terdefinisi"
           ],
+          "choices_en": [
+            "0",
+            "1",
+            "√3",
+            "undefined"
+          ],
           "answer": 1,
           "skill": "Trigonometri",
+          "skill_en": "Trigonometry",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "codebreaker",
           "correct": "1.",
+          "correct_en": "1.",
           "wrong": [
             "tan 0.",
             "1 — tepat!",
             "tan 60.",
             "tan 90."
           ],
+          "wrong_en": [
+            "tan 0.",
+            "1 - correct!",
+            "tan 60.",
+            "tan 90."
+          ],
           "clue": "tan=1.",
+          "clue_en": "tan=1.",
           "id": "q5-2"
         },
         {
           "scene": "Lingkaran.",
+          "scene_en": "A circle clue is drawn on the map.",
           "q": "Keliling r=7 (π=22/7)?",
+          "q_en": "Circumference with r=7 (π=22/7)?",
           "choices": [
+            "22",
+            "44",
+            "154",
+            "308"
+          ],
+          "choices_en": [
             "22",
             "44",
             "154",
@@ -567,22 +986,40 @@
           ],
           "answer": 1,
           "skill": "Geometri",
+          "skill_en": "Geometry",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "explorer",
           "correct": "44.",
+          "correct_en": "44.",
           "wrong": [
             "πr.",
             "44 — tepat!",
             "Luas.",
             "Besar."
           ],
+          "wrong_en": [
+            "πr.",
+            "44 - correct!",
+            "Area.",
+            "Too high."
+          ],
           "clue": "44.",
+          "clue_en": "44.",
           "id": "q5-3"
         },
         {
           "scene": "Segitiga.",
+          "scene_en": "A triangle sketch hides a floor-plan clue.",
           "q": "Luas alas 6 tinggi 4?",
+          "q_en": "Area with base 6 and height 4?",
           "choices": [
+            "10",
+            "12",
+            "24",
+            "48"
+          ],
+          "choices_en": [
             "10",
             "12",
             "24",
@@ -590,22 +1027,40 @@
           ],
           "answer": 1,
           "skill": "Geometri",
+          "skill_en": "Geometry",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "explorer",
           "correct": "12.",
+          "correct_en": "12.",
           "wrong": [
             "Hampir.",
             "12 — tepat!",
             "Lupa ½.",
             "Besar."
           ],
+          "wrong_en": [
+            "Close.",
+            "12 - correct!",
+            "Forgot 1/2.",
+            "Too high."
+          ],
           "clue": "12.",
+          "clue_en": "12.",
           "id": "q5-4"
         },
         {
           "scene": "Pythagoras.",
+          "scene_en": "A Pythagorean note is pinned to the board.",
           "q": "Sisi 5 dan 12, miring?",
+          "q_en": "Sides 5 and 12; hypotenuse?",
           "choices": [
+            "10",
+            "12",
+            "13",
+            "15"
+          ],
+          "choices_en": [
             "10",
             "12",
             "13",
@@ -613,16 +1068,26 @@
           ],
           "answer": 2,
           "skill": "Geometri",
+          "skill_en": "Geometry",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "analyst",
           "correct": "13.",
+          "correct_en": "13.",
           "wrong": [
             "Hampir.",
             "Hampir.",
             "13 — tepat!",
             "Besar."
           ],
+          "wrong_en": [
+            "Close.",
+            "Close.",
+            "13 - correct!",
+            "Too high."
+          ],
           "clue": "13.",
+          "clue_en": "13.",
           "id": "q5-5"
         }
       ]
@@ -630,11 +1095,20 @@
     {
       "id": "bab-6",
       "title": "Bab 6 — Deduksi Akhir",
+      "title_en": "Chapter 6 - Final Deduction",
       "questions": [
         {
           "scene": "Anti-turunan.",
+          "scene_en": "An antiderivative trail needs to be reconstructed.",
           "q": "Jika f′=6x, f bisa berupa?",
+          "q_en": "If f′=6x, what could f be?",
           "choices": [
+            "3x² + C",
+            "6x²",
+            "x³",
+            "6"
+          ],
+          "choices_en": [
             "3x² + C",
             "6x²",
             "x³",
@@ -642,22 +1116,40 @@
           ],
           "answer": 0,
           "skill": "Kalkulus",
+          "skill_en": "Calculus",
           "difficulty": "Sedang",
+          "difficulty_en": "Medium",
           "type": "analyst",
           "correct": "3x² + C.",
+          "correct_en": "3x² + C.",
           "wrong": [
             "3x²+C — tepat!",
             "Kurang konstanta.",
             "Salah.",
             "Salah."
           ],
+          "wrong_en": [
+            "3x²+C - correct!",
+            "Missing the right coefficient and constant.",
+            "Wrong.",
+            "Wrong."
+          ],
           "clue": "Memuat 3x².",
+          "clue_en": "It contains 3x².",
           "id": "q6-1"
         },
         {
           "scene": "Eksponen.",
+          "scene_en": "An exponent clue unlocks the final cipher.",
           "q": "2³ × 2² = ?",
+          "q_en": "2³ × 2² = ?",
           "choices": [
+            "2⁵",
+            "2⁶",
+            "8",
+            "4"
+          ],
+          "choices_en": [
             "2⁵",
             "2⁶",
             "8",
@@ -665,68 +1157,122 @@
           ],
           "answer": 0,
           "skill": "Eksponen",
+          "skill_en": "Exponents",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "codebreaker",
           "correct": "2⁵.",
+          "correct_en": "2⁵.",
           "wrong": [
             "2⁵ — tepat!",
             "Salah jumlah.",
             "Nilai bukan bentuk diminta.",
             "Kecil."
           ],
+          "wrong_en": [
+            "2⁵ - correct!",
+            "Wrong exponent sum.",
+            "A value, not the requested form.",
+            "Too small."
+          ],
           "clue": "Eksponen 5.",
+          "clue_en": "Exponent 5.",
           "id": "q6-2"
         },
         {
           "scene": "Garis.",
+          "scene_en": "A line equation cuts across the suspect route.",
           "q": "Gradien 2 lewat (0,1). Persamaan y?",
+          "q_en": "Slope 2 through (0,1). What is the equation for y?",
           "choices": [
             "2x",
             "2x + 1",
             "x + 2",
             "2x − 1"
           ],
+          "choices_en": [
+            "2x",
+            "2x + 1",
+            "x + 2",
+            "2x - 1"
+          ],
           "answer": 1,
           "skill": "Fungsi",
+          "skill_en": "Functions",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "analyst",
           "correct": "y=2x+1.",
+          "correct_en": "y=2x+1.",
           "wrong": [
             "Lupa c.",
             "2x+1 — tepat!",
             "Salah.",
             "Salah."
           ],
+          "wrong_en": [
+            "Missing c.",
+            "2x+1 - correct!",
+            "Wrong.",
+            "Wrong."
+          ],
           "clue": "y=2x+1.",
+          "clue_en": "y=2x+1.",
           "id": "q6-3"
         },
         {
           "scene": "Invers.",
+          "scene_en": "An inverse function hides the exit code.",
           "q": "Invers f(x)=x+4?",
+          "q_en": "Inverse of f(x)=x+4?",
           "choices": [
             "x − 4",
             "x + 4",
             "4 − x",
             "4x"
           ],
+          "choices_en": [
+            "x - 4",
+            "x + 4",
+            "4 - x",
+            "4x"
+          ],
           "answer": 0,
           "skill": "Fungsi",
+          "skill_en": "Functions",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "codebreaker",
           "correct": "x−4.",
+          "correct_en": "x-4.",
           "wrong": [
             "x-4 — tepat!",
             "Itu f.",
             "Salah.",
             "Salah."
           ],
+          "wrong_en": [
+            "x-4 - correct!",
+            "That is f.",
+            "Wrong.",
+            "Wrong."
+          ],
           "clue": "f⁻¹=x−4.",
+          "clue_en": "f⁻¹=x-4.",
           "id": "q6-4"
         },
         {
           "scene": "Mutlak.",
+          "scene_en": "An absolute-value code seals the case file.",
           "q": "|−7| = ?",
+          "q_en": "|−7| = ?",
           "choices": [
+            "−7",
+            "7",
+            "0",
+            "1"
+          ],
+          "choices_en": [
             "−7",
             "7",
             "0",
@@ -734,16 +1280,26 @@
           ],
           "answer": 1,
           "skill": "Bilangan",
+          "skill_en": "Numbers",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "investigator",
           "correct": "7. Kasus selesai!",
+          "correct_en": "7. Case closed!",
           "wrong": [
             "Tanda tetap.",
             "7 — tepat!",
             "Bukan.",
             "Bukan."
           ],
+          "wrong_en": [
+            "The sign does not stay negative.",
+            "7 - correct!",
+            "No.",
+            "No."
+          ],
           "clue": "Kode 7.",
+          "clue_en": "Code 7.",
           "id": "q6-5"
         }
       ]

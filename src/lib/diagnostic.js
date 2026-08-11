@@ -109,18 +109,18 @@ const DIAG_BANK = {
     { q: "Rata-rata dari 4, 6, 8, 10 = ?", choices: ["6","7","8","9"], answer: 1, correct: "(4+6+8+10) ÷ 4 = 28 ÷ 4 = 7.", wrong: ["","","",""] },
   ],
   "sma": [
-    { q: "Turunan f(x) = 3x² adalah …", choices: ["3x","6x","x²","6x²"], answer: 1, correct: "f'(x) = 2 × 3x = 6x.", wrong: ["","","",""] },
-    { q: "sin 30° = ?", choices: ["√2/2","√3/2","1/2","1"], answer: 2, correct: "sin 30° = 1/2.", wrong: ["","","",""] },
-    { q: "log₂ 8 = ?", choices: ["2","3","4","8"], answer: 1, correct: "2³ = 8, jadi log₂ 8 = 3.", wrong: ["","","",""] },
-    { q: "Akar dari x² – 5x + 6 = 0?", choices: ["1 dan 6","2 dan 3","–2 dan –3","–1 dan 6"], answer: 1, correct: "(x–2)(x–3) = 0, jadi x = 2 dan x = 3.", wrong: ["","","",""] },
-    { q: "∑ dari k=1 s/d 4 adalah: 1+2+3+4 = ?", choices: ["8","9","10","12"], answer: 2, correct: "1+2+3+4 = 10.", wrong: ["","","",""] },
+    { q: "Turunan f(x) = 3x² adalah …", q_en: "The derivative of f(x) = 3x² is ...", choices: ["3x","6x","x²","6x²"], choices_en: ["3x","6x","x²","6x²"], answer: 1, correct: "f'(x) = 2 × 3x = 6x.", correct_en: "f'(x) = 2 × 3x = 6x.", wrong: ["","","",""] },
+    { q: "sin 30° = ?", q_en: "sin 30° = ?", choices: ["√2/2","√3/2","1/2","1"], choices_en: ["√2/2","√3/2","1/2","1"], answer: 2, correct: "sin 30° = 1/2.", correct_en: "sin 30° = 1/2.", wrong: ["","","",""] },
+    { q: "log₂ 8 = ?", q_en: "log₂ 8 = ?", choices: ["2","3","4","8"], choices_en: ["2","3","4","8"], answer: 1, correct: "2³ = 8, jadi log₂ 8 = 3.", correct_en: "2³ = 8, so log₂ 8 = 3.", wrong: ["","","",""] },
+    { q: "Akar dari x² – 5x + 6 = 0?", q_en: "Roots of x² - 5x + 6 = 0?", choices: ["1 dan 6","2 dan 3","–2 dan –3","–1 dan 6"], choices_en: ["1 and 6","2 and 3","-2 and -3","-1 and 6"], answer: 1, correct: "(x–2)(x–3) = 0, jadi x = 2 dan x = 3.", correct_en: "(x-2)(x-3) = 0, so x = 2 and x = 3.", wrong: ["","","",""] },
+    { q: "∑ dari k=1 s/d 4 adalah: 1+2+3+4 = ?", q_en: "∑ from k=1 to 4 is: 1+2+3+4 = ?", choices: ["8","9","10","12"], choices_en: ["8","9","10","12"], answer: 2, correct: "1+2+3+4 = 10.", correct_en: "1+2+3+4 = 10.", wrong: ["","","",""] },
   ],
   "dewasa": [
-    { q: "Jika diskon 20% dari harga Rp 150.000, harga akhirnya?", choices: ["Rp 100.000","Rp 120.000","Rp 130.000","Rp 135.000"], answer: 1, correct: "150.000 × 0,8 = 120.000.", wrong: ["","","",""] },
-    { q: "Bunga sederhana 5% per tahun pada Rp 2.000.000 selama 3 tahun?", choices: ["Rp 200.000","Rp 250.000","Rp 300.000","Rp 350.000"], answer: 2, correct: "2.000.000 × 5% × 3 = 300.000.", wrong: ["","","",""] },
-    { q: "Rata-rata 10, 20, 30, 40, 50 = ?", choices: ["25","30","35","40"], answer: 1, correct: "150 ÷ 5 = 30.", wrong: ["","","",""] },
-    { q: "KPK dari 4 dan 6 adalah?", choices: ["8","10","12","24"], answer: 2, correct: "KPK(4,6) = 12.", wrong: ["","","",""] },
-    { q: "3² + 4² = ?", choices: ["14","25","30","49"], answer: 1, correct: "9 + 16 = 25.", wrong: ["","","",""] },
+    { q: "Jika diskon 20% dari harga Rp 150.000, harga akhirnya?", q_en: "If there is a 20% discount on Rp 150.000 (Indonesian rupiah), what is the final price?", choices: ["Rp 100.000","Rp 120.000","Rp 130.000","Rp 135.000"], choices_en: ["Rp 100.000 (Indonesian rupiah)","Rp 120.000 (Indonesian rupiah)","Rp 130.000 (Indonesian rupiah)","Rp 135.000 (Indonesian rupiah)"], answer: 1, correct: "150.000 × 0,8 = 120.000.", correct_en: "150.000 × 0.8 = 120.000.", wrong: ["","","",""] },
+    { q: "Bunga sederhana 5% per tahun pada Rp 2.000.000 selama 3 tahun?", q_en: "Simple interest of 5% per year on Rp 2.000.000 (Indonesian rupiah) for 3 years?", choices: ["Rp 200.000","Rp 250.000","Rp 300.000","Rp 350.000"], choices_en: ["Rp 200.000 (Indonesian rupiah)","Rp 250.000 (Indonesian rupiah)","Rp 300.000 (Indonesian rupiah)","Rp 350.000 (Indonesian rupiah)"], answer: 2, correct: "2.000.000 × 5% × 3 = 300.000.", correct_en: "2.000.000 × 5% × 3 = 300.000.", wrong: ["","","",""] },
+    { q: "Rata-rata 10, 20, 30, 40, 50 = ?", q_en: "Mean of 10, 20, 30, 40, 50 = ?", choices: ["25","30","35","40"], choices_en: ["25","30","35","40"], answer: 1, correct: "150 ÷ 5 = 30.", correct_en: "150 ÷ 5 = 30.", wrong: ["","","",""] },
+    { q: "KPK dari 4 dan 6 adalah?", q_en: "LCM of 4 and 6 is?", choices: ["8","10","12","24"], choices_en: ["8","10","12","24"], answer: 2, correct: "KPK(4,6) = 12.", correct_en: "LCM(4,6) = 12.", wrong: ["","","",""] },
+    { q: "3² + 4² = ?", q_en: "3² + 4² = ?", choices: ["14","25","30","49"], choices_en: ["14","25","30","49"], answer: 1, correct: "9 + 16 = 25.", correct_en: "9 + 16 = 25.", wrong: ["","","",""] },
   ],
 };
 

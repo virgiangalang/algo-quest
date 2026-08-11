@@ -1,67 +1,116 @@
 {
   "level": "dewasa",
   "label": "Dewasa",
+  "label_en": "Adult",
   "ageRange": "18+ tahun",
+  "ageRange_en": "18+ years",
   "curriculum": "Kurikulum Merdeka",
+  "curriculum_en": "Merdeka Curriculum",
   "caseTitle": "Audit Angka Tersembunyi",
+  "caseTitle_en": "Hidden Numbers Audit",
   "chapters": [
     {
       "id": "bab-1",
       "title": "Bab 1 — Keuangan & Logika",
+      "title_en": "Chapter 1 - Finance & Logic",
       "questions": [
         {
           "id": "q1-1",
           "scene": "Struk belanja ditemukan di berkas kasus.",
+          "scene_en": "A shopping receipt turns up inside the case file.",
           "q": "Diskon 20% dari harga Rp150.000. Harga akhirnya? (tulis angka saja, contoh: 120000)",
+          "q_en": "A 20% discount on Rp150.000 (Indonesian rupiah). What is the final price? (write numbers only, e.g. 120000)",
           "choices": [
             "Rp100.000",
             "Rp120.000",
             "Rp130.000",
             "Rp135.000"
           ],
+          "choices_en": [
+            "Rp100.000 (Indonesian rupiah)",
+            "Rp120.000 (Indonesian rupiah)",
+            "Rp130.000 (Indonesian rupiah)",
+            "Rp135.000 (Indonesian rupiah)"
+          ],
           "answer": 1,
           "skill": "Keuangan",
+          "skill_en": "Finance",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "analyst",
           "correct": "150.000 × 0,8 = 120.000.",
+          "correct_en": "150.000 × 0.8 = 120.000.",
           "wrong": [
             "Diskon terlalu besar.",
             "Rp120.000 — tepat!",
             "Hampir.",
             "Hampir."
           ],
+          "wrong_en": [
+            "The discount is too large.",
+            "Rp120.000 - correct!",
+            "Close.",
+            "Close."
+          ],
           "clue": "Harga akhir Rp120.000.",
+          "clue_en": "Final price: Rp120.000 (Indonesian rupiah).",
           "type_ui": "numeric",
           "answer_value": 120000
         },
         {
           "id": "q1-2",
           "scene": "Rekening tabungan terbuka.",
+          "scene_en": "A savings account has been opened as evidence.",
           "q": "Bunga sederhana 5%/tahun pada Rp2.000.000 selama 3 tahun?",
+          "q_en": "Simple interest of 5% per year on Rp2.000.000 (Indonesian rupiah) for 3 years?",
           "choices": [
             "Rp200.000",
             "Rp250.000",
             "Rp300.000",
             "Rp350.000"
           ],
+          "choices_en": [
+            "Rp200.000 (Indonesian rupiah)",
+            "Rp250.000 (Indonesian rupiah)",
+            "Rp300.000 (Indonesian rupiah)",
+            "Rp350.000 (Indonesian rupiah)"
+          ],
           "answer": 2,
           "skill": "Keuangan",
+          "skill_en": "Finance",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "analyst",
           "correct": "2.000.000 × 5% × 3 = 300.000.",
+          "correct_en": "2.000.000 × 5% × 3 = 300.000.",
           "wrong": [
             "Hampir.",
             "Hampir.",
             "Rp300.000 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Bunga Rp300.000."
+          "wrong_en": [
+            "Close.",
+            "Close.",
+            "Rp300.000 - correct!",
+            "Too high."
+          ],
+          "clue": "Bunga Rp300.000.",
+          "clue_en": "Interest: Rp300.000 (Indonesian rupiah)."
         },
         {
           "id": "q1-3",
           "scene": "Laporan bulanan.",
+          "scene_en": "A monthly report waits under the desk lamp.",
           "q": "Rata-rata dari 10, 20, 30, 40, 50?",
+          "q_en": "Mean of 10, 20, 30, 40, 50?",
           "choices": [
+            "25",
+            "30",
+            "35",
+            "40"
+          ],
+          "choices_en": [
             "25",
             "30",
             "35",
@@ -69,22 +118,40 @@
           ],
           "answer": 1,
           "skill": "Statistik",
+          "skill_en": "Statistics",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "investigator",
           "correct": "150 ÷ 5 = 30.",
+          "correct_en": "150 ÷ 5 = 30.",
           "wrong": [
             "Hampir.",
             "30 — tepat!",
             "Terlalu tinggi.",
             "Terlalu tinggi."
           ],
-          "clue": "Rata-rata 30."
+          "wrong_en": [
+            "Close.",
+            "30 - correct!",
+            "Too high.",
+            "Too high."
+          ],
+          "clue": "Rata-rata 30.",
+          "clue_en": "Mean 30."
         },
         {
           "id": "q1-4",
           "scene": "Jadwal rapat bentrok.",
+          "scene_en": "Conflicting meeting schedules create a timing clue.",
           "q": "KPK dari 4 dan 6?",
+          "q_en": "LCM of 4 and 6?",
           "choices": [
+            "8",
+            "10",
+            "12",
+            "24"
+          ],
+          "choices_en": [
             "8",
             "10",
             "12",
@@ -92,22 +159,40 @@
           ],
           "answer": 2,
           "skill": "Logika",
+          "skill_en": "Logic",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "codebreaker",
           "correct": "KPK(4, 6) = 12.",
+          "correct_en": "LCM(4, 6) = 12.",
           "wrong": [
             "Hampir.",
             "Hampir.",
             "12 — tepat!",
             "Itu hasil kali."
           ],
-          "clue": "KPK = 12."
+          "wrong_en": [
+            "Close.",
+            "Close.",
+            "12 - correct!",
+            "That is the product."
+          ],
+          "clue": "KPK = 12.",
+          "clue_en": "LCM = 12."
         },
         {
           "id": "q1-5",
           "scene": "Cek cepat di papan tulis.",
+          "scene_en": "A quick check appears on the whiteboard.",
           "q": "3² + 4² = ?",
+          "q_en": "3² + 4² = ?",
           "choices": [
+            "14",
+            "25",
+            "30",
+            "49"
+          ],
+          "choices_en": [
             "14",
             "25",
             "30",
@@ -115,53 +200,90 @@
           ],
           "answer": 1,
           "skill": "Aritmetika",
+          "skill_en": "Arithmetic",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "speedster",
           "correct": "9 + 16 = 25.",
+          "correct_en": "9 + 16 = 25.",
           "wrong": [
             "Hanya menjumlahkan basis.",
             "25 — tepat!",
             "Hampir.",
             "Itu 7²."
           ],
-          "clue": "Hasil 25."
+          "wrong_en": [
+            "That only adds the bases.",
+            "25 - correct!",
+            "Close.",
+            "That is 7²."
+          ],
+          "clue": "Hasil 25.",
+          "clue_en": "Result 25."
         }
       ]
     },
     {
       "id": "bab-2",
       "title": "Bab 2 — Analisis Lanjutan",
+      "title_en": "Chapter 2 - Advanced Analysis",
       "questions": [
         {
           "id": "q2-1",
           "scene": "Nota pajak di meja.",
+          "scene_en": "A tax note lies on the table.",
           "q": "Pajak 10% dari Rp500.000? (tulis angka saja, contoh: 50000)",
+          "q_en": "Tax of 10% on Rp500.000 (Indonesian rupiah)? (write numbers only, e.g. 50000)",
           "choices": [
             "Rp40.000",
             "Rp50.000",
             "Rp60.000",
             "Rp100.000"
           ],
+          "choices_en": [
+            "Rp40.000 (Indonesian rupiah)",
+            "Rp50.000 (Indonesian rupiah)",
+            "Rp60.000 (Indonesian rupiah)",
+            "Rp100.000 (Indonesian rupiah)"
+          ],
           "answer": 1,
           "skill": "Keuangan",
+          "skill_en": "Finance",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "analyst",
           "correct": "10% × 500.000 = 50.000.",
+          "correct_en": "10% × 500.000 = 50.000.",
           "wrong": [
             "Hampir.",
             "Rp50.000 — tepat!",
             "Hampir.",
             "Terlalu besar."
           ],
+          "wrong_en": [
+            "Close.",
+            "Rp50.000 - correct!",
+            "Close.",
+            "Too high."
+          ],
           "clue": "Pajak Rp50.000.",
+          "clue_en": "Tax: Rp50.000 (Indonesian rupiah).",
           "type_ui": "numeric",
           "answer_value": 50000
         },
         {
           "id": "q2-2",
           "scene": "Pembagian anggaran proyek.",
+          "scene_en": "A project budget split exposes the next lead.",
           "q": "Rasio 3:5 dari total 40 — berapa bagian yang 3?",
+          "q_en": "Ratio 3:5 from a total of 40 - how much is the part for 3?",
           "choices": [
+            "12",
+            "15",
+            "18",
+            "24"
+          ],
+          "choices_en": [
             "12",
             "15",
             "18",
@@ -169,68 +291,122 @@
           ],
           "answer": 1,
           "skill": "Rasio",
+          "skill_en": "Ratios",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "investigator",
           "correct": "3/8 × 40 = 15.",
+          "correct_en": "3/8 × 40 = 15.",
           "wrong": [
             "Hampir.",
             "15 — tepat!",
             "Hampir.",
             "Itu bagian 5."
           ],
-          "clue": "Bagian A = 15."
+          "wrong_en": [
+            "Close.",
+            "15 - correct!",
+            "Close.",
+            "That is the part for 5."
+          ],
+          "clue": "Bagian A = 15.",
+          "clue_en": "Part A = 15."
         },
         {
           "id": "q2-3",
           "scene": "Catatan logika di dossier.",
+          "scene_en": "A logic note is tucked inside the dossier.",
           "q": "Semua A adalah B. x adalah A. Maka?",
+          "q_en": "All A are B. x is A. Therefore?",
           "choices": [
             "x pasti B",
             "x bukan B",
             "tidak tahu",
             "x = A saja"
           ],
+          "choices_en": [
+            "x must be B",
+            "x is not B",
+            "unknown",
+            "x = A only"
+          ],
           "answer": 0,
           "skill": "Logika",
+          "skill_en": "Logic",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "investigator",
           "correct": "Deduksi: x pasti B.",
+          "correct_en": "Deduction: x must be B.",
           "wrong": [
             "x pasti B — tepat!",
             "Kontradiksi.",
             "Bisa disimpulkan.",
             "Lebih dari itu."
           ],
-          "clue": "Kesimpulan: x adalah B."
+          "wrong_en": [
+            "x must be B - correct!",
+            "Contradiction.",
+            "It can be concluded.",
+            "There is more than that."
+          ],
+          "clue": "Kesimpulan: x adalah B.",
+          "clue_en": "Conclusion: x is B."
         },
         {
           "id": "q2-4",
           "scene": "Margin toko.",
+          "scene_en": "A store margin reveals a missing profit figure.",
           "q": "Margin 25% dari modal Rp800.000. Berapa untungnya?",
+          "q_en": "A 25% margin on Rp800.000 (Indonesian rupiah) cost. How much profit?",
           "choices": [
             "Rp100.000",
             "Rp150.000",
             "Rp200.000",
             "Rp250.000"
           ],
+          "choices_en": [
+            "Rp100.000 (Indonesian rupiah)",
+            "Rp150.000 (Indonesian rupiah)",
+            "Rp200.000 (Indonesian rupiah)",
+            "Rp250.000 (Indonesian rupiah)"
+          ],
           "answer": 2,
           "skill": "Keuangan",
+          "skill_en": "Finance",
           "difficulty": "Sedang",
+          "difficulty_en": "Medium",
           "type": "analyst",
           "correct": "25% × 800.000 = 200.000.",
+          "correct_en": "25% × 800.000 = 200.000.",
           "wrong": [
             "Hampir.",
             "Hampir.",
             "Rp200.000 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Untung Rp200.000."
+          "wrong_en": [
+            "Close.",
+            "Close.",
+            "Rp200.000 - correct!",
+            "Too high."
+          ],
+          "clue": "Untung Rp200.000.",
+          "clue_en": "Profit: Rp200.000 (Indonesian rupiah)."
         },
         {
           "id": "q2-5",
           "scene": "Kode faktor di brankas.",
+          "scene_en": "A factor code is scratched onto the safe.",
           "q": "FPB dari 15 dan 25?",
+          "q_en": "GCD of 15 and 25?",
           "choices": [
+            "5",
+            "10",
+            "15",
+            "25"
+          ],
+          "choices_en": [
             "5",
             "10",
             "15",
@@ -238,28 +414,47 @@
           ],
           "answer": 0,
           "skill": "Bilangan",
+          "skill_en": "Numbers",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "codebreaker",
           "correct": "FPB = 5.",
+          "correct_en": "GCD = 5.",
           "wrong": [
             "5 — tepat!",
             "Bukan.",
             "Itu salah satu bilangan.",
             "Itu salah satu bilangan."
           ],
-          "clue": "FPB = 5."
+          "wrong_en": [
+            "5 - correct!",
+            "No.",
+            "That is one of the numbers.",
+            "That is one of the numbers."
+          ],
+          "clue": "FPB = 5.",
+          "clue_en": "GCD = 5."
         }
       ]
     },
     {
       "id": "bab-3",
       "title": "Bab 3 — Data Kantor",
+      "title_en": "Chapter 3 - Office Data",
       "questions": [
         {
           "id": "q3-1",
           "scene": "Spreadsheet karyawan.",
+          "scene_en": "An employee spreadsheet is open on the monitor.",
           "q": "Median dari 4, 8, 10, 12, 20?",
+          "q_en": "Median of 4, 8, 10, 12, 20?",
           "choices": [
+            "8",
+            "10",
+            "12",
+            "14"
+          ],
+          "choices_en": [
             "8",
             "10",
             "12",
@@ -267,22 +462,40 @@
           ],
           "answer": 1,
           "skill": "Statistik",
+          "skill_en": "Statistics",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "analyst",
           "correct": "Nilai tengah = 10.",
+          "correct_en": "The middle value is 10.",
           "wrong": [
             "Bukan.",
             "10 — tepat!",
             "Bukan.",
             "Bukan."
           ],
-          "clue": "Median 10."
+          "wrong_en": [
+            "No.",
+            "10 - correct!",
+            "No.",
+            "No."
+          ],
+          "clue": "Median 10.",
+          "clue_en": "Median 10."
         },
         {
           "id": "q3-2",
           "scene": "Progress report.",
+          "scene_en": "A progress report points to a percentage clue.",
           "q": "45 dari 90 sama dengan berapa persen?",
+          "q_en": "45 out of 90 equals what percent?",
           "choices": [
+            "40%",
+            "45%",
+            "50%",
+            "55%"
+          ],
+          "choices_en": [
             "40%",
             "45%",
             "50%",
@@ -290,68 +503,122 @@
           ],
           "answer": 2,
           "skill": "Persentase",
+          "skill_en": "Percentages",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "speedster",
           "correct": "45/90 = 50%.",
+          "correct_en": "45/90 = 50%.",
           "wrong": [
             "Hampir.",
             "Hampir.",
             "50% — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Progress 50%."
+          "wrong_en": [
+            "Close.",
+            "Close.",
+            "50% - correct!",
+            "Too high."
+          ],
+          "clue": "Progress 50%.",
+          "clue_en": "Progress 50%."
         },
         {
           "id": "q3-3",
           "scene": "Log kehadiran.",
+          "scene_en": "The attendance log shows a suspicious time gap.",
           "q": "Dari pukul 09.20 ke 10.05 berapa menit?",
+          "q_en": "From 09.20 to 10.05, how many minutes?",
           "choices": [
             "35 menit",
             "40 menit",
             "45 menit",
             "50 menit"
           ],
+          "choices_en": [
+            "35 minutes",
+            "40 minutes",
+            "45 minutes",
+            "50 minutes"
+          ],
           "answer": 2,
           "skill": "Waktu",
+          "skill_en": "Time",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "investigator",
           "correct": "45 menit.",
+          "correct_en": "45 minutes.",
           "wrong": [
             "Hampir.",
             "Hampir.",
             "45 — tepat!",
             "Terlalu lama."
           ],
-          "clue": "Selisih 45 menit."
+          "wrong_en": [
+            "Close.",
+            "Close.",
+            "45 - correct!",
+            "Too long."
+          ],
+          "clue": "Selisih 45 menit.",
+          "clue_en": "Difference: 45 minutes."
         },
         {
           "id": "q3-4",
           "scene": "Anggaran departemen Rp12.000.000.",
+          "scene_en": "The department budget is Rp12.000.000 (Indonesian rupiah).",
           "q": "Sudah terpakai 3/4. Berapa sisa?",
+          "q_en": "3/4 has already been spent. How much remains?",
           "choices": [
             "Rp2.000.000",
             "Rp3.000.000",
             "Rp4.000.000",
             "Rp6.000.000"
           ],
+          "choices_en": [
+            "Rp2.000.000 (Indonesian rupiah)",
+            "Rp3.000.000 (Indonesian rupiah)",
+            "Rp4.000.000 (Indonesian rupiah)",
+            "Rp6.000.000 (Indonesian rupiah)"
+          ],
           "answer": 1,
           "skill": "Keuangan",
+          "skill_en": "Finance",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "analyst",
           "correct": "Sisa 1/4 = Rp3.000.000.",
+          "correct_en": "Remaining 1/4 = Rp3.000.000.",
           "wrong": [
             "Hampir.",
             "Rp3.000.000 — tepat!",
             "Itu 1/3.",
             "Itu setengah."
           ],
-          "clue": "Sisa Rp3.000.000."
+          "wrong_en": [
+            "Close.",
+            "Rp3.000.000 - correct!",
+            "That is 1/3.",
+            "That is half."
+          ],
+          "clue": "Sisa Rp3.000.000.",
+          "clue_en": "Remaining: Rp3.000.000 (Indonesian rupiah)."
         },
         {
           "id": "q3-5",
           "scene": "Pola nomor tiket.",
+          "scene_en": "A ticket-number pattern hides in the log.",
           "q": "100, 90, 80, 70, __?",
+          "q_en": "100, 90, 80, 70, __?",
           "choices": [
+            "50",
+            "55",
+            "60",
+            "65"
+          ],
+          "choices_en": [
             "50",
             "55",
             "60",
@@ -359,28 +626,47 @@
           ],
           "answer": 2,
           "skill": "Pola",
+          "skill_en": "Patterns",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "codebreaker",
           "correct": "Polanya −10, jadi 60.",
+          "correct_en": "The pattern is -10, so 60.",
           "wrong": [
             "Bukan −20.",
             "Hampir.",
             "60 — tepat!",
             "Hampir."
           ],
-          "clue": "Suku berikutnya 60."
+          "wrong_en": [
+            "Not -20.",
+            "Close.",
+            "60 - correct!",
+            "Close."
+          ],
+          "clue": "Suku berikutnya 60.",
+          "clue_en": "The next term is 60."
         }
       ]
     },
     {
       "id": "bab-4",
       "title": "Bab 4 — Keputusan Cepat",
+      "title_en": "Chapter 4 - Quick Decisions",
       "questions": [
         {
           "id": "q4-1",
           "scene": "Laporan anggaran acak harus disusun sebelum presentasi.",
+          "scene_en": "A scrambled budget report must be ordered before the presentation.",
           "q": "Urutkan nilai dari terkecil ke terbesar.",
+          "q_en": "Order the values from smallest to largest.",
           "choices": [
+            "12%",
+            "0,25",
+            "1/3",
+            "40%"
+          ],
+          "choices_en": [
             "12%",
             "0,25",
             "1/3",
@@ -388,18 +674,34 @@
           ],
           "answer": 0,
           "skill": "Persentase",
+          "skill_en": "Percentages",
           "difficulty": "Sedang",
+          "difficulty_en": "Medium",
           "type": "analyst",
           "correct": "12% < 0,25 < 1/3 < 40%. Ringkasan siap dikirim.",
+          "correct_en": "12% < 0,25 < 1/3 < 40%. The summary is ready to send.",
           "wrong": [
             "Tidak selalu sama.",
             "Diskon dulu — tepat!",
             "Tidak selalu.",
             "Bisa dihitung."
           ],
+          "wrong_en": [
+            "Convert each value to compare them.",
+            "0,25 comes after 12%.",
+            "1/3 is about 33.3%.",
+            "40% is the largest value."
+          ],
           "clue": "Urutan validasi cocok dengan lampiran CEO.",
+          "clue_en": "The validation order matches the CEO's appendix.",
           "type_ui": "order",
           "items": [
+            "12%",
+            "0,25",
+            "1/3",
+            "40%"
+          ],
+          "items_en": [
             "12%",
             "0,25",
             "1/3",
@@ -415,77 +717,139 @@
         {
           "id": "q4-2",
           "scene": "Estimasi tenaga kerja.",
+          "scene_en": "A workforce estimate needs a fast audit.",
           "q": "3 pekerja selesai 12 hari. 6 pekerja (laju sama) butuh?",
+          "q_en": "3 workers finish in 12 days. How long do 6 workers need at the same rate?",
           "choices": [
             "3 hari",
             "4 hari",
             "6 hari",
             "8 hari"
           ],
+          "choices_en": [
+            "3 days",
+            "4 days",
+            "6 days",
+            "8 days"
+          ],
           "answer": 2,
           "skill": "Rasio",
+          "skill_en": "Ratios",
           "difficulty": "Sedang",
+          "difficulty_en": "Medium",
           "type": "speedster",
           "correct": "3 × 12 = 36; 36 ÷ 6 = 6 hari.",
+          "correct_en": "3 × 12 = 36; 36 ÷ 6 = 6 days.",
           "wrong": [
             "Hampir.",
             "Hampir.",
             "6 hari — tepat!",
             "Terlalu lama."
           ],
-          "clue": "Selesai dalam 6 hari."
+          "wrong_en": [
+            "Close.",
+            "Close.",
+            "6 days - correct!",
+            "Too long."
+          ],
+          "clue": "Selesai dalam 6 hari.",
+          "clue_en": "Finished in 6 days."
         },
         {
           "id": "q4-3",
           "scene": "Catatan inflasi.",
+          "scene_en": "An inflation note marks a hidden increase.",
           "q": "Inflasi 2% dari Rp1.000.000?",
+          "q_en": "Inflation of 2% on Rp1.000.000 (Indonesian rupiah)?",
           "choices": [
             "Rp20.000",
             "Rp10.000",
             "Rp2.000",
             "Rp200.000"
           ],
+          "choices_en": [
+            "Rp20.000 (Indonesian rupiah)",
+            "Rp10.000 (Indonesian rupiah)",
+            "Rp2.000 (Indonesian rupiah)",
+            "Rp200.000 (Indonesian rupiah)"
+          ],
           "answer": 0,
           "skill": "Keuangan",
+          "skill_en": "Finance",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "analyst",
           "correct": "2% × 1.000.000 = 20.000.",
+          "correct_en": "2% × 1.000.000 = 20.000.",
           "wrong": [
             "Rp20.000 — tepat!",
             "Itu 1%.",
             "Itu 0,2%.",
             "Itu 20%."
           ],
-          "clue": "Naik Rp20.000."
+          "wrong_en": [
+            "Rp20.000 - correct!",
+            "That is 1%.",
+            "That is 0.2%.",
+            "That is 20%."
+          ],
+          "clue": "Naik Rp20.000.",
+          "clue_en": "Increase: Rp20.000 (Indonesian rupiah)."
         },
         {
           "id": "q4-4",
           "scene": "Deduksi di ruang interogasi.",
+          "scene_en": "A deduction unfolds in the interrogation room.",
           "q": "Jika hujan maka basah. Tidak basah. Maka?",
+          "q_en": "If it rains, then it gets wet. It is not wet. Therefore?",
           "choices": [
             "Pasti hujan",
             "Pasti tidak hujan",
             "Tidak tahu",
             "Pasti basah"
           ],
+          "choices_en": [
+            "It definitely rains",
+            "It definitely does not rain",
+            "unknown",
+            "It is definitely wet"
+          ],
           "answer": 1,
           "skill": "Logika",
+          "skill_en": "Logic",
           "difficulty": "Sedang",
+          "difficulty_en": "Medium",
           "type": "investigator",
           "correct": "Modus tollens: pasti tidak hujan.",
+          "correct_en": "Modus tollens: it definitely does not rain.",
           "wrong": [
             "Kontradiksi.",
             "Tidak hujan — tepat!",
             "Bisa disimpulkan.",
             "Kontradiksi."
           ],
-          "clue": "Kesimpulan: tidak hujan."
+          "wrong_en": [
+            "Contradiction.",
+            "No rain - correct!",
+            "It can be concluded.",
+            "Contradiction."
+          ],
+          "clue": "Kesimpulan: tidak hujan.",
+          "clue_en": "Conclusion: it does not rain."
         },
         {
           "id": "q4-5",
           "scene": "Nomor berkas perlu dibulatkan.",
+          "scene_en": "A file number must be rounded before the lock accepts it.",
           "q": "2.450 dibulatkan ke ratusan terdekat?",
+          "q_en": "2.450 rounded to the nearest hundred?",
           "choices": [
+            "2.400",
+            "2.500",
+            "2.450",
+            "2.000"
+          ],
+          "choices_en": [
             "2.400",
             "2.500",
             "2.450",
@@ -493,28 +857,47 @@
           ],
           "answer": 1,
           "skill": "Pembulatan",
+          "skill_en": "Rounding",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "codebreaker",
           "correct": "Puluhan 5 → naik menjadi 2.500.",
+          "correct_en": "The tens digit is 5, so round up to 2.500.",
           "wrong": [
             "Ke bawah tidak tepat di sini.",
             "2.500 — tepat!",
             "Belum dibulatkan.",
             "Terlalu kasar."
           ],
-          "clue": "Nilai 2.500."
+          "wrong_en": [
+            "Rounding down is not right here.",
+            "2.500 - correct!",
+            "Not rounded yet.",
+            "Too rough."
+          ],
+          "clue": "Nilai 2.500.",
+          "clue_en": "Value 2.500."
         }
       ]
     },
     {
       "id": "bab-5",
       "title": "Bab 5 — Ukuran & Grafik",
+      "title_en": "Chapter 5 - Measurement & Graphs",
       "questions": [
         {
           "id": "q5-1",
           "scene": "Durasi meeting.",
+          "scene_en": "A meeting duration hides a conversion clue.",
           "q": "1,5 jam = berapa menit?",
+          "q_en": "1.5 hours = how many minutes?",
           "choices": [
+            "60",
+            "75",
+            "90",
+            "120"
+          ],
+          "choices_en": [
             "60",
             "75",
             "90",
@@ -522,22 +905,40 @@
           ],
           "answer": 2,
           "skill": "Pengukuran",
+          "skill_en": "Measurement",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "speedster",
           "correct": "1,5 × 60 = 90.",
+          "correct_en": "1.5 × 60 = 90.",
           "wrong": [
             "Itu 1 jam.",
             "Hampir.",
             "90 — tepat!",
             "Itu 2 jam."
           ],
-          "clue": "90 menit."
+          "wrong_en": [
+            "That is 1 hour.",
+            "Close.",
+            "90 - correct!",
+            "That is 2 hours."
+          ],
+          "clue": "90 menit.",
+          "clue_en": "90 minutes."
         },
         {
           "id": "q5-2",
           "scene": "Paket barang.",
+          "scene_en": "A package label needs to be converted.",
           "q": "2,75 kg = berapa gram?",
+          "q_en": "2.75 kg = how many grams?",
           "choices": [
+            "275",
+            "2.075",
+            "2.750",
+            "27.500"
+          ],
+          "choices_en": [
             "275",
             "2.075",
             "2.750",
@@ -545,22 +946,40 @@
           ],
           "answer": 2,
           "skill": "Pengukuran",
+          "skill_en": "Measurement",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "analyst",
           "correct": "2,75 × 1.000 = 2.750 g.",
+          "correct_en": "2.75 × 1.000 = 2.750 g.",
           "wrong": [
             "Lupa nol.",
             "Hampir.",
             "2.750 — tepat!",
             "Kali 10.000."
           ],
-          "clue": "2.750 gram."
+          "wrong_en": [
+            "Missing a zero.",
+            "Close.",
+            "2.750 - correct!",
+            "Multiplying by 10.000."
+          ],
+          "clue": "2.750 gram.",
+          "clue_en": "2.750 grams."
         },
         {
           "id": "q5-3",
           "scene": "Denah ruang arsip 8 m × 5 m.",
+          "scene_en": "An archive-room plan measures 8 m × 5 m.",
           "q": "Berapa kelilingnya?",
+          "q_en": "What is its perimeter?",
           "choices": [
+            "13 m",
+            "26 m",
+            "40 m",
+            "80 m"
+          ],
+          "choices_en": [
             "13 m",
             "26 m",
             "40 m",
@@ -568,22 +987,40 @@
           ],
           "answer": 1,
           "skill": "Geometri",
+          "skill_en": "Geometry",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "explorer",
           "correct": "2 × (8 + 5) = 26.",
+          "correct_en": "2 × (8 + 5) = 26.",
           "wrong": [
             "Itu jumlah sisi saja.",
             "26 — tepat!",
             "Itu luas.",
             "Terlalu besar."
           ],
-          "clue": "Keliling 26 m."
+          "wrong_en": [
+            "That is only the side sum.",
+            "26 - correct!",
+            "That is area.",
+            "Too high."
+          ],
+          "clue": "Keliling 26 m.",
+          "clue_en": "Perimeter 26 m."
         },
         {
           "id": "q5-4",
           "scene": "Luas lantai yang sama.",
+          "scene_en": "The same floor plan becomes an area clue.",
           "q": "Luas ruang 8 m × 5 m?",
+          "q_en": "Area of a room measuring 8 m × 5 m?",
           "choices": [
+            "13 m²",
+            "26 m²",
+            "40 m²",
+            "80 m²"
+          ],
+          "choices_en": [
             "13 m²",
             "26 m²",
             "40 m²",
@@ -591,22 +1028,40 @@
           ],
           "answer": 2,
           "skill": "Geometri",
+          "skill_en": "Geometry",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "explorer",
           "correct": "8 × 5 = 40.",
+          "correct_en": "8 × 5 = 40.",
           "wrong": [
             "Jumlah.",
             "Keliling.",
             "40 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Luas 40 m²."
+          "wrong_en": [
+            "Sum.",
+            "Perimeter.",
+            "40 - correct!",
+            "Too high."
+          ],
+          "clue": "Luas 40 m².",
+          "clue_en": "Area 40 m²."
         },
         {
           "id": "q5-5",
           "scene": "Grafik proporsi.",
+          "scene_en": "A proportion graph needs its fraction decoded.",
           "q": "0,75 sebagai pecahan?",
+          "q_en": "0.75 as a fraction?",
           "choices": [
+            "1/2",
+            "2/3",
+            "3/4",
+            "4/5"
+          ],
+          "choices_en": [
             "1/2",
             "2/3",
             "3/4",
@@ -614,28 +1069,47 @@
           ],
           "answer": 2,
           "skill": "Desimal",
+          "skill_en": "Decimals",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "analyst",
           "correct": "0,75 = 3/4.",
+          "correct_en": "0.75 = 3/4.",
           "wrong": [
             "Itu 0,5.",
             "≈0,67.",
             "3/4 — tepat!",
             "Itu 0,8."
           ],
-          "clue": "Pecahan 3/4."
+          "wrong_en": [
+            "That is 0.5.",
+            "≈0.67.",
+            "3/4 - correct!",
+            "That is 0.8."
+          ],
+          "clue": "Pecahan 3/4.",
+          "clue_en": "Fraction 3/4."
         }
       ]
     },
     {
       "id": "bab-6",
       "title": "Bab 6 — Closing Case",
+      "title_en": "Chapter 6 - Closing Case",
       "questions": [
         {
           "id": "q6-1",
           "scene": "Hitung ROI proyek.",
+          "scene_en": "The project ROI has to be audited.",
           "q": "Untung Rp50 dari modal Rp200. Persentase ROI?",
+          "q_en": "Profit Rp50 from Rp200 capital. What is the ROI percentage?",
           "choices": [
+            "20%",
+            "25%",
+            "30%",
+            "50%"
+          ],
+          "choices_en": [
             "20%",
             "25%",
             "30%",
@@ -643,45 +1117,81 @@
           ],
           "answer": 1,
           "skill": "Keuangan",
+          "skill_en": "Finance",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "analyst",
           "correct": "50/200 = 25%.",
+          "correct_en": "50/200 = 25%.",
           "wrong": [
             "Hampir.",
             "25% — tepat!",
             "Hampir.",
             "Salah hitung."
           ],
-          "clue": "ROI 25%."
+          "wrong_en": [
+            "Close.",
+            "25% - correct!",
+            "Close.",
+            "Miscalculated."
+          ],
+          "clue": "ROI 25%.",
+          "clue_en": "ROI 25%."
         },
         {
           "id": "q6-2",
           "scene": "Total cicilan.",
+          "scene_en": "Installment totals expose the next code.",
           "q": "4 × Rp250.000 = ?",
+          "q_en": "4 × Rp250.000 (Indonesian rupiah) = ?",
           "choices": [
             "Rp750.000",
             "Rp900.000",
             "Rp1.000.000",
             "Rp1.250.000"
           ],
+          "choices_en": [
+            "Rp750.000 (Indonesian rupiah)",
+            "Rp900.000 (Indonesian rupiah)",
+            "Rp1.000.000 (Indonesian rupiah)",
+            "Rp1.250.000 (Indonesian rupiah)"
+          ],
           "answer": 2,
           "skill": "Keuangan",
+          "skill_en": "Finance",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "speedster",
           "correct": "4 × 250.000 = 1.000.000.",
+          "correct_en": "4 × 250.000 = 1.000.000.",
           "wrong": [
             "Hampir.",
             "Hampir.",
             "Rp1.000.000 — tepat!",
             "Terlalu besar."
           ],
-          "clue": "Total Rp1.000.000."
+          "wrong_en": [
+            "Close.",
+            "Close.",
+            "Rp1.000.000 - correct!",
+            "Too high."
+          ],
+          "clue": "Total Rp1.000.000.",
+          "clue_en": "Total: Rp1.000.000 (Indonesian rupiah)."
         },
         {
           "id": "q6-3",
           "scene": "Filter bilangan di terminal.",
+          "scene_en": "A number filter runs in the terminal.",
           "q": "Manakah bilangan prima?",
+          "q_en": "Which number is prime?",
           "choices": [
+            "21",
+            "27",
+            "29",
+            "39"
+          ],
+          "choices_en": [
             "21",
             "27",
             "29",
@@ -689,22 +1199,40 @@
           ],
           "answer": 2,
           "skill": "Bilangan",
+          "skill_en": "Numbers",
           "difficulty": "Sedang",
+          "difficulty_en": "Medium",
           "type": "codebreaker",
           "correct": "29 hanya punya faktor 1 dan 29.",
+          "correct_en": "29 has only the factors 1 and 29.",
           "wrong": [
             "21 = 3 × 7.",
             "27 = 3 × 9.",
             "29 — tepat!",
             "39 = 3 × 13."
           ],
-          "clue": "Prima 29."
+          "wrong_en": [
+            "21 = 3 × 7.",
+            "27 = 3 × 9.",
+            "29 - correct!",
+            "39 = 3 × 13."
+          ],
+          "clue": "Prima 29.",
+          "clue_en": "Prime 29."
         },
         {
           "id": "q6-4",
           "scene": "Kode gerbang terakhir.",
+          "scene_en": "The final gate code requires order of operations.",
           "q": "Nilai dari 5² + 3 × 4?",
+          "q_en": "Value of 5² + 3 × 4?",
           "choices": [
+            "32",
+            "37",
+            "44",
+            "112"
+          ],
+          "choices_en": [
             "32",
             "37",
             "44",
@@ -712,39 +1240,67 @@
           ],
           "answer": 1,
           "skill": "Urutan Operasi",
+          "skill_en": "Order of Operations",
           "difficulty": "Sedang",
+          "difficulty_en": "Medium",
           "type": "codebreaker",
           "correct": "25 + 12 = 37.",
+          "correct_en": "25 + 12 = 37.",
           "wrong": [
             "Hampir.",
             "37 — tepat!",
             "Urutan operasi salah.",
             "Mengabaikan urutan."
           ],
-          "clue": "Kode gerbang 37."
+          "wrong_en": [
+            "Close.",
+            "37 - correct!",
+            "Wrong order of operations.",
+            "Ignoring the order of operations."
+          ],
+          "clue": "Kode gerbang 37.",
+          "clue_en": "Gate code 37."
         },
         {
           "id": "q6-5",
           "scene": "Ringkasan audit akhir.",
+          "scene_en": "The final audit summary needs one last mean.",
           "q": "Rata-rata dari 6, 8, 7, 9, 10?",
+          "q_en": "Mean of 6, 8, 7, 9, 10?",
           "choices": [
             "7",
             "8",
             "8,5",
             "9"
           ],
+          "choices_en": [
+            "7",
+            "8",
+            "8.5",
+            "9"
+          ],
           "answer": 1,
           "skill": "Statistik",
+          "skill_en": "Statistics",
           "difficulty": "Mudah",
+          "difficulty_en": "Easy",
           "type": "investigator",
           "correct": "40 ÷ 5 = 8. Audit selesai!",
+          "correct_en": "40 ÷ 5 = 8. Audit complete!",
           "wrong": [
             "Hampir.",
             "8 — tepat!",
             "Bukan.",
             "Terlalu tinggi."
           ],
-          "clue": "Rata-rata akhir 8."
+          "wrong_en": [
+            "Close.",
+            "8 - correct!",
+            "No.",
+            "Too high."
+          ],
+          "clue": "Rata-rata akhir 8.",
+          "clue_en": "Final mean 8."
         }
       ]
     }
