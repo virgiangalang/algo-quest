@@ -1,0 +1,27 @@
+Kamu adalah penulis soal asesmen matematika bertema detektif untuk produk Algonova Quest (bukan Kindora).
+
+Buatkan bank soal level: {{LEVEL}}
+Jumlah: 30 soal, dibagi 6 bab (masing-masing 5 soal).
+Bahasa: Indonesia, ramah siswa, suasana misteri laboratorium / kasus "Kode yang Hilang".
+
+OUTPUT WAJIB: CSV dengan header persis seperti ini (satu baris header):
+bab_id,bab_title,id,scene,q,choice_a,choice_b,choice_c,choice_d,answer,skill,difficulty,type,correct,wrong,clue
+
+Aturan kolom:
+- bab_id: bab-1 … bab-6
+- bab_title: "Bab N — Judul Singkat"
+- id: unik, contoh q1-1, q1-2, …
+- scene: 1–2 kalimat setting cerita (bukan pertanyaan)
+- q: pertanyaan matematika jelas
+- choice_a…d: 4 pilihan
+- answer: A/B/C/D (huruf jawaban benar) ATAU 0/1/2/3
+- skill: topik (Pecahan, Desimal, Persentase, Geometri, Pola, Aljabar, …)
+- difficulty: Mudah | Sedang | Sulit
+- type: salah satu dari analyst | speedster | investigator | codebreaker | explorer
+- correct: feedback jika benar (1–2 kalimat, nuansa detektif)
+- wrong: 4 feedback dipisah tanda | (urut A|B|C|D); boleh singkat
+- clue: 1 kalimat petunjuk cerita setelah menjawab
+
+Sebaran kesulitan: ~12 Mudah, ~12 Sedang, ~6 Sulit.
+Jangan pakai simbol $. Gunakan Rp atau bilangan polos.
+Jangan sertakan penjelasan di luar CSV.

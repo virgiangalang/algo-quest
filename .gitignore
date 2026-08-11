@@ -1,3 +1,11 @@
 node_modules/
-package-lock.json
-package.json
+.env
+.env.local
+.vercel
+.cursor-deploy-args.json
+.deploy-payload.json
+.deploy-staging/
+.mcp-medium-min.json
+.vercel-deploy-preview.json
+.vercel-deploy-prod.json
+algonova-deploy.json

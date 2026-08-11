@@ -1,0 +1,33 @@
+{
+  "level": "sd-kelas-4-6",
+  "label": "SD Kelas 4–6",
+  "ageRange": "10–12 tahun",
+  "curriculum": "Kurikulum Merdeka",
+  "caseTitle": "Kode yang Hilang",
+  "chapters": [
+    {
+      "id": "bab-1",
+      "title": "Bab 1 — Insiden di Lab",
+      "questions": [
+        {
+          "id": "q1-1",
+          "scene": "Pintu laboratorium terkunci rapat. Sebuah keypad menyala di sampingnya.",
+          "q": "Sebuah kotak berisi 240 microchip. Sebanyak 3/8 di antaranya berwarna biru. Berapa jumlah chip biru?",
+          "choices": ["80", "90", "120", "150"],
+          "answer": 1,
+          "skill": "Pecahan",
+          "difficulty": "Mudah",
+          "type": "analyst",
+          "correct": "AKSES DIBERIKAN. 3/8 × 240 = 90.",
+          "wrong": [
+            "Itu 1/3 dari 240, bukan 3/8.",
+            "Cek kembali: 1/8 dari 240 = 30, jadi 3/8 = 90.",
+            "Itu setengah dari 240.",
+            "Terlalu besar. Mulai dari 1/8."
+          ],
+          "clue": "Jejak kaki berlumpur ditemukan di dekat meja Prof. Nova."
+        }
+      ]
+    }
+  ]
+}

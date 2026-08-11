@@ -163,6 +163,54 @@ input{font:inherit}
 .diag-step{font-size:12px;color:var(--plum-3);font-weight:700;letter-spacing:.06em}
 
 /* ─────────────────────────────────────────────
+   PHASE: CASE INTRO
+───────────────────────────────────────────── */
+#phase-case-intro{display:none}
+.case-intro-wrap{
+  padding:48px 40px;position:relative;overflow:hidden;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(107,63,160,.12),transparent 45%),
+    linear-gradient(165deg,#f7f4ee 0%,#efe8f6 55%,#e8e0d6 100%);
+}
+.case-intro-wrap .eyebrow{color:var(--plum-3)}
+.case-intro-wrap h2{
+  font-family:Georgia,serif;font-size:36px;letter-spacing:-.6px;
+  margin:10px 0 12px;max-width:640px;line-height:1.1;
+}
+.case-intro-lead{color:#665f68;max-width:560px;line-height:1.7;font-size:15px;margin-bottom:22px}
+.case-intro-meta{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;
+  max-width:640px;margin-bottom:26px;
+}
+.case-intro-box{
+  background:#fff;border:1px solid #d9d0e4;border-radius:10px;padding:14px 14px 12px;
+}
+.case-intro-box .small-label{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8b828d}
+.case-intro-box .big-label{font-size:18px;font-weight:760;margin-top:4px;color:var(--plum)}
+.case-intro-stamp{
+  display:inline-block;border:2px solid var(--plum);color:var(--plum);
+  font-weight:800;letter-spacing:.12em;font-size:12px;padding:8px 12px;
+  transform:rotate(-4deg);margin-bottom:18px;background:rgba(255,255,255,.7);
+}
+.case-intro-error{
+  display:none;margin:0 0 16px;padding:12px 14px;border-radius:8px;
+  background:var(--bad-bg);border:1px solid #e2bfc5;border-left:3px solid var(--bad);
+  color:#6d303a;font-size:13px;line-height:1.5;font-family:Inter,ui-sans-serif,system-ui,sans-serif;
+}
+.case-intro-error.show{display:block}
+.case-intro-dev{
+  display:none;margin:0 0 16px;padding:10px 12px;border-radius:8px;
+  background:#fff6e8;border:1px solid #e6d0a8;color:#7a5a20;font-size:12px;
+  font-family:Inter,ui-sans-serif,system-ui,sans-serif;
+}
+.case-intro-dev.show{display:block}
+@media(max-width:720px){
+  .case-intro-wrap{padding:32px 22px}
+  .case-intro-wrap h2{font-size:28px}
+  .case-intro-meta{grid-template-columns:1fr}
+}
+
+/* ─────────────────────────────────────────────
    PHASE: GAME
 ───────────────────────────────────────────── */
 #phase-game{display:none}
@@ -432,6 +480,7 @@ input{font:inherit}
   body{background:#fff!important;min-height:auto}
   .app{padding:0!important;max-width:none}
   .topbar,.cert-actions,.footer{display:none!important}
+  #phase-login,#phase-diagnostic,#phase-case-intro,#phase-game,#phase-result{display:none!important}
   #phase-certificate{display:block!important}
   .cert-page{border:none;border-radius:0;max-width:none;box-shadow:none}
   .cert-border{margin:16px;border:2px solid var(--plum)}
@@ -517,6 +566,42 @@ input{font:inherit}
         <div class="actions">
           <button class="btn-next" id="diag-next-btn" onclick="nextDiagQuestion()">Lanjut →</button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       PHASE 1b: CASE INTRO
+  ════════════════════════════════════════ -->
+  <div id="phase-case-intro">
+    <div class="card">
+      <div class="case-intro-wrap">
+        <div class="case-intro-stamp">BERKAS DIBUKA</div>
+        <div class="eyebrow" id="intro-eyebrow">Kalibrasi selesai · Kasus siap</div>
+        <h2 id="intro-title">Kode yang Hilang</h2>
+        <p class="case-intro-lead" id="intro-lead">
+          Chip AI eksperimental milik Profesor Nova menghilang dari laboratorium.
+          Enam bab petunjuk menunggu. Pecahkan setiap tantangan matematika untuk membuka bukti.
+        </p>
+        <div class="case-intro-error" id="intro-error"></div>
+        <div class="case-intro-dev" id="intro-dev">Mode DEV FALLBACK: bank soal production belum terbaca. Perbaiki path JSON / upload di admin.</div>
+        <div class="case-intro-meta">
+          <div class="case-intro-box">
+            <div class="small-label">Level kasus</div>
+            <div class="big-label" id="intro-level">—</div>
+          </div>
+          <div class="case-intro-box">
+            <div class="small-label">Skor kalibrasi</div>
+            <div class="big-label" id="intro-diag">—</div>
+          </div>
+          <div class="case-intro-box">
+            <div class="small-label">Jumlah misi</div>
+            <div class="big-label" id="intro-count">—</div>
+          </div>
+        </div>
+        <button class="btn-primary" id="btn-start-case" onclick="enterGame()" disabled>
+          Mulai investigasi →
+        </button>
       </div>
     </div>
   </div>
@@ -692,11 +777,15 @@ async function appsScriptPost(payload) {
 
 /* ─── STATE ─── */
 let STATE = {
+  phase: "login",
   username: "",
   studentName: "",
   age: null,
   level: "sd-kelas-4-6",
   questions: [],
+  caseData: null,
+  questionSource: "",
+  usedFallback: false,
   qIndex: 0,
   correct: 0,
   xp: 0,
@@ -711,16 +800,28 @@ let STATE = {
 };
 
 /* ─── UTILS ─── */
+const PHASES = ["login","diagnostic","case-intro","game","result","certificate"];
+
 function showPhase(name) {
-  ["login","diagnostic","game","result","certificate"].forEach(p => {
+  if (name === "login" && STATE.phase && STATE.phase !== "login") {
+    console.info("[algo] showPhase(login) dipanggil dari", STATE.phase);
+  }
+  PHASES.forEach(p => {
     const el = document.getElementById(`phase-${p}`);
+    if (!el) return;
     el.style.display = "none";
     el.classList.remove("phase-enter");
   });
   const active = document.getElementById(`phase-${name}`);
+  if (!active) {
+    console.error("[algo] phase tidak ditemukan:", name);
+    return;
+  }
   active.style.display = "block";
   active.classList.add("phase-enter");
+  STATE.phase = name;
   window.scrollTo({ top: 0, behavior: "smooth" });
+  console.info("[algo] phase →", name);
 }
 
 function setTopbarBadge(text) {
@@ -884,19 +985,112 @@ function nextDiagQuestion() {
 }
 
 async function finishDiagnostic() {
-  // Adjust level berdasarkan skor diagnostic
+  const baseLevel = STATE.level;
   STATE.level = adjustLevel(STATE.level, STATE.diagCorrect, STATE.diagQuestions.length);
-  // Load soal utama
-  const data = await loadQuestions(STATE.level);
-  STATE.questions = flattenQuestions(data);
+  console.info("[algo] diagnostic done", {
+    correct: STATE.diagCorrect,
+    total: STATE.diagQuestions.length,
+    baseLevel,
+    adjustedLevel: STATE.level,
+  });
+
   STATE.qIndex = 0;
   STATE.correct = 0;
   STATE.xp = 0;
   STATE.clues = 0;
   STATE.typeScores = { analyst:0, speedster:0, investigator:0, codebreaker:0, explorer:0 };
   STATE.skillScores = {};
+  STATE.caseData = null;
+  STATE.questions = [];
 
-  setupChapters(data);
+  showPhase("case-intro");
+  populateCaseIntroPending();
+
+  const errEl = document.getElementById("intro-error");
+  const devEl = document.getElementById("intro-dev");
+  const startBtn = document.getElementById("btn-start-case");
+  errEl.className = "case-intro-error";
+  errEl.textContent = "";
+  devEl.className = "case-intro-dev";
+  startBtn.disabled = true;
+  startBtn.textContent = "Memuat berkas kasus…";
+
+  try {
+    const loaded = await loadQuestions(STATE.level);
+    const data = loaded.data;
+    const check = validateQuestionBank(data);
+    STATE.caseData = data;
+    STATE.questions = flattenQuestions(data);
+    STATE.questionSource = loaded.source;
+    STATE.usedFallback = !!loaded.usedFallback;
+
+    populateCaseIntroReady(data, check);
+
+    if (loaded.usedFallback) {
+      devEl.classList.add("show");
+    }
+
+    if (!check.ok && !loaded.usedFallback) {
+      errEl.textContent = check.message;
+      errEl.classList.add("show");
+      startBtn.disabled = true;
+      startBtn.textContent = "Bank soal belum lengkap";
+      console.warn("[algo] bank terlalu kecil", check);
+      return;
+    }
+
+    setupChapters(data);
+    startBtn.disabled = false;
+    startBtn.textContent = "Mulai investigasi →";
+    setTopbarBadge((LEVEL_LABELS[STATE.level] || STATE.level) + " · " + STATE.questions.length + " misi");
+  } catch (e) {
+    console.error("[algo] finishDiagnostic load failed", e);
+    errEl.innerHTML =
+      `<b>Gagal memuat bank soal.</b> ${e.message || e}<br>` +
+      `Coba refresh, atau admin upload ulang di <a href="/admin.html">/admin.html</a>.`;
+    errEl.classList.add("show");
+    document.getElementById("intro-count").textContent = "—";
+    startBtn.disabled = true;
+    startBtn.textContent = "Berkas kasus tidak tersedia";
+  }
+}
+
+function populateCaseIntroPending() {
+  const label = (typeof LEVEL_LABELS !== "undefined" && LEVEL_LABELS[STATE.level])
+    ? LEVEL_LABELS[STATE.level]
+    : STATE.level;
+  document.getElementById("intro-eyebrow").textContent = "Kalibrasi selesai · Menyiapkan berkas";
+  document.getElementById("intro-title").textContent = "Membuka berkas kasus…";
+  document.getElementById("intro-lead").textContent =
+    "Hasil diagnostic sedang dipakai untuk menyesuaikan tingkat kesulitan investigasi.";
+  document.getElementById("intro-level").textContent = label;
+  document.getElementById("intro-diag").textContent =
+    `${STATE.diagCorrect}/${STATE.diagQuestions.length}`;
+  document.getElementById("intro-count").textContent = "…";
+}
+
+function populateCaseIntroReady(data, check) {
+  const label = (typeof LEVEL_LABELS !== "undefined" && LEVEL_LABELS[STATE.level])
+    ? LEVEL_LABELS[STATE.level]
+    : STATE.level;
+  document.getElementById("intro-eyebrow").textContent = "Kalibrasi selesai · Kasus siap";
+  document.getElementById("intro-title").textContent = data.caseTitle || "Kode yang Hilang";
+  document.getElementById("intro-lead").textContent =
+    `Chip AI eksperimental milik Profesor Nova menghilang. ` +
+    `Kamu akan menelusuri ${(data.chapters || []).length} bab bukti ` +
+    `(${check.count} misi matematika) pada level ${label}.`;
+  document.getElementById("intro-level").textContent = label;
+  document.getElementById("intro-diag").textContent =
+    `${STATE.diagCorrect}/${STATE.diagQuestions.length}`;
+  document.getElementById("intro-count").textContent = String(check.count);
+}
+
+function enterGame() {
+  if (!STATE.questions || !STATE.questions.length) {
+    console.warn("[algo] enterGame tanpa questions");
+    return;
+  }
+  // Jangan pernah kembali ke login dari sini
   showPhase("game");
   renderQuestion();
 }

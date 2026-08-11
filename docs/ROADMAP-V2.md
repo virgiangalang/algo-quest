@@ -1,9 +1,9 @@
 # Algonova Quest — ROADMAP V2
 
-> **Status:** PLAN ONLY — belum eksekusi kode fitur.  
+> **Status:** Part 0 **DONE** (flow + case-intro + admin upload). Part 1–6 menunggu.  
 > Brand tetap **Algonova** (ungu dossier/misteri).  
 > Yang diadopsi dari Kindora Trial = **fitur & pola UX**, bukan warna/brand Kindora.  
-> Dokumen ini = source of truth. Eksekusi **per part** setelah Part 0 + §8 dikonfirmasi.
+> Dokumen ini = source of truth. Eksekusi **per part**.
 
 **Repo kerja saat ini:** `kindoradeveloper/math-lesson` (branch `cursor/algonova-math-polish-1a7d`).  
 **Live product:** `virgiangalang/algo-quest` → https://algonova-quest.vercel.app/ (push agent terbatas — sync manual / grant access).
@@ -99,14 +99,15 @@ LOGIN (Sheet VALID/USED)
 **Tujuan:** setelah 5 soal diagnostic, masuk kasus penuh — tidak “balik ke contoh HTML”.
 
 Checklist:
-- [ ] Audit path JSON di production Vercel (`public/questions/` vs Output Directory)
-- [ ] Buat `resolveQuestionPath()` yang tahan root `/` dan base path
-- [ ] Error UI jelas jika JSON gagal (bukan silent fallback ke preview-like bank)
-- [ ] Hapus / batasi FALLBACK hanya untuk `localhost` + banner “DEV FALLBACK”
-- [ ] Jangan pernah `showPhase('login')` kecuali logout/reset
-- [ ] Tambah phase `case-intro` antara diagnostic → game
-- [ ] Assert `STATE.questions.length >= 20` sebelum masuk game
-- [ ] Log ringan `console.info('[algo]', …)` untuk debug Vercel
+- [x] Audit path JSON di production Vercel (`public/questions/` vs Output Directory)
+- [x] Buat `questionPathCandidates()` + `/api/questions` path-safe
+- [x] Error UI jelas di case-intro jika JSON gagal (bukan silent fallback ke preview-like bank)
+- [x] FALLBACK hanya localhost + banner DEV FALLBACK
+- [x] Phase list eksplisit; login tidak dipakai sebagai error sink
+- [x] Phase `case-intro` antara diagnostic → game
+- [x] `validateQuestionBank` min 20 soal sebelum enable Mulai
+- [x] Log `console.info('[algo]', …)`
+- [x] **Bonus:** Admin `/admin.html` + upload CSV/JSON + panduan `docs/PANDUAN-SOAL.md`
 
 **Done when:** login → diagnostic 5 → case intro → game soal 1 bab 1 dari JSON penuh (~30 soal), tanpa konten mirip preview.
 

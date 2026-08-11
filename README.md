@@ -1,10 +1,11 @@
 # Algonova Math — Misteri Matematika
 
 Asesmen matematika berbasis cerita detektif untuk murid **Algonova**.  
-Flow: Login → Diagnostic → Game → Result (skill bars) → Certificate.
+Flow: Login → Diagnostic → **Case Intro** → Game → Result → Certificate.
 
-Arsitektur lengkap: [MASTERPLAN.md](./MASTERPLAN.md)  
-Acuan visual: [docs/reference/algonova-preview.html](./docs/reference/algonova-preview.html)
+Arsitektur: [MASTERPLAN.md](./MASTERPLAN.md) · Roadmap V2: [docs/ROADMAP-V2.md](./docs/ROADMAP-V2.md)  
+Panduan buat soal (non-teknis): [docs/PANDUAN-SOAL.md](./docs/PANDUAN-SOAL.md)  
+Admin upload soal: [`/admin.html`](./admin.html)
 
 ---
 
@@ -18,20 +19,38 @@ python3 -m http.server 8080
 
 Buka [http://localhost:8080](http://localhost:8080)
 
-`devMode: true` (default) — login dengan username + nama apa saja, tanpa Google Sheet.
+Untuk **admin API** (login/upload), pakai `vercel dev` (butuh Vercel CLI + env `ADMIN_PASSWORD`).
 
 ---
 
-## Deploy ke GitHub Pages
+## Admin soal (CSV / JSON)
 
-1. Pastikan semua file ada di root branch `main` (`index.html` di root, bukan di subfolder `docs/` untuk hosting).
-2. Repo **Settings → Pages**
-3. **Build and deployment → Source:** Deploy from a branch
-4. Branch: **`main`** · Folder: **`/ (root)`**
-5. Save → tunggu 1–2 menit
-6. URL tipikal: `https://kindoradeveloper.github.io/math-lesson/`
+1. Set di Vercel → Environment Variables: `ADMIN_PASSWORD` = password admin
+2. (Opsional) `BLOB_READ_WRITE_TOKEN` agar publish langsung live
+3. (Opsional) `GITHUB_TOKEN` + `GITHUB_REPO` agar commit otomatis ke `public/questions/`
+4. Buka `/admin.html` → login → upload template CSV/JSON
+5. Template: `public/templates/` · Panduan: `docs/PANDUAN-SOAL.md`
 
-### Setelah Pages live (produksi)
+Lihat juga [`.env.example`](./.env.example).
+
+---
+
+## Deploy ke GitHub Pages / Vercel
+
+### Vercel (disarankan)
+
+- Framework: **Other**
+- Output Directory: **`.`** (bukan `public`)
+- Root Directory: kosong
+- Env: `ADMIN_PASSWORD` (wajib untuk admin)
+
+### GitHub Pages
+
+1. Pastikan `index.html` di root branch `main`
+2. Repo **Settings → Pages** → Deploy from branch → `main` / `(root)`
+3. Catatan: API `/api/*` **tidak** jalan di Pages — admin publish butuh Vercel
+
+### Setelah live (produksi auth siswa)
 
 Di `index.html`:
 
@@ -42,17 +61,17 @@ window.ALGONOVA_CONFIG = {
 };
 ```
 
-Commit + push lagi ke `main`. Setup Sheet: [google-apps-script/SETUP.md](./google-apps-script/SETUP.md).
+Setup Sheet: [google-apps-script/SETUP.md](./google-apps-script/SETUP.md).
 
-### Checklist Pages
+### Checklist
 
 - [ ] `index.html` terbuka tanpa 404
-- [ ] `public/questions/*.json` ter-load (cek Network)
-- [ ] `src/lib/*.js` ter-load
-- [ ] Login → Diagnostic jalan di `devMode`
-- [ ] Setelah `devMode: false`, validate/submit ke Apps Script OK
+- [ ] Setelah diagnostic → **case intro** (bukan balik ke login / contoh HTML)
+- [ ] `public/questions/*.json` atau `/api/questions?level=` = 200, jumlah misi ~30
+- [ ] `/admin.html` login dengan `ADMIN_PASSWORD`
+- [ ] Login siswa → Diagnostic jalan
 
-> Catatan: file di `docs/reference/` hanya acuan desain untuk agent/developer, bukan entry Pages.
+> File di `docs/reference/` hanya acuan desain, bukan entry hosting.
 
 ---
 

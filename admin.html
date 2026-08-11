@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin Soal — Algonova Quest</title>
+<style>
+:root{
+  --ink:#17141d;--paper:#f7f4ee;--plum:#4b2b68;--plum-3:#8b5aac;
+  --line:#d9d1c5;--muted:#746d78;--good:#226a4b;--bad:#9e3849;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Georgia,"Times New Roman",serif;
+  background:linear-gradient(160deg,#ebe6de,#d5cfc4);
+  color:var(--ink);min-height:100vh;padding:28px 18px 48px;
+}
+.wrap{max-width:920px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.mark{
+  width:40px;height:40px;border-radius:10px;background:var(--plum);color:#fff;
+  display:grid;place-items:center;font-size:22px;box-shadow:0 3px 0 #311b47;
+}
+h1{font-size:28px;letter-spacing:-.4px}
+.sub{font-family:system-ui,sans-serif;color:var(--muted);font-size:14px;margin-top:4px}
+.card{
+  background:var(--paper);border:1px solid #cfc7bb;border-radius:14px;
+  padding:28px;box-shadow:0 16px 40px rgba(40,30,50,.1);margin-bottom:16px;
+}
+label{display:block;font-family:system-ui,sans-serif;font-size:12px;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;color:#5b5260;margin:0 0 6px}
+input,select,textarea,button{font:inherit}
+input[type=password],input[type=file],select,textarea{
+  width:100%;padding:11px 12px;border:1.5px solid #d5ccc0;border-radius:8px;
+  background:#fff;font-family:system-ui,sans-serif;font-size:15px;
+}
+textarea{min-height:120px;font-family:ui-monospace,monospace;font-size:12px}
+.btn{
+  border:0;border-radius:8px;background:#4d2e61;color:#fff;font-family:system-ui,sans-serif;
+  font-weight:740;padding:12px 18px;cursor:pointer;box-shadow:0 3px 0 #321e40;
+}
+.btn:hover{background:#5b3772}
+.btn.secondary{background:#fff;color:var(--plum);border:1.5px solid #c9bdd4;box-shadow:none}
+.btn:disabled{opacity:.45;pointer-events:none}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;align-items:center}
+.msg{font-family:system-ui,sans-serif;font-size:13px;margin-top:12px;padding:10px 12px;border-radius:8px;display:none}
+.msg.show{display:block}
+.msg.ok{background:#edf7f1;border:1px solid #bcd9ca;color:#244c3a}
+.msg.err{background:#fbf0f2;border:1px solid #e2bfc5;color:#6d303a}
+.msg.info{background:#f3edf9;border:1px solid #dccfee;color:#4b2b68}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:720px){.grid{grid-template-columns:1fr}}
+.links{font-family:system-ui,sans-serif;font-size:13px;line-height:1.7}
+.links a{color:var(--plum)}
+.hidden{display:none!important}
+.stat{font-family:system-ui,sans-serif;font-size:13px;color:var(--muted)}
+.preview{
+  font-family:system-ui,sans-serif;font-size:12px;background:#23202a;color:#f5f1f7;
+  border-radius:10px;padding:14px;max-height:280px;overflow:auto;white-space:pre-wrap;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <div class="mark">A</div>
+    <div>
+      <h1>Admin Soal</h1>
+      <div class="sub">Algonova Quest · upload CSV / JSON · panduan non-teknis tersedia</div>
+    </div>
+  </div>
+
+  <div class="card" id="login-card">
+    <label for="password">Password admin</label>
+    <input type="password" id="password" placeholder="Password dari Vercel env ADMIN_PASSWORD" autocomplete="current-password">
+    <div class="row">
+      <button class="btn" id="btn-login" type="button">Masuk</button>
+      <a class="links" href="/docs/PANDUAN-SOAL.md" target="_blank" rel="noopener">Buka panduan →</a>
+    </div>
+    <div class="msg" id="login-msg"></div>
+  </div>
+
+  <div class="hidden" id="dash">
+    <div class="card">
+      <div class="row" style="justify-content:space-between;margin-top:0">
+        <div>
+          <strong>Dashboard upload</strong>
+          <div class="stat">Sesi aktif ±12 jam · <button class="btn secondary" id="btn-logout" type="button" style="padding:6px 10px;font-size:12px">Keluar</button></div>
+        </div>
+      </div>
+
+      <div class="grid" style="margin-top:18px">
+        <div>
+          <label for="level">Level soal</label>
+          <select id="level">
+            <option value="sd-kelas-1-3">SD Kelas 1–3</option>
+            <option value="sd-kelas-4-6" selected>SD Kelas 4–6</option>
+            <option value="smp">SMP</option>
+            <option value="sma">SMA</option>
+            <option value="dewasa">Dewasa</option>
+          </select>
+        </div>
+        <div>
+          <label for="caseTitle">Judul kasus (opsional)</label>
+          <input id="caseTitle" type="text" placeholder="Kode yang Hilang" style="font-family:system-ui,sans-serif">
+        </div>
+      </div>
+
+      <div style="margin-top:16px">
+        <label for="file">Upload file (.csv atau .json)</label>
+        <input type="file" id="file" accept=".csv,.json,text/csv,application/json">
+      </div>
+
+      <div class="row">
+        <button class="btn" id="btn-parse" type="button">Preview & validasi</button>
+        <button class="btn" id="btn-publish" type="button" disabled>Publish ke server</button>
+        <button class="btn secondary" id="btn-download" type="button" disabled>Unduh JSON</button>
+      </div>
+      <div class="msg" id="dash-msg"></div>
+      <div class="stat" id="stats" style="margin-top:10px"></div>
+      <div class="preview hidden" id="preview" style="margin-top:12px"></div>
+    </div>
+
+    <div class="card links">
+      <strong style="font-family:Georgia,serif;font-size:18px">Template & panduan</strong>
+      <ul style="margin:10px 0 0 18px">
+        <li><a href="/public/templates/soal-template.csv" download>Download template CSV</a></li>
+        <li><a href="/public/templates/soal-template.json" download>Download template JSON</a></li>
+        <li><a href="/public/templates/prompt-ai.txt" download>Prompt AI (copy-paste)</a></li>
+        <li><a href="/docs/PANDUAN-SOAL.md" target="_blank" rel="noopener">Panduan lengkap (bahasa awam)</a></li>
+        <li><a href="/">← Kembali ke game siswa</a></li>
+      </ul>
+      <p style="margin-top:12px;color:var(--muted)">
+        Env yang dibutuhkan di Vercel: <code>ADMIN_PASSWORD</code>.
+        Opsional: <code>BLOB_READ_WRITE_TOKEN</code> (live segera) atau
+        <code>GITHUB_TOKEN</code> + <code>GITHUB_REPO</code> (commit + redeploy).
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+const TOKEN_KEY = "algo_admin_token";
+let parsedBank = null;
+
+function showMsg(el, text, type) {
+  el.textContent = text;
+  el.className = `msg show ${type}`;
+}
+
+function getToken() {
+  return sessionStorage.getItem(TOKEN_KEY) || "";
+}
+
+function setAuthed(on) {
+  document.getElementById("login-card").classList.toggle("hidden", on);
+  document.getElementById("dash").classList.toggle("hidden", !on);
+}
+
+async function login() {
+  const password = document.getElementById("password").value;
+  const msg = document.getElementById("login-msg");
+  const btn = document.getElementById("btn-login");
+  btn.disabled = true;
+  try {
+    const resp = await fetch("/api/admin-login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password }),
+    });
+    const data = await resp.json();
+    if (!data.ok) throw new Error(data.message || "Login gagal");
+    sessionStorage.setItem(TOKEN_KEY, data.token);
+    setAuthed(true);
+    showMsg(msg, "Berhasil masuk.", "ok");
+  } catch (e) {
+    showMsg(msg, e.message, "err");
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function parseCsv(text) {
+  const rows = [];
+  let i = 0, field = "", row = [], inQ = false;
+  const pushField = () => { row.push(field); field = ""; };
+  const pushRow = () => {
+    if (row.length === 1 && row[0] === "") { row = []; return; }
+    rows.push(row); row = [];
+  };
+  while (i < text.length) {
+    const c = text[i];
+    if (inQ) {
+      if (c === '"') {
+        if (text[i + 1] === '"') { field += '"'; i++; }
+        else inQ = false;
+      } else field += c;
+    } else if (c === '"') inQ = true;
+    else if (c === ",") pushField();
+    else if (c === "\n") { pushField(); pushRow(); }
+    else if (c === "\r") { /* skip */ }
+    else field += c;
+    i++;
+  }
+  pushField(); pushRow();
+  if (!rows.length) throw new Error("CSV kosong");
+  const headers = rows[0].map((h) => h.trim());
+  return rows.slice(1).filter((r) => r.some((x) => String(x).trim() !== "")).map((r) => {
+    const obj = {};
+    headers.forEach((h, idx) => { obj[h] = r[idx] != null ? String(r[idx]).trim() : ""; });
+    return obj;
+  });
+}
+
+function rowsToBank(level, rows, caseTitle) {
+  const byChapter = new Map();
+  rows.forEach((row, idx) => {
+    const bab = row.bab_title || row.chapter || "Bab 1";
+    const babId = row.bab_id || `bab-${byChapter.size + 1}`;
+    if (!byChapter.has(bab)) byChapter.set(bab, { id: babId, title: bab, questions: [] });
+    const choices = [row.choice_a, row.choice_b, row.choice_c, row.choice_d]
+      .map((x) => String(x ?? "").trim())
+      .filter((x) => x !== "");
+    if (!row.q && !row.question) throw new Error(`Baris data ke-${idx + 1}: kolom q kosong`);
+    if (choices.length < 2) throw new Error(`Baris ${idx + 1}: minimal 2 pilihan`);
+    let answer = row.answer;
+    if (typeof answer === "string" && /^[A-Da-d]$/.test(answer.trim())) {
+      answer = answer.trim().toUpperCase().charCodeAt(0) - 65;
+    } else answer = Number(answer);
+    if (Number.isNaN(answer) || answer < 0 || answer >= choices.length) {
+      throw new Error(`Baris ${idx + 1}: answer harus A-D atau index valid`);
+    }
+    let wrong;
+    if (row.wrong && row.wrong.includes("|")) wrong = row.wrong.split("|").map((s) => s.trim());
+    else wrong = choices.map((_, j) => (j === answer ? "" : "Coba hitung kembali."));
+    while (wrong.length < choices.length) wrong.push("Coba hitung kembali.");
+    byChapter.get(bab).questions.push({
+      id: row.id || `q-${idx + 1}`,
+      scene: row.scene || "Petunjuk baru muncul di lokasi kasus.",
+      q: row.q || row.question,
+      choices,
+      answer,
+      skill: row.skill || "Matematika",
+      difficulty: row.difficulty || "Sedang",
+      type: row.type || "analyst",
+      correct: row.correct || "Benar! Bukti terkonfirmasi.",
+      wrong,
+      clue: row.clue || "Petunjuk tercatat.",
+    });
+  });
+  return {
+    level,
+    label: level,
+    caseTitle: caseTitle || "Kode yang Hilang",
+    curriculum: "Kurikulum Merdeka",
+    chapters: [...byChapter.values()],
+  };
+}
+
+async function preview() {
+  const msg = document.getElementById("dash-msg");
+  const file = document.getElementById("file").files[0];
+  const level = document.getElementById("level").value;
+  const caseTitle = document.getElementById("caseTitle").value.trim();
+  if (!file) return showMsg(msg, "Pilih file CSV atau JSON dulu.", "err");
+
+  try {
+    const text = await file.text();
+    let bank;
+    if (file.name.toLowerCase().endsWith(".json") || text.trim().startsWith("{")) {
+      bank = JSON.parse(text);
+      bank.level = level;
+      if (caseTitle) bank.caseTitle = caseTitle;
+    } else {
+      const rows = parseCsv(text);
+      bank = rowsToBank(level, rows, caseTitle);
+    }
+    if (!bank.chapters || !bank.chapters.length) throw new Error("Tidak ada bab/soal");
+    const count = bank.chapters.reduce((n, ch) => n + (ch.questions || []).length, 0);
+    parsedBank = bank;
+    document.getElementById("btn-publish").disabled = false;
+    document.getElementById("btn-download").disabled = false;
+    document.getElementById("stats").textContent =
+      `${bank.chapters.length} bab · ${count} soal · level ${level}`;
+    const prev = document.getElementById("preview");
+    prev.classList.remove("hidden");
+    prev.textContent = JSON.stringify(bank, null, 2).slice(0, 4000) + (count > 3 ? "\n…": "");
+    showMsg(msg, "Validasi lokal OK. Siap publish / unduh.", "ok");
+  } catch (e) {
+    parsedBank = null;
+    document.getElementById("btn-publish").disabled = true;
+    document.getElementById("btn-download").disabled = true;
+    showMsg(msg, e.message, "err");
+  }
+}
+
+async function publish() {
+  const msg = document.getElementById("dash-msg");
+  if (!parsedBank) return showMsg(msg, "Preview dulu.", "err");
+  const btn = document.getElementById("btn-publish");
+  btn.disabled = true;
+  try {
+    const resp = await fetch("/api/admin-upload", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getToken()}`,
+      },
+      body: JSON.stringify({
+        level: document.getElementById("level").value,
+        data: parsedBank,
+      }),
+    });
+    const data = await resp.json();
+    if (!resp.ok || data.ok === false && data.message && resp.status >= 400) {
+      throw new Error(data.message || "Upload gagal");
+    }
+    let text = data.message || "OK";
+    if (data.published && data.published.length) {
+      text += " · via " + data.published.map((p) => p.via).join(", ");
+    }
+    if (data.needsManualDownload) {
+      text += " · Gunakan Unduh JSON lalu taruh di public/questions/.";
+    }
+    if (data.blobError) text += ` (blob: ${data.blobError})`;
+    if (data.githubError) text += ` (github: ${data.githubError})`;
+    showMsg(msg, text, data.needsManualDownload ? "info" : "ok");
+  } catch (e) {
+    showMsg(msg, e.message, "err");
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function downloadJson() {
+  if (!parsedBank) return;
+  const level = document.getElementById("level").value;
+  const blob = new Blob([JSON.stringify(parsedBank, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `${level}.json`;
+  a.click();
+}
+
+document.getElementById("btn-login").onclick = login;
+document.getElementById("password").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") login();
+});
+document.getElementById("btn-logout").onclick = () => {
+  sessionStorage.removeItem(TOKEN_KEY);
+  setAuthed(false);
+};
+document.getElementById("btn-parse").onclick = preview;
+document.getElementById("btn-publish").onclick = publish;
+document.getElementById("btn-download").onclick = downloadJson;
+
+if (getToken()) setAuthed(true);
+</script>
+</body>
+</html>

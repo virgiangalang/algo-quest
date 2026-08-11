@@ -1,0 +1,143 @@
+# Panduan Membuat Soal Algonova Quest
+
+Panduan ini untuk **guru / admin yang tidak harus jago coding**.  
+Tujuan: buat soal → upload → siswa main kasus detektif.
+
+Halaman admin: **`/admin.html`** (password di Vercel env `ADMIN_PASSWORD`).
+
+---
+
+## Ringkas 5 langkah
+
+1. Buka template CSV: [`/public/templates/soal-template.csv`](../public/templates/soal-template.csv)
+2. (Opsional) Pakai AI: salin prompt di [`/public/templates/prompt-ai.txt`](../public/templates/prompt-ai.txt), ganti `{{LEVEL}}`, minta AI isi CSV
+3. Cek kolom `answer` (A/B/C/D) dan pastikan ada 4 pilihan
+4. Login ke `/admin.html` → pilih level → upload CSV atau JSON
+5. Klik **Publish** (atau **Unduh JSON** kalau belum ada Blob/GitHub token)
+
+---
+
+## Level yang tersedia
+
+| Kode level (pilih di admin) | Untuk siapa |
+|-----------------------------|-------------|
+| `sd-kelas-1-3` | SD kelas 1–3 |
+| `sd-kelas-4-6` | SD kelas 4–6 |
+| `smp` | SMP |
+| `sma` | SMA |
+| `dewasa` | Dewasa / umum |
+
+Satu file = **satu level**.
+
+---
+
+## Cara A — Isi sendiri di Excel / Google Sheets
+
+1. Buka file template CSV di Excel / Google Sheets.
+2. Tiap **baris** = 1 soal.
+3. Isi kolom sesuai tabel di bawah.
+4. Simpan / Download as **CSV (UTF-8)**.
+5. Upload di admin.
+
+### Arti kolom
+
+| Kolom | Wajib? | Contoh | Keterangan |
+|-------|--------|--------|------------|
+| `bab_id` | ya | `bab-1` | ID bab |
+| `bab_title` | ya | `Bab 1 — Insiden di Lab` | Judul bab di game |
+| `id` | ya | `q1-1` | ID unik soal |
+| `scene` | ya | `Pintu lab terkunci…` | Cerita singkat sebelum soal |
+| `q` | ya | `3/8 dari 240 = ?` | Pertanyaan |
+| `choice_a` … `choice_d` | ya | `80` | Empat pilihan |
+| `answer` | ya | `B` atau `1` | Jawaban benar (huruf A–D atau angka 0–3) |
+| `skill` | ya | `Pecahan` | Topik skill bar |
+| `difficulty` | ya | `Mudah` | Mudah / Sedang / Sulit |
+| `type` | ya | `analyst` | `analyst`, `speedster`, `investigator`, `codebreaker`, `explorer` |
+| `correct` | ya | `Benar! …` | Feedback jika benar |
+| `wrong` | ya | `salah A\|salah B\|…` | 4 feedback dipisah `\|` |
+| `clue` | ya | `Jejak kaki…` | Petunjuk cerita |
+
+**Tips:** Mulai dari 5 soal dulu untuk uji upload, baru perluas ke ~30 soal (6 bab × 5).
+
+---
+
+## Cara B — Minta AI buatkan ( Copilot / ChatGPT / Gemini )
+
+1. Buka [`public/templates/prompt-ai.txt`](../public/templates/prompt-ai.txt)
+2. Salin semua teksnya
+3. Ganti `{{LEVEL}}` misalnya menjadi `smp`
+4. Tempel ke AI, kirim
+5. Copy hasil CSV → paste ke Google Sheets → File → Download → CSV
+6. Upload di `/admin.html`
+
+Kalau AI menambah penjelasan di luar tabel, **hapus** teks di luar header+baris data.
+
+---
+
+## Cara C — Edit JSON langsung
+
+Pakai template: [`public/templates/soal-template.json`](../public/templates/soal-template.json)
+
+- `answer` di JSON = **angka index** (0 = A, 1 = B, 2 = C, 3 = D)
+- `wrong` = array 4 string
+- Upload file `.json` di admin
+
+---
+
+## Login admin & password
+
+1. Di Vercel → Project **algonova-quest** → **Settings** → **Environment Variables**
+2. Tambah:
+   - Name: `ADMIN_PASSWORD`
+   - Value: *(password yang kamu tentukan, contoh: yang sudah dikirim ke tim)*
+   - Environment: Production + Preview
+3. Redeploy sekali
+4. Buka `https://…/admin.html` → masukkan password
+
+Sesi login berlaku ±12 jam.
+
+---
+
+## Publish: apa yang terjadi?
+
+Setelah upload & lolos validasi:
+
+| Kalau di Vercel ada… | Hasil |
+|----------------------|--------|
+| `BLOB_READ_WRITE_TOKEN` | Soal **langsung live** (override file statis) |
+| `GITHUB_TOKEN` + `GITHUB_REPO` | File `public/questions/{level}.json` di-commit → redeploy |
+| Tidak ada keduanya | Tombol **Unduh JSON** — taruh manual ke `public/questions/` lalu deploy |
+
+File statis default tetap ada di `public/questions/*.json` sebagai cadangan.
+
+---
+
+## Cek apakah soal sudah terpakai
+
+1. Buka game, login siswa (devMode / kredensial VALID)
+2. Selesai diagnostic 5 soal
+3. Harus masuk **Case Intro**, lalu game dengan **banyak soal** (bukan cuma ~6 soal contoh)
+4. Di browser DevTools → Network: cari `api/questions?level=` atau `public/questions/…` → status 200
+
+---
+
+## Masalah umum
+
+| Gejala | Solusi |
+|--------|--------|
+| Password ditolak | Cek `ADMIN_PASSWORD` di Vercel + redeploy |
+| Upload “schema invalid” | Cek `answer`, 4 choices, kolom `q` tidak kosong |
+| Setelah diagnostic “bank soal gagal” | File JSON level itu belum ada / path salah / belum publish |
+| Masih terasa “contoh HTML” | Berarti fallback lama; pastikan Part 0 + bank ≥ 20 soal ter-load |
+| CSV aneh di Excel Indonesia | Simpan ulang UTF-8; jangan pakai pemisah `;` kecuali kamu ubah parser |
+
+---
+
+## Kontak alur kerja yang disarankan
+
+1. Guru buat / generate CSV  
+2. Guru upload di admin (atau kirim CSV ke admin teknis)  
+3. Admin publish  
+4. Tes 1 akun siswa sebelum dibagikan ke kelas  
+
+Selamat menulis kasus! 🕵️ (tanpa emoji di soal siswa bila tidak perlu)
