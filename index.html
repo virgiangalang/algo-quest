@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Algonova Math — Misteri Matematika</title>
 <link rel="icon" href="public/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 /* ─────────────────────────────────────────────
    TOKENS
@@ -31,10 +34,18 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{background:#ded8ce}
 body{
-  font-family:Inter,ui-sans-serif,system-ui,-apple-system,sans-serif;
-  background:linear-gradient(160deg,#ebe6de 0%,#dcd5cb 100%);
+  font-family:"IBM Plex Sans",ui-sans-serif,system-ui,sans-serif;
+  background:
+    radial-gradient(ellipse at 20% 0%,rgba(75,43,104,.08),transparent 50%),
+    linear-gradient(160deg,#ebe6de 0%,#dcd5cb 100%);
   color:var(--ink);min-height:100vh;
 }
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:.9;animation:inkPulse 8s ease-in-out infinite;
+}
+.app{position:relative;z-index:1}
 button{font:inherit;cursor:pointer}
 input{font:inherit}
 
@@ -109,8 +120,13 @@ input{font:inherit}
 .btn-primary:disabled{opacity:.5;pointer-events:none}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @keyframes dossierIn{from{opacity:0;transform:rotate(-6deg) translateY(18px)}to{opacity:1;transform:rotate(-2deg)}}
+@keyframes stampIn{from{opacity:0;transform:scale(1.35) rotate(-12deg)}to{opacity:1;transform:scale(1) rotate(-4deg)}}
+@keyframes slidePanel{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}
+@keyframes inkPulse{0%,100%{opacity:.35}50%{opacity:.55}}
 .phase-enter{animation:fadeUp .45s ease both}
 .dossier{animation:dossierIn .55s cubic-bezier(.2,.7,.2,1) both}
+.stamp-pop{animation:stampIn .55s cubic-bezier(.2,.8,.2,1) both}
+.panel-slide{animation:slidePanel .5s ease both}
 
 .login-visual{
   background:#23202a;position:relative;
@@ -188,6 +204,41 @@ input{font:inherit}
 .level-card .lc-title{font-family:Georgia,serif;font-size:20px;margin:6px 0 4px;color:var(--ink)}
 .level-card .lc-age{font-size:12px;color:var(--muted);line-height:1.4}
 .level-hint{margin-top:16px;font-size:12px;color:#8b828d;font-family:Inter,ui-sans-serif,system-ui,sans-serif}
+
+/* ─────────────────────────────────────────────
+   PHASE: BRIEFING
+───────────────────────────────────────────── */
+#phase-briefing{display:none}
+.brief-wrap{padding:42px 40px;min-height:420px}
+.brief-stamp{
+  display:inline-block;border:2px solid var(--plum);color:var(--plum);
+  font-weight:800;letter-spacing:.14em;font-size:11px;padding:7px 11px;
+  margin-bottom:16px;background:rgba(255,255,255,.75);
+}
+.brief-wrap h2{font-family:Georgia,serif;font-size:34px;letter-spacing:-.5px;margin:0 0 12px;max-width:560px}
+.brief-body{color:#665f68;line-height:1.75;font-size:16px;max-width:540px;margin-bottom:28px}
+.brief-dots{display:flex;gap:8px;margin-bottom:22px}
+.brief-dots i{width:8px;height:8px;border-radius:50%;background:#d5ccc0;display:block}
+.brief-dots i.on{background:var(--plum)}
+.brief-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+/* Story overlay antar bab */
+.story-overlay{
+  display:none;position:fixed;inset:0;z-index:40;
+  background:rgba(23,20,29,.55);align-items:center;justify-content:center;padding:20px;
+}
+.story-overlay.show{display:flex}
+.story-panel{
+  width:min(520px,100%);background:var(--paper);border:1px solid #cfc7bb;
+  border-radius:14px;padding:28px 26px;box-shadow:0 24px 60px rgba(20,15,25,.35);
+}
+.story-panel .brief-stamp{margin-bottom:12px}
+.chap.done{color:#c9b8dc}
+.chap.done::before{background:var(--plum-3);box-shadow:0 0 0 2px rgba(139,90,172,.35)}
+.chap.done::after{
+  content:"✓";position:absolute;right:10px;top:50%;transform:translateY(-50%);
+  font-size:11px;color:#c9b8dc;font-weight:700;
+}
 
 /* ─────────────────────────────────────────────
    PHASE: CASE INTRO
@@ -507,7 +558,7 @@ input{font:inherit}
   body{background:#fff!important;min-height:auto}
   .app{padding:0!important;max-width:none}
   .topbar,.cert-actions,.footer{display:none!important}
-  #phase-login,#phase-level-select,#phase-diagnostic,#phase-case-intro,#phase-game,#phase-result{display:none!important}
+  #phase-login,#phase-level-select,#phase-briefing,#phase-diagnostic,#phase-case-intro,#phase-game,#phase-result{display:none!important}
   #phase-certificate{display:block!important}
   .cert-page{border:none;border-radius:0;max-width:none;box-shadow:none}
   .cert-border{margin:16px;border:2px solid var(--plum)}
@@ -588,6 +639,35 @@ input{font:inherit}
         <div class="level-grid" id="level-grid"></div>
         <div class="level-hint" id="level-hint"></div>
       </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       PHASE 0c: BRIEFING
+  ════════════════════════════════════════ -->
+  <div id="phase-briefing">
+    <div class="card">
+      <div class="brief-wrap panel-slide" id="brief-panel">
+        <div class="brief-stamp stamp-pop" id="brief-stamp">LAPORAN MASUK</div>
+        <div class="eyebrow">Prolog kasus</div>
+        <h2 id="brief-title">Laboratorium sepi</h2>
+        <p class="brief-body" id="brief-body"></p>
+        <div class="brief-dots" id="brief-dots"></div>
+        <div class="brief-actions">
+          <button class="btn-primary" id="btn-brief-next" type="button" onclick="nextBriefing()">Lanjut →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Story overlay antar bab -->
+  <div class="story-overlay" id="story-overlay" role="dialog" aria-modal="true">
+    <div class="story-panel panel-slide">
+      <div class="brief-stamp stamp-pop" id="story-stamp">BAB</div>
+      <div class="eyebrow">Berkas baru terbuka</div>
+      <h2 id="story-title" style="font-family:Georgia,serif;font-size:28px;margin:8px 0 10px"></h2>
+      <p id="story-body" style="color:#665f68;line-height:1.7;margin-bottom:20px"></p>
+      <button class="btn-primary" type="button" onclick="dismissChapterStory()">Lanjutkan misi →</button>
     </div>
   </div>
 
@@ -799,6 +879,7 @@ input{font:inherit}
 ════════════════════════════════════════ -->
 <script src="src/lib/questions.js"></script>
 <script src="src/lib/diagnostic.js"></script>
+<script src="src/lib/story.js"></script>
 <script src="src/lib/certificate.js"></script>
 <script>
 /* ─── CONFIG ─── */
@@ -847,7 +928,7 @@ let STATE = {
 };
 
 /* ─── UTILS ─── */
-const PHASES = ["login","level-select","diagnostic","case-intro","game","result","certificate"];
+const PHASES = ["login","level-select","briefing","diagnostic","case-intro","game","result","certificate"];
 
 function showPhase(name) {
   if (name === "login" && STATE.phase && STATE.phase !== "login") {
@@ -1000,7 +1081,47 @@ function confirmLevel(level) {
   STATE.levelChosen = true;
   console.info("[algo] level selected", { level, suggested: STATE.suggestedLevel, age: STATE.age });
   setTopbarBadge(`${STATE.studentName} · ${(LEVEL_LABELS && LEVEL_LABELS[level]) || level}`);
-  startDiagnostic();
+  startBriefing();
+}
+
+/* ─── BRIEFING ─── */
+function startBriefing() {
+  STATE.briefIndex = 0;
+  STATE.briefPanels = (typeof getBriefingPanels === "function")
+    ? getBriefingPanels()
+    : [{ stamp: "PROLOG", title: "Kasus dibuka", body: "Siap untuk kalibrasi." }];
+  showPhase("briefing");
+  renderBriefing();
+}
+
+function renderBriefing() {
+  const panels = STATE.briefPanels || [];
+  const p = panels[STATE.briefIndex] || panels[0];
+  const panelEl = document.getElementById("brief-panel");
+  panelEl.classList.remove("panel-slide");
+  void panelEl.offsetWidth;
+  panelEl.classList.add("panel-slide");
+
+  document.getElementById("brief-stamp").textContent = p.stamp;
+  document.getElementById("brief-stamp").classList.remove("stamp-pop");
+  void document.getElementById("brief-stamp").offsetWidth;
+  document.getElementById("brief-stamp").classList.add("stamp-pop");
+  document.getElementById("brief-title").textContent = p.title;
+  document.getElementById("brief-body").textContent = p.body;
+  document.getElementById("brief-dots").innerHTML = panels.map((_, i) =>
+    `<i class="${i === STATE.briefIndex ? "on" : ""}"></i>`
+  ).join("");
+  const btn = document.getElementById("btn-brief-next");
+  btn.textContent = STATE.briefIndex >= panels.length - 1 ? "Mulai kalibrasi →" : "Lanjut →";
+}
+
+function nextBriefing() {
+  if (STATE.briefIndex >= (STATE.briefPanels || []).length - 1) {
+    startDiagnostic();
+    return;
+  }
+  STATE.briefIndex++;
+  renderBriefing();
 }
 
 /* ─── DIAGNOSTIC ─── */
@@ -1175,14 +1296,16 @@ function enterGame() {
     console.warn("[algo] enterGame tanpa questions");
     return;
   }
-  // Jangan pernah kembali ke login dari sini
+  STATE.seenChapters = {};
   showPhase("game");
-  renderQuestion();
+  // Story panel bab 1 dulu
+  maybeShowChapterStory(true);
 }
 
 /* ─── GAME ─── */
 function setupChapters(data) {
   const chapters = data.chapters || [];
+  STATE.chapterTitles = chapters.map((ch) => ch.title);
   document.getElementById("chapter-list").innerHTML = chapters.map((ch, k) =>
     `<div class="chap" id="ch-${k}">${ch.title.replace("Bab ","").replace(" — "," · ")}</div>`
   ).join("");
@@ -1190,9 +1313,65 @@ function setupChapters(data) {
   document.getElementById("game-title").textContent = data.caseTitle || "Kode yang Hilang";
 }
 
+function getChapterIndexForQuestion(qIndex) {
+  const q = STATE.questions[qIndex];
+  if (!q) return -1;
+  const chapters = [...new Set(STATE.questions.map((x) => x.chapter))];
+  return chapters.indexOf(q.chapter);
+}
+
+function maybeShowChapterStory(forceFirst) {
+  const idx = getChapterIndexForQuestion(STATE.qIndex);
+  if (idx < 0) {
+    renderQuestion();
+    return;
+  }
+  STATE.seenChapters = STATE.seenChapters || {};
+  if (!forceFirst && STATE.seenChapters[idx]) {
+    renderQuestion();
+    return;
+  }
+  if (STATE.seenChapters[idx] && forceFirst) {
+    renderQuestion();
+    return;
+  }
+  // Show story for new chapter
+  const chapters = [...new Set(STATE.questions.map((x) => x.chapter))];
+  const title = chapters[idx];
+  const story = (typeof getChapterStory === "function")
+    ? getChapterStory(idx, title)
+    : { stamp: `BAB ${idx + 1}`, title, body: "Bab baru terbuka." };
+  document.getElementById("story-stamp").textContent = story.stamp;
+  document.getElementById("story-title").textContent = story.title;
+  document.getElementById("story-body").textContent = story.body;
+  document.getElementById("story-overlay").classList.add("show");
+  STATE.pendingChapterStory = idx;
+}
+
+function dismissChapterStory() {
+  const idx = STATE.pendingChapterStory;
+  if (idx != null) STATE.seenChapters[idx] = true;
+  document.getElementById("story-overlay").classList.remove("show");
+  STATE.pendingChapterStory = null;
+  renderQuestion();
+}
+
+function updateChapterSidebar(activeIdx) {
+  const chapters = [...new Set(STATE.questions.map((x) => x.chapter))];
+  chapters.forEach((_, k) => {
+    const el = document.getElementById(`ch-${k}`);
+    if (!el) return;
+    let cls = "chap";
+    if (k < activeIdx) cls += " done";
+    if (k === activeIdx) cls += " active";
+    el.className = cls;
+  });
+}
+
 function renderQuestion() {
   STATE.answered = false;
   const q = STATE.questions[STATE.qIndex];
+  if (!q) return;
   const total = STATE.questions.length;
 
   document.getElementById("game-chapter").textContent = q.chapter;
@@ -1217,18 +1396,8 @@ function renderQuestion() {
   document.getElementById("game-feedback").innerHTML = "";
   document.getElementById("game-next-btn").className = "btn-next";
 
-  // Update chapter highlight
-  const chapters = [...new Set(STATE.questions.map(x => x.chapter))];
-  chapters.forEach((_, k) => {
-    const el = document.getElementById(`ch-${k}`);
-    if (el) el.className = "chap";
-  });
-  const activeIdx = chapters.indexOf(q.chapter);
-  if (activeIdx >= 0) {
-    const el = document.getElementById(`ch-${activeIdx}`);
-    if (el) el.className = "chap active";
-  }
-
+  const activeIdx = getChapterIndexForQuestion(STATE.qIndex);
+  updateChapterSidebar(activeIdx);
   updateSidebar();
 }
 
@@ -1272,13 +1441,19 @@ function answerQuestion(idx, btn, q) {
 }
 
 function nextQuestion() {
+  const prevChapter = STATE.questions[STATE.qIndex]?.chapter;
   STATE.qIndex++;
   if (STATE.qIndex >= STATE.questions.length) {
     finishGame();
     return;
   }
-  renderQuestion();
+  const nextChapter = STATE.questions[STATE.qIndex]?.chapter;
   window.scrollTo({ top: 0, behavior: "smooth" });
+  if (nextChapter && nextChapter !== prevChapter) {
+    maybeShowChapterStory(false);
+    return;
+  }
+  renderQuestion();
 }
 
 function updateSidebar() {

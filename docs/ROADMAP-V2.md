@@ -132,13 +132,13 @@ Checklist:
 **Tujuan:** dari awal sampai akhir terasa kasus detektif, bukan form HTML.
 
 Checklist:
-- [ ] Design tokens motion: fade/slide/stamp (CSS), min 3 animasi inti
-- [ ] `BRIEFING` cutscene (3 panel) sebelum diagnostic
-- [ ] Antar bab: story panel (title + narasi + stempel)
-- [ ] Modul `src/lib/story.js` — copy per level (boleh shared skeleton dulu)
-- [ ] Transisi phase dengan `phase-enter` + sound optional
-- [ ] Sidebar progress bab lebih “case file” (stempel done)
-- [ ] Hierarchy tipografi + atmosphere (grain/ink) — beda dari preview statis
+- [x] Design tokens motion: fade/slide/stamp (CSS), min 3 animasi inti
+- [x] `BRIEFING` cutscene (3 panel) sebelum diagnostic
+- [x] Antar bab: story panel (title + narasi + stempel)
+- [x] Modul `src/lib/story.js` — copy per level (boleh shared skeleton dulu)
+- [x] Transisi phase dengan `phase-enter` + sound optional
+- [x] Sidebar progress bab lebih “case file” (stempel done)
+- [x] Hierarchy tipografi + atmosphere (grain/ink) — beda dari preview statis
 
 **Done when:** tidak ada loncatan kasar phase; tiap bab punya pembuka cerita.
 
