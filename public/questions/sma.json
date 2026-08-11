@@ -153,9 +153,9 @@
           ],
           "choices_en": [
             "0",
-            "0,5",
+            "0.5",
             "1",
-            "1,5"
+            "1.5"
           ],
           "answer": 2,
           "skill": "Trigonometri",
@@ -233,7 +233,7 @@
           "scene": "Matriks kode akses.",
           "scene_en": "Access-code matrix.",
           "q": "Determinan [[2,1],[3,4]] = ?",
-          "q_en": "Determinant of [[2,1],[3,4]] = ?",
+          "q_en": "Determinant of [[2.1],[3.4]] = ?",
           "choices": [
             "4",
             "5",
@@ -718,7 +718,7 @@
           "scene": "Varians.",
           "scene_en": "Variance check.",
           "q": "Varians data 2,2,2?",
-          "q_en": "Variance of data 2,2,2?",
+          "q_en": "Variance of data 2.2,2?",
           "choices": [
             "0",
             "1",
@@ -759,7 +759,7 @@
           "scene": "Kombinasi.",
           "scene_en": "Combination.",
           "q": "C(5,1) = ?",
-          "q_en": "C(5,1) = ?",
+          "q_en": "C(5.1) = ?",
           "choices": [
             "1",
             "5",
@@ -779,7 +779,7 @@
           "difficulty_en": "Easy",
           "type": "codebreaker",
           "correct": "5.",
-          "correct_en": "C(5,1) = 5.",
+          "correct_en": "C(5.1) = 5.",
           "wrong": [
             "Hampir.",
             "5 — tepat!",
@@ -789,7 +789,7 @@
           "wrong_en": [
             "Almost.",
             "5 — exact!",
-            "C(5,2).",
+            "C(5.2).",
             "Besar."
           ],
           "clue": "C=5.",
@@ -800,7 +800,7 @@
           "scene": "Modus.",
           "scene_en": "Mode check.",
           "q": "Modus 1,2,2,3,4?",
-          "q_en": "Mode of 1,2,2,3,4?",
+          "q_en": "Mode of 1.2,2.3,4?",
           "choices": [
             "1",
             "2",
@@ -849,9 +849,9 @@
             "1"
           ],
           "choices_en": [
-            "0,3",
-            "0,5",
-            "0,7",
+            "0.3",
+            "0.5",
+            "0.7",
             "1"
           ],
           "answer": 2,
@@ -871,7 +871,7 @@
           "wrong_en": [
             "P(A).",
             "Almost.",
-            "0,7 — exact!",
+            "0.7 — exact!",
             "Besar."
           ],
           "clue": "0,7.",
@@ -1183,7 +1183,7 @@
           "scene": "Garis.",
           "scene_en": "Line.",
           "q": "Gradien 2 lewat (0,1). Persamaan y?",
-          "q_en": "Slope 2 through (0,1). Equation for y?",
+          "q_en": "Slope 2 through (0.1). Equation for y?",
           "choices": [
             "2x",
             "2x + 1",

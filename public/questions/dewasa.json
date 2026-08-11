@@ -19,7 +19,7 @@
           "scene": "Struk belanja ditemukan di berkas kasus.",
           "scene_en": "A shopping receipt is found in the case file.",
           "q": "Diskon 20% dari harga Rp150.000. Harga akhirnya? (tulis angka saja, contoh: 120000)",
-          "q_en": "20% discount on Rp150,000. Final price? (numbers only, e.g. 120000)",
+          "q_en": "20% discount on Rp150.000. Final price? (numbers only, e.g. 120000)",
           "choices": [
             "Rp100.000",
             "Rp120.000",
@@ -39,7 +39,7 @@
           "difficulty_en": "Easy",
           "type": "analyst",
           "correct": "150.000 × 0,8 = 120.000.",
-          "correct_en": "150,000 × 0.8 = 120,000.",
+          "correct_en": "150.000 × 0.8 = 120.000.",
           "wrong": [
             "Diskon terlalu besar.",
             "Rp120.000 — tepat!",
@@ -53,7 +53,7 @@
             "Almost."
           ],
           "clue": "Harga akhir Rp120.000.",
-          "clue_en": "Final price Rp120,000.",
+          "clue_en": "Final price Rp120.000.",
           "type_ui": "numeric",
           "answer_value": 120000
         },
@@ -62,7 +62,7 @@
           "scene": "Rekening tabungan terbuka.",
           "scene_en": "A savings account is open.",
           "q": "Bunga sederhana 5%/tahun pada Rp2.000.000 selama 3 tahun?",
-          "q_en": "Simple interest 5%/year on Rp2,000,000 for 3 years?",
+          "q_en": "Simple interest 5%/year on Rp2.000.000 for 3 years?",
           "choices": [
             "Rp200.000",
             "Rp250.000",
@@ -82,7 +82,7 @@
           "difficulty_en": "Easy",
           "type": "analyst",
           "correct": "2.000.000 × 5% × 3 = 300.000.",
-          "correct_en": "2,000,000 × 5% × 3 = 300,000.",
+          "correct_en": "2.000.000 × 5% × 3 = 300.000.",
           "wrong": [
             "Hampir.",
             "Hampir.",
@@ -96,7 +96,7 @@
             "Too big."
           ],
           "clue": "Bunga Rp300.000.",
-          "clue_en": "Interest: Rp300,000."
+          "clue_en": "Interest: Rp300.000."
         },
         {
           "id": "q1-3",
@@ -233,7 +233,7 @@
           "scene": "Nota pajak di meja.",
           "scene_en": "A tax slip is on the desk.",
           "q": "Pajak 10% dari Rp500.000? (tulis angka saja, contoh: 50000)",
-          "q_en": "10% tax on Rp500,000? (numbers only, e.g. 50000)",
+          "q_en": "10% tax on Rp500.000? (numbers only, e.g. 50000)",
           "choices": [
             "Rp40.000",
             "Rp50.000",
@@ -253,7 +253,7 @@
           "difficulty_en": "Easy",
           "type": "analyst",
           "correct": "10% × 500.000 = 50.000.",
-          "correct_en": "10% × 500,000 = 50,000.",
+          "correct_en": "10% × 500.000 = 50.000.",
           "wrong": [
             "Hampir.",
             "Rp50.000 — tepat!",
@@ -267,7 +267,7 @@
             "Too big."
           ],
           "clue": "Pajak Rp50.000.",
-          "clue_en": "Tax: Rp50,000.",
+          "clue_en": "Tax: Rp50.000.",
           "type_ui": "numeric",
           "answer_value": 50000
         },
@@ -358,7 +358,7 @@
           "scene": "Margin toko.",
           "scene_en": "Shop margin.",
           "q": "Margin 25% dari modal Rp800.000. Berapa untungnya?",
-          "q_en": "25% margin on capital Rp800,000. How much profit?",
+          "q_en": "25% margin on capital Rp800.000. How much profit?",
           "choices": [
             "Rp100.000",
             "Rp150.000",
@@ -378,7 +378,7 @@
           "difficulty_en": "Medium",
           "type": "analyst",
           "correct": "25% × 800.000 = 200.000.",
-          "correct_en": "0.25 × 800,000 = 200,000.",
+          "correct_en": "0.25 × 800.000 = 200.000.",
           "wrong": [
             "Hampir.",
             "Hampir.",
@@ -392,7 +392,7 @@
             "Too big."
           ],
           "clue": "Untung Rp200.000.",
-          "clue_en": "Profit: Rp200,000."
+          "clue_en": "Profit: Rp200.000."
         },
         {
           "id": "q2-5",
@@ -568,7 +568,7 @@
         {
           "id": "q3-4",
           "scene": "Anggaran departemen Rp12.000.000.",
-          "scene_en": "Department budget Rp12,000,000.",
+          "scene_en": "Department budget Rp12.000.000.",
           "q": "Sudah terpakai 3/4. Berapa sisa?",
           "q_en": "3/4 already spent. How much remains?",
           "choices": [
@@ -590,7 +590,7 @@
           "difficulty_en": "Easy",
           "type": "analyst",
           "correct": "Sisa 1/4 = Rp3.000.000.",
-          "correct_en": "1/4 of 12,000,000 = 3,000,000.",
+          "correct_en": "1/4 of 12.000.000 = 3.000.000.",
           "wrong": [
             "Hampir.",
             "Rp3.000.000 — tepat!",
@@ -604,7 +604,7 @@
             "Itu setengah."
           ],
           "clue": "Sisa Rp3.000.000.",
-          "clue_en": "Remaining: Rp3,000,000."
+          "clue_en": "Remaining: Rp3.000.000."
         },
         {
           "id": "q3-5",
@@ -668,7 +668,7 @@
           ],
           "choices_en": [
             "12%",
-            "0,25",
+            "0.25",
             "1/3",
             "40%"
           ],
@@ -703,7 +703,7 @@
           ],
           "items_en": [
             "12%",
-            "0,25",
+            "0.25",
             "1/3",
             "40%"
           ],
@@ -760,7 +760,7 @@
           "scene": "Catatan inflasi.",
           "scene_en": "Inflation note.",
           "q": "Inflasi 2% dari Rp1.000.000?",
-          "q_en": "2% inflation on Rp1,000,000?",
+          "q_en": "2% inflation on Rp1.000.000?",
           "choices": [
             "Rp20.000",
             "Rp10.000",
@@ -780,7 +780,7 @@
           "difficulty_en": "Easy",
           "type": "analyst",
           "correct": "2% × 1.000.000 = 20.000.",
-          "correct_en": "0.02 × 1,000,000 = 20,000.",
+          "correct_en": "0.02 × 1.000.000 = 20.000.",
           "wrong": [
             "Rp20.000 — tepat!",
             "Itu 1%.",
@@ -790,11 +790,11 @@
           "wrong_en": [
             "Rp20.000 — exact!",
             "Itu 1%.",
-            "Itu 0,2%.",
+            "Itu 0.2%.",
             "Itu 20%."
           ],
           "clue": "Naik Rp20.000.",
-          "clue_en": "Inflation amount: Rp20,000."
+          "clue_en": "Inflation amount: Rp20.000."
         },
         {
           "id": "q4-4",
@@ -842,7 +842,7 @@
           "scene": "Nomor berkas perlu dibulatkan.",
           "scene_en": "A file number needs rounding.",
           "q": "2.450 dibulatkan ke ratusan terdekat?",
-          "q_en": "2,450 rounded to the nearest hundred?",
+          "q_en": "2.450 rounded to the nearest hundred?",
           "choices": [
             "2.400",
             "2.500",
@@ -862,7 +862,7 @@
           "difficulty_en": "Easy",
           "type": "codebreaker",
           "correct": "Puluhan 5 → naik menjadi 2.500.",
-          "correct_en": "2,450 → 2,500.",
+          "correct_en": "2.450 → 2.500.",
           "wrong": [
             "Ke bawah tidak tepat di sini.",
             "2.500 — tepat!",
@@ -876,7 +876,7 @@
             "Terlalu kasar."
           ],
           "clue": "Nilai 2.500.",
-          "clue_en": "Rounded ID: 2,500."
+          "clue_en": "Rounded ID: 2.500."
         }
       ]
     },
@@ -951,7 +951,7 @@
           "difficulty_en": "Easy",
           "type": "analyst",
           "correct": "2,75 × 1.000 = 2.750 g.",
-          "correct_en": "2.75 × 1000 = 2,750.",
+          "correct_en": "2.75 × 1000 = 2.750.",
           "wrong": [
             "Lupa nol.",
             "Hampir.",
@@ -965,7 +965,7 @@
             "Kali 10.000."
           ],
           "clue": "2.750 gram.",
-          "clue_en": "2,750 grams."
+          "clue_en": "2.750 grams."
         },
         {
           "id": "q5-3",
@@ -1082,10 +1082,10 @@
             "Itu 0,8."
           ],
           "wrong_en": [
-            "Itu 0,5.",
-            "≈0,67.",
+            "Itu 0.5.",
+            "≈0.67.",
             "3/4 — exact!",
-            "Itu 0,8."
+            "Itu 0.8."
           ],
           "clue": "Pecahan 3/4.",
           "clue_en": "Fraction: 3/4."
@@ -1143,7 +1143,7 @@
           "scene": "Total cicilan.",
           "scene_en": "Installment total.",
           "q": "4 × Rp250.000 = ?",
-          "q_en": "4 × Rp250,000 = ?",
+          "q_en": "4 × Rp250.000 = ?",
           "choices": [
             "Rp750.000",
             "Rp900.000",
@@ -1163,7 +1163,7 @@
           "difficulty_en": "Easy",
           "type": "speedster",
           "correct": "4 × 250.000 = 1.000.000.",
-          "correct_en": "1,000,000.",
+          "correct_en": "1.000.000.",
           "wrong": [
             "Hampir.",
             "Hampir.",
@@ -1177,7 +1177,7 @@
             "Too big."
           ],
           "clue": "Total Rp1.000.000.",
-          "clue_en": "Total: Rp1,000,000."
+          "clue_en": "Total: Rp1.000.000."
         },
         {
           "id": "q6-3",
@@ -1276,7 +1276,7 @@
           "choices_en": [
             "7",
             "8",
-            "8,5",
+            "8.5",
             "9"
           ],
           "answer": 1,

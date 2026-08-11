@@ -415,7 +415,7 @@ const DIAG_BANK = {
         "1/2",
         "2/3"
       ],
-      "correct_en": "3 even numbers (2,4,6) out of 6 → 1/2."
+      "correct_en": "3 even numbers (2.4,6) out of 6 → 1/2."
     },
     {
       "q": "Luas lingkaran dengan jari-jari 7 cm (π ≈ 22/7)?",
@@ -598,7 +598,7 @@ const DIAG_BANK = {
   "dewasa": [
     {
       "q": "Jika diskon 20% dari harga Rp 150.000, harga akhirnya?",
-      "q_en": "If 20% off Rp150,000, final price?",
+      "q_en": "If 20% off Rp150.000, final price?",
       "choices": [
         "Rp 100.000",
         "Rp 120.000",
@@ -613,7 +613,7 @@ const DIAG_BANK = {
       ],
       "answer": 1,
       "correct": "150.000 × 0,8 = 120.000.",
-      "correct_en": "150,000 × 0.8 = 120,000.",
+      "correct_en": "150.000 × 0.8 = 120.000.",
       "wrong": [
         "",
         "",
@@ -623,7 +623,7 @@ const DIAG_BANK = {
     },
     {
       "q": "Bunga sederhana 5% per tahun pada Rp 2.000.000 selama 3 tahun?",
-      "q_en": "Simple interest 5%/year on Rp2,000,000 for 3 years?",
+      "q_en": "Simple interest 5%/year on Rp2.000.000 for 3 years?",
       "choices": [
         "Rp 200.000",
         "Rp 250.000",
@@ -638,7 +638,7 @@ const DIAG_BANK = {
       ],
       "answer": 2,
       "correct": "2.000.000 × 5% × 3 = 300.000.",
-      "correct_en": "2,000,000 × 5% × 3 = 300,000.",
+      "correct_en": "2.000.000 × 5% × 3 = 300.000.",
       "wrong": [
         "",
         "",
@@ -688,7 +688,7 @@ const DIAG_BANK = {
       ],
       "answer": 2,
       "correct": "KPK(4,6) = 12.",
-      "correct_en": "LCM(4,6) = 12.",
+      "correct_en": "LCM(4.6) = 12.",
       "wrong": [
         "",
         "",
