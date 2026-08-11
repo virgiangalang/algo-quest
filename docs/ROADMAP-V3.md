@@ -77,11 +77,11 @@ Laporan PDF **ikut** di V3 (kamu setuju). Tanda tangan CEO **nyusul** (placehold
 **Tujuan:** logo resmi di topbar, login, certificate, admin.
 
 Checklist:
-- [ ] Pastikan `logoalgo.png` ada di root atau `public/` repo `algo-quest` (sudah di main)
-- [ ] Ganti `.brandMark` / cert logo / admin mark → `<img src="/logoalgo.png" alt="Algonova">`
-- [ ] Ukuran responsif: topbar ~32–36px, login ~56–72px, certificate ~64px
-- [ ] Favicon opsional dari logo
-- [ ] Cek tidak pecah di mobile
+- [x] Pastikan `logoalgo.png` ada di root atau `public/` repo `algo-quest` (sudah di main)
+- [x] Ganti `.brandMark` / cert logo / admin mark → `<img src="/logoalgo.png" alt="Algonova">`
+- [x] Ukuran responsif: topbar ~32–36px, login ~56–72px, certificate ~64px
+- [x] Favicon opsional dari logo
+- [x] Cek tidak pecah di mobile
 - [ ] E2E: logo `img` visible di login + certificate
 
 **Done when:** huruf “A” kotak ungu diganti logo di surface utama.

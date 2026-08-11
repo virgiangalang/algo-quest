@@ -258,18 +258,32 @@ input{font:inherit}
    PHASE: BRIEFING
 ───────────────────────────────────────────── */
 #phase-briefing{display:none}
-.brief-wrap{padding:42px 40px;min-height:420px}
+.brief-wrap{padding:0;min-height:420px;display:grid;grid-template-columns:1.05fr 1fr;overflow:hidden}
+.brief-visual{
+  min-height:360px;background:#23202a center/cover no-repeat;position:relative;
+}
+.brief-visual::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent 40%,rgba(247,244,238,.92) 92%);
+}
+.brief-copy{padding:42px 36px 36px;position:relative;z-index:1}
 .brief-stamp{
   display:inline-block;border:2px solid var(--plum);color:var(--plum);
   font-weight:800;letter-spacing:.14em;font-size:11px;padding:7px 11px;
   margin-bottom:16px;background:rgba(255,255,255,.75);
 }
-.brief-wrap h2{font-family:Georgia,serif;font-size:34px;letter-spacing:-.5px;margin:0 0 12px;max-width:560px}
+.brief-wrap h2,.brief-copy h2{font-family:Georgia,serif;font-size:34px;letter-spacing:-.5px;margin:0 0 12px;max-width:560px}
 .brief-body{color:#665f68;line-height:1.75;font-size:16px;max-width:540px;margin-bottom:28px}
 .brief-dots{display:flex;gap:8px;margin-bottom:22px}
 .brief-dots i{width:8px;height:8px;border-radius:50%;background:#d5ccc0;display:block}
 .brief-dots i.on{background:var(--plum)}
 .brief-actions{display:flex;gap:10px;flex-wrap:wrap}
+@media(max-width:860px){
+  .brief-wrap{grid-template-columns:1fr}
+  .brief-visual{min-height:200px}
+  .brief-visual::after{background:linear-gradient(180deg,transparent 20%,rgba(247,244,238,.95) 85%)}
+  .brief-copy{padding:28px 22px 32px;margin-top:-40px}
+}
 
 /* Story overlay antar bab */
 .story-overlay{
@@ -278,10 +292,23 @@ input{font:inherit}
 }
 .story-overlay.show{display:flex}
 .story-panel{
-  width:min(520px,100%);background:var(--paper);border:1px solid #cfc7bb;
-  border-radius:14px;padding:28px 26px;box-shadow:0 24px 60px rgba(20,15,25,.35);
+  width:min(560px,100%);background:var(--paper);border:1px solid #cfc7bb;
+  border-radius:14px;overflow:hidden;box-shadow:0 24px 60px rgba(20,15,25,.35);
 }
+.story-art{height:180px;background:#23202a center/cover no-repeat}
+.story-panel-body{padding:22px 24px 24px}
 .story-panel .brief-stamp{margin-bottom:12px}
+.case-intro-art{
+  height:180px;margin:-48px -40px 22px;border-radius:12px 12px 0 0;
+  background:#23202a center/cover no-repeat;position:relative;
+}
+.case-intro-art::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 30%,rgba(247,244,238,.95) 100%);
+}
+@media(max-width:720px){
+  .case-intro-art{margin:-32px -22px 18px;height:140px}
+}
 .chap.done{color:#c9b8dc}
 .chap.done::before{background:var(--plum-3);box-shadow:0 0 0 2px rgba(139,90,172,.35)}
 .chap.done::after{
@@ -728,13 +755,16 @@ input{font:inherit}
   <div id="phase-briefing">
     <div class="card">
       <div class="brief-wrap panel-slide" id="brief-panel">
-        <div class="brief-stamp stamp-pop" id="brief-stamp">LAPORAN MASUK</div>
-        <div class="eyebrow" data-i18n="brief.eyebrow">Prolog kasus</div>
-        <h2 id="brief-title">Laboratorium sepi</h2>
-        <p class="brief-body" id="brief-body"></p>
-        <div class="brief-dots" id="brief-dots"></div>
-        <div class="brief-actions">
-          <button class="btn-primary" id="btn-brief-next" type="button" onclick="nextBriefing()">Lanjut →</button>
+        <div class="brief-visual" id="brief-visual" role="img" aria-label="Scene"></div>
+        <div class="brief-copy">
+          <div class="brief-stamp stamp-pop" id="brief-stamp">LAPORAN MASUK</div>
+          <div class="eyebrow" data-i18n="brief.eyebrow">Prolog kasus</div>
+          <h2 id="brief-title">Laboratorium sepi</h2>
+          <p class="brief-body" id="brief-body"></p>
+          <div class="brief-dots" id="brief-dots"></div>
+          <div class="brief-actions">
+            <button class="btn-primary" id="btn-brief-next" type="button" onclick="nextBriefing()">Lanjut →</button>
+          </div>
         </div>
       </div>
     </div>
@@ -743,11 +773,14 @@ input{font:inherit}
   <!-- Story overlay antar bab -->
   <div class="story-overlay" id="story-overlay" role="dialog" aria-modal="true">
     <div class="story-panel panel-slide">
-      <div class="brief-stamp stamp-pop" id="story-stamp">BAB</div>
-      <div class="eyebrow">Berkas baru terbuka</div>
-      <h2 id="story-title" style="font-family:Georgia,serif;font-size:28px;margin:8px 0 10px"></h2>
-      <p id="story-body" style="color:#665f68;line-height:1.7;margin-bottom:20px"></p>
-      <button class="btn-primary" type="button" onclick="dismissChapterStory()">Lanjutkan misi →</button>
+      <div class="story-art" id="story-art"></div>
+      <div class="story-panel-body">
+        <div class="brief-stamp stamp-pop" id="story-stamp">BAB</div>
+        <div class="eyebrow" data-i18n="story.eyebrow">Berkas baru terbuka</div>
+        <h2 id="story-title" style="font-family:Georgia,serif;font-size:28px;margin:8px 0 10px"></h2>
+        <p id="story-body" style="color:#665f68;line-height:1.7;margin-bottom:20px"></p>
+        <button class="btn-primary" type="button" onclick="dismissChapterStory()" data-i18n="story.continue">Lanjutkan misi →</button>
+      </div>
     </div>
   </div>
 
@@ -781,6 +814,7 @@ input{font:inherit}
   <div id="phase-case-intro">
     <div class="card">
       <div class="case-intro-wrap">
+        <div class="case-intro-art" id="intro-art"></div>
         <div class="case-intro-stamp stamp-pop" id="intro-stamp" data-i18n="intro.stamp">BERKAS DIBUKA</div>
         <div class="eyebrow" id="intro-eyebrow" data-i18n="intro.eyebrow">Kalibrasi selesai · Kasus siap</div>
         <h2 id="intro-title">Kode yang Hilang</h2>
@@ -1275,6 +1309,10 @@ function renderBriefing() {
   document.getElementById("brief-stamp").classList.add("stamp-pop");
   document.getElementById("brief-title").textContent = p.title;
   document.getElementById("brief-body").textContent = p.body;
+  const vis = document.getElementById("brief-visual");
+  if (vis) {
+    vis.style.backgroundImage = p.image ? `url('${p.image}')` : "";
+  }
   document.getElementById("brief-dots").innerHTML = panels.map((_, i) =>
     `<i class="${i === STATE.briefIndex ? "on" : ""}"></i>`
   ).join("");
@@ -1461,6 +1499,11 @@ function populateCaseIntroReady(data, check) {
   document.getElementById("intro-diag").textContent =
     `${STATE.diagCorrect}/${STATE.diagQuestions.length}`;
   document.getElementById("intro-count").textContent = String(check.count);
+  const art = document.getElementById("intro-art");
+  if (art) {
+    const src = (typeof CASE_KEY_ART !== "undefined") ? CASE_KEY_ART : "public/story/case-key.jpg";
+    art.style.backgroundImage = `url('${src}')`;
+  }
 }
 
 function enterGame() {
@@ -1513,19 +1556,23 @@ function maybeShowChapterStory(forceFirst) {
   const lang = (typeof AlgoI18n !== "undefined" && AlgoI18n.getLang()) || "id";
   let story;
   if (lang === "en" && typeof STORY_CHAPTER_INTRO_EN !== "undefined") {
+    const entry = STORY_CHAPTER_INTRO_EN[Math.min(idx, STORY_CHAPTER_INTRO_EN.length - 1)];
     story = {
       stamp: `CH ${idx + 1}`,
       title,
-      body: STORY_CHAPTER_INTRO_EN[Math.min(idx, STORY_CHAPTER_INTRO_EN.length - 1)],
+      body: entry.body || entry,
+      image: entry.image || `public/story/bab-${idx + 1}.jpg`,
     };
   } else {
     story = (typeof getChapterStory === "function")
       ? getChapterStory(idx, title)
-      : { stamp: `BAB ${idx + 1}`, title, body: "Bab baru terbuka." };
+      : { stamp: `BAB ${idx + 1}`, title, body: "Bab baru terbuka.", image: `public/story/bab-${idx + 1}.jpg` };
   }
   document.getElementById("story-stamp").textContent = story.stamp;
   document.getElementById("story-title").textContent = story.title;
   document.getElementById("story-body").textContent = story.body;
+  const art = document.getElementById("story-art");
+  if (art) art.style.backgroundImage = story.image ? `url('${story.image}')` : "";
   document.getElementById("story-overlay").classList.add("show");
   STATE.pendingChapterStory = idx;
   if (typeof AlgoAudio !== "undefined") AlgoAudio.play(idx === 0 ? "level-up" : "bab-clear");
