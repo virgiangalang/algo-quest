@@ -1,13 +1,7 @@
-# Reference files (untuk agent)
+# Reference — Algonova Math
 
-## Wajib dibaca dulu
-1. `algonova-preview.html` — visual & UX Algonova (ungu, dossier, misteri). **Ini acuan desain.**
+Acuan visual & UX produk:
 
-## Aturan
-- UI harus mengikuti preview Algo, **bukan** Kindora.
-- Kalau ada file `kindora-trial-*` di folder ini: ambil ide FLOW saja (login → soal → hasil), jangan copy warna/brand Kindora.
-- Jangan clone/akses repo kindoraweb.
+- [`algonova-preview.html`](./algonova-preview.html) — dossier misteri, ungu Algo `#4b2b68`, flow game cerita
 
-## Target produk singkat
-Login (username+nama+umur) → Diagnostic → Soal Math cerita → Result/skill → Certificate.
-Auth: Google Sheet VALID/USED + Apps Script. Soal: JSON lokal. Tanpa Supabase.
+Buka file itu di browser saat polish UI. Produk final ada di root `index.html`.

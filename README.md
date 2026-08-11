@@ -1,6 +1,6 @@
 # Algonova Math — Misteri Matematika
 
-Asesmen matematika berbasis cerita detektif untuk murid **Algonova** (bukan Kindora).  
+Asesmen matematika berbasis cerita detektif untuk murid **Algonova**.  
 Flow: Login → Diagnostic → Game → Result (skill bars) → Certificate.
 
 Arsitektur lengkap: [MASTERPLAN.md](./MASTERPLAN.md)  
