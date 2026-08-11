@@ -34,8 +34,19 @@ async function visible(page, sel) {
     // scripts loaded
     const hasAudio = await page.evaluate(() => typeof AlgoAudio !== "undefined");
     const hasStory = await page.evaluate(() => typeof getBriefingPanels === "function");
+    const hasI18n = await page.evaluate(() => typeof AlgoI18n !== "undefined");
+    const hasPersist = await page.evaluate(() => typeof AlgoPersist !== "undefined");
     if (!hasAudio) fail("AlgoAudio missing"); else ok("AlgoAudio");
     if (!hasStory) fail("story.js missing"); else ok("story.js");
+    if (!hasI18n) fail("i18n missing"); else ok("i18n");
+    if (!hasPersist) fail("persist missing"); else ok("persist");
+
+    // language toggle
+    await page.click('.lang-btn[data-lang="en"]');
+    await page.waitForTimeout(200);
+    const titleEn = await page.locator('[data-i18n="login.title"]').innerText();
+    if (!/Missing Code|The Missing/i.test(titleEn)) fail("EN title", titleEn); else ok("EN UI");
+    await page.click('.lang-btn[data-lang="id"]');
 
     await page.fill("#input-username", "TEST-001");
     await page.fill("#input-name", "Tester Lokal");
@@ -118,6 +129,15 @@ async function visible(page, sel) {
     // ui.js loaded
     const hasUI = await page.evaluate(() => typeof AlgoUI !== "undefined");
     if (!hasUI) fail("AlgoUI"); else ok("AlgoUI");
+
+    // persist survives reload mid-game
+    await page.reload({ waitUntil: "networkidle" });
+    await page.waitForTimeout(400);
+    const resumeVisible = await page.locator("#resume-overlay.show").count();
+    if (!resumeVisible) fail("resume overlay missing after reload"); else ok("resume after reload");
+    await page.click("#resume-overlay .btn-primary");
+    await visible(page, "#phase-game");
+    ok("resumed game");
 
     // jump to certificate populate
     await page.evaluate(() => {

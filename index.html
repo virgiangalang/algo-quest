@@ -72,7 +72,32 @@ input{font:inherit}
   color:#61586a;border:1px solid #c9c0b4;background:#f3efe8;
   padding:6px 10px;border-radius:7px;
 }
-.topbar-actions{display:flex;align-items:center;gap:8px}
+.topbar-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.lang-switch{
+  display:inline-flex;border:1px solid #c9c0b4;border-radius:7px;overflow:hidden;background:#f3efe8;
+}
+.lang-btn{
+  border:0;background:transparent;padding:6px 9px;font-size:11px;font-weight:800;
+  letter-spacing:.06em;color:#61586a;cursor:pointer;font-family:"IBM Plex Sans",system-ui,sans-serif;
+}
+.lang-btn.active{background:var(--plum);color:#fff}
+.autosave-pill{
+  display:none;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:#226a4b;background:#edf7f1;border:1px solid #bcd9ca;padding:5px 8px;border-radius:7px;
+}
+.autosave-pill.show{display:inline-block}
+.resume-overlay{
+  display:none;position:fixed;inset:0;z-index:70;background:rgba(23,20,29,.55);
+  align-items:center;justify-content:center;padding:20px;
+}
+.resume-overlay.show{display:flex}
+.resume-card{
+  width:min(440px,100%);background:var(--paper);border:1px solid #cfc7bb;border-radius:14px;
+  padding:26px;box-shadow:0 24px 60px rgba(20,15,25,.35);
+}
+.resume-card h2{font-family:Georgia,serif;font-size:26px;margin:8px 0 10px}
+.resume-card p{color:#665f68;line-height:1.65;margin-bottom:18px;font-size:14px}
+.login-lang{margin-bottom:14px;max-width:380px}
 .btn-mute{
   font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:11px;font-weight:700;
   letter-spacing:.04em;border:1px solid #c9c0b4;background:#f3efe8;color:#61586a;
@@ -609,9 +634,14 @@ input{font:inherit}
   <div class="topbar">
     <div class="brand">
       <div class="brandMark">A</div>
-      <div>Algonova <span class="brandSub">Misteri Matematika</span></div>
+      <div>Algonova <span class="brandSub" data-i18n="brand.sub">Misteri Matematika</span></div>
     </div>
     <div class="topbar-actions">
+      <span class="autosave-pill" id="autosave-pill" data-i18n="autosave">Tersimpan otomatis</span>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" class="lang-btn active" data-lang="id" onclick="setAppLang('id')">ID</button>
+        <button type="button" class="lang-btn" data-lang="en" onclick="setAppLang('en')">EN</button>
+      </div>
       <button type="button" class="btn-mute" id="btn-mute" aria-pressed="false" onclick="toggleMute()">Suara: Nyala</button>
       <div class="badge" id="topbar-badge" style="display:none"></div>
     </div>
@@ -623,32 +653,40 @@ input{font:inherit}
   <div id="phase-login">
     <div class="card login-wrap">
       <div class="login-copy">
-        <div class="eyebrow">Berkas Kasus 001 · Edisi Siswa</div>
-        <h1>Kode yang Hilang</h1>
-        <p>Chip AI eksperimental milik Profesor Nova telah menghilang. Ikuti petunjuk dalam bab-bab kasus, selesaikan tantangan matematika, dan temukan karakter detektifmu di akhir investigasi.</p>
+        <div class="eyebrow" data-i18n="login.eyebrow">Berkas Kasus 001 · Edisi Siswa</div>
+        <h1 data-i18n="login.title">Kode yang Hilang</h1>
+        <p data-i18n="login.lead">Chip AI eksperimental milik Profesor Nova telah menghilang. Ikuti petunjuk dalam bab-bab kasus, selesaikan tantangan matematika, dan temukan karakter detektifmu di akhir investigasi.</p>
+
+        <div class="form-group login-lang">
+          <label data-i18n="login.langLabel">Bahasa / Language</label>
+          <div class="lang-switch" style="width:fit-content">
+            <button type="button" class="lang-btn active" data-lang="id" onclick="setAppLang('id')">ID</button>
+            <button type="button" class="lang-btn" data-lang="en" onclick="setAppLang('en')">EN</button>
+          </div>
+        </div>
 
         <div class="form-group">
-          <label for="input-username">Username Algonova</label>
-          <input type="text" id="input-username" placeholder="Contoh: ALGO-001" autocomplete="off">
+          <label for="input-username" data-i18n="login.user">Username Algonova</label>
+          <input type="text" id="input-username" data-i18n-placeholder="login.user" placeholder="Contoh: ALGO-001" autocomplete="off">
         </div>
         <div class="form-group">
-          <label for="input-name">Nama Siswa</label>
-          <input type="text" id="input-name" placeholder="Nama lengkap kamu" autocomplete="off">
+          <label for="input-name" data-i18n="login.name">Nama Siswa</label>
+          <input type="text" id="input-name" data-i18n-placeholder="login.name" placeholder="Nama lengkap kamu" autocomplete="off">
         </div>
         <div class="form-group">
-          <label for="input-age">Umur <span style="font-weight:400;color:#9f96a6">(opsional)</span></label>
-          <input type="number" id="input-age" placeholder="Contoh: 12" min="5" max="99">
-          <div class="form-note">Umur membantu menyesuaikan level soal awal.</div>
+          <label for="input-age"><span data-i18n="login.age">Umur (opsional)</span></label>
+          <input type="number" id="input-age" placeholder="12" min="5" max="99">
+          <div class="form-note" data-i18n="login.ageNote">Umur membantu menyarankan level soal awal.</div>
         </div>
 
-        <button class="btn-primary" id="btn-login" onclick="handleLogin()">
+        <button class="btn-primary" id="btn-login" onclick="handleLogin()" data-i18n="login.cta">
           Buka berkas kasus →
         </button>
 
         <div class="login-error" id="login-error"></div>
         <div class="loading-wrap" id="login-loading">
           <div class="spinner"></div>
-          <span style="color:var(--muted);font-size:13px">Memverifikasi akses…</span>
+          <span style="color:var(--muted);font-size:13px" data-i18n="login.loading">Memverifikasi akses…</span>
         </div>
       </div>
 
@@ -670,9 +708,9 @@ input{font:inherit}
   <div id="phase-level-select">
     <div class="card">
       <div class="level-wrap">
-        <div class="eyebrow">Berkas kasus · Pilih jalur investigasi</div>
-        <h2>Pilih level soal</h2>
-        <p class="lead">
+        <div class="eyebrow" data-i18n="level.eyebrow">Berkas kasus · Pilih jalur investigasi</div>
+        <h2 data-i18n="level.title">Pilih level soal</h2>
+        <p class="lead" data-i18n="level.lead">
           Pilih tingkat yang paling pas. Kalibrasi singkat tetap dijalankan setelah ini
           dan boleh menyesuaikan satu tingkat naik/turun.
         </p>
@@ -689,7 +727,7 @@ input{font:inherit}
     <div class="card">
       <div class="brief-wrap panel-slide" id="brief-panel">
         <div class="brief-stamp stamp-pop" id="brief-stamp">LAPORAN MASUK</div>
-        <div class="eyebrow">Prolog kasus</div>
+        <div class="eyebrow" data-i18n="brief.eyebrow">Prolog kasus</div>
         <h2 id="brief-title">Laboratorium sepi</h2>
         <p class="brief-body" id="brief-body"></p>
         <div class="brief-dots" id="brief-dots"></div>
@@ -719,8 +757,8 @@ input{font:inherit}
       <div class="diag-wrap">
         <div class="diag-header">
           <div class="diag-step eyebrow" id="diag-step-label">Fase Diagnostic · Soal 1 dari 5</div>
-          <h2 class="title">Kalibrasi Kemampuan</h2>
-          <p>Jawab 5 soal singkat ini untuk membantu kami menyesuaikan level kasus yang tepat untukmu.</p>
+          <h2 class="title" data-i18n="diag.title">Kalibrasi Kemampuan</h2>
+          <p data-i18n="diag.lead">Jawab 5 soal singkat ini untuk membantu kami menyesuaikan level kasus yang tepat untukmu.</p>
         </div>
         <div id="diag-progress" style="height:4px;background:#e8e0f0;border-radius:10px;margin-bottom:28px;overflow:hidden">
           <div id="diag-bar" style="height:100%;background:linear-gradient(90deg,var(--plum-3),var(--plum));width:0;transition:width .3s"></div>
@@ -729,7 +767,7 @@ input{font:inherit}
         <div id="diag-choices" class="choices"></div>
         <div id="diag-feedback" class="feedback"></div>
         <div class="actions">
-          <button class="btn-next" id="diag-next-btn" onclick="nextDiagQuestion()">Lanjut →</button>
+          <button class="btn-next" id="diag-next-btn" onclick="nextDiagQuestion()" data-i18n="diag.next">Lanjut →</button>
         </div>
       </div>
     </div>
@@ -741,8 +779,8 @@ input{font:inherit}
   <div id="phase-case-intro">
     <div class="card">
       <div class="case-intro-wrap">
-        <div class="case-intro-stamp">BERKAS DIBUKA</div>
-        <div class="eyebrow" id="intro-eyebrow">Kalibrasi selesai · Kasus siap</div>
+        <div class="case-intro-stamp stamp-pop" id="intro-stamp" data-i18n="intro.stamp">BERKAS DIBUKA</div>
+        <div class="eyebrow" id="intro-eyebrow" data-i18n="intro.eyebrow">Kalibrasi selesai · Kasus siap</div>
         <h2 id="intro-title">Kode yang Hilang</h2>
         <p class="case-intro-lead" id="intro-lead">
           Chip AI eksperimental milik Profesor Nova menghilang dari laboratorium.
@@ -751,22 +789,22 @@ input{font:inherit}
         <div class="case-intro-error" id="intro-error"></div>
         <div class="case-intro-dev" id="intro-dev">Mode DEV FALLBACK: bank soal production belum terbaca. Perbaiki path JSON / upload di admin.</div>
         <div class="case-intro-meta">
-          <div class="case-intro-box">
-            <div class="small-label">Level kasus</div>
-            <div class="big-label" id="intro-level">—</div>
+            <div class="case-intro-box">
+              <div class="small-label" data-i18n="intro.level">Level kasus</div>
+              <div class="big-label" id="intro-level">—</div>
+            </div>
+            <div class="case-intro-box">
+              <div class="small-label" data-i18n="intro.diag">Skor kalibrasi</div>
+              <div class="big-label" id="intro-diag">—</div>
+            </div>
+            <div class="case-intro-box">
+              <div class="small-label" data-i18n="intro.count">Jumlah misi</div>
+              <div class="big-label" id="intro-count">—</div>
+            </div>
           </div>
-          <div class="case-intro-box">
-            <div class="small-label">Skor kalibrasi</div>
-            <div class="big-label" id="intro-diag">—</div>
-          </div>
-          <div class="case-intro-box">
-            <div class="small-label">Jumlah misi</div>
-            <div class="big-label" id="intro-count">—</div>
-          </div>
-        </div>
-        <button class="btn-primary" id="btn-start-case" onclick="enterGame()" disabled>
-          Mulai investigasi →
-        </button>
+          <button class="btn-primary" id="btn-start-case" onclick="enterGame()" disabled data-i18n="intro.start">
+            Mulai investigasi →
+          </button>
       </div>
     </div>
   </div>
@@ -782,20 +820,20 @@ input{font:inherit}
           <div class="profile-row">
             <div class="avatar" id="sb-avatar">A</div>
             <div>
-              <div class="small-label">Peringkat detektif</div>
+              <div class="small-label" data-i18n="game.rank">Peringkat detektif</div>
               <div class="big-label" id="sb-rank">Pemula</div>
             </div>
           </div>
           <div class="statgrid">
-            <div class="stat"><span class="small-label">XP</span><b id="sb-xp">0</b></div>
-            <div class="stat"><span class="small-label">Petunjuk</span><b><span id="sb-clues">0</span>/<span id="sb-total">30</span></b></div>
+            <div class="stat"><span class="small-label" data-i18n="game.xp">XP</span><b id="sb-xp">0</b></div>
+            <div class="stat"><span class="small-label" data-i18n="game.clues">Petunjuk</span><b><span id="sb-clues">0</span>/<span id="sb-total">30</span></b></div>
             <div class="stat" style="grid-column:1/-1">
-              <span class="small-label">Akurasi</span><b id="sb-accuracy">—</b>
+              <span class="small-label" data-i18n="game.accuracy">Akurasi</span><b id="sb-accuracy">—</b>
               <div class="progress-bar"><div id="sb-bar"></div></div>
             </div>
           </div>
         </div>
-        <div class="chapter-label">Progres kasus</div>
+        <div class="chapter-label" data-i18n="game.progress">Progres kasus</div>
         <div id="chapter-list" class="chapter-list"></div>
       </aside>
 
@@ -808,7 +846,7 @@ input{font:inherit}
           </div>
           <div class="case-body">
             <div class="eyebrow" id="game-chapter"></div>
-            <div class="title">Analisis Bukti</div>
+            <div class="title" data-i18n="game.analyze">Analisis Bukti</div>
             <div class="scene" id="game-scene"></div>
             <div class="divider"></div>
             <div class="question-meta">
@@ -816,15 +854,15 @@ input{font:inherit}
               <span class="pill" id="game-difficulty">Tingkat</span>
             </div>
             <div class="q-tools">
-              <button type="button" class="btn-tts" id="btn-tts" onclick="speakCurrentQuestion()">Dengarkan soal</button>
-              <button type="button" class="btn-hint" id="btn-hint" onclick="useHint()">Tampilkan hint</button>
+              <button type="button" class="btn-tts" id="btn-tts" onclick="speakCurrentQuestion()" data-i18n="game.listen">Dengarkan soal</button>
+              <button type="button" class="btn-hint" id="btn-hint" onclick="useHint()" data-i18n="game.hint">Tampilkan hint</button>
               <span class="attempt-pill" id="attempt-pill"></span>
             </div>
             <div class="question" id="game-question"></div>
             <div class="choices" id="game-choices"></div>
             <div class="feedback" id="game-feedback"></div>
             <div class="actions">
-              <button class="btn-next" id="game-next-btn" onclick="nextQuestion()">Petunjuk berikutnya →</button>
+              <button class="btn-next" id="game-next-btn" onclick="nextQuestion()" data-i18n="game.next">Petunjuk berikutnya →</button>
             </div>
           </div>
         </section>
@@ -837,19 +875,19 @@ input{font:inherit}
   ════════════════════════════════════════ -->
   <div id="phase-result">
     <div class="card result-wrap">
-      <div class="eyebrow">Kasus Terpecahkan</div>
+      <div class="eyebrow" data-i18n="result.eyebrow">Kasus Terpecahkan</div>
       <div class="result-avatar" id="res-avatar">A</div>
       <div class="result-title" id="res-title">Sang Analis</div>
       <div class="result-tag" id="res-tag"></div>
       <div class="result-desc" id="res-desc"></div>
       <div class="result-grid">
-        <div class="result-box"><div class="small-label">Akurasi</div><div class="big-label" id="res-accuracy">—</div></div>
-        <div class="result-box"><div class="small-label">XP Detektif</div><div class="big-label" id="res-xp">—</div></div>
-        <div class="result-box"><div class="small-label">Petunjuk</div><div class="big-label" id="res-clues">—</div></div>
+        <div class="result-box"><div class="small-label" data-i18n="game.accuracy">Akurasi</div><div class="big-label" id="res-accuracy">—</div></div>
+        <div class="result-box"><div class="small-label" data-i18n="game.xp">XP Detektif</div><div class="big-label" id="res-xp">—</div></div>
+        <div class="result-box"><div class="small-label" data-i18n="game.clues">Petunjuk</div><div class="big-label" id="res-clues">—</div></div>
       </div>
       <div class="skill-bars" id="res-skills"></div>
       <div style="margin-top:12px">
-        <button class="btn-cert" onclick="showCertificate()">Lihat & Cetak Certificate</button>
+        <button class="btn-cert" onclick="showCertificate()" data-i18n="result.cert">Lihat & Cetak Certificate</button>
       </div>
     </div>
   </div>
@@ -859,8 +897,9 @@ input{font:inherit}
   ════════════════════════════════════════ -->
   <div id="phase-certificate">
     <div class="cert-actions">
-      <button class="btn-primary" onclick="window.print()">Cetak / Simpan PDF</button>
-      <button class="btn-retry" onclick="showPhase('result')">← Kembali ke Hasil</button>
+      <button class="btn-primary" onclick="window.print()" data-i18n="cert.print">Cetak / Simpan PDF</button>
+      <button class="btn-primary" style="background:#68418a" onclick="shareResult()" data-i18n="cert.share">Bagikan hasil</button>
+      <button class="btn-retry" onclick="showPhase('result')" data-i18n="cert.back">← Kembali ke Hasil</button>
     </div>
     <div class="cert-page">
       <div class="cert-border">
@@ -918,7 +957,20 @@ input{font:inherit}
     </div>
   </div>
 
-  <div class="footer">© Algonova by Algorithmics · Misteri Matematika · Kurikulum Merdeka</div>
+  <div class="footer" data-i18n="footer">© Algonova by Algorithmics · Misteri Matematika · Kurikulum Merdeka</div>
+</div>
+
+<!-- Resume overlay -->
+<div class="resume-overlay" id="resume-overlay" role="dialog" aria-modal="true">
+  <div class="resume-card panel-slide">
+    <div class="eyebrow">Algonova Quest</div>
+    <h2 data-i18n="resume.title">Lanjutkan investigasi?</h2>
+    <p id="resume-body"></p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn-primary" type="button" onclick="resumeSession()" data-i18n="resume.continue">Lanjutkan →</button>
+      <button class="btn-retry" type="button" onclick="discardSession()" data-i18n="resume.restart">Mulai ulang</button>
+    </div>
+  </div>
 </div>
 
 <!-- ═══════════════════════════════════════
@@ -927,8 +979,11 @@ input{font:inherit}
 <script src="src/lib/questions.js"></script>
 <script src="src/lib/diagnostic.js"></script>
 <script src="src/lib/story.js"></script>
+<script src="src/lib/story-en.js"></script>
 <script src="src/lib/audio.js"></script>
 <script src="src/lib/ui.js"></script>
+<script src="src/lib/i18n.js"></script>
+<script src="src/lib/persist.js"></script>
 <script src="src/lib/certificate.js"></script>
 <script>
 /* ─── CONFIG ─── */
@@ -1003,6 +1058,47 @@ function showPhase(name) {
   STATE.phase = name;
   window.scrollTo({ top: 0, behavior: "smooth" });
   console.info("[algo] phase →", name);
+  persistSession();
+  if (typeof AlgoI18n !== "undefined") AlgoI18n.applyDom();
+}
+
+function persistSession() {
+  if (typeof AlgoPersist !== "undefined") AlgoPersist.save(STATE);
+}
+
+function setAppLang(lang) {
+  if (typeof AlgoI18n === "undefined") return;
+  AlgoI18n.setLang(lang);
+  if (typeof AlgoAudio !== "undefined") {
+    const muted = AlgoAudio.isMuted();
+    document.getElementById("btn-mute").textContent = muted
+      ? AlgoI18n.t("mute.off")
+      : AlgoI18n.t("mute.on");
+  }
+  // Refresh dynamic screens if active
+  if (STATE.phase === "level-select") showLevelSelect();
+  else if (STATE.phase === "briefing") renderBriefing();
+  else if (STATE.phase === "diagnostic") renderDiagQuestion();
+  else if (STATE.phase === "game" && STATE.questions?.length) renderQuestion();
+  else if (STATE.phase === "case-intro" && STATE.caseData) {
+    const check = validateQuestionBank(STATE.caseData);
+    populateCaseIntroReady(STATE.caseData, check);
+  }
+  persistSession();
+}
+
+function tt(key, vars) {
+  return (typeof AlgoI18n !== "undefined") ? AlgoI18n.t(key, vars) : key;
+}
+
+function toggleMute() {
+  if (typeof AlgoAudio === "undefined") return;
+  AlgoAudio.setMuted(!AlgoAudio.isMuted());
+  AlgoAudio.play("click");
+  const muted = AlgoAudio.isMuted();
+  const btn = document.getElementById("btn-mute");
+  btn.textContent = muted ? tt("mute.off") : tt("mute.on");
+  btn.setAttribute("aria-pressed", muted ? "true" : "false");
 }
 
 function setTopbarBadge(text) {
@@ -1011,25 +1107,14 @@ function setTopbarBadge(text) {
   el.style.display = text ? "block" : "none";
 }
 
-function toggleMute() {
-  if (typeof AlgoAudio === "undefined") return;
-  AlgoAudio.setMuted(!AlgoAudio.isMuted());
-  AlgoAudio.play("click");
-}
-
 function speakCurrentQuestion() {
   if (typeof AlgoAudio === "undefined") return;
   AlgoAudio.unlock();
   const q = STATE.questions[STATE.qIndex];
   if (!q) return;
-  const text = `${q.scene || ""}. Soal: ${q.q || ""}`;
+  const lq = (typeof AlgoI18n !== "undefined") ? AlgoI18n.localizeQ(q) : q;
+  const text = `${lq.scene || ""}. ${lq.q || ""}`;
   AlgoAudio.speak(text);
-}
-
-// Unlock audio on first interaction
-if (typeof AlgoAudio !== "undefined") {
-  AlgoAudio.bindUnlockOnce();
-  AlgoAudio.setMuted(AlgoAudio.isMuted());
 }
 
 /* ─── LOGIN ─── */
@@ -1042,8 +1127,8 @@ async function handleLogin() {
 
   errEl.className = "login-error";
 
-  if (!username) { showError("Username Algonova wajib diisi."); return; }
-  if (!name) { showError("Nama siswa wajib diisi."); return; }
+  if (!username) { showError(tt("err.user")); return; }
+  if (!name) { showError(tt("err.name")); return; }
 
   STATE.username = username;
   STATE.studentName = name;
@@ -1064,7 +1149,7 @@ async function handleLogin() {
     loadEl.classList.remove("show");
 
     if (!result.valid) {
-      showError(result.message || "Username tidak ditemukan atau tidak aktif.");
+      showError(result.message || tt("err.invalid"));
       document.getElementById("btn-login").disabled = false;
       return;
     }
@@ -1099,7 +1184,7 @@ async function handleLogin() {
 
   } catch (e) {
     loadEl.classList.remove("show");
-    showError("Gagal terhubung ke server. Cek koneksi internetmu.");
+    showError(tt("err.net"));
     document.getElementById("btn-login").disabled = false;
   }
 }
@@ -1136,18 +1221,19 @@ function showLevelSelect() {
   grid.innerHTML = LEVEL_META.map((lv) => {
     const isSug = lv.id === suggested;
     const label = (typeof LEVEL_LABELS !== "undefined" && LEVEL_LABELS[lv.id]) || lv.title;
+    const sug = tt("level.suggested");
     return `<button type="button" class="level-card${isSug ? " suggested" : ""}" data-level="${lv.id}" onclick="confirmLevel('${lv.id}')">
-      ${isSug ? `<span class="lc-badge">Disarankan</span>` : ""}
+      ${isSug ? `<span class="lc-badge">${sug}</span>` : ""}
       <div class="lc-code">${lv.id}</div>
       <div class="lc-title">${label}</div>
       <div class="lc-age">${lv.age}<br>${lv.blurb}</div>
     </button>`;
   }).join("");
   document.getElementById("level-hint").textContent = STATE.age
-    ? `Berdasarkan umur ${STATE.age}, saran kami: ${(LEVEL_LABELS && LEVEL_LABELS[suggested]) || suggested}. Kamu tetap bebas memilih.`
-    : "Umur tidak diisi — pilih level yang paling nyaman. Kamu bisa ganti sebelum mulai.";
+    ? tt("level.hintAge", { age: STATE.age, level: (LEVEL_LABELS && LEVEL_LABELS[suggested]) || suggested })
+    : tt("level.hintNoAge");
   showPhase("level-select");
-  setTopbarBadge(STATE.studentName + " · pilih level");
+  setTopbarBadge(STATE.studentName + " · level");
 }
 
 function confirmLevel(level) {
@@ -1161,9 +1247,14 @@ function confirmLevel(level) {
 /* ─── BRIEFING ─── */
 function startBriefing() {
   STATE.briefIndex = 0;
-  STATE.briefPanels = (typeof getBriefingPanels === "function")
-    ? getBriefingPanels()
-    : [{ stamp: "PROLOG", title: "Kasus dibuka", body: "Siap untuk kalibrasi." }];
+  const lang = (typeof AlgoI18n !== "undefined" && AlgoI18n.getLang()) || "id";
+  if (lang === "en" && typeof STORY_BRIEFING_EN !== "undefined") {
+    STATE.briefPanels = STORY_BRIEFING_EN.slice();
+  } else {
+    STATE.briefPanels = (typeof getBriefingPanels === "function")
+      ? getBriefingPanels()
+      : [{ stamp: "PROLOG", title: "Kasus dibuka", body: "Siap untuk kalibrasi." }];
+  }
   showPhase("briefing");
   renderBriefing();
 }
@@ -1186,7 +1277,7 @@ function renderBriefing() {
     `<i class="${i === STATE.briefIndex ? "on" : ""}"></i>`
   ).join("");
   const btn = document.getElementById("btn-brief-next");
-  btn.textContent = STATE.briefIndex >= panels.length - 1 ? "Mulai kalibrasi →" : "Lanjut →";
+  btn.textContent = STATE.briefIndex >= panels.length - 1 ? tt("brief.start") : tt("brief.next");
 }
 
 function nextBriefing() {
@@ -1212,10 +1303,11 @@ function renderDiagQuestion() {
   const total = STATE.diagQuestions.length;
 
   document.getElementById("diag-step-label").textContent =
-    `Fase Diagnostic · Soal ${STATE.diagIndex + 1} dari ${total}`;
+    tt("diag.eyebrow", { n: STATE.diagIndex + 1, total });
   document.getElementById("diag-bar").style.width =
     `${(STATE.diagIndex / total) * 100}%`;
-  document.getElementById("diag-question").textContent = q.q;
+  const lq = (typeof AlgoI18n !== "undefined") ? AlgoI18n.localizeQ(q) : q;
+  document.getElementById("diag-question").textContent = lq.q;
 
   const box = document.getElementById("diag-choices");
   box.innerHTML = "";
@@ -1251,10 +1343,11 @@ function answerDiag(idx, btn, q) {
   const fb = document.getElementById("diag-feedback");
   fb.className = `feedback ${ok ? "good" : "bad"} show`;
   fb.innerHTML = ok
-    ? `<b>✓ Tepat!</b> ${q.correct}`
-    : `<b>Hampir!</b> ${q.wrong[idx] || "Coba hitung kembali."}`;
+    ? `<b>${tt("diag.good")}</b> ${q.correct}`
+    : `<b>${tt("diag.bad")}</b> ${q.wrong[idx] || ""}`;
 
   document.getElementById("diag-next-btn").classList.add("show");
+  persistSession();
 }
 
 function nextDiagQuestion() {
@@ -1323,8 +1416,9 @@ async function finishDiagnostic() {
 
     setupChapters(data);
     startBtn.disabled = false;
-    startBtn.textContent = "Mulai investigasi →";
+    startBtn.textContent = tt("intro.start");
     setTopbarBadge((LEVEL_LABELS[STATE.level] || STATE.level) + " · " + STATE.questions.length + " misi");
+    persistSession();
   } catch (e) {
     console.error("[algo] finishDiagnostic load failed", e);
     errEl.innerHTML =
@@ -1414,15 +1508,26 @@ function maybeShowChapterStory(forceFirst) {
   // Show story for new chapter
   const chapters = [...new Set(STATE.questions.map((x) => x.chapter))];
   const title = chapters[idx];
-  const story = (typeof getChapterStory === "function")
-    ? getChapterStory(idx, title)
-    : { stamp: `BAB ${idx + 1}`, title, body: "Bab baru terbuka." };
+  const lang = (typeof AlgoI18n !== "undefined" && AlgoI18n.getLang()) || "id";
+  let story;
+  if (lang === "en" && typeof STORY_CHAPTER_INTRO_EN !== "undefined") {
+    story = {
+      stamp: `CH ${idx + 1}`,
+      title,
+      body: STORY_CHAPTER_INTRO_EN[Math.min(idx, STORY_CHAPTER_INTRO_EN.length - 1)],
+    };
+  } else {
+    story = (typeof getChapterStory === "function")
+      ? getChapterStory(idx, title)
+      : { stamp: `BAB ${idx + 1}`, title, body: "Bab baru terbuka." };
+  }
   document.getElementById("story-stamp").textContent = story.stamp;
   document.getElementById("story-title").textContent = story.title;
   document.getElementById("story-body").textContent = story.body;
   document.getElementById("story-overlay").classList.add("show");
   STATE.pendingChapterStory = idx;
   if (typeof AlgoAudio !== "undefined") AlgoAudio.play(idx === 0 ? "level-up" : "bab-clear");
+  persistSession();
 }
 
 function dismissChapterStory() {
@@ -1455,15 +1560,16 @@ function renderQuestion() {
 
   document.getElementById("game-chapter").textContent = q.chapter;
   document.getElementById("game-mission").textContent =
-    `Misi ${String(STATE.qIndex + 1).padStart(2,"0")} / ${total}`;
-  document.getElementById("game-scene").textContent = q.scene;
-  document.getElementById("game-question").textContent = q.q;
-  document.getElementById("game-skill").textContent = q.skill;
-  document.getElementById("game-difficulty").textContent = q.difficulty;
+    tt("game.mission", { n: String(STATE.qIndex + 1).padStart(2,"0"), total });
+  const lq = (typeof AlgoI18n !== "undefined") ? AlgoI18n.localizeQ(q) : q;
+  document.getElementById("game-scene").textContent = lq.scene;
+  document.getElementById("game-question").textContent = lq.q;
+  document.getElementById("game-skill").textContent = lq.skill;
+  document.getElementById("game-difficulty").textContent = lq.difficulty;
 
   const box = document.getElementById("game-choices");
   box.innerHTML = "";
-  q.choices.forEach((c, idx) => {
+  lq.choices.forEach((c, idx) => {
     const btn = document.createElement("button");
     btn.className = "choice";
     btn.innerHTML = `<span class="choice-key">${"ABCD"[idx]}</span>${c}`;
@@ -1475,11 +1581,12 @@ function renderQuestion() {
   document.getElementById("game-feedback").innerHTML = "";
   document.getElementById("game-next-btn").className = "btn-next";
   document.getElementById("btn-hint").className = "btn-hint";
-  document.getElementById("attempt-pill").textContent = "Percobaan: 2";
+  document.getElementById("attempt-pill").textContent = tt("game.attempts", { n: STATE.attemptsLeft });
 
   const activeIdx = getChapterIndexForQuestion(STATE.qIndex);
   updateChapterSidebar(activeIdx);
   updateSidebar();
+  persistSession();
 }
 
 function useHint() {
@@ -1489,7 +1596,7 @@ function useHint() {
   document.getElementById("btn-hint").classList.remove("show");
   const safe = typeof q.answer === "number" ? "ABCD"[q.answer] : "?";
   if (typeof AlgoUI !== "undefined") {
-    AlgoUI.toast(`Hint: fokus opsi ${safe} — cek ulang hitunganmu.`, "info");
+    AlgoUI.toast(tt("hint.toast", { opt: safe }), "info");
   }
   if (typeof AlgoAudio !== "undefined") AlgoAudio.play("click");
 }
@@ -1503,10 +1610,11 @@ function answerQuestion(idx, btn, q) {
     STATE.attemptsLeft--;
     btn.classList.add("wrong");
     btn.classList.add("disabled");
-    document.getElementById("attempt-pill").textContent = `Percobaan: ${STATE.attemptsLeft}`;
+    document.getElementById("attempt-pill").textContent = tt("game.attempts", { n: STATE.attemptsLeft });
     document.getElementById("btn-hint").classList.add("show");
     if (typeof AlgoAudio !== "undefined") AlgoAudio.play("wrong");
-    if (typeof AlgoUI !== "undefined") AlgoUI.toast("Belum tepat — masih ada 1 percobaan + hint.", "bad");
+    if (typeof AlgoUI !== "undefined") AlgoUI.toast(tt("toast.retry"), "bad");
+    persistSession();
     return;
   }
 
@@ -1525,34 +1633,38 @@ function answerQuestion(idx, btn, q) {
     STATE.clues++;
     STATE.xp += STATE.hintUsed ? 70 : 100;
     STATE.typeScores[q.type] = (STATE.typeScores[q.type] || 0) + 2;
+    const xpGain = STATE.hintUsed ? 70 : 100;
     if (typeof AlgoUI !== "undefined") {
       AlgoUI.confettiBurst();
-      AlgoUI.stampFlash("BUKTI TERKONFIRMASI");
-      AlgoUI.toast(STATE.hintUsed ? "Petunjuk terbuka · +70 XP" : "Petunjuk terbuka · +100 XP", "ok");
+      AlgoUI.stampFlash(tt("stamp.ok"));
+      AlgoUI.toast(tt("toast.clueOk", { xp: xpGain }), "ok");
     }
   } else {
     STATE.xp += 35;
     STATE.typeScores.explorer = (STATE.typeScores.explorer || 0) + 1;
     STATE.typeScores[q.type] = (STATE.typeScores[q.type] || 0) + 0.5;
-    if (typeof AlgoUI !== "undefined") AlgoUI.toast("Bukti perlu ditinjau · +35 XP", "bad");
+    if (typeof AlgoUI !== "undefined") AlgoUI.toast(tt("toast.clueBad"), "bad");
   }
 
   if (!STATE.skillScores[q.skill]) STATE.skillScores[q.skill] = { c: 0, t: 0 };
   STATE.skillScores[q.skill].t++;
   if (ok) STATE.skillScores[q.skill].c++;
 
+  const lq = (typeof AlgoI18n !== "undefined") ? AlgoI18n.localizeQ(q) : q;
   const fb = document.getElementById("game-feedback");
   if (ok) {
+    const xpGain = STATE.hintUsed ? 70 : 100;
     fb.className = "feedback good show";
-    fb.innerHTML = `<b>Bukti terkonfirmasi · +${STATE.hintUsed ? 70 : 100} XP</b><br>${q.correct}<div class="clue">Petunjuk tercatat: ${q.clue}</div>`;
+    fb.innerHTML = `<b>${tt("feedback.ok", { xp: xpGain })}</b><br>${lq.correct}<div class="clue">${lq.clue}</div>`;
   } else {
     fb.className = "feedback bad show";
-    fb.innerHTML = `<b>Bukti perlu ditinjau · +35 XP</b><br>${q.wrong[idx] || "Coba hitung kembali."}<div class="clue">Catatan: ${q.wrong[q.answer] || q.correct}</div>`;
+    fb.innerHTML = `<b>${tt("feedback.bad")}</b><br>${(lq.wrong && lq.wrong[idx]) || ""}<div class="clue">${(lq.wrong && lq.wrong[q.answer]) || lq.correct}</div>`;
   }
 
   document.getElementById("btn-hint").classList.remove("show");
   document.getElementById("game-next-btn").classList.add("show");
   updateSidebar();
+  persistSession();
 }
 
 function nextQuestion() {
@@ -1619,7 +1731,7 @@ async function finishGame() {
       </div>`;
     }).join("");
 
-  // Save to localStorage
+  // Save to localStorage result + clear mid-session after certificate path later
   const resultData = {
     username: STATE.username,
     studentName: STATE.studentName,
@@ -1725,6 +1837,124 @@ function populateCertificate() {
   document.getElementById("cert-id").textContent =
     `ID: ${generateCertId ? generateCertId(data.username || STATE.username) : (data.username || STATE.username)} · Diverifikasi Algonova`;
 }
+
+async function shareResult() {
+  const saved = JSON.parse(localStorage.getItem(`algo_result_${STATE.username}`) || "null") || {};
+  const name = saved.studentName || STATE.studentName || "Student";
+  const acc = saved.accuracy != null ? saved.accuracy : "—";
+  const xp = saved.xp != null ? saved.xp : STATE.xp;
+  const level = saved.level || STATE.level;
+  const text = `Algonova Quest — ${name}\nLevel: ${level}\nAccuracy: ${acc}%\nXP: ${xp}\n${location.origin}`;
+  try {
+    if (navigator.share) {
+      await navigator.share({ title: "Algonova Quest", text });
+      return;
+    }
+  } catch (_) {}
+  try {
+    await navigator.clipboard.writeText(text);
+    if (typeof AlgoUI !== "undefined") AlgoUI.toast(tt("cert.copied"), "ok");
+  } catch (_) {
+    prompt("Copy:", text);
+  }
+}
+
+function applySavedSession(data) {
+  Object.assign(STATE, {
+    username: data.username,
+    studentName: data.studentName,
+    age: data.age,
+    level: data.level,
+    suggestedLevel: data.suggestedLevel,
+    levelChosen: data.levelChosen,
+    qIndex: data.qIndex || 0,
+    correct: data.correct || 0,
+    xp: data.xp || 0,
+    clues: data.clues || 0,
+    typeScores: data.typeScores || STATE.typeScores,
+    skillScores: data.skillScores || {},
+    diagIndex: data.diagIndex || 0,
+    diagCorrect: data.diagCorrect || 0,
+    diagQuestions: data.diagQuestions || [],
+    questions: data.questions || [],
+    caseData: data.caseData || null,
+    questionSource: data.questionSource || "",
+    usedFallback: !!data.usedFallback,
+    seenChapters: data.seenChapters || {},
+    briefIndex: data.briefIndex || 0,
+  });
+  if (data.lang && typeof AlgoI18n !== "undefined") AlgoI18n.setLang(data.lang);
+  setTopbarBadge(STATE.studentName);
+}
+
+function resumeSession() {
+  const data = typeof AlgoPersist !== "undefined" ? AlgoPersist.load() : null;
+  document.getElementById("resume-overlay").classList.remove("show");
+  if (!data) return;
+  applySavedSession(data);
+  const phase = data.phase;
+  if (phase === "level-select") showLevelSelect();
+  else if (phase === "briefing") { startBriefing(); STATE.briefIndex = data.briefIndex || 0; renderBriefing(); }
+  else if (phase === "diagnostic") {
+    showPhase("diagnostic");
+    renderDiagQuestion();
+  } else if (phase === "case-intro") {
+    showPhase("case-intro");
+    if (STATE.caseData) {
+      const check = validateQuestionBank(STATE.caseData);
+      populateCaseIntroReady(STATE.caseData, check);
+      document.getElementById("btn-start-case").disabled = !check.ok && !STATE.usedFallback;
+      document.getElementById("btn-start-case").textContent = tt("intro.start");
+      if (STATE.caseData) setupChapters(STATE.caseData);
+    }
+  } else if (phase === "game") {
+    if (STATE.caseData) setupChapters(STATE.caseData);
+    showPhase("game");
+    renderQuestion();
+  } else if (phase === "result") {
+    // rebuild result view lightly
+    finishGame();
+  } else if (phase === "certificate") {
+    populateCertificate();
+    showPhase("certificate");
+  } else showPhase("login");
+}
+
+function discardSession() {
+  if (typeof AlgoPersist !== "undefined") AlgoPersist.clear();
+  document.getElementById("resume-overlay").classList.remove("show");
+  showPhase("login");
+}
+
+function offerResumeIfAny() {
+  const data = typeof AlgoPersist !== "undefined" ? AlgoPersist.load() : null;
+  if (!data || !data.username) return;
+  if (data.phase === "login" || data.phase === "certificate") return;
+  const lang = (typeof AlgoI18n !== "undefined" && AlgoI18n.getLang()) || data.lang || "id";
+  const phaseName = AlgoPersist.phaseLabel(data.phase, lang);
+  const detail = data.phase === "game"
+    ? `Q${(data.qIndex || 0) + 1}/${(data.questions || []).length || "?"}`
+    : (data.studentName || data.username);
+  document.getElementById("resume-body").textContent = tt("resume.body", { phase: phaseName, detail });
+  document.getElementById("resume-overlay").classList.add("show");
+}
+
+// Boot
+if (typeof AlgoI18n !== "undefined") {
+  AlgoI18n.applyDom();
+  document.documentElement.lang = AlgoI18n.getLang() === "en" ? "en" : "id";
+}
+if (typeof AlgoAudio !== "undefined") {
+  AlgoAudio.bindUnlockOnce();
+  AlgoAudio.setMuted(AlgoAudio.isMuted());
+  const muted = AlgoAudio.isMuted();
+  const btn = document.getElementById("btn-mute");
+  if (btn) {
+    btn.textContent = muted ? tt("mute.off") : tt("mute.on");
+    btn.setAttribute("aria-pressed", muted ? "true" : "false");
+  }
+}
+offerResumeIfAny();
 </script>
 </body>
 </html>
