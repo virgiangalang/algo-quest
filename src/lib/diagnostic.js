@@ -471,7 +471,7 @@ const DIAG_BANK = {
   "sma": [
     {
       "q": "Turunan f(x) = 3x² adalah …",
-      "q_en": "Derivative of f(x) = 3x² is…",
+      "q_en": "The derivative of f(x) = 3x² is ...",
       "choices": [
         "3x",
         "6x",
@@ -486,7 +486,7 @@ const DIAG_BANK = {
       ],
       "answer": 1,
       "correct": "f'(x) = 2 × 3x = 6x.",
-      "correct_en": "f'(x) = 6x.",
+      "correct_en": "f'(x) = 2 × 3x = 6x.",
       "wrong": [
         "",
         "",
@@ -546,7 +546,7 @@ const DIAG_BANK = {
     },
     {
       "q": "Akar dari x² – 5x + 6 = 0?",
-      "q_en": "Roots of x² – 5x + 6 = 0?",
+      "q_en": "Roots of x² - 5x + 6 = 0?",
       "choices": [
         "1 dan 6",
         "2 dan 3",
@@ -556,12 +556,12 @@ const DIAG_BANK = {
       "choices_en": [
         "1 and 6",
         "2 and 3",
-        "–2 and –3",
-        "–1 and 6"
+        "-2 and -3",
+        "-1 and 6"
       ],
       "answer": 1,
       "correct": "(x–2)(x–3) = 0, jadi x = 2 dan x = 3.",
-      "correct_en": "(x–2)(x–3)=0, so x=2 and x=3.",
+      "correct_en": "(x-2)(x-3) = 0, so x = 2 and x = 3.",
       "wrong": [
         "",
         "",
@@ -571,7 +571,7 @@ const DIAG_BANK = {
     },
     {
       "q": "∑ dari k=1 s/d 4 adalah: 1+2+3+4 = ?",
-      "q_en": "Sum from k=1 to 4: 1+2+3+4 = ?",
+      "q_en": "∑ from k=1 to 4 is: 1+2+3+4 = ?",
       "choices": [
         "8",
         "9",
@@ -598,7 +598,7 @@ const DIAG_BANK = {
   "dewasa": [
     {
       "q": "Jika diskon 20% dari harga Rp 150.000, harga akhirnya?",
-      "q_en": "If 20% off Rp150.000, final price?",
+      "q_en": "If there is a 20% discount on Rp 150.000 (Indonesian rupiah), what is the final price?",
       "choices": [
         "Rp 100.000",
         "Rp 120.000",
@@ -606,14 +606,14 @@ const DIAG_BANK = {
         "Rp 135.000"
       ],
       "choices_en": [
-        "Rp100,000",
-        "Rp120,000",
-        "Rp130,000",
-        "Rp135,000"
+        "Rp 100.000 (Indonesian rupiah)",
+        "Rp 120.000 (Indonesian rupiah)",
+        "Rp 130.000 (Indonesian rupiah)",
+        "Rp 135.000 (Indonesian rupiah)"
       ],
       "answer": 1,
       "correct": "150.000 × 0,8 = 120.000.",
-      "correct_en": "150.000 × 0.8 = 120.000.",
+      "correct_en": "150.000 × 0,8 = 120.000.",
       "wrong": [
         "",
         "",
@@ -623,7 +623,7 @@ const DIAG_BANK = {
     },
     {
       "q": "Bunga sederhana 5% per tahun pada Rp 2.000.000 selama 3 tahun?",
-      "q_en": "Simple interest 5%/year on Rp2.000.000 for 3 years?",
+      "q_en": "Simple interest of 5% per year on Rp 2.000.000 (Indonesian rupiah) for 3 years?",
       "choices": [
         "Rp 200.000",
         "Rp 250.000",
@@ -631,10 +631,10 @@ const DIAG_BANK = {
         "Rp 350.000"
       ],
       "choices_en": [
-        "Rp200,000",
-        "Rp250,000",
-        "Rp300,000",
-        "Rp350,000"
+        "Rp 200.000 (Indonesian rupiah)",
+        "Rp 250.000 (Indonesian rupiah)",
+        "Rp 300.000 (Indonesian rupiah)",
+        "Rp 350.000 (Indonesian rupiah)"
       ],
       "answer": 2,
       "correct": "2.000.000 × 5% × 3 = 300.000.",
@@ -648,7 +648,7 @@ const DIAG_BANK = {
     },
     {
       "q": "Rata-rata 10, 20, 30, 40, 50 = ?",
-      "q_en": "Average of 10, 20, 30, 40, 50 = ?",
+      "q_en": "Mean of 10, 20, 30, 40, 50 = ?",
       "choices": [
         "25",
         "30",
@@ -673,7 +673,7 @@ const DIAG_BANK = {
     },
     {
       "q": "KPK dari 4 dan 6 adalah?",
-      "q_en": "LCM of 4 and 6?",
+      "q_en": "LCM of 4 and 6 is?",
       "choices": [
         "8",
         "10",
@@ -688,7 +688,7 @@ const DIAG_BANK = {
       ],
       "answer": 2,
       "correct": "KPK(4,6) = 12.",
-      "correct_en": "LCM(4.6) = 12.",
+      "correct_en": "LCM(4,6) = 12.",
       "wrong": [
         "",
         "",
