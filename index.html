@@ -1169,10 +1169,10 @@ try {
 } catch (_) {}
 
 /**
- * Apps Script helper.
- * - validate: GET langsung (paling cepat; doGet sudah support)
- * - submit: lewat /api/sheet (hindari bug redirect POST di browser)
- * Saat halaman dibuka, warmupAppsScript() membangunkan container Google.
+ * Auth ke Google Sheet.
+ * Login (validate) → /api/sheet (baca CSV Sheet, cepat ~1s).
+ * Submit hasil → /api/sheet → Apps Script (tulis USED).
+ * Semua request punya timeout supaya UI tidak stuck.
  */
 function appsScriptGetUrl(payload) {
   const u = new URL(CONFIG.appsScriptUrl);
@@ -1183,31 +1183,36 @@ function appsScriptGetUrl(payload) {
   return u.toString();
 }
 
+async function fetchWithTimeout(url, options, ms) {
+  const ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
+  const timer = setTimeout(() => {
+    try { ctrl && ctrl.abort(); } catch (_) {}
+  }, ms || 12000);
+  try {
+    return await fetch(url, { ...(options || {}), signal: ctrl ? ctrl.signal : undefined });
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 async function parseJsonResponse(resp) {
   const text = await resp.text();
   try {
     return JSON.parse(text);
   } catch (_) {
-    throw new Error("Respons Apps Script bukan JSON. Cek koneksi / URL Web App.");
+    throw new Error("Respons server bukan JSON.");
   }
 }
 
-async function appsScriptViaProxy(payload) {
-  const resp = await fetch("/api/sheet", {
+async function appsScriptPost(payload) {
+  const resp = await fetchWithTimeout("/api/sheet", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
-  });
-  const text = await resp.text();
-  let data;
-  try {
-    data = JSON.parse(text);
-  } catch (_) {
-    if (resp.status === 404 || resp.status >= 500) throw new Error("proxy-unavailable");
-    throw new Error("Respons server tidak valid.");
-  }
+  }, 12000);
+
+  const data = await parseJsonResponse(resp);
   if (!resp.ok) {
-    if (resp.status === 404) throw new Error("proxy-unavailable");
     const err = new Error(data.message || "Gagal menghubungi server.");
     err.payload = data;
     throw err;
@@ -1215,52 +1220,16 @@ async function appsScriptViaProxy(payload) {
   return data;
 }
 
-async function appsScriptPost(payload) {
-  const action = String((payload && payload.action) || "").toLowerCase();
-
-  // Validate: 1 hop GET ke Google (tanpa Vercel cold start)
-  if (action === "validate" || action === "ping" || action === "warm") {
-    try {
-      const resp = await fetch(appsScriptGetUrl(payload), { method: "GET", redirect: "follow" });
-      return await parseJsonResponse(resp);
-    } catch (e) {
-      // Cadangan: proxy
-      try {
-        return await appsScriptViaProxy(payload);
-      } catch (e2) {
-        if (e2.payload) throw e2;
-        throw e;
-      }
-    }
-  }
-
-  // Submit: proxy dulu (POST browser ke Apps Script sering gagal)
-  try {
-    return await appsScriptViaProxy(payload);
-  } catch (e) {
-    if (e.payload) throw e;
-    if (e.message !== "proxy-unavailable" && e.name !== "TypeError") throw e;
-  }
-
-  // Fallback GET submit (butuh Apps Script doGet action=submit)
-  const resp = await fetch(appsScriptGetUrl(payload), { method: "GET", redirect: "follow" });
-  return parseJsonResponse(resp);
-}
-
-/** Bangunkan Apps Script saat user masih isi form (kurangi cold start ~20–30 dtk). */
+/** Prefetch CSV credentials ke cache Vercel saat form masih diisi. */
 function warmupAppsScript() {
-  if (CONFIG.devMode || !CONFIG.appsScriptUrl) return;
-  const ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
-  const timer = setTimeout(() => { try { ctrl && ctrl.abort(); } catch (_) {} }, 45000);
-  fetch(appsScriptGetUrl({ action: "warm" }), {
-    method: "GET",
-    redirect: "follow",
-    signal: ctrl ? ctrl.signal : undefined,
-    keepalive: true,
-  })
-    .then(() => console.info("[algo] Apps Script warm OK"))
-    .catch(() => {})
-    .finally(() => clearTimeout(timer));
+  if (CONFIG.devMode) return;
+  fetchWithTimeout("/api/sheet", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "warm" }),
+  }, 8000)
+    .then(() => console.info("[algo] auth warm OK"))
+    .catch(() => {});
 }
 
 /* ─── STATE ─── */
@@ -1445,8 +1414,9 @@ async function handleLogin() {
     loadEl.classList.remove("show");
     console.error("[algo] login/verify failed:", e);
     const msg = (e && e.payload && e.payload.message) || (e && e.message);
-    // Jangan tampilkan detail teknis ke siswa kecuali pesan dari server
-    if (msg && !/proxy-unavailable|Failed to fetch|NetworkError|Load failed/i.test(msg) && msg.length < 160) {
+    if (e && (e.name === "AbortError" || /aborted|timeout/i.test(String(msg || "")))) {
+      showError("Koneksi timeout. Coba lagi — biasanya langsung masuk.");
+    } else if (msg && !/Failed to fetch|NetworkError|Load failed/i.test(msg) && msg.length < 180) {
       showError(msg);
     } else {
       showError(tt("err.net"));

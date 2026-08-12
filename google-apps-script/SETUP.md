@@ -78,12 +78,14 @@ Lihat header di komentar `builder.gs`.
 
 Setiap ubah `Code.gs`, buat **New deployment** (atau Manage → New version) supaya URL/produk terbaru dipakai.
 
-> **Catatan teknis:** Browser sering gagal `POST` langsung ke `script.google.com` (redirect 302 → 405).
-> Website memanggil **GET** untuk `validate` (cepat) dan proxy **`/api/sheet`** untuk `submit`.
+> **Login cepat (penting):** Website **tidak** memanggil Apps Script saat login.
+> Validate membaca Sheet lewat **CSV export** (`/api/sheet`) — biasanya &lt; 1 detik.
+> Apps Script hanya dipakai saat **submit hasil** (menulis USED / Score).
 >
-> **Percepat login:** tempel `Code.gs` terbaru (ada `CacheService` + `action=warm`), lalu
-> **Deploy → Manage deployments → pensil → New version**. Website juga memanggil `warm` saat halaman dibuka
-> supaya container Google sudah “bangun” sebelum siswa klik login.
+> Sheet harus: **Share → Anyone with the link → Viewer** (supaya CSV bisa dibaca Vercel).
+> ID Sheet default sudah di `api/sheet.js` / env `GOOGLE_SHEET_ID` + `GOOGLE_SHEET_GID`.
+
+> **Catatan teknis lama:** Browser sering gagal `POST` langsung ke `script.google.com` (redirect 302 → 405).
 
 ---
 
