@@ -78,6 +78,10 @@ Lihat header di komentar `builder.gs`.
 
 Setiap ubah `Code.gs`, buat **New deployment** (atau Manage → New version) supaya URL/produk terbaru dipakai.
 
+> **Catatan teknis:** Browser sering gagal `POST` langsung ke `script.google.com` (redirect 302 → 405).
+> Website memanggil proxy **`/api/sheet`** di Vercel, yang meneruskan request ke Apps Script dengan aman.
+> Pastikan project Vercel sudah berisi file `api/sheet.js` (sudah ada di repo).
+
 ---
 
 ## 4. Hubungkan ke `index.html`

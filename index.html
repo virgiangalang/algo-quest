@@ -1168,15 +1168,54 @@ try {
   if (new URLSearchParams(location.search).get("dev") === "1") CONFIG.devMode = true;
 } catch (_) {}
 
-/** POST ke Apps Script tanpa preflight CORS (text/plain) */
+/**
+ * Kirim ke Google Sheet lewat proxy /api/sheet (hindari bug redirect POST
+ * script.google.com → 405 / HTML di browser).
+ * Fallback: GET langsung ke Apps Script bila proxy belum tersedia.
+ */
 async function appsScriptPost(payload) {
-  const resp = await fetch(CONFIG.appsScriptUrl, {
-    method: "POST",
-    redirect: "follow",
-    headers: { "Content-Type": "text/plain;charset=utf-8" },
-    body: JSON.stringify(payload),
+  // 1) Same-origin proxy (disarankan)
+  try {
+    const resp = await fetch("/api/sheet", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const text = await resp.text();
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch (_) {
+      // Proxy belum ada / HTML error → coba fallback
+      if (resp.status === 404 || resp.status >= 500) throw new Error("proxy-unavailable");
+      throw new Error("Respons server tidak valid.");
+    }
+    if (!resp.ok) {
+      // 502 dari proxy: teruskan pesan; 404: fallback
+      if (resp.status === 404) throw new Error("proxy-unavailable");
+      const err = new Error(data.message || "Gagal menghubungi server.");
+      err.payload = data;
+      throw err;
+    }
+    return data;
+  } catch (e) {
+    if (e.payload) throw e;
+    if (e.message !== "proxy-unavailable" && e.name !== "TypeError") throw e;
+  }
+
+  // 2) Fallback GET ke Apps Script (validate sudah didukung di deploy live)
+  const u = new URL(CONFIG.appsScriptUrl);
+  Object.entries(payload || {}).forEach(([k, v]) => {
+    if (v == null) return;
+    u.searchParams.set(k, typeof v === "object" ? JSON.stringify(v) : String(v));
   });
-  return resp.json();
+  const resp = await fetch(u.toString(), { method: "GET", redirect: "follow" });
+  const text = await resp.text();
+  try {
+    return JSON.parse(text);
+  } catch (_) {
+    throw new Error("Respons Apps Script bukan JSON. Cek koneksi / URL Web App.");
+  }
 }
 
 /* ─── STATE ─── */
@@ -1359,7 +1398,14 @@ async function handleLogin() {
 
   } catch (e) {
     loadEl.classList.remove("show");
-    showError(tt("err.net"));
+    console.error("[algo] login/verify failed:", e);
+    const msg = (e && e.payload && e.payload.message) || (e && e.message);
+    // Jangan tampilkan detail teknis ke siswa kecuali pesan dari server
+    if (msg && !/proxy-unavailable|Failed to fetch|NetworkError|Load failed/i.test(msg) && msg.length < 160) {
+      showError(msg);
+    } else {
+      showError(tt("err.net"));
+    }
     document.getElementById("btn-login").disabled = false;
   }
 }
