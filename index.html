@@ -2309,7 +2309,7 @@ async function finishGame() {
         nama: STATE.studentName,
         age: STATE.age,
         umur: STATE.age,
-        level: STATE.level,
+        level: STATE.folderId ? `${STATE.level}/${STATE.folderId}` : STATE.level,
         score: STATE.xp,
         accuracy,
         character: best,
@@ -2415,12 +2415,15 @@ function populateCertificate() {
     "dewasa": "Dewasa",
   };
   const levelLabel = levelLabels[data.level] || data.level;
+  const folderTitle = STATE.folderTitle || (STATE.caseData && STATE.caseData.caseTitle) || "Misteri Matematika";
   const date = new Date(data.finishedAt || Date.now()).toLocaleDateString("id-ID", {
     day: "numeric", month: "long", year: "numeric"
   });
 
   document.getElementById("cert-name").textContent = data.studentName;
   document.getElementById("cert-level").textContent = levelLabel;
+  const certSub = document.querySelector(".cert-sub");
+  if (certSub) certSub.textContent = `Misteri Matematika — ${folderTitle}`;
   document.getElementById("cert-char").textContent = char.name;
   const charLine = document.getElementById("cert-char-line");
   if (charLine) charLine.textContent = `Karakter detektif: ${char.name} — ${char.tag}`;
