@@ -1,11 +1,8 @@
 /**
  * Proxy ke Google Apps Script (validate / submit).
  *
- * Browser tidak bisa andalkan POST langsung ke script.google.com:
- * Google mengarahkan (302) ke script.googleusercontent.com, lalu POST
- * di URL itu gagal (405) / respons HTML → "Gagal terhubung ke server".
- *
- * Di server kita: POST dengan redirect:manual, lalu GET Location (hasil JSON).
+ * Browser POST ke script.google.com sering gagal (302 → 405).
+ * Validate lebih cepat lewat GET; submit tetap POST+echo dari server.
  */
 const { json, readBody } = require("./_lib");
 
@@ -16,13 +13,29 @@ function getAppsScriptUrl() {
   return String(process.env.APPS_SCRIPT_URL || DEFAULT_APPS_SCRIPT_URL).trim();
 }
 
-async function callAppsScript(payload) {
-  const appsUrl = getAppsScriptUrl();
-  if (!appsUrl) {
-    throw new Error("APPS_SCRIPT_URL belum di-set.");
+function buildGetUrl(appsUrl, payload) {
+  const u = new URL(appsUrl);
+  for (const [k, v] of Object.entries(payload || {})) {
+    if (v == null || typeof v === "object") continue;
+    u.searchParams.set(k, String(v));
   }
+  return u.toString();
+}
 
-  // 1) POST → ambil Location redirect (teknik yang andal)
+async function parseJsonText(text, label) {
+  try {
+    return JSON.parse(text);
+  } catch (_) {
+    throw new Error(`Respons Apps Script tidak valid (${label}).`);
+  }
+}
+
+async function callAppsScriptGet(appsUrl, payload) {
+  const getResp = await fetch(buildGetUrl(appsUrl, payload), { redirect: "follow" });
+  return parseJsonText(await getResp.text(), "GET");
+}
+
+async function callAppsScriptPostEcho(appsUrl, payload) {
   const postResp = await fetch(appsUrl, {
     method: "POST",
     redirect: "manual",
@@ -33,42 +46,49 @@ async function callAppsScript(payload) {
   const loc = postResp.headers.get("location");
   if (loc) {
     const echoResp = await fetch(loc, { redirect: "follow" });
-    const text = await echoResp.text();
-    try {
-      return JSON.parse(text);
-    } catch (_) {
-      throw new Error("Respons Apps Script tidak valid (HTML/bukan JSON).");
-    }
+    return parseJsonText(await echoResp.text(), "POST echo");
   }
 
   if (postResp.ok) {
-    const text = await postResp.text();
+    return parseJsonText(await postResp.text(), "POST");
+  }
+
+  throw new Error(`Apps Script gagal (HTTP ${postResp.status}).`);
+}
+
+async function callAppsScript(payload) {
+  const appsUrl = getAppsScriptUrl();
+  if (!appsUrl) throw new Error("APPS_SCRIPT_URL belum di-set.");
+
+  const action = String((payload && payload.action) || "").toLowerCase();
+
+  // Validate / warm: 1 request GET (lebih cepat dari POST+echo)
+  if (action === "validate" || action === "ping" || action === "warm" || !action) {
     try {
-      return JSON.parse(text);
-    } catch (_) {
-      throw new Error("Respons Apps Script tidak valid.");
+      return await callAppsScriptGet(appsUrl, payload.action ? payload : { action: "warm" });
+    } catch (e) {
+      // Cadangan POST+echo
+      return callAppsScriptPostEcho(appsUrl, payload);
     }
   }
 
-  // 2) Fallback GET (deploy live sudah mendukung action=validate via query)
-  if (payload && payload.action === "validate") {
-    const u = new URL(appsUrl);
-    for (const [k, v] of Object.entries(payload)) {
-      if (v == null || typeof v === "object") continue;
-      u.searchParams.set(k, String(v));
+  // Submit: coba GET dulu (setelah Code.gs baru), lalu POST+echo
+  try {
+    const viaGet = await callAppsScriptGet(appsUrl, payload);
+    // Deploy lama mengabaikan action=submit dan balas {ok:true,message:"…aktif"} 
+    const looksLikeHealthOnly =
+      viaGet &&
+      viaGet.ok === true &&
+      !viaGet.usedAt &&
+      viaGet.success == null &&
+      /aktif/i.test(String(viaGet.message || ""));
+    if (looksLikeHealthOnly) {
+      return callAppsScriptPostEcho(appsUrl, payload);
     }
-    const getResp = await fetch(u.toString(), { redirect: "follow" });
-    const text = await getResp.text();
-    try {
-      return JSON.parse(text);
-    } catch (_) {
-      throw new Error("Respons Apps Script tidak valid (GET fallback).");
-    }
+    return viaGet;
+  } catch (_) {
+    return callAppsScriptPostEcho(appsUrl, payload);
   }
-
-  throw new Error(
-    `Apps Script gagal (HTTP ${postResp.status}). Coba deploy ulang Web App.`
-  );
 }
 
 module.exports = async function handler(req, res) {

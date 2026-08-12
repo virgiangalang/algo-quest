@@ -79,8 +79,11 @@ Lihat header di komentar `builder.gs`.
 Setiap ubah `Code.gs`, buat **New deployment** (atau Manage → New version) supaya URL/produk terbaru dipakai.
 
 > **Catatan teknis:** Browser sering gagal `POST` langsung ke `script.google.com` (redirect 302 → 405).
-> Website memanggil proxy **`/api/sheet`** di Vercel, yang meneruskan request ke Apps Script dengan aman.
-> Pastikan project Vercel sudah berisi file `api/sheet.js` (sudah ada di repo).
+> Website memanggil **GET** untuk `validate` (cepat) dan proxy **`/api/sheet`** untuk `submit`.
+>
+> **Percepat login:** tempel `Code.gs` terbaru (ada `CacheService` + `action=warm`), lalu
+> **Deploy → Manage deployments → pensil → New version**. Website juga memanggil `warm` saat halaman dibuka
+> supaya container Google sudah “bangun” sebelum siswa klik login.
 
 ---
 
