@@ -1,7 +1,6 @@
 /**
  * questions.js
- * Load soal per level — API override dulu, lalu file statis (path-safe).
- * Tidak silent-fallback ke bank "contoh HTML" di production.
+ * Load soal per level (+ folder/story). Catalog: public/questions/catalog.json
  */
 
 const QUESTION_LEVELS = [
@@ -12,7 +11,9 @@ const QUESTION_LEVELS = [
   "dewasa",
 ];
 
-const MIN_QUESTIONS_FOR_CASE = 20;
+const MIN_QUESTIONS_FOR_CASE = 15;
+
+let _catalogCache = null;
 
 function isLocalHost() {
   try {
@@ -23,11 +24,7 @@ function isLocalHost() {
   }
 }
 
-/**
- * Kandidat path relatif yang tahan Output Directory Vercel = `.` atau `public`.
- */
-function questionPathCandidates(level) {
-  const file = `${level}.json`;
+function pathPrefix() {
   let prefix = "/";
   try {
     if (typeof document !== "undefined" && document.baseURI && typeof URL !== "undefined") {
@@ -37,28 +34,88 @@ function questionPathCandidates(level) {
   } catch (_) {
     prefix = "/";
   }
+  return prefix;
+}
+
+function catalogPathCandidates() {
+  const prefix = pathPrefix();
   return [
-    `${prefix}api/questions?level=${encodeURIComponent(level)}`,
-    `${prefix}public/questions/${file}`,
-    `${prefix}questions/${file}`,
-    `/api/questions?level=${encodeURIComponent(level)}`,
-    `/public/questions/${file}`,
-    `/questions/${file}`,
-    `public/questions/${file}`,
-    `questions/${file}`,
+    `${prefix}public/questions/catalog.json`,
+    `${prefix}questions/catalog.json`,
+    `/public/questions/catalog.json`,
+    `/questions/catalog.json`,
+  ];
+}
+
+/**
+ * @returns {Promise<Object>}
+ */
+async function loadCatalog() {
+  if (_catalogCache) return _catalogCache;
+  const errors = [];
+  for (const path of catalogPathCandidates()) {
+    try {
+      const resp = await fetch(path, { cache: "no-store" });
+      if (!resp.ok) {
+        errors.push(`${path} → ${resp.status}`);
+        continue;
+      }
+      const data = await resp.json();
+      if (!data || !Array.isArray(data.levels)) {
+        errors.push(`${path} → schema invalid`);
+        continue;
+      }
+      _catalogCache = data;
+      return data;
+    } catch (e) {
+      errors.push(`${path} → ${e.message}`);
+    }
+  }
+  console.warn("[algo] catalog load failed", errors);
+  // Minimal fallback mirroring classic levels
+  _catalogCache = {
+    version: 0,
+    levels: QUESTION_LEVELS.map((id) => ({
+      id,
+      title: id,
+      folders: [{ id: "default", title: id, file: `${id}.json` }],
+    })),
+  };
+  return _catalogCache;
+}
+
+function foldersForLevel(catalog, levelId) {
+  const lvl = (catalog.levels || []).find((l) => l.id === levelId);
+  return (lvl && lvl.folders) || [];
+}
+
+function questionFileCandidates(file) {
+  const clean = String(file || "").replace(/^\/+/, "");
+  const prefix = pathPrefix();
+  const levelOnly = clean.replace(/\.json$/i, "");
+  return [
+    `${prefix}api/questions?file=${encodeURIComponent(clean)}`,
+    `${prefix}api/questions?level=${encodeURIComponent(levelOnly)}`,
+    `${prefix}public/questions/${clean}`,
+    `${prefix}questions/${clean}`,
+    `/api/questions?file=${encodeURIComponent(clean)}`,
+    `/public/questions/${clean}`,
+    `/questions/${clean}`,
   ];
 }
 
 /**
  * @param {string} level
+ * @param {string} [file] relative path under public/questions/
  * @returns {Promise<{data: Object, source: string, usedFallback: boolean}>}
  */
-async function loadQuestions(level) {
+async function loadQuestions(level, file) {
   const lvl = QUESTION_LEVELS.includes(level) ? level : "sd-kelas-4-6";
-  const paths = questionPathCandidates(lvl);
+  const targetFile = file || `${lvl}.json`;
+  const paths = questionFileCandidates(targetFile);
   const errors = [];
 
-  console.info("[algo] loadQuestions start", { level: lvl, paths: paths.slice(0, 4) });
+  console.info("[algo] loadQuestions start", { level: lvl, file: targetFile });
 
   for (const path of paths) {
     try {
@@ -68,7 +125,6 @@ async function loadQuestions(level) {
         continue;
       }
       const ct = (resp.headers.get("content-type") || "").toLowerCase();
-      // Hindari parse HTML (kadang 200 + index.html)
       if (ct.includes("text/html")) {
         errors.push(`${path} → HTML bukan JSON`);
         continue;
@@ -99,17 +155,12 @@ async function loadQuestions(level) {
   }
 
   const err = new Error(
-    "Bank soal tidak bisa dimuat. Cek file public/questions/ atau upload di /admin.html"
+    "Bank soal tidak bisa dimuat. Cek public/questions/ atau upload di /admin.html"
   );
   err.details = errors;
   throw err;
 }
 
-/**
- * Ratakan semua soal dari semua chapter menjadi array linear.
- * @param {Object} data
- * @returns {Array}
- */
 function flattenQuestions(data) {
   if (!data || !data.chapters) return [];
   return data.chapters.flatMap((ch) =>
@@ -121,11 +172,6 @@ function flattenQuestions(data) {
   );
 }
 
-/**
- * Validasi bank soal sebelum masuk game.
- * @param {Object} data
- * @returns {{ok:boolean, count:number, message:string}}
- */
 function validateQuestionBank(data) {
   const flat = flattenQuestions(data);
   const count = flat.length;
@@ -133,15 +179,12 @@ function validateQuestionBank(data) {
     return {
       ok: false,
       count,
-      message: `Bank soal terlalu sedikit (${count}). Minimal ${MIN_QUESTIONS_FOR_CASE} soal untuk kasus penuh. Bukan bank contoh HTML.`,
+      message: `Bank soal terlalu sedikit (${count}). Minimal ${MIN_QUESTIONS_FOR_CASE} soal.`,
     };
   }
   return { ok: true, count, message: "OK" };
 }
 
-/**
- * Fallback DEV ONLY — sengaja kecil agar jelas ini bukan kasus production.
- */
 const FALLBACK_QUESTIONS = {
   level: "sd-kelas-4-6",
   label: "SD Kelas 4–6 (DEV FALLBACK)",
@@ -153,7 +196,7 @@ const FALLBACK_QUESTIONS = {
       questions: [
         {
           id: "dev-1",
-          scene: "Mode pengembangan. File JSON production tidak terbaca.",
+          scene: "Mode pengembangan.",
           q: "1 + 1 = ?",
           choices: ["1", "2", "3", "4"],
           answer: 1,
@@ -162,7 +205,7 @@ const FALLBACK_QUESTIONS = {
           type: "analyst",
           correct: "DEV OK",
           wrong: ["", "", "", ""],
-          clue: "Perbaiki path public/questions/*.json",
+          clue: "Perbaiki path public/questions",
         },
       ],
     },

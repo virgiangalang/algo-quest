@@ -1,0 +1,523 @@
+{
+  "level": "sd-kelas-4-6",
+  "folder": "missing-moonstone",
+  "label": "SD Kelas 4–6",
+  "ageRange": "8–9 / 10–12 tahun",
+  "curriculum": "Algonova Math Adventure Pilot",
+  "caseTitle": "The Missing Moonstone",
+  "genre": "Detective Mystery",
+  "objective": "Temukan pencuri Moonstone melalui matematika",
+  "stamp": "CASE FILE #001",
+  "chapters": [
+    {
+      "id": "bab-1",
+      "title": "Bab 1 — TKP",
+      "questions": [
+        {
+          "id": "q1",
+          "scene": "Museum Aurora masih ramai ketika alarm berbunyi.",
+          "q": "Pagi hari ada 186 pengunjung. Siang hari masuk 147 pengunjung lagi. Sebelum pukul 16.00, sebanyak 58 pengunjung sudah pulang. Berapa pengunjung yang masih berada di museum?",
+          "choices": [
+            "275",
+            "333",
+            "244",
+            "391"
+          ],
+          "answer": 0,
+          "skill": "Operasi multi-langkah",
+          "difficulty": "Medium",
+          "type": "analyst",
+          "correct": "186 + 147 = 333. Lalu 333 − 58 = 275.",
+          "wrong": [
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q2",
+          "scene": "Detektif memeriksa dua jenis tiket yang tersisa di meja informasi.",
+          "q": "Ada 84 tiket anak dan dewasa. Jumlah tiket dewasa 18 lebih banyak daripada tiket anak. Berapa tiket anak?",
+          "choices": [
+            "24",
+            "33",
+            "51",
+            "42"
+          ],
+          "answer": 1,
+          "skill": "Perbandingan",
+          "difficulty": "Sulit",
+          "type": "investigator",
+          "correct": "Jika tiket anak = 33, maka tiket dewasa = 51. 33 + 51 = 84 dan selisihnya 18.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q3",
+          "scene": "Sensor lemari Moonstone menyala dalam pola waktu tertentu.",
+          "q": "Catatan sensor menunjukkan 16.12, 16.21, 16.30, 16.39, ... Jika polanya tetap, pukul berapa sensor berikutnya aktif?",
+          "choices": [
+            "16.49",
+            "16.45",
+            "16.50",
+            "16.48"
+          ],
+          "answer": 3,
+          "skill": "Pola waktu",
+          "difficulty": "Medium",
+          "type": "speedster",
+          "correct": "Setiap catatan bertambah 9 menit. 16.39 + 9 menit = 16.48.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!"
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q4",
+          "scene": "Peta museum menunjukkan jarak dari East Gate ke ruang Moonstone.",
+          "q": "Jarak East Gate ke ruang Moonstone 240 m. Leo berjalan 60 m setiap menit. Berapa menit perjalanan satu arah?",
+          "choices": [
+            "5 menit",
+            "3 menit",
+            "4 menit",
+            "6 menit"
+          ],
+          "answer": 2,
+          "skill": "Pembagian",
+          "difficulty": "Medium",
+          "type": "codebreaker",
+          "correct": "240 ÷ 60 = 4 menit.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q5",
+          "scene": "Detektif menghitung orang yang berada di West Wing.",
+          "q": "Dari 64 pengunjung yang masih berada di dua sayap museum, 3/8 berada di West Wing. Berapa orang yang berada di West Wing?",
+          "choices": [
+            "16",
+            "24",
+            "8",
+            "40"
+          ],
+          "answer": 1,
+          "skill": "Pecahan dari kumpulan",
+          "difficulty": "Medium",
+          "type": "explorer",
+          "correct": "1/8 dari 64 = 8. Maka 3/8 = 3 × 8 = 24.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        }
+      ]
+    },
+    {
+      "id": "bab-2",
+      "title": "Bab 2 — Timeline",
+      "questions": [
+        {
+          "id": "q6",
+          "scene": "Maya mengatakan ia pergi dari laboratorium menuju kafe museum.",
+          "q": "Maya meninggalkan laboratorium pukul 16.32. Perjalanan ke kafe membutuhkan 14 menit. Pukul berapa ia tiba?",
+          "choices": [
+            "16.48",
+            "16.56",
+            "16.46",
+            "16.44"
+          ],
+          "answer": 2,
+          "skill": "Waktu",
+          "difficulty": "Medium",
+          "type": "analyst",
+          "correct": "16.32 + 14 menit = 16.46.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q7",
+          "scene": "Struk kafe membantu memastikan posisi Maya.",
+          "q": "Maya tiba di kafe pukul 16.46 dan berada di sana selama 9 menit. Pukul berapa ia selesai?",
+          "choices": [
+            "16.55",
+            "17.05",
+            "16.51",
+            "16.57"
+          ],
+          "answer": 0,
+          "skill": "Waktu",
+          "difficulty": "Medium",
+          "type": "investigator",
+          "correct": "16.46 + 9 menit = 16.55.",
+          "wrong": [
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q8",
+          "scene": "Leo melakukan scan kartu di East Gate dua kali.",
+          "q": "Leo tercatat di East Gate pukul 16.42 dan 16.49. Perjalanan pulang-pergi East Gate–Moonstone membutuhkan 8 menit. Apakah Leo sempat pergi ke ruang Moonstone dan kembali di antara dua scan tersebut?",
+          "choices": [
+            "Tidak, waktunya hanya 7 menit",
+            "Tidak, karena butuh 12 menit",
+            "Ya, tepat 7 menit",
+            "Ya, karena butuh 6 menit"
+          ],
+          "answer": 0,
+          "skill": "Logika waktu",
+          "difficulty": "Sulit",
+          "type": "speedster",
+          "correct": "Jarak waktu kedua scan = 7 menit. Perjalanan pulang-pergi membutuhkan 8 menit, jadi tidak cukup.",
+          "wrong": [
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q9",
+          "scene": "Dua foto Zoe memiliki cap waktu yang dapat dibandingkan.",
+          "q": "Zoe memotret West Hall pukul 16.43 dan rooftop pukul 16.50. Rute West Hall → Moonstone → rooftop membutuhkan paling cepat 12 menit. Apakah Zoe mungkin singgah di ruang Moonstone?",
+          "choices": [
+            "Ya, jika berlari 5 menit",
+            "Tidak, karena tersedia 15 menit",
+            "Ya, karena tersedia 12 menit",
+            "Tidak, hanya tersedia 7 menit"
+          ],
+          "answer": 3,
+          "skill": "Logika waktu",
+          "difficulty": "Sulit",
+          "type": "codebreaker",
+          "correct": "16.50 − 16.43 = 7 menit. Rute melalui Moonstone butuh minimal 12 menit.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!"
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q10",
+          "scene": "Finn terakhir terlihat di Loading Dock.",
+          "q": "Finn melakukan scan paket pukul 16.36. Dari Loading Dock ke ruang Moonstone membutuhkan 9 menit. Pukul berapa paling cepat Finn dapat tiba?",
+          "choices": [
+            "16.43",
+            "16.47",
+            "16.55",
+            "16.45"
+          ],
+          "answer": 3,
+          "skill": "Waktu",
+          "difficulty": "Medium",
+          "type": "explorer",
+          "correct": "16.36 + 9 menit = 16.45.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!"
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        }
+      ]
+    },
+    {
+      "id": "bab-3",
+      "title": "Bab 3 — Bukti",
+      "questions": [
+        {
+          "id": "q11",
+          "scene": "Manifest kurir mencatat jumlah kotak yang dibawa Finn.",
+          "q": "Finn membawa 7 kotak, masing-masing berisi 12 paket kecil, ditambah 5 paket lepas. Berapa paket seluruhnya?",
+          "choices": [
+            "91",
+            "89",
+            "96",
+            "84"
+          ],
+          "answer": 1,
+          "skill": "Perkalian + penjumlahan",
+          "difficulty": "Medium",
+          "type": "analyst",
+          "correct": "7 × 12 = 84. Lalu 84 + 5 = 89.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q12",
+          "scene": "Timbangan Loading Dock menunjukkan berat berbeda dari manifest.",
+          "q": "Manifest mencatat total 18,4 kg, tetapi timbangan saat Finn keluar menunjukkan 19,2 kg. Berapa selisih beratnya?",
+          "choices": [
+            "1,8 kg",
+            "0,8 kg",
+            "1,2 kg",
+            "0,6 kg"
+          ],
+          "answer": 1,
+          "skill": "Desimal sederhana",
+          "difficulty": "Sulit",
+          "type": "investigator",
+          "correct": "19,2 − 18,4 = 0,8 kg.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q13",
+          "scene": "Catatan kurator menyebutkan massa Moonstone.",
+          "q": "Moonstone bermassa 800 gram. Berapa kilogram massa tersebut?",
+          "choices": [
+            "8 kg",
+            "1,8 kg",
+            "0,08 kg",
+            "0,8 kg"
+          ],
+          "answer": 3,
+          "skill": "Konversi massa",
+          "difficulty": "Medium",
+          "type": "speedster",
+          "correct": "1.000 g = 1 kg, sehingga 800 g = 0,8 kg.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!"
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q14",
+          "scene": "Detektif menguji apakah perjalanan Finn cukup masuk akal.",
+          "q": "Vault terbuka pukul 16.48. Jika Finn membutuhkan 9 menit dari vault kembali ke Loading Dock, pukul berapa ia bisa tiba kembali?",
+          "choices": [
+            "16.55",
+            "16.58",
+            "17.07",
+            "16.57"
+          ],
+          "answer": 3,
+          "skill": "Waktu",
+          "difficulty": "Medium",
+          "type": "codebreaker",
+          "correct": "16.48 + 9 menit = 16.57.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!"
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q15",
+          "scene": "Finn memiliki waktu dari scan masuk hingga scan keluar.",
+          "q": "Finn scan di Loading Dock pukul 16.36 dan scan keluar pukul 16.59. Ia butuh 9 menit menuju vault, 3 menit di dalam, lalu 9 menit kembali. Berapa menit waktu cadangannya?",
+          "choices": [
+            "2 menit",
+            "5 menit",
+            "1 menit",
+            "3 menit"
+          ],
+          "answer": 0,
+          "skill": "Multi-step time",
+          "difficulty": "Sulit",
+          "type": "explorer",
+          "correct": "Total tersedia = 23 menit. Waktu yang dibutuhkan = 9 + 3 + 9 = 21 menit. Cadangan = 2 menit.",
+          "wrong": [
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        }
+      ]
+    },
+    {
+      "id": "bab-4",
+      "title": "Bab 4 — Deduksi",
+      "questions": [
+        {
+          "id": "q16",
+          "scene": "Detektif mulai menghapus tersangka yang tidak mungkin berada di vault.",
+          "q": "Maya berada di kafe dari 16.46–16.55. Vault terbuka 16.48 dan perjalanan kafe → vault memerlukan 11 menit. Kesimpulan yang paling tepat?",
+          "choices": [
+            "Maya dapat tiba tepat 16.48",
+            "Maya tidak mungkin berada di vault pukul 16.48",
+            "Maya pasti pelakunya",
+            "Informasi tidak cukup"
+          ],
+          "answer": 1,
+          "skill": "Deduksi",
+          "difficulty": "Sulit",
+          "type": "analyst",
+          "correct": "Pada 16.48 Maya masih berada di kafe, dan perjalanan ke vault saja membutuhkan 11 menit.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q17",
+          "scene": "Sekarang giliran alibi Leo diuji.",
+          "q": "Scan Leo hanya berjarak 7 menit, sedangkan perjalanan pulang-pergi ke vault 8 menit. Apa arti data tersebut?",
+          "choices": [
+            "Leo punya sisa 1 menit",
+            "Leo tidak punya cukup waktu untuk pergi dan kembali",
+            "Leo dapat pergi jika berhenti 2 menit di vault",
+            "Leo punya sisa 7 menit"
+          ],
+          "answer": 1,
+          "skill": "Deduksi",
+          "difficulty": "Medium",
+          "type": "investigator",
+          "correct": "7 menit tersedia lebih kecil daripada 8 menit perjalanan minimum.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q18",
+          "scene": "Foto Zoe menjadi alibi berikutnya.",
+          "q": "Zoe hanya memiliki 7 menit di antara dua foto. Rute yang melewati vault membutuhkan 12 menit. Berapa menit kekurangan waktunya?",
+          "choices": [
+            "12 menit",
+            "7 menit",
+            "4 menit",
+            "5 menit"
+          ],
+          "answer": 3,
+          "skill": "Selisih waktu",
+          "difficulty": "Medium",
+          "type": "speedster",
+          "correct": "12 − 7 = 5 menit.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!"
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q19",
+          "scene": "Satu bukti fisik cocok dengan satu tersangka.",
+          "q": "Berat paket Finn bertambah 0,8 kg saat keluar. Moonstone bermassa 0,8 kg. Pernyataan mana yang paling masuk akal berdasarkan data?",
+          "choices": [
+            "Tidak ada hubungan angka",
+            "Moonstone lebih berat 0,4 kg",
+            "Selisih berat cocok persis dengan massa Moonstone",
+            "Selisihnya dua kali massa Moonstone"
+          ],
+          "answer": 2,
+          "skill": "Evidence reasoning",
+          "difficulty": "Sulit",
+          "type": "codebreaker",
+          "correct": "Keduanya sama-sama 0,8 kg. Ini bukan bukti tunggal, tetapi sangat cocok dengan petunjuk lain.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        }
+      ]
+    },
+    {
+      "id": "bab-5",
+      "title": "Bab 4 — Final",
+      "questions": [
+        {
+          "id": "q20",
+          "scene": "Semua alibi dan bukti sudah diperiksa. Saatnya membuat keputusan.",
+          "q": "Berdasarkan timeline, waktu perjalanan, dan selisih berat paket, siapa tersangka yang paling mungkin mengambil Moonstone?",
+          "choices": [
+            "Maya",
+            "Finn",
+            "Leo",
+            "Zoe"
+          ],
+          "answer": 1,
+          "skill": "Final deduction",
+          "difficulty": "Sulit",
+          "type": "explorer",
+          "correct": "Leo, Maya, dan Zoe tidak memiliki waktu yang cukup berdasarkan catatan mereka. Finn memiliki cukup waktu, dan selisih 0,8 kg pada paketnya sama dengan massa Moonstone.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        }
+      ]
+    }
+  ]
+}

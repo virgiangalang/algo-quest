@@ -234,12 +234,16 @@ async function githubPutQuestion(level, data) {
   return putResp.json();
 }
 
-function readStaticQuestion(level) {
+function readStaticQuestion(levelOrFile) {
   const fs = require("fs");
   const path = require("path");
+  const raw = String(levelOrFile || "").replace(/^\/+/, "");
+  const asFile = raw.endsWith(".json") ? raw : `${raw}.json`;
+  // Prevent path traversal
+  if (asFile.includes("..")) return null;
   const candidates = [
-    path.join(process.cwd(), "public", "questions", `${level}.json`),
-    path.join(process.cwd(), "questions", `${level}.json`),
+    path.join(process.cwd(), "public", "questions", asFile),
+    path.join(process.cwd(), "questions", asFile),
   ];
   for (const p of candidates) {
     try {

@@ -253,7 +253,7 @@ input{font:inherit}
 /* ─────────────────────────────────────────────
    PHASE: LEVEL SELECT
 ───────────────────────────────────────────── */
-#phase-level-select{display:none}
+#phase-level-select,#phase-folder-select{display:none}
 .level-wrap{padding:40px 36px}
 .level-wrap h2{font-family:Georgia,serif;font-size:32px;margin:8px 0 10px;letter-spacing:-.4px}
 .level-wrap .lead{color:var(--muted);font-size:14px;line-height:1.65;max-width:560px;margin-bottom:22px}
@@ -276,6 +276,25 @@ input{font:inherit}
 .level-card .lc-title{font-family:Georgia,serif;font-size:20px;margin:6px 0 4px;color:var(--ink)}
 .level-card .lc-age{font-size:12px;color:var(--muted);line-height:1.4}
 .level-hint{margin-top:16px;font-size:12px;color:#8b828d;font-family:Inter,ui-sans-serif,system-ui,sans-serif}
+.folder-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.folder-card .lc-title{font-size:18px}
+.folder-card .lc-age{min-height:2.6em}
+
+/* Name modal */
+.name-overlay{
+  position:fixed;inset:0;background:rgba(28,22,34,.55);display:none;align-items:center;justify-content:center;
+  z-index:80;padding:20px;
+}
+.name-overlay.show{display:flex}
+.name-card{
+  width:min(420px,100%);background:#fffdf8;border-radius:16px;padding:28px 24px 22px;
+  box-shadow:0 24px 60px rgba(40,20,50,.28);border:1px solid #e7ddd0;
+}
+.name-card h3{font-family:Georgia,serif;font-size:24px;margin:6px 0 8px}
+.name-card p{color:var(--muted);font-size:13px;line-height:1.55;margin-bottom:16px}
+
+.cert-sign-img{max-height:72px;width:auto;display:block;margin:0 auto 6px}
+.report-sign-img{max-height:64px;width:auto;display:block;margin:0 auto 6px}
 
 /* ─────────────────────────────────────────────
    PHASE: BRIEFING
@@ -719,7 +738,7 @@ input{font:inherit}
   body{background:#fff!important;min-height:auto}
   .app{padding:0!important;max-width:none}
   .topbar,.cert-actions,.report-actions,.footer,.resume-overlay{display:none!important}
-  #phase-login,#phase-level-select,#phase-briefing,#phase-diagnostic,#phase-case-intro,#phase-game,#phase-result{display:none!important}
+  #phase-login,#phase-level-select,#phase-folder-select,#phase-briefing,#phase-diagnostic,#phase-case-intro,#phase-game,#phase-result{display:none!important}
   body.print-report #phase-certificate{display:none!important}
   body.print-report #phase-report{display:block!important}
   body:not(.print-report) #phase-certificate{display:block!important}
@@ -773,13 +792,9 @@ input{font:inherit}
           <input type="text" id="input-username" data-i18n-placeholder="login.user" placeholder="Contoh: ALGO-001" autocomplete="off">
         </div>
         <div class="form-group">
-          <label for="input-name" data-i18n="login.name">Nama Siswa</label>
-          <input type="text" id="input-name" data-i18n-placeholder="login.name" placeholder="Nama lengkap kamu" autocomplete="off">
-        </div>
-        <div class="form-group">
-          <label for="input-age"><span data-i18n="login.age">Umur (opsional)</span></label>
-          <input type="number" id="input-age" placeholder="12" min="5" max="99">
-          <div class="form-note" data-i18n="login.ageNote">Umur membantu menyarankan level soal awal.</div>
+          <label for="input-age"><span data-i18n="login.age">Umur</span></label>
+          <input type="number" id="input-age" placeholder="12" min="5" max="99" required>
+          <div class="form-note" data-i18n="login.ageNote">Umur membantu menyarankan kategori & folder cerita.</div>
         </div>
 
         <button class="btn-primary" id="btn-login" onclick="handleLogin()" data-i18n="login.cta">
@@ -811,14 +826,31 @@ input{font:inherit}
   <div id="phase-level-select">
     <div class="card">
       <div class="level-wrap">
-        <div class="eyebrow" data-i18n="level.eyebrow">Berkas kasus · Pilih jalur investigasi</div>
-        <h2 data-i18n="level.title">Pilih level soal</h2>
+        <div class="eyebrow" data-i18n="level.eyebrow">Berkas kasus · Pilih kategori</div>
+        <h2 data-i18n="level.title">Pilih kategori usia</h2>
         <p class="lead" data-i18n="level.lead">
-          Pilih tingkat yang paling pas. Kalibrasi singkat tetap dijalankan setelah ini
-          dan boleh menyesuaikan satu tingkat naik/turun.
+          Pilih kategori yang paling pas. Setelah itu kamu akan memilih folder cerita / misi.
         </p>
         <div class="level-grid" id="level-grid"></div>
         <div class="level-hint" id="level-hint"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE: FOLDER / STORY SELECT -->
+  <div id="phase-folder-select">
+    <div class="card">
+      <div class="level-wrap">
+        <div class="eyebrow" data-i18n="folder.eyebrow">Kategori terpilih · Pilih folder cerita</div>
+        <h2 data-i18n="folder.title">Pilih folder / misi</h2>
+        <p class="lead" data-i18n="folder.lead">
+          Setiap folder adalah cerita atau paket soal tersendiri. Admin bisa menambah folder baru kapan saja.
+        </p>
+        <div class="folder-grid" id="folder-grid"></div>
+        <div class="level-hint" id="folder-hint"></div>
+        <div style="margin-top:18px">
+          <button type="button" class="btn-retry" onclick="showLevelSelect()" data-i18n="folder.back">← Ganti kategori</button>
+        </div>
       </div>
     </div>
   </div>
@@ -999,6 +1031,7 @@ input{font:inherit}
       <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
         <button class="btn-cert" onclick="showCertificate()" data-i18n="result.cert">Lihat & Cetak Certificate</button>
         <button class="btn-cert" style="background:#68418a" onclick="showReport()" data-i18n="result.report">Laporan PDF ortu/guru</button>
+        <button class="btn-retry" onclick="goHome()" data-i18n="nav.home">🏠 Kembali ke beranda</button>
       </div>
     </div>
   </div>
@@ -1011,6 +1044,7 @@ input{font:inherit}
       <button class="btn-primary" onclick="document.body.classList.remove('print-report');window.print()" data-i18n="cert.print">Cetak / Simpan PDF</button>
       <button class="btn-primary" style="background:#68418a" onclick="shareResult()" data-i18n="cert.share">Bagikan hasil</button>
       <button class="btn-retry" onclick="showPhase('result')" data-i18n="cert.back">← Kembali ke Hasil</button>
+      <button class="btn-retry" onclick="goHome()" data-i18n="nav.home">🏠 Kembali ke beranda</button>
     </div>
     <div class="cert-page">
       <div class="cert-border">
@@ -1050,9 +1084,9 @@ input{font:inherit}
 
         <div class="cert-footer">
           <div class="cert-sign">
-            <div class="cert-sign-line"></div>
-            <div class="cert-sign-name">Tim Algonova</div>
-            <div class="cert-sign-role">Program Director</div>
+            <img class="cert-sign-img" src="public/ttdceoalgo.png" alt="TTD CEO Algonova" width="140" height="72">
+            <div class="cert-sign-name">Irina Novikova</div>
+            <div class="cert-sign-role">CEO Algonova Indonesia</div>
           </div>
           <div>
             <div class="cert-sign">
@@ -1110,10 +1144,9 @@ input{font:inherit}
 
         <div class="report-sign-row">
           <div class="report-sign">
-            <div class="report-sign-line"></div>
-            <div class="report-sign-name">________________</div>
-            <div class="report-sign-role" data-i18n="report.signCeo">CEO Algonova</div>
-            <div class="report-note" data-i18n="report.signNote">(Tanda tangan resmi menyusul)</div>
+            <img class="report-sign-img" src="public/ttdceoalgo.png" alt="TTD CEO Algonova" width="130" height="64">
+            <div class="report-sign-name">Irina Novikova</div>
+            <div class="report-sign-role" data-i18n="report.signCeo">CEO Algonova Indonesia</div>
           </div>
           <div class="report-sign">
             <div class="report-sign-line"></div>
@@ -1126,6 +1159,21 @@ input{font:inherit}
   </div>
 
   <div class="footer" data-i18n="footer">© Algonova by Algorithmics · Misteri Matematika · Kurikulum Merdeka</div>
+</div>
+
+<!-- Name modal (setelah login username) -->
+<div class="name-overlay" id="name-overlay" role="dialog" aria-modal="true">
+  <div class="name-card panel-slide">
+    <div class="eyebrow" data-i18n="name.eyebrow">Identitas detektif</div>
+    <h3 data-i18n="name.title">Nama lengkap kamu</h3>
+    <p data-i18n="name.lead">Isi sendiri nama lengkapmu. Username hanya untuk akses — nama ini akan muncul di sertifikat & laporan.</p>
+    <div class="form-group">
+      <label for="input-name-modal" data-i18n="login.name">Nama Siswa</label>
+      <input type="text" id="input-name-modal" placeholder="Nama lengkap" autocomplete="name">
+    </div>
+    <div class="login-error" id="name-error"></div>
+    <button class="btn-primary" id="btn-name-continue" type="button" onclick="confirmStudentName()" data-i18n="name.cta">Lanjut pilih kategori →</button>
+  </div>
 </div>
 
 <!-- Resume overlay -->
@@ -1162,6 +1210,8 @@ window.ALGONOVA_CONFIG = {
   // false = pakai Google Sheet VALID/USED
   // ?dev=1 di URL memaksa skip Sheet (untuk tes lokal)
   devMode: false,
+  // Diagnostic (5 soal awal) disembunyikan dulu — set true jika ingin diaktifkan lagi
+  enableDiagnostic: false,
 };
 const CONFIG = window.ALGONOVA_CONFIG;
 try {
@@ -1239,8 +1289,12 @@ let STATE = {
   studentName: "",
   age: null,
   level: "sd-kelas-4-6",
+  folderId: null,
+  folderFile: null,
+  folderTitle: null,
   suggestedLevel: null,
   levelChosen: false,
+  catalog: null,
   questions: [],
   caseData: null,
   questionSource: "",
@@ -1252,14 +1306,14 @@ let STATE = {
   answered: false,
   typeScores: { analyst:0, speedster:0, investigator:0, codebreaker:0, explorer:0 },
   skillScores: {},
-  // Diagnostic
+  // Diagnostic (hidden by default via CONFIG.enableDiagnostic)
   diagQuestions: [],
   diagIndex: 0,
   diagCorrect: 0,
 };
 
 /* ─── UTILS ─── */
-const PHASES = ["login","level-select","briefing","diagnostic","case-intro","game","result","certificate","report"];
+const PHASES = ["login","level-select","folder-select","briefing","diagnostic","case-intro","game","result","certificate","report"];
 
 function showPhase(name) {
   if (name === "login" && STATE.phase && STATE.phase !== "login") {
@@ -1348,19 +1402,19 @@ function speakCurrentQuestion() {
 /* ─── LOGIN ─── */
 async function handleLogin() {
   const username = document.getElementById("input-username").value.trim();
-  const name = document.getElementById("input-name").value.trim();
-  const age = parseInt(document.getElementById("input-age").value) || null;
+  const ageRaw = document.getElementById("input-age").value;
+  const age = parseInt(ageRaw, 10);
   const errEl = document.getElementById("login-error");
   const loadEl = document.getElementById("login-loading");
 
   errEl.className = "login-error";
 
   if (!username) { showError(tt("err.user")); return; }
-  if (!name) { showError(tt("err.name")); return; }
+  if (!ageRaw || !age || age < 5 || age > 99) { showError(tt("err.age")); return; }
 
   STATE.username = username;
-  STATE.studentName = name;
   STATE.age = age;
+  STATE.studentName = "";
 
   document.getElementById("btn-login").disabled = true;
   loadEl.classList.add("show");
@@ -1368,10 +1422,9 @@ async function handleLogin() {
   try {
     let result;
     if (CONFIG.devMode) {
-      // Dev mode: skip validation, set level berdasarkan umur
-      result = { valid: true, used: false, studentName: name, level: guessLevelByAge(age) };
+      result = { valid: true, used: false, studentName: "", level: guessLevelByAge(age) };
     } else {
-      result = await appsScriptPost({ action: "validate", username, name, age });
+      result = await appsScriptPost({ action: "validate", username, age });
     }
 
     loadEl.classList.remove("show");
@@ -1383,14 +1436,18 @@ async function handleLogin() {
     }
 
     STATE.level = result.level || guessLevelByAge(age);
-    setTopbarBadge(STATE.studentName);
+    // Prefill nama dari Sheet jika sudah ada; tetap bisa diedit di modal
+    if (result.studentName) {
+      document.getElementById("input-name-modal").value = result.studentName;
+    } else {
+      document.getElementById("input-name-modal").value = "";
+    }
 
     if (result.used) {
-      // Sudah pernah mengerjakan → langsung ke certificate
       const saved = JSON.parse(localStorage.getItem(`algo_result_${username}`) || "null");
       const fromSheet = {
         username,
-        studentName: result.studentName || name,
+        studentName: result.studentName || username,
         level: result.level || guessLevelByAge(age),
         accuracy: Number(String(result.accuracy || "0").replace("%","")) || 0,
         xp: Number(result.score) || 0,
@@ -1401,14 +1458,16 @@ async function handleLogin() {
         skillScores: {},
       };
       const data = saved || fromSheet;
+      STATE.studentName = data.studentName || result.studentName || username;
       loadSavedResult(data);
       populateCertificate();
       showPhase("certificate");
+      document.getElementById("btn-login").disabled = false;
       return;
     }
 
-    // Pilih level dulu (Part 1)
-    showLevelSelect();
+    document.getElementById("btn-login").disabled = false;
+    openNameModal();
 
   } catch (e) {
     loadEl.classList.remove("show");
@@ -1423,6 +1482,66 @@ async function handleLogin() {
     }
     document.getElementById("btn-login").disabled = false;
   }
+}
+
+function openNameModal() {
+  document.getElementById("name-error").className = "login-error";
+  document.getElementById("name-overlay").classList.add("show");
+  const inp = document.getElementById("input-name-modal");
+  setTimeout(() => { try { inp.focus(); } catch (_) {} }, 50);
+}
+
+function closeNameModal() {
+  document.getElementById("name-overlay").classList.remove("show");
+}
+
+async function confirmStudentName() {
+  const name = document.getElementById("input-name-modal").value.trim();
+  const err = document.getElementById("name-error");
+  err.className = "login-error";
+  if (!name) {
+    err.textContent = tt("err.name");
+    err.classList.add("show");
+    return;
+  }
+  STATE.studentName = name;
+  setTopbarBadge(STATE.studentName);
+  closeNameModal();
+
+  // Simpan nama ke Sheet (non-blocking)
+  if (!CONFIG.devMode) {
+    appsScriptPost({
+      action: "profile",
+      username: STATE.username,
+      name,
+      nama: name,
+      age: STATE.age,
+      umur: STATE.age,
+    }).catch((e) => console.warn("[algo] profile save deferred", e));
+  }
+
+  showLevelSelect();
+}
+
+function goHome() {
+  if (typeof AlgoPersist !== "undefined") AlgoPersist.clear();
+  document.body.classList.remove("print-report");
+  closeNameModal();
+  STATE.phase = "login";
+  STATE.studentName = "";
+  STATE.folderId = null;
+  STATE.folderFile = null;
+  STATE.folderTitle = null;
+  STATE.levelChosen = false;
+  STATE.questions = [];
+  STATE.caseData = null;
+  setTopbarBadge("");
+  try {
+    document.getElementById("input-username").value = STATE.username || "";
+    document.getElementById("input-age").value = STATE.age || "";
+  } catch (_) {}
+  showPhase("login");
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function showError(msg) {
@@ -1477,6 +1596,57 @@ function confirmLevel(level) {
   STATE.levelChosen = true;
   console.info("[algo] level selected", { level, suggested: STATE.suggestedLevel, age: STATE.age });
   setTopbarBadge(`${STATE.studentName} · ${(LEVEL_LABELS && LEVEL_LABELS[level]) || level}`);
+  showFolderSelect();
+}
+
+async function showFolderSelect() {
+  try {
+    if (!STATE.catalog && typeof loadCatalog === "function") {
+      STATE.catalog = await loadCatalog();
+    }
+  } catch (e) {
+    console.warn("[algo] catalog", e);
+  }
+  const folders = typeof foldersForLevel === "function"
+    ? foldersForLevel(STATE.catalog || { levels: [] }, STATE.level)
+    : [];
+  const grid = document.getElementById("folder-grid");
+  const hint = document.getElementById("folder-hint");
+  const levelLabel = (LEVEL_LABELS && LEVEL_LABELS[STATE.level]) || STATE.level;
+
+  if (!folders.length) {
+    grid.innerHTML = `<p style="color:var(--muted)">${tt("folder.empty")}</p>`;
+  } else {
+    grid.innerHTML = folders.map((f) => {
+      const badge = f.badge ? `<span class="lc-badge">${f.badge}</span>` : "";
+      return `<button type="button" class="level-card folder-card" data-folder="${f.id}" onclick="confirmFolder('${f.id}')">
+        ${badge}
+        <div class="lc-code">${levelLabel}</div>
+        <div class="lc-title">${f.title}</div>
+        <div class="lc-age">${f.blurb || ""}</div>
+        <div class="lc-age" style="margin-top:6px;opacity:.85">${f.questionsHint || ""}</div>
+      </button>`;
+    }).join("");
+  }
+  hint.textContent = tt("folder.hint", { level: levelLabel });
+  showPhase("folder-select");
+  setTopbarBadge(`${STATE.studentName} · folder`);
+}
+
+function confirmFolder(folderId) {
+  const folders = typeof foldersForLevel === "function"
+    ? foldersForLevel(STATE.catalog || { levels: [] }, STATE.level)
+    : [];
+  const folder = folders.find((f) => f.id === folderId) || folders[0];
+  if (!folder) {
+    console.error("[algo] folder missing", folderId);
+    return;
+  }
+  STATE.folderId = folder.id;
+  STATE.folderFile = folder.file;
+  STATE.folderTitle = folder.title;
+  console.info("[algo] folder selected", folder);
+  setTopbarBadge(`${STATE.studentName} · ${folder.title}`);
   startBriefing();
 }
 
@@ -1484,12 +1654,32 @@ function confirmLevel(level) {
 function startBriefing() {
   STATE.briefIndex = 0;
   const lang = (typeof AlgoI18n !== "undefined" && AlgoI18n.getLang()) || "id";
-  if (lang === "en" && typeof STORY_BRIEFING_EN !== "undefined") {
+  const folderTitle = STATE.folderTitle || "Misi Algonova";
+  // Briefing singkat yang menyesuaikan folder terpilih
+  const custom = [
+    {
+      stamp: "FOLDER",
+      title: folderTitle,
+      body: lang === "en"
+        ? `You chose the mission “${folderTitle}”. Read the case briefing, then start the challenges.`
+        : `Kamu memilih folder “${folderTitle}”. Baca prolog singkat, lalu mulai tantangan matematika dalam cerita.`,
+      image: (typeof getBriefingPanels === "function" && getBriefingPanels()[0] && getBriefingPanels()[0].image) || "",
+    },
+    {
+      stamp: "SIAP",
+      title: lang === "en" ? "Open the case file" : "Buka berkas kasus",
+      body: lang === "en"
+        ? "No warm-up quiz this time — you go straight into the story mission."
+        : "Tanpa soal pemanasan — langsung masuk ke misi cerita.",
+      image: (typeof getBriefingPanels === "function" && getBriefingPanels()[1] && getBriefingPanels()[1].image) || "",
+    },
+  ];
+  if (lang === "en" && typeof STORY_BRIEFING_EN !== "undefined" && !STATE.folderId) {
     STATE.briefPanels = STORY_BRIEFING_EN.slice();
+  } else if (!STATE.folderId && typeof getBriefingPanels === "function") {
+    STATE.briefPanels = getBriefingPanels();
   } else {
-    STATE.briefPanels = (typeof getBriefingPanels === "function")
-      ? getBriefingPanels()
-      : [{ stamp: "PROLOG", title: "Kasus dibuka", body: "Siap untuk kalibrasi." }];
+    STATE.briefPanels = custom;
   }
   showPhase("briefing");
   renderBriefing();
@@ -1522,11 +1712,19 @@ function renderBriefing() {
 
 function nextBriefing() {
   if (STATE.briefIndex >= (STATE.briefPanels || []).length - 1) {
-    startDiagnostic();
+    // Diagnostic disembunyikan (CONFIG.enableDiagnostic) — langsung ke misi
+    if (CONFIG.enableDiagnostic) startDiagnostic();
+    else beginMissionAfterBriefing();
     return;
   }
   STATE.briefIndex++;
   renderBriefing();
+}
+
+/** Skip diagnostic → load soal folder → case intro */
+async function beginMissionAfterBriefing() {
+  STATE.diagCorrect = 0;
+  await finishDiagnostic({ skipAdjust: true });
 }
 
 /* ─── DIAGNOSTIC ─── */
@@ -1600,14 +1798,20 @@ function nextDiagQuestion() {
   renderDiagQuestion();
 }
 
-async function finishDiagnostic() {
+async function finishDiagnostic(opts) {
+  const options = opts || {};
   const baseLevel = STATE.level;
-  STATE.level = adjustLevel(STATE.level, STATE.diagCorrect, STATE.diagQuestions.length);
-  console.info("[algo] diagnostic done", {
+  if (!options.skipAdjust && CONFIG.enableDiagnostic) {
+    STATE.level = adjustLevel(STATE.level, STATE.diagCorrect, STATE.diagQuestions.length);
+  }
+  console.info("[algo] mission load", {
     correct: STATE.diagCorrect,
-    total: STATE.diagQuestions.length,
+    total: (STATE.diagQuestions || []).length,
     baseLevel,
-    adjustedLevel: STATE.level,
+    level: STATE.level,
+    folder: STATE.folderId,
+    file: STATE.folderFile,
+    skipAdjust: !!options.skipAdjust,
   });
 
   STATE.qIndex = 0;
@@ -1632,13 +1836,14 @@ async function finishDiagnostic() {
   startBtn.textContent = "Memuat berkas kasus…";
 
   try {
-    const loaded = await loadQuestions(STATE.level);
+    const loaded = await loadQuestions(STATE.level, STATE.folderFile || undefined);
     const data = loaded.data;
     const check = validateQuestionBank(data);
     STATE.caseData = data;
     STATE.questions = flattenQuestions(data);
     STATE.questionSource = loaded.source;
     STATE.usedFallback = !!loaded.usedFallback;
+    if (data.caseTitle) STATE.folderTitle = data.caseTitle;
 
     populateCaseIntroReady(data, check);
 
@@ -1658,7 +1863,8 @@ async function finishDiagnostic() {
     setupChapters(data);
     startBtn.disabled = false;
     startBtn.textContent = tt("intro.start");
-    setTopbarBadge(uiLevelLabel(STATE.level) + " · " + STATE.questions.length + " misi");
+    const folderBit = STATE.folderTitle ? ` · ${STATE.folderTitle}` : "";
+    setTopbarBadge(uiLevelLabel(STATE.level) + folderBit + " · " + STATE.questions.length + " misi");
     persistSession();
   } catch (e) {
     console.error("[algo] finishDiagnostic load failed", e);
@@ -1690,8 +1896,14 @@ function populateCaseIntroPending() {
   document.getElementById("intro-title").textContent = tt("intro.loadingTitle");
   document.getElementById("intro-lead").textContent = tt("intro.loadingLead");
   document.getElementById("intro-level").textContent = label;
-  document.getElementById("intro-diag").textContent =
-    `${STATE.diagCorrect}/${STATE.diagQuestions.length}`;
+  const diagBox = document.getElementById("intro-diag");
+  if (!CONFIG.enableDiagnostic) {
+    diagBox.textContent = STATE.folderTitle || "—";
+    const lbl = diagBox.previousElementSibling;
+    if (lbl) lbl.textContent = tt("intro.folder");
+  } else {
+    diagBox.textContent = `${STATE.diagCorrect}/${(STATE.diagQuestions || []).length}`;
+  }
   document.getElementById("intro-count").textContent = "…";
 }
 
@@ -1699,15 +1911,21 @@ function populateCaseIntroReady(data, check) {
   const label = uiLevelLabel(STATE.level);
   const bank = uiBank(data);
   document.getElementById("intro-eyebrow").textContent = tt("intro.readyEyebrow");
-  document.getElementById("intro-title").textContent = bank.caseTitle || "Kode yang Hilang";
+  document.getElementById("intro-title").textContent = bank.caseTitle || STATE.folderTitle || "Kode yang Hilang";
   document.getElementById("intro-lead").textContent = tt("intro.readyLead", {
     chapters: String((data.chapters || []).length),
     count: String(check.count),
     level: label,
   });
   document.getElementById("intro-level").textContent = label;
-  document.getElementById("intro-diag").textContent =
-    `${STATE.diagCorrect}/${STATE.diagQuestions.length}`;
+  const diagBox = document.getElementById("intro-diag");
+  if (!CONFIG.enableDiagnostic) {
+    diagBox.textContent = STATE.folderTitle || bank.caseTitle || "—";
+    const lbl = diagBox.previousElementSibling;
+    if (lbl) lbl.textContent = tt("intro.folder");
+  } else {
+    diagBox.textContent = `${STATE.diagCorrect}/${(STATE.diagQuestions || []).length}`;
+  }
   document.getElementById("intro-count").textContent = String(check.count);
   const art = document.getElementById("intro-art");
   if (art) {
@@ -2241,6 +2459,9 @@ function applySavedSession(data) {
     studentName: data.studentName,
     age: data.age,
     level: data.level,
+    folderId: data.folderId || null,
+    folderFile: data.folderFile || null,
+    folderTitle: data.folderTitle || null,
     suggestedLevel: data.suggestedLevel,
     levelChosen: data.levelChosen,
     qIndex: data.qIndex || 0,
@@ -2270,6 +2491,7 @@ function resumeSession() {
   applySavedSession(data);
   const phase = data.phase;
   if (phase === "level-select") showLevelSelect();
+  else if (phase === "folder-select") showFolderSelect();
   else if (phase === "briefing") { startBriefing(); STATE.briefIndex = data.briefIndex || 0; renderBriefing(); }
   else if (phase === "diagnostic") {
     showPhase("diagnostic");

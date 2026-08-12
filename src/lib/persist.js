@@ -23,6 +23,9 @@ const AlgoPersist = (() => {
         studentName: state.studentName,
         age: state.age,
         level: state.level,
+        folderId: state.folderId || null,
+        folderFile: state.folderFile || null,
+        folderTitle: state.folderTitle || null,
         suggestedLevel: state.suggestedLevel,
         levelChosen: state.levelChosen,
         qIndex: state.qIndex,
@@ -83,7 +86,8 @@ const AlgoPersist = (() => {
   function phaseLabel(phase, lang) {
     const map = {
       id: {
-        "level-select": "pilih level",
+        "level-select": "pilih kategori",
+        "folder-select": "pilih folder",
         briefing: "prolog",
         diagnostic: "kalibrasi",
         "case-intro": "intro kasus",
@@ -92,7 +96,8 @@ const AlgoPersist = (() => {
         certificate: "sertifikat",
       },
       en: {
-        "level-select": "level select",
+        "level-select": "category select",
+        "folder-select": "folder select",
         briefing: "prologue",
         diagnostic: "calibration",
         "case-intro": "case intro",

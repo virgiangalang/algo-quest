@@ -237,6 +237,40 @@ module.exports = async function handler(req, res) {
       return json(res, 200, validateFromRows(rows, body));
     }
 
+    if (action === "profile") {
+      // Simpan nama/umur tanpa menandai USED
+      try {
+        const result = await callAppsScriptPostEcho({
+          action: "profile",
+          username: body.username,
+          name: body.name || body.nama,
+          nama: body.name || body.nama,
+          age: body.age || body.umur,
+          umur: body.age || body.umur,
+        });
+        credCache = { at: 0, rows: null };
+        return json(res, 200, result);
+      } catch (e1) {
+        try {
+          const viaGet = await callAppsScriptGet({
+            action: "profile",
+            username: body.username,
+            name: body.name || body.nama,
+            age: body.age || body.umur,
+          });
+          credCache = { at: 0, rows: null };
+          return json(res, 200, viaGet);
+        } catch (e2) {
+          // Non-blocking: client tetap lanjut meski Sheet lambat
+          return json(res, 200, {
+            ok: true,
+            deferred: true,
+            message: "Nama disimpan lokal; Sheet menyusul saat submit.",
+          });
+        }
+      }
+    }
+
     if (action === "submit") {
       // Invalidate cache supaya login berikutnya lihat USED terbaru
       credCache = { at: 0, rows: null };

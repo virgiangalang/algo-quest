@@ -124,6 +124,14 @@ function doGet(e) {
       }));
     }
 
+    if (action === "profile") {
+      return respond_(updateProfile_({
+        username: p.username,
+        name: p.name || p.nama,
+        age: p.age || p.umur
+      }));
+    }
+
     if (action === "submit") {
       return respond_(submitResult_({
         username: p.username,
@@ -156,6 +164,7 @@ function doPost(e) {
     var action = String(body.action || "").toLowerCase();
     if (action === "validate") return respond_(validateStudent_(body));
     if (action === "submit") return respond_(submitResult_(body));
+    if (action === "profile") return respond_(updateProfile_(body));
     if (action === "ping" || action === "warm") {
       return respond_({ ok: true, message: "Algonova Quest API aktif.", t: Date.now() });
     }
@@ -266,6 +275,29 @@ function submitResult_(body) {
     return { success: true, ok: true, usedAt: usedAt };
   }
   return { success: false, message: "Username tidak ditemukan untuk submit." };
+}
+
+/** Update nama/umur saja (setelah login), tanpa menandai USED. */
+function updateProfile_(body) {
+  var username = String((body && body.username) || "").trim().toUpperCase();
+  if (!username) return { success: false, message: "Username wajib diisi." };
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
+  if (!sheet) return { success: false, message: "Tab Credentials tidak ditemukan." };
+
+  var data = sheet.getDataRange().getValues();
+  for (var i = 1; i < data.length; i++) {
+    if (String(data[i][0]).trim().toUpperCase() !== username) continue;
+    var row = i + 1;
+    if (!truthy_(data[i][4])) return { success: false, message: "Akun tidak VALID." };
+    var name = body.name || body.nama;
+    if (name) sheet.getRange(row, 2).setValue(String(name).trim());
+    if (body.age != null || body.umur != null) {
+      sheet.getRange(row, 3).setValue(body.age != null ? body.age : body.umur);
+    }
+    invalidateCredCache_();
+    return { success: true, ok: true, message: "Profil diperbarui." };
+  }
+  return { success: false, message: "Username tidak ditemukan." };
 }
 
 /* =========================

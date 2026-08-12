@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "note": "Category (level) → folders (stories/missions). Admin can add folders by adding JSON + entry here.",
+  "levels": [
+    {
+      "id": "sd-kelas-1-3",
+      "title": "SD 1–3",
+      "age": "±7–9 tahun",
+      "blurb": "Hitung dasar & pola sederhana",
+      "folders": [
+        {
+          "id": "kebun-bilangan",
+          "title": "Misteri di Kebun Bilangan",
+          "blurb": "Petualangan hitung dasar di kebun ajaib",
+          "file": "sd-kelas-1-3.json",
+          "questionsHint": "~30 soal"
+        }
+      ]
+    },
+    {
+      "id": "sd-kelas-4-6",
+      "title": "SD 4–6",
+      "age": "±8–12 tahun",
+      "blurb": "Pecahan, desimal, penalaran",
+      "folders": [
+        {
+          "id": "missing-moonstone",
+          "title": "The Missing Moonstone",
+          "blurb": "Detective Mystery · temukan pencuri Moonstone",
+          "file": "sd-kelas-4-6/missing-moonstone.json",
+          "badge": "PILOT",
+          "questionsHint": "20 soal · 4 bab"
+        },
+        {
+          "id": "robot-city",
+          "title": "Robot City: System Failure",
+          "blurb": "Engineering Adventure · nyalakan kembali kota",
+          "file": "sd-kelas-4-6/robot-city.json",
+          "badge": "PILOT",
+          "questionsHint": "20 soal · 4 bab"
+        },
+        {
+          "id": "lost-temple",
+          "title": "The Lost Kingdom",
+          "blurb": "Exploration Adventure · buka Lost Temple",
+          "file": "sd-kelas-4-6/lost-temple.json",
+          "badge": "PILOT",
+          "questionsHint": "20 soal · 4 bab"
+        },
+        {
+          "id": "kode-yang-hilang",
+          "title": "Kode yang Hilang",
+          "blurb": "Kasus klasik Algonova · chip AI Profesor Nova",
+          "file": "sd-kelas-4-6.json",
+          "questionsHint": "~30 soal"
+        }
+      ]
+    },
+    {
+      "id": "smp",
+      "title": "SMP",
+      "age": "±13–15 tahun",
+      "blurb": "Aljabar awal, rasio, data",
+      "folders": [
+        {
+          "id": "operasi-variabel",
+          "title": "Operasi Variabel Gelap",
+          "blurb": "Misi SMP — pecahkan kode variabel",
+          "file": "smp.json",
+          "questionsHint": "~30 soal"
+        }
+      ]
+    },
+    {
+      "id": "sma",
+      "title": "SMA",
+      "age": "±16–18 tahun",
+      "blurb": "Fungsi, peluang, penalaran",
+      "folders": [
+        {
+          "id": "fungsi-rahasia",
+          "title": "Operasi Fungsi Rahasia",
+          "blurb": "Misi SMA — fungsi & peluang",
+          "file": "sma.json",
+          "questionsHint": "~30 soal"
+        }
+      ]
+    },
+    {
+      "id": "dewasa",
+      "title": "Dewasa",
+      "age": "18+ / umum",
+      "blurb": "Aplikasi numerasi sehari-hari",
+      "folders": [
+        {
+          "id": "audit-angka",
+          "title": "Audit Angka Tersembunyi",
+          "blurb": "Misi dewasa — numerasi praktis",
+          "file": "dewasa.json",
+          "questionsHint": "~30 soal"
+        }
+      ]
+    }
+  ]
+}

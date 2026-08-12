@@ -1,0 +1,523 @@
+{
+  "level": "sd-kelas-4-6",
+  "folder": "robot-city",
+  "label": "SD Kelas 4–6",
+  "ageRange": "8–9 / 10–12 tahun",
+  "curriculum": "Algonova Math Adventure Pilot",
+  "caseTitle": "Robot City: System Failure",
+  "genre": "Engineering Adventure",
+  "objective": "Nyalakan kembali kota sebelum energi habis",
+  "stamp": "MISSION #002",
+  "chapters": [
+    {
+      "id": "bab-1",
+      "title": "Bab 1 — Power Core",
+      "questions": [
+        {
+          "id": "q1",
+          "scene": "Robot City gelap. Kamu menemukan beberapa sel energi yang masih aktif.",
+          "q": "Ada 6 paket sel energi, masing-masing berisi 24 unit, dan 18 unit lepas. Berapa total energi yang tersedia?",
+          "choices": [
+            "144 unit",
+            "156 unit",
+            "180 unit",
+            "162 unit"
+          ],
+          "answer": 3,
+          "skill": "Perkalian + penjumlahan",
+          "difficulty": "Medium",
+          "type": "analyst",
+          "correct": "6 × 24 = 144. Lalu 144 + 18 = 162.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!"
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q2",
+          "scene": "Panel menunjukkan jumlah energi minimum untuk menyalakan inti.",
+          "q": "Power Core membutuhkan 210 unit energi. Saat ini tersedia 162 unit. Berapa unit tambahan yang dibutuhkan?",
+          "choices": [
+            "72 unit",
+            "48 unit",
+            "52 unit",
+            "38 unit"
+          ],
+          "answer": 1,
+          "skill": "Selisih",
+          "difficulty": "Medium",
+          "type": "investigator",
+          "correct": "210 − 162 = 48.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q3",
+          "scene": "Dua generator menghasilkan total energi yang sama-sama penting.",
+          "q": "Generator A dan B menghasilkan total 78 unit. Generator B menghasilkan 18 unit lebih banyak daripada Generator A. Berapa output Generator A?",
+          "choices": [
+            "30 unit",
+            "39 unit",
+            "48 unit",
+            "60 unit"
+          ],
+          "answer": 0,
+          "skill": "Perbandingan",
+          "difficulty": "Sulit",
+          "type": "speedster",
+          "correct": "Jika A = 30, maka B = 48. 30 + 48 = 78 dan selisihnya 18.",
+          "wrong": [
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q4",
+          "scene": "Layar inti menampilkan pola kode yang rusak.",
+          "q": "Kode berbentuk 12, 18, 27, 39, 54, ... Selisihnya bertambah 3 setiap langkah. Angka berikutnya adalah?",
+          "choices": [
+            "69",
+            "70",
+            "75",
+            "72"
+          ],
+          "answer": 3,
+          "skill": "Pola bertingkat",
+          "difficulty": "Sulit",
+          "type": "codebreaker",
+          "correct": "Selisihnya +6, +9, +12, +15, sehingga berikutnya +18. 54 + 18 = 72.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!"
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q5",
+          "scene": "Sebagian drone pengantar masih memiliki daya.",
+          "q": "Dari 150 drone, 3/5 sudah berhasil diisi daya. Berapa drone yang sudah aktif?",
+          "choices": [
+            "60",
+            "120",
+            "90",
+            "75"
+          ],
+          "answer": 2,
+          "skill": "Pecahan",
+          "difficulty": "Medium",
+          "type": "explorer",
+          "correct": "1/5 dari 150 = 30. Jadi 3/5 = 90.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        }
+      ]
+    },
+    {
+      "id": "bab-2",
+      "title": "Bab 2 — Transit",
+      "questions": [
+        {
+          "id": "q6",
+          "scene": "Sistem kereta membutuhkan energi dari baterai cadangan.",
+          "q": "Baterai transit memiliki 240 unit energi. Kereta pertama memakai 3/8 dari energi tersebut. Berapa unit yang masih tersisa?",
+          "choices": [
+            "120 unit",
+            "180 unit",
+            "150 unit",
+            "90 unit"
+          ],
+          "answer": 2,
+          "skill": "Pecahan multi-step",
+          "difficulty": "Medium",
+          "type": "analyst",
+          "correct": "3/8 dari 240 = 90. Sisa = 240 − 90 = 150.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q7",
+          "scene": "Kereta harus membawa warga ke zona aman.",
+          "q": "Ada 7 kereta, masing-masing memiliki 24 kursi. Sebanyak 149 warga naik. Berapa kursi kosong?",
+          "choices": [
+            "19 kursi",
+            "17 kursi",
+            "29 kursi",
+            "21 kursi"
+          ],
+          "answer": 0,
+          "skill": "Kapasitas",
+          "difficulty": "Medium",
+          "type": "investigator",
+          "correct": "Kapasitas = 7 × 24 = 168. Kursi kosong = 168 − 149 = 19.",
+          "wrong": [
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q8",
+          "scene": "Dua sektor mendapat chip perbaikan dalam bagian yang tidak sama.",
+          "q": "Ada 96 chip. Sektor Merah mendapat 3 bagian yang sama besar dan Sektor Biru mendapat 5 bagian yang sama besar. Berapa chip untuk Sektor Biru?",
+          "choices": [
+            "36 chip",
+            "60 chip",
+            "72 chip",
+            "48 chip"
+          ],
+          "answer": 1,
+          "skill": "Pembagian proporsional",
+          "difficulty": "Sulit",
+          "type": "speedster",
+          "correct": "Total bagian = 8. Satu bagian = 96 ÷ 8 = 12. Biru mendapat 5 × 12 = 60.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q9",
+          "scene": "Kereta terakhir harus tiba sebelum gerbang otomatis ditutup.",
+          "q": "Kereta berangkat pukul 14.35, berjalan 47 menit, lalu recharge selama 8 menit. Pukul berapa siap berangkat lagi?",
+          "choices": [
+            "15.22",
+            "15.30",
+            "15.40",
+            "15.25"
+          ],
+          "answer": 1,
+          "skill": "Waktu multi-step",
+          "difficulty": "Medium",
+          "type": "codebreaker",
+          "correct": "47 + 8 = 55 menit. 14.35 + 55 menit = 15.30.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q10",
+          "scene": "Peta menawarkan dua jalur menuju pusat kota.",
+          "q": "Rute A = 360 m + 240 m. Rute B = 250 m + 290 m. Rute mana lebih pendek dan berapa selisihnya?",
+          "choices": [
+            "Rute A, lebih pendek 60 m",
+            "Keduanya sama",
+            "Rute B, lebih pendek 40 m",
+            "Rute B, lebih pendek 60 m"
+          ],
+          "answer": 3,
+          "skill": "Perbandingan jarak",
+          "difficulty": "Medium",
+          "type": "explorer",
+          "correct": "Rute A = 600 m. Rute B = 540 m. Selisih = 60 m.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!"
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        }
+      ]
+    },
+    {
+      "id": "bab-3",
+      "title": "Bab 3 — Robot Network",
+      "questions": [
+        {
+          "id": "q11",
+          "scene": "Jaringan robot mulai aktif, tetapi sebagian masih offline.",
+          "q": "Dari 128 robot, 1/4 offline. Setengah dari robot yang offline berhasil diperbaiki. Berapa robot yang masih offline?",
+          "choices": [
+            "32 robot",
+            "16 robot",
+            "8 robot",
+            "64 robot"
+          ],
+          "answer": 1,
+          "skill": "Pecahan bertahap",
+          "difficulty": "Sulit",
+          "type": "analyst",
+          "correct": "1/4 dari 128 = 32 offline. Setengahnya diperbaiki = 16, sehingga tersisa 16.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q12",
+          "scene": "Gudang komponen dibuka untuk tim repair.",
+          "q": "Ada 9 peti, masing-masing berisi 14 komponen. Sebanyak 17 komponen sudah digunakan. Berapa yang tersisa?",
+          "choices": [
+            "126",
+            "109",
+            "99",
+            "119"
+          ],
+          "answer": 1,
+          "skill": "Multi-step",
+          "difficulty": "Medium",
+          "type": "investigator",
+          "correct": "9 × 14 = 126. 126 − 17 = 109.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q13",
+          "scene": "Nomor unit robot menunjukkan pola doubling.",
+          "q": "Urutan ID prioritas: 5, 10, 20, 40, ... Nomor berikutnya adalah?",
+          "choices": [
+            "90",
+            "80",
+            "60",
+            "70"
+          ],
+          "answer": 1,
+          "skill": "Pola",
+          "difficulty": "Medium",
+          "type": "speedster",
+          "correct": "Setiap angka dikali 2. 40 × 2 = 80.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q14",
+          "scene": "Sebuah panel meminta angka yang hilang.",
+          "q": "7 × □ + 5 = 68. Berapa nilai □?",
+          "choices": [
+            "8",
+            "10",
+            "11",
+            "9"
+          ],
+          "answer": 3,
+          "skill": "Persamaan sederhana",
+          "difficulty": "Sulit",
+          "type": "codebreaker",
+          "correct": "68 − 5 = 63. 63 ÷ 7 = 9.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!"
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q15",
+          "scene": "Robot navigasi bergerak di grid kota.",
+          "q": "Robot bergerak 6 blok ke timur, 4 ke utara, 2 ke barat, lalu 1 ke selatan. Dibanding titik awal, posisinya sekarang?",
+          "choices": [
+            "4 blok ke barat dan 3 ke selatan",
+            "4 blok ke timur dan 3 ke utara",
+            "3 blok ke timur dan 4 ke utara",
+            "8 blok ke timur dan 5 ke utara"
+          ],
+          "answer": 1,
+          "skill": "Spasial",
+          "difficulty": "Medium",
+          "type": "explorer",
+          "correct": "Timur-barat: 6 − 2 = 4. Utara-selatan: 4 − 1 = 3.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        }
+      ]
+    },
+    {
+      "id": "bab-4",
+      "title": "Bab 4 — Central AI",
+      "questions": [
+        {
+          "id": "q16",
+          "scene": "Empat server menyimpan bagian data yang berbeda.",
+          "q": "Empat server menyimpan 48, 36, 54, dan 42 data block. Jika seluruh block dibagi rata ke 4 server baru, berapa block per server?",
+          "choices": [
+            "42",
+            "46",
+            "48",
+            "45"
+          ],
+          "answer": 3,
+          "skill": "Rata-rata sebagai equal sharing",
+          "difficulty": "Sulit",
+          "type": "analyst",
+          "correct": "Total = 48 + 36 + 54 + 42 = 180. 180 ÷ 4 = 45.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!"
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q17",
+          "scene": "Dua tangki coolant harus dibuat sama banyak.",
+          "q": "Tangki A berisi 68 liter dan Tangki B 44 liter. Berapa liter harus dipindahkan dari A ke B agar jumlah keduanya sama?",
+          "choices": [
+            "14 liter",
+            "12 liter",
+            "24 liter",
+            "10 liter"
+          ],
+          "answer": 1,
+          "skill": "Balancing",
+          "difficulty": "Sulit",
+          "type": "investigator",
+          "correct": "Selisihnya 24 liter. Untuk membuat sama, pindahkan setengah selisih: 12 liter.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q18",
+          "scene": "AI harus menjaga cadangan minimum setelah tiga sistem dinyalakan.",
+          "q": "Tersedia 240 unit energi. Tiga sistem memakai 52, 47, dan 35 unit. Jika minimal 40 unit harus tetap menjadi cadangan, berapa energi yang masih boleh dipakai?",
+          "choices": [
+            "40 unit",
+            "106 unit",
+            "54 unit",
+            "66 unit"
+          ],
+          "answer": 3,
+          "skill": "Anggaran energi",
+          "difficulty": "Sulit",
+          "type": "speedster",
+          "correct": "Pemakaian = 52 + 47 + 35 = 134. Sisa = 106. Setelah menyimpan 40 sebagai cadangan, yang boleh dipakai = 66.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!"
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q19",
+          "scene": "Panel terakhir meminta tiga hasil penting yang sudah kamu temukan.",
+          "q": "Power Core kekurangan 48 unit, kode inti berikutnya 72, dan Rute B adalah jalur terpendek. Kombinasi data manakah yang benar?",
+          "choices": [
+            "52 — 72 — Rute B",
+            "48 — 72 — Rute A",
+            "48 — 69 — Rute A",
+            "48 — 72 — Rute B"
+          ],
+          "answer": 3,
+          "skill": "Menghubungkan informasi",
+          "difficulty": "Medium",
+          "type": "codebreaker",
+          "correct": "Ketiga hasil berasal dari tantangan Power Core dan Transit sebelumnya.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!"
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        }
+      ]
+    },
+    {
+      "id": "bab-5",
+      "title": "Bab 4 — Final",
+      "questions": [
+        {
+          "id": "q20",
+          "scene": "Satu urutan tindakan akan menyalakan kembali Robot City.",
+          "q": "Urutan perbaikan mana yang sesuai dengan semua hasil perhitunganmu?",
+          "choices": [
+            "Tambahkan 48 unit → masukkan kode 69 → gunakan Rute B",
+            "Tambahkan 72 unit → masukkan kode 48 → gunakan Rute A",
+            "Tambahkan 48 unit → masukkan kode 72 → gunakan Rute B",
+            "Tambahkan 52 unit → masukkan kode 72 → gunakan Rute A"
+          ],
+          "answer": 2,
+          "skill": "Final synthesis",
+          "difficulty": "Sulit",
+          "type": "explorer",
+          "correct": "Power Core membutuhkan tambahan 48 unit, pola menghasilkan kode 72, dan Rute B lebih pendek.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        }
+      ]
+    }
+  ]
+}

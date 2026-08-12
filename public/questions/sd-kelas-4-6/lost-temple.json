@@ -1,0 +1,523 @@
+{
+  "level": "sd-kelas-4-6",
+  "folder": "lost-temple",
+  "label": "SD Kelas 4–6",
+  "ageRange": "8–9 / 10–12 tahun",
+  "curriculum": "Algonova Math Adventure Pilot",
+  "caseTitle": "The Lost Kingdom",
+  "genre": "Exploration Adventure",
+  "objective": "Pecahkan kode untuk membuka kuil yang hilang",
+  "stamp": "EXPEDITION #003",
+  "chapters": [
+    {
+      "id": "bab-1",
+      "title": "Bab 1 — Basecamp",
+      "questions": [
+        {
+          "id": "q1",
+          "scene": "Ekspedisi tiba di tepi Pulau Aruna.",
+          "q": "Tim membawa 8 paket ransum, masing-masing berisi 15 porsi, ditambah 26 porsi cadangan. Berapa porsi seluruhnya?",
+          "choices": [
+            "136 porsi",
+            "146 porsi",
+            "156 porsi",
+            "120 porsi"
+          ],
+          "answer": 1,
+          "skill": "Perkalian + penjumlahan",
+          "difficulty": "Medium",
+          "type": "analyst",
+          "correct": "8 × 15 = 120. 120 + 26 = 146.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q2",
+          "scene": "Ransum dibagi untuk lima penjelajah.",
+          "q": "Sebanyak 146 porsi dibagikan sama rata kepada 5 orang. Jika setiap orang mendapat jumlah bulat yang sama sebanyak mungkin, berapa porsi tersisa?",
+          "choices": [
+            "5 porsi",
+            "6 porsi",
+            "4 porsi",
+            "1 porsi"
+          ],
+          "answer": 3,
+          "skill": "Pembagian bersisa",
+          "difficulty": "Medium",
+          "type": "investigator",
+          "correct": "146 ÷ 5 = 29 sisa 1.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!"
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q3",
+          "scene": "Peta pulau menggunakan grid sederhana.",
+          "q": "Pada peta, 1 kotak mewakili 200 m. Jarak basecamp ke sungai adalah 7 kotak. Berapa jarak sebenarnya?",
+          "choices": [
+            "900 m",
+            "1.600 m",
+            "1.400 m",
+            "1.200 m"
+          ],
+          "answer": 2,
+          "skill": "Skala sederhana",
+          "difficulty": "Medium",
+          "type": "speedster",
+          "correct": "7 × 200 = 1.400 m.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q4",
+          "scene": "Tiga tali harus disambung untuk menyeberangi sungai.",
+          "q": "Ada 3 tali, masing-masing 12 m. Setiap sambungan memakai overlap 2 m, dan ada 2 sambungan. Berapa panjang efektif tali setelah disambung?",
+          "choices": [
+            "32 m",
+            "34 m",
+            "36 m",
+            "30 m"
+          ],
+          "answer": 0,
+          "skill": "Panjang multi-step",
+          "difficulty": "Sulit",
+          "type": "codebreaker",
+          "correct": "Total awal = 36 m. Dua overlap memakai 2 + 2 = 4 m. Panjang efektif = 32 m.",
+          "wrong": [
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q5",
+          "scene": "Dua kano memiliki kapasitas berbeda.",
+          "q": "Dua kano dapat membawa total 42 kotak. Kano besar membawa 8 kotak lebih banyak daripada kano kecil. Berapa kapasitas kano kecil?",
+          "choices": [
+            "25 kotak",
+            "13 kotak",
+            "21 kotak",
+            "17 kotak"
+          ],
+          "answer": 3,
+          "skill": "Perbandingan",
+          "difficulty": "Sulit",
+          "type": "explorer",
+          "correct": "Jika kano kecil 17, kano besar 25. Total 42 dan selisih 8.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!"
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        }
+      ]
+    },
+    {
+      "id": "bab-2",
+      "title": "Bab 2 — Sungai",
+      "questions": [
+        {
+          "id": "q6",
+          "scene": "Tim mulai bergerak menuju reruntuhan.",
+          "q": "Tim berangkat pukul 08.35. Perjalanan 55 menit dan istirahat 15 menit. Pukul berapa mereka kembali berjalan?",
+          "choices": [
+            "09.30",
+            "09.35",
+            "09.50",
+            "09.45"
+          ],
+          "answer": 3,
+          "skill": "Waktu",
+          "difficulty": "Medium",
+          "type": "analyst",
+          "correct": "55 + 15 = 70 menit. 08.35 + 70 menit = 09.45.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!"
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q7",
+          "scene": "Persediaan air harus dicek sebelum masuk hutan.",
+          "q": "Dari 64 botol air, 3/8 sudah digunakan. Berapa botol yang masih tersisa?",
+          "choices": [
+            "40 botol",
+            "48 botol",
+            "32 botol",
+            "24 botol"
+          ],
+          "answer": 0,
+          "skill": "Pecahan multi-step",
+          "difficulty": "Medium",
+          "type": "investigator",
+          "correct": "3/8 dari 64 = 24. Sisa = 64 − 24 = 40.",
+          "wrong": [
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q8",
+          "scene": "Tangga batu menuju jalur hutan sebagian rusak.",
+          "q": "Tangga memiliki 9 baris, masing-masing 14 batu pijakan. Sebanyak 18 batu rusak. Berapa batu yang masih dapat digunakan?",
+          "choices": [
+            "116",
+            "98",
+            "126",
+            "108"
+          ],
+          "answer": 3,
+          "skill": "Multi-step",
+          "difficulty": "Medium",
+          "type": "speedster",
+          "correct": "9 × 14 = 126. 126 − 18 = 108.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!"
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q9",
+          "scene": "Batu penunjuk jalan memiliki pola yang aneh.",
+          "q": "Angka pada batu: 3, 7, 13, 21, 31, ... Selisihnya bertambah 2. Angka berikutnya adalah?",
+          "choices": [
+            "45",
+            "41",
+            "43",
+            "42"
+          ],
+          "answer": 2,
+          "skill": "Pola bertingkat",
+          "difficulty": "Sulit",
+          "type": "codebreaker",
+          "correct": "Selisih: +4, +6, +8, +10. Berikutnya +12, jadi 31 + 12 = 43.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q10",
+          "scene": "Papan jembatan diukur sebelum digunakan.",
+          "q": "Sebuah papan panjangnya 3 m 40 cm. Sebanyak 85 cm dipotong. Berapa panjang sisanya?",
+          "choices": [
+            "315 cm",
+            "245 cm",
+            "265 cm",
+            "255 cm"
+          ],
+          "answer": 3,
+          "skill": "Konversi panjang",
+          "difficulty": "Medium",
+          "type": "explorer",
+          "correct": "3 m 40 cm = 340 cm. 340 − 85 = 255 cm.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!"
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        }
+      ]
+    },
+    {
+      "id": "bab-3",
+      "title": "Bab 3 — Hutan",
+      "questions": [
+        {
+          "id": "q11",
+          "scene": "Dua jalur menuju kuil dibandingkan.",
+          "q": "Rute A: 450 m + 320 m + 280 m. Rute B: 390 m + 310 m + 290 m. Mana yang lebih pendek?",
+          "choices": [
+            "Keduanya sama",
+            "Rute B, lebih pendek 40 m",
+            "Rute A, lebih pendek 60 m",
+            "Rute B, lebih pendek 60 m"
+          ],
+          "answer": 3,
+          "skill": "Perbandingan jarak",
+          "difficulty": "Medium",
+          "type": "analyst",
+          "correct": "A = 1.050 m. B = 990 m. B lebih pendek 60 m.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!"
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q12",
+          "scene": "Sebuah peti berisi koin emas dan perak.",
+          "q": "Jumlah seluruh koin 96. Koin emas 24 lebih banyak daripada koin perak. Berapa koin perak?",
+          "choices": [
+            "48",
+            "60",
+            "36",
+            "24"
+          ],
+          "answer": 2,
+          "skill": "Perbandingan",
+          "difficulty": "Sulit",
+          "type": "investigator",
+          "correct": "Jika perak 36, emas 60. Total 96 dan selisih 24.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q13",
+          "scene": "Dua simbol pecahan muncul pada pintu pertama.",
+          "q": "Mana yang lebih besar: 5/6 atau 7/9?",
+          "choices": [
+            "5/6",
+            "Sama besar",
+            "7/9",
+            "Tidak dapat ditentukan"
+          ],
+          "answer": 0,
+          "skill": "Perbandingan pecahan",
+          "difficulty": "Sulit",
+          "type": "speedster",
+          "correct": "Perkalian silang: 5 × 9 = 45 dan 7 × 6 = 42. Karena 45 > 42, maka 5/6 lebih besar.",
+          "wrong": [
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q14",
+          "scene": "Lantai aula kuil tertutup pasir.",
+          "q": "Lantai berbentuk persegi panjang 9 m × 7 m. Sepertiga luasnya tertutup pasir. Berapa luas yang tertutup pasir?",
+          "choices": [
+            "21 m²",
+            "42 m²",
+            "16 m²",
+            "27 m²"
+          ],
+          "answer": 0,
+          "skill": "Luas + pecahan",
+          "difficulty": "Medium",
+          "type": "codebreaker",
+          "correct": "Luas = 9 × 7 = 63 m². 1/3 dari 63 = 21 m².",
+          "wrong": [
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q15",
+          "scene": "Sebuah kotak batu meminta angka yang hilang.",
+          "q": "5 × □ + 7 = 47. Berapa nilai □?",
+          "choices": [
+            "6",
+            "7",
+            "8",
+            "10"
+          ],
+          "answer": 2,
+          "skill": "Persamaan sederhana",
+          "difficulty": "Sulit",
+          "type": "explorer",
+          "correct": "47 − 7 = 40. 40 ÷ 5 = 8.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        }
+      ]
+    },
+    {
+      "id": "bab-4",
+      "title": "Bab 4 — Lost Temple",
+      "questions": [
+        {
+          "id": "q16",
+          "scene": "Tiga pintu terakhir menggunakan konsep keseimbangan.",
+          "q": "Kotak A berisi 74 kristal dan Kotak B 50 kristal. Berapa kristal harus dipindahkan dari A ke B agar isinya sama?",
+          "choices": [
+            "24 kristal",
+            "12 kristal",
+            "14 kristal",
+            "10 kristal"
+          ],
+          "answer": 1,
+          "skill": "Balancing",
+          "difficulty": "Sulit",
+          "type": "analyst",
+          "correct": "Selisih = 24. Pindahkan setengah selisih, yaitu 12.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q17",
+          "scene": "Simbol pertama pada pintu utama berupa persamaan.",
+          "q": "6 × □ + 8 = 32. Nilai □ menjadi digit pertama kode. Berapa digitnya?",
+          "choices": [
+            "6",
+            "3",
+            "5",
+            "4"
+          ],
+          "answer": 3,
+          "skill": "Persamaan",
+          "difficulty": "Medium",
+          "type": "investigator",
+          "correct": "32 − 8 = 24. 24 ÷ 6 = 4.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!"
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q18",
+          "scene": "Simbol kedua membagi glyph ke beberapa altar.",
+          "q": "Ada 72 glyph yang dibagi rata ke 9 altar. Banyak glyph per altar menjadi digit kedua kode. Berapa digitnya?",
+          "choices": [
+            "7",
+            "6",
+            "8",
+            "9"
+          ],
+          "answer": 2,
+          "skill": "Pembagian",
+          "difficulty": "Medium",
+          "type": "speedster",
+          "correct": "72 ÷ 9 = 8.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        },
+        {
+          "id": "q19",
+          "scene": "Simbol ketiga menggunakan sisa pembagian.",
+          "q": "Ada 74 batu kecil yang dimasukkan ke kotak berisi 9 batu per kotak. Sisa batu menjadi digit ketiga kode. Berapa sisanya?",
+          "choices": [
+            "1",
+            "2",
+            "3",
+            "8"
+          ],
+          "answer": 1,
+          "skill": "Pembagian bersisa",
+          "difficulty": "Medium",
+          "type": "codebreaker",
+          "correct": "74 ÷ 9 = 8 sisa 2.",
+          "wrong": [
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        }
+      ]
+    },
+    {
+      "id": "bab-5",
+      "title": "Bab 4 — Final",
+      "questions": [
+        {
+          "id": "q20",
+          "scene": "Tiga simbol menyala. Pintu emas menunggu kode akhir.",
+          "q": "Digit pertama = hasil soal simbol pertama, digit kedua = glyph per altar, digit ketiga = sisa batu. Kode mana yang membuka Lost Temple?",
+          "choices": [
+            "482",
+            "842",
+            "488",
+            "428"
+          ],
+          "answer": 0,
+          "skill": "Final synthesis",
+          "difficulty": "Sulit",
+          "type": "explorer",
+          "correct": "Digit yang diperoleh adalah 4, 8, dan 2. Jadi kode akhir = 482.",
+          "wrong": [
+            "Benar!",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi.",
+            "Belum tepat — coba telusuri petunjuk lagi."
+          ],
+          "clue": "",
+          "type_ui": "mcq"
+        }
+      ]
+    }
+  ]
+}
