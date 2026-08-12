@@ -19,7 +19,7 @@ module.exports = async function handler(req, res) {
 
   try {
     const body = await readBody(req);
-    const input = String(body.password || "");
+    const input = String(body.password || "").trim();
     if (!input || input !== password) {
       return json(res, 401, { ok: false, message: "Password salah." });
     }

@@ -34,7 +34,7 @@ function readBody(req) {
 }
 
 function getAdminPassword() {
-  return process.env.ADMIN_PASSWORD || "";
+  return String(process.env.ADMIN_PASSWORD || "").trim();
 }
 
 function signToken(payload) {
