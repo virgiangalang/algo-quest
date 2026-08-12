@@ -26,6 +26,10 @@ const AlgoPersist = (() => {
         folderId: state.folderId || null,
         folderFile: state.folderFile || null,
         folderTitle: state.folderTitle || null,
+        credits: state.credits,
+        creditsUsed: state.creditsUsed,
+        creditsLeft: state.creditsLeft,
+        canPlay: state.canPlay,
         suggestedLevel: state.suggestedLevel,
         levelChosen: state.levelChosen,
         qIndex: state.qIndex,
@@ -88,6 +92,7 @@ const AlgoPersist = (() => {
       id: {
         "level-select": "pilih kategori",
         "folder-select": "pilih folder",
+        hub: "beranda akun",
         briefing: "prolog",
         diagnostic: "kalibrasi",
         "case-intro": "intro kasus",
@@ -98,6 +103,7 @@ const AlgoPersist = (() => {
       en: {
         "level-select": "category select",
         "folder-select": "folder select",
+        hub: "account hub",
         briefing: "prologue",
         diagnostic: "calibration",
         "case-intro": "case intro",

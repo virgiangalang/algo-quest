@@ -253,7 +253,7 @@ input{font:inherit}
 /* ─────────────────────────────────────────────
    PHASE: LEVEL SELECT
 ───────────────────────────────────────────── */
-#phase-level-select,#phase-folder-select{display:none}
+#phase-level-select,#phase-folder-select,#phase-hub{display:none}
 .level-wrap{padding:40px 36px}
 .level-wrap h2{font-family:Georgia,serif;font-size:32px;margin:8px 0 10px;letter-spacing:-.4px}
 .level-wrap .lead{color:var(--muted);font-size:14px;line-height:1.65;max-width:560px;margin-bottom:22px}
@@ -279,6 +279,26 @@ input{font:inherit}
 .folder-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
 .folder-card .lc-title{font-size:18px}
 .folder-card .lc-age{min-height:2.6em}
+
+.hub-wrap{padding:36px 32px}
+.hub-credits{
+  display:flex;gap:12px;flex-wrap:wrap;margin:16px 0 22px;
+}
+.hub-chip{
+  background:#f3ecf8;border:1px solid #dccfea;border-radius:12px;padding:12px 14px;min-width:120px;
+}
+.hub-chip .k{font-size:11px;color:var(--plum-3);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.hub-chip .v{font-family:Georgia,serif;font-size:26px;margin-top:4px;color:var(--ink)}
+.hub-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.hub-history{margin-top:8px}
+.hub-history h3{font-family:Georgia,serif;font-size:20px;margin:0 0 10px}
+.hub-item{
+  border:1px solid #e4dacf;border-radius:12px;padding:12px 14px;margin-bottom:10px;
+  display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;background:#fff;
+}
+.hub-item .meta{font-size:13px;color:var(--muted);line-height:1.45}
+.hub-item .title{font-weight:700;color:var(--ink);margin-bottom:2px}
+.hub-empty{color:var(--muted);font-size:13px;padding:8px 0}
 
 /* Name modal */
 .name-overlay{
@@ -738,7 +758,7 @@ input{font:inherit}
   body{background:#fff!important;min-height:auto}
   .app{padding:0!important;max-width:none}
   .topbar,.cert-actions,.report-actions,.footer,.resume-overlay{display:none!important}
-  #phase-login,#phase-level-select,#phase-folder-select,#phase-briefing,#phase-diagnostic,#phase-case-intro,#phase-game,#phase-result{display:none!important}
+  #phase-login,#phase-hub,#phase-level-select,#phase-folder-select,#phase-briefing,#phase-diagnostic,#phase-case-intro,#phase-game,#phase-result{display:none!important}
   body.print-report #phase-certificate{display:none!important}
   body.print-report #phase-report{display:block!important}
   body:not(.print-report) #phase-certificate{display:block!important}
@@ -850,6 +870,32 @@ input{font:inherit}
         <div class="level-hint" id="folder-hint"></div>
         <div style="margin-top:18px">
           <button type="button" class="btn-retry" onclick="showLevelSelect()" data-i18n="folder.back">← Ganti kategori</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE: ACCOUNT HUB -->
+  <div id="phase-hub">
+    <div class="card">
+      <div class="hub-wrap">
+        <div class="eyebrow" data-i18n="hub.eyebrow">Akun detektif</div>
+        <h2 data-i18n="hub.title">Beranda akun</h2>
+        <p class="lead" id="hub-lead" data-i18n="hub.lead">
+          Mulai misi baru jika masih ada kredit, atau unduh sertifikat dari riwayat.
+        </p>
+        <div class="hub-credits">
+          <div class="hub-chip"><div class="k" data-i18n="hub.creditsLeft">Kredit tersisa</div><div class="v" id="hub-credits-left">—</div></div>
+          <div class="hub-chip"><div class="k" data-i18n="hub.creditsUsed">Kredit dipakai</div><div class="v" id="hub-credits-used">—</div></div>
+          <div class="hub-chip"><div class="k" data-i18n="hub.creditsTotal">Total kredit</div><div class="v" id="hub-credits-total">—</div></div>
+        </div>
+        <div class="hub-actions">
+          <button class="btn-primary" id="btn-hub-start" type="button" onclick="startNewMissionFromHub()" data-i18n="hub.start">Mulai misi baru →</button>
+          <button class="btn-retry" type="button" onclick="logoutToLogin()" data-i18n="hub.logout">Ganti akun / Logout</button>
+        </div>
+        <div class="hub-history">
+          <h3 data-i18n="hub.history">Riwayat & unduh</h3>
+          <div id="hub-history-list" class="hub-empty" data-i18n="hub.historyEmpty">Belum ada riwayat di perangkat ini.</div>
         </div>
       </div>
     </div>
@@ -1292,6 +1338,10 @@ let STATE = {
   folderId: null,
   folderFile: null,
   folderTitle: null,
+  credits: 1,
+  creditsUsed: 0,
+  creditsLeft: 1,
+  canPlay: true,
   suggestedLevel: null,
   levelChosen: false,
   catalog: null,
@@ -1313,7 +1363,7 @@ let STATE = {
 };
 
 /* ─── UTILS ─── */
-const PHASES = ["login","level-select","folder-select","briefing","diagnostic","case-intro","game","result","certificate","report"];
+const PHASES = ["login","hub","level-select","folder-select","briefing","diagnostic","case-intro","game","result","certificate","report"];
 
 function showPhase(name) {
   if (name === "login" && STATE.phase && STATE.phase !== "login") {
@@ -1422,7 +1472,16 @@ async function handleLogin() {
   try {
     let result;
     if (CONFIG.devMode) {
-      result = { valid: true, used: false, studentName: "", level: guessLevelByAge(age) };
+      result = {
+        valid: true,
+        used: false,
+        canPlay: true,
+        credits: 5,
+        creditsUsed: 0,
+        creditsLeft: 5,
+        studentName: "",
+        level: guessLevelByAge(age),
+      };
     } else {
       result = await appsScriptPost({ action: "validate", username, age });
     }
@@ -1436,6 +1495,16 @@ async function handleLogin() {
     }
 
     STATE.level = result.level || guessLevelByAge(age);
+    STATE.credits = Number(result.credits);
+    STATE.creditsUsed = Number(result.creditsUsed);
+    STATE.creditsLeft = Number(result.creditsLeft);
+    if (!Number.isFinite(STATE.credits)) STATE.credits = 1;
+    if (!Number.isFinite(STATE.creditsUsed)) STATE.creditsUsed = result.used ? 1 : 0;
+    if (!Number.isFinite(STATE.creditsLeft)) {
+      STATE.creditsLeft = Math.max(0, STATE.credits - STATE.creditsUsed);
+    }
+    STATE.canPlay = result.canPlay != null ? !!result.canPlay : STATE.creditsLeft > 0;
+
     // Prefill nama dari Sheet jika sudah ada; tetap bisa diedit di modal
     if (result.studentName) {
       document.getElementById("input-name-modal").value = result.studentName;
@@ -1443,27 +1512,18 @@ async function handleLogin() {
       document.getElementById("input-name-modal").value = "";
     }
 
-    if (result.used) {
-      const saved = JSON.parse(localStorage.getItem(`algo_result_${username}`) || "null");
-      const fromSheet = {
+    // Seed history dari last Sheet result jika ada
+    if (result.usedAt || result.score) {
+      upsertLocalHistory({
         username,
-        studentName: result.studentName || username,
-        level: result.level || guessLevelByAge(age),
-        accuracy: Number(String(result.accuracy || "0").replace("%","")) || 0,
+        studentName: result.studentName || "",
+        level: result.level || "",
+        folderTitle: "",
+        accuracy: Number(String(result.accuracy || "0").replace("%", "")) || 0,
         xp: Number(result.score) || 0,
-        clues: 0,
-        total: 0,
         character: result.character || "analyst",
         finishedAt: result.usedAt || new Date().toISOString(),
-        skillScores: {},
-      };
-      const data = saved || fromSheet;
-      STATE.studentName = data.studentName || result.studentName || username;
-      loadSavedResult(data);
-      populateCertificate();
-      showPhase("certificate");
-      document.getElementById("btn-login").disabled = false;
-      return;
+      });
     }
 
     document.getElementById("btn-login").disabled = false;
@@ -1520,10 +1580,133 @@ async function confirmStudentName() {
     }).catch((e) => console.warn("[algo] profile save deferred", e));
   }
 
+  showAccountHub();
+}
+
+function historyKey(username) {
+  return `algo_history_${username || STATE.username || "anon"}`;
+}
+
+function loadLocalHistory(username) {
+  try {
+    const raw = localStorage.getItem(historyKey(username));
+    const arr = raw ? JSON.parse(raw) : [];
+    return Array.isArray(arr) ? arr : [];
+  } catch (_) {
+    return [];
+  }
+}
+
+function saveLocalHistory(username, list) {
+  try {
+    localStorage.setItem(historyKey(username), JSON.stringify((list || []).slice(0, 40)));
+  } catch (_) {}
+}
+
+function upsertLocalHistory(entry) {
+  if (!entry || !STATE.username) return;
+  const list = loadLocalHistory(STATE.username);
+  const key = entry.finishedAt || entry.certId || JSON.stringify(entry);
+  const filtered = list.filter((x) => (x.finishedAt || x.certId) !== key);
+  filtered.unshift(entry);
+  saveLocalHistory(STATE.username, filtered);
+}
+
+async function showAccountHub() {
+  document.getElementById("hub-credits-left").textContent = String(STATE.creditsLeft ?? "—");
+  document.getElementById("hub-credits-used").textContent = String(STATE.creditsUsed ?? "—");
+  document.getElementById("hub-credits-total").textContent = String(STATE.credits ?? "—");
+  const startBtn = document.getElementById("btn-hub-start");
+  const canPlay = STATE.canPlay && (STATE.creditsLeft == null || STATE.creditsLeft > 0);
+  startBtn.disabled = !canPlay;
+  startBtn.textContent = canPlay ? tt("hub.start") : tt("hub.noCredits");
+  document.getElementById("hub-lead").textContent = canPlay
+    ? tt("hub.lead")
+    : tt("hub.leadEmpty");
+
+  renderHubHistory();
+  showPhase("hub");
+  setTopbarBadge(`${STATE.studentName || STATE.username} · hub`);
+
+  // Merge history dari Apps Script (jika tersedia)
+  if (!CONFIG.devMode && STATE.username) {
+    try {
+      const res = await appsScriptPost({ action: "history", username: STATE.username });
+      if (res && Array.isArray(res.history) && res.history.length) {
+        const local = loadLocalHistory(STATE.username);
+        const map = new Map();
+        [...res.history, ...local].forEach((h) => {
+          const k = h.finishedAt || h.certId || JSON.stringify(h);
+          if (!map.has(k)) map.set(k, h);
+        });
+        const merged = Array.from(map.values()).sort((a, b) =>
+          String(b.finishedAt || "").localeCompare(String(a.finishedAt || ""))
+        );
+        saveLocalHistory(STATE.username, merged);
+        renderHubHistory();
+      }
+    } catch (_) {}
+  }
+}
+
+function renderHubHistory() {
+  const box = document.getElementById("hub-history-list");
+  const list = loadLocalHistory(STATE.username);
+  if (!list.length) {
+    box.className = "hub-empty";
+    box.textContent = tt("hub.historyEmpty");
+    return;
+  }
+  box.className = "";
+  box.innerHTML = list.map((h, i) => {
+    const title = h.folderTitle || h.level || "Misi Algonova";
+    const acc = h.accuracy != null ? `${String(h.accuracy).replace("%", "")}%` : "—";
+    const when = h.finishedAt
+      ? new Date(h.finishedAt).toLocaleString("id-ID", { dateStyle: "medium", timeStyle: "short" })
+      : "—";
+    return `<div class="hub-item">
+      <div>
+        <div class="title">${title}</div>
+        <div class="meta">${when} · Akurasi ${acc} · XP ${h.xp != null ? h.xp : "—"}</div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn-retry" type="button" onclick="openHistoryCertificate(${i})">${tt("hub.openCert")}</button>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+function openHistoryCertificate(index) {
+  const list = loadLocalHistory(STATE.username);
+  const h = list[index];
+  if (!h) return;
+  STATE.studentName = h.studentName || STATE.studentName;
+  loadSavedResult({
+    username: STATE.username,
+    studentName: STATE.studentName,
+    level: h.level || STATE.level,
+    accuracy: Number(String(h.accuracy || "0").replace("%", "")) || 0,
+    xp: Number(h.xp) || 0,
+    clues: h.clues || 0,
+    total: h.total || 0,
+    character: h.character || "analyst",
+    finishedAt: h.finishedAt || new Date().toISOString(),
+    skillScores: h.skillScores || {},
+  });
+  if (h.folderTitle) STATE.folderTitle = h.folderTitle;
+  populateCertificate();
+  showPhase("certificate");
+}
+
+function startNewMissionFromHub() {
+  if (!(STATE.canPlay && (STATE.creditsLeft == null || STATE.creditsLeft > 0))) {
+    if (typeof AlgoUI !== "undefined") AlgoUI.toast(tt("hub.noCredits"), "bad");
+    return;
+  }
   showLevelSelect();
 }
 
-function goHome() {
+function logoutToLogin() {
   if (typeof AlgoPersist !== "undefined") AlgoPersist.clear();
   document.body.classList.remove("print-report");
   closeNameModal();
@@ -1536,12 +1719,17 @@ function goHome() {
   STATE.questions = [];
   STATE.caseData = null;
   setTopbarBadge("");
-  try {
-    document.getElementById("input-username").value = STATE.username || "";
-    document.getElementById("input-age").value = STATE.age || "";
-  } catch (_) {}
   showPhase("login");
-  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function goHome() {
+  document.body.classList.remove("print-report");
+  closeNameModal();
+  if (STATE.username) {
+    showAccountHub();
+    return;
+  }
+  logoutToLogin();
 }
 
 function showError(msg) {
@@ -2288,6 +2476,8 @@ async function finishGame() {
     username: STATE.username,
     studentName: STATE.studentName,
     level: STATE.level,
+    folderId: STATE.folderId || null,
+    folderTitle: STATE.folderTitle || (STATE.caseData && STATE.caseData.caseTitle) || "",
     accuracy,
     xp: STATE.xp,
     clues: STATE.clues,
@@ -2298,11 +2488,19 @@ async function finishGame() {
     finishedAt: new Date().toISOString(),
   };
   localStorage.setItem(`algo_result_${STATE.username}`, JSON.stringify(resultData));
+  upsertLocalHistory(resultData);
+
+  // Kredit lokal (Sheet resmi di-update lewat submit)
+  if (Number.isFinite(STATE.creditsUsed)) STATE.creditsUsed += 1;
+  if (Number.isFinite(STATE.credits) && Number.isFinite(STATE.creditsUsed)) {
+    STATE.creditsLeft = Math.max(0, STATE.credits - STATE.creditsUsed);
+    STATE.canPlay = STATE.creditsLeft > 0;
+  }
 
   // Submit to Apps Script
   if (!CONFIG.devMode) {
     try {
-      await appsScriptPost({
+      const submitRes = await appsScriptPost({
         action: "submit",
         username: STATE.username,
         name: STATE.studentName,
@@ -2310,11 +2508,23 @@ async function finishGame() {
         age: STATE.age,
         umur: STATE.age,
         level: STATE.folderId ? `${STATE.level}/${STATE.folderId}` : STATE.level,
+        folder: STATE.folderId || "",
+        folderTitle: STATE.folderTitle || "",
         score: STATE.xp,
         accuracy,
         character: best,
         skills: STATE.skillScores,
       });
+      if (submitRes) {
+        if (submitRes.credits != null) STATE.credits = Number(submitRes.credits);
+        if (submitRes.creditsUsed != null) STATE.creditsUsed = Number(submitRes.creditsUsed);
+        if (submitRes.creditsLeft != null) STATE.creditsLeft = Number(submitRes.creditsLeft);
+        STATE.canPlay = STATE.creditsLeft > 0;
+        if (submitRes.certId) {
+          resultData.certId = submitRes.certId;
+          upsertLocalHistory(resultData);
+        }
+      }
     } catch (e) { /* silent fail */ }
   }
 }
@@ -2465,6 +2675,10 @@ function applySavedSession(data) {
     folderId: data.folderId || null,
     folderFile: data.folderFile || null,
     folderTitle: data.folderTitle || null,
+    credits: data.credits,
+    creditsUsed: data.creditsUsed,
+    creditsLeft: data.creditsLeft,
+    canPlay: data.canPlay,
     suggestedLevel: data.suggestedLevel,
     levelChosen: data.levelChosen,
     qIndex: data.qIndex || 0,
@@ -2494,6 +2708,7 @@ function resumeSession() {
   applySavedSession(data);
   const phase = data.phase;
   if (phase === "level-select") showLevelSelect();
+  else if (phase === "hub") showAccountHub();
   else if (phase === "folder-select") showFolderSelect();
   else if (phase === "briefing") { startBriefing(); STATE.briefIndex = data.briefIndex || 0; renderBriefing(); }
   else if (phase === "diagnostic") {

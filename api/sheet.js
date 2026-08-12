@@ -119,7 +119,6 @@ function validateFromRows(rows, body) {
     return { valid: false, message: "Data Credentials kosong." };
   }
 
-  // Header row → index (tolerant)
   const header = rows[0].map((h) => String(h || "").trim().toLowerCase());
   const idx = {
     username: header.findIndex((h) => h === "username"),
@@ -132,6 +131,10 @@ function validateFromRows(rows, body) {
     score: header.findIndex((h) => h === "score"),
     character: header.findIndex((h) => h === "character"),
     accuracy: header.findIndex((h) => h === "accuracy"),
+    credits: header.findIndex((h) => h === "credits" || h === "credit" || h === "kredit"),
+    creditsUsed: header.findIndex(
+      (h) => h === "creditsused" || h === "credits used" || h === "credit used" || h === "kredit dipakai"
+    ),
   };
   if (idx.username < 0) idx.username = 0;
   if (idx.valid < 0) idx.valid = 4;
@@ -143,15 +146,30 @@ function validateFromRows(rows, body) {
     if (u !== username) continue;
 
     const valid = truthy(row[idx.valid]);
-    const used = truthy(row[idx.used]);
     if (!valid) return { valid: false, message: "Akun tidak aktif. Hubungi Algonova." };
+
+    const legacyUsed = truthy(row[idx.used]);
+    let credits = idx.credits >= 0 ? Number(row[idx.credits]) : NaN;
+    let creditsUsed = idx.creditsUsed >= 0 ? Number(row[idx.creditsUsed]) : NaN;
+
+    // Backward compatible: tanpa kolom Credits → 1 kredit, USED=true berarti habis
+    if (!Number.isFinite(credits) || credits < 0) credits = 1;
+    if (!Number.isFinite(creditsUsed) || creditsUsed < 0) {
+      creditsUsed = legacyUsed ? Math.max(1, credits) : 0;
+    }
+    const creditsLeft = Math.max(0, credits - creditsUsed);
+    const exhausted = creditsLeft <= 0;
 
     const nama = idx.nama >= 0 ? String(row[idx.nama] || "").trim() : "";
     const level = idx.level >= 0 ? String(row[idx.level] || "").trim() : "";
     const ageRaw = idx.umur >= 0 ? row[idx.umur] : "";
     return {
       valid: true,
-      used,
+      used: exhausted, // arti baru: kredit habis
+      canPlay: creditsLeft > 0,
+      credits,
+      creditsUsed,
+      creditsLeft,
       studentName: nama || (body && (body.name || body.nama)) || "",
       age: Number(ageRaw) || (body && (body.age || body.umur)) || null,
       level: level || null,
@@ -159,7 +177,9 @@ function validateFromRows(rows, body) {
       character: idx.character >= 0 ? String(row[idx.character] || "").trim() : "",
       accuracy: idx.accuracy >= 0 ? row[idx.accuracy] || 0 : 0,
       usedAt: idx.usedAt >= 0 && row[idx.usedAt] ? String(row[idx.usedAt]) : "",
-      message: used ? "Akun sudah digunakan." : "OK",
+      message: exhausted
+        ? "Kredit habis. Kamu masih bisa unduh riwayat/sertifikat."
+        : "OK",
       source: "sheet-csv",
     };
   }
@@ -261,12 +281,27 @@ module.exports = async function handler(req, res) {
           credCache = { at: 0, rows: null };
           return json(res, 200, viaGet);
         } catch (e2) {
-          // Non-blocking: client tetap lanjut meski Sheet lambat
           return json(res, 200, {
             ok: true,
             deferred: true,
             message: "Nama disimpan lokal; Sheet menyusul saat submit.",
           });
+        }
+      }
+    }
+
+    if (action === "history") {
+      try {
+        const result = await callAppsScriptPostEcho({
+          action: "history",
+          username: body.username,
+        });
+        return json(res, 200, result);
+      } catch (e1) {
+        try {
+          return json(res, 200, await callAppsScriptGet({ action: "history", username: body.username }));
+        } catch (e2) {
+          return json(res, 200, { ok: true, history: [], deferred: true });
         }
       }
     }
