@@ -364,7 +364,7 @@ async function copyAiPrompt() {
   text = text.replace(/\{\{LEVEL\}\}/g, level).replace(/\{\{FOLDER\}\}/g, meta.title || meta.id || "folder");
   try {
     await navigator.clipboard.writeText(text);
-    showMsg(msg, "Prompt AI disalin. Tempel ke ChatGPT/Gemini, ganti jika perlu, lalu paste hasil CSV ke Excel.", "ok");
+    showMsg(msg, "Prompt AI disalin. Tempel ke ChatGPT/Gemini. Hasil HARUS CSV 23 kolom (Excel A–W), pemisah koma — jangan sampai semua teks di kolom A.", "ok");
   } catch (_) {
     showMsg(msg, "Salin manual prompt di /public/templates/prompt-ai.txt", "info");
   }

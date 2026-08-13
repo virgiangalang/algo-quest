@@ -84,10 +84,11 @@ Bank bawaan tiap level sudah berisi contoh **2 numeric + 1 order**.
 2. Salin semua teksnya
 3. Ganti `{{LEVEL}}` misalnya menjadi `smp`
 4. Tempel ke AI, kirim
-5. Copy hasil CSV → paste ke Google Sheets → File → Download → CSV
-6. Upload di `/admin.html`
+5. Copy hasil CSV → paste ke **Notepad** dulu, simpan sebagai `.csv`, lalu buka di Excel/Sheets
+6. Cek: data harus terisi **kolom A sampai W** (23 kolom). Kalau **semua numpuk di kolom A**, jangan di-upload — AI salah format. Di Excel: Data → Text to Columns → Delimited → **Comma**
+7. Upload file `.csv` di `/admin`
 
-Kalau AI menambah penjelasan di luar tabel, **hapus** teks di luar header+baris data.
+Kalau AI menambah penjelasan di luar CSV, **hapus** teks di luar header+baris data. Header wajib 23 nama kolom, dimulai `folder_id` … diakhiri `clue`.
 
 ---
 

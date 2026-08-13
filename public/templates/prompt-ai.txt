@@ -1,69 +1,118 @@
-Kamu adalah penulis soal asesmen matematika bertema detektif untuk produk Algonova Quest (bukan Kindora).
+Kamu penulis soal matematika bertema detektif untuk **Algonova Quest**.
 
-Buatkan bank soal
+Buatkan bank soal:
 - Kategori usia / level: {{LEVEL}}
 - Folder / misi: {{FOLDER}}
-Jumlah: 20–30 soal, dibagi 4–6 bab.
-Bahasa: Indonesia, ramah siswa, suasana misteri sesuai judul folder.
+- Jumlah: 20 soal (boleh 20–24), dibagi 4 bab
+- Bahasa Indonesia, ramah siswa, cerita sesuai judul folder
 
-Campuran tipe UI (wajib):
-- sebagian besar type_ui=mcq (pilihan ganda A–D)
-- 2–3 soal type_ui=numeric (siswa ketik angka)
-- 2–3 soal type_ui=order (siswa urutkan item)
+Campuran tipe (wajib):
+- 15–18 soal type_ui=mcq (pilihan ganda)
+- 2–3 soal type_ui=numeric (ketik angka)
+- 2 soal type_ui=order (urutkan)
 
-OUTPUT WAJIB: CSV dengan header persis seperti ini (satu baris header):
+============================================================
+FORMAT WAJIB — CSV 23 KOLOM (Excel kolom A sampai W)
+============================================================
+
+Output HANYA file CSV. Tidak ada markdown, tidak ada tabel, tidak ada penjelasan sebelum/sesudahnya.
+
+Baris 1 = header PERSIS seperti ini (copy utuh, jangan dipotong):
+
 folder_id,folder_title,bab_id,bab_title,id,type_ui,scene,q,choice_a,choice_b,choice_c,choice_d,answer,answer_value,answer_tolerance,items,answer_order,skill,difficulty,type,correct,wrong,clue
 
-Aturan kolom:
-- folder_id: slug huruf kecil tanpa spasi (contoh missing-moonstone)
-- folder_title: judul misi yang tampil ke siswa
-- bab_id: bab-1 … bab-6
-- bab_title: "Bab N — Judul Singkat"
-- id: unik, contoh q1-1, q1-2, …
-- type_ui: mcq | numeric | order (kosong = mcq)
-- scene: 1–2 kalimat setting cerita (bukan pertanyaan)
-- q: pertanyaan matematika jelas
-- Untuk mcq: isi choice_a…d dan answer (A/B/C/D atau 0–3). Kosongkan answer_value/items/answer_order.
-- Untuk numeric: isi answer_value (angka). answer_tolerance opsional (default 0). Kosongkan choices/answer/items.
-- Untuk order: isi items dipisah | (urutan BENAR), answer_order index dipisah | (biasanya 0|1|2|…). Kosongkan choices.
-- skill: topik (Pecahan, Desimal, Persentase, Geometri, Pola, Aljabar, …)
-- difficulty: Mudah | Sedang | Sulit
-- type: salah satu dari analyst | speedster | investigator | codebreaker | explorer
-- correct: pembahasan jika benar (1–2 kalimat, nuansa detektif) — dipakai juga di PDF pembahasan
-- wrong: untuk mcq, 4 feedback dipisah tanda | (urut A|B|C|D); untuk numeric/order boleh kosong
-- clue: 1 kalimat petunjuk cerita setelah menjawab (boleh kosong)
+Setiap baris soal HARUS punya 22 koma (23 kolom). Kalau koma kurang, semua teks jatuh ke kolom A — itu SALAH.
 
-Sebaran kesulitan: lebih banyak Mudah/Sedang daripada Sulit.
-Jangan pakai simbol $. Gunakan Rp atau bilangan polos.
-Untuk numeric uang: minta siswa tulis angka tanpa titik (contoh 120000).
-Jangan sertakan penjelasan di luar CSV.
+Peta kolom Excel:
 
-Campuran tipe UI (wajib):
-- ~24 soal type_ui=mcq (pilihan ganda A–D)
-- ~3 soal type_ui=numeric (siswa ketik angka)
-- ~3 soal type_ui=order (siswa urutkan item)
+A  folder_id
+B  folder_title
+C  bab_id
+D  bab_title
+E  id
+F  type_ui
+G  scene
+H  q
+I  choice_a
+J  choice_b
+K  choice_c
+L  choice_d
+M  answer
+N  answer_value
+O  answer_tolerance
+P  items
+Q  answer_order
+R  skill
+S  difficulty
+T  type
+U  correct
+V  wrong
+W  clue
 
-OUTPUT WAJIB: CSV dengan header persis seperti ini (satu baris header):
-bab_id,bab_title,id,type_ui,scene,q,choice_a,choice_b,choice_c,choice_d,answer,answer_value,answer_tolerance,items,answer_order,skill,difficulty,type,correct,wrong,clue
+============================================================
+PEMISAH KOLOM = KOMA  ,   (bukan titik koma ;  bukan tab  bukan |)
+============================================================
 
-Aturan kolom:
-- bab_id: bab-1 … bab-6
-- bab_title: "Bab N — Judul Singkat"
-- id: unik, contoh q1-1, q1-2, …
-- type_ui: mcq | numeric | order (kosong = mcq)
-- scene: 1–2 kalimat setting cerita (bukan pertanyaan)
-- q: pertanyaan matematika jelas
-- Untuk mcq: isi choice_a…d dan answer (A/B/C/D atau 0–3). Kosongkan answer_value/items/answer_order.
-- Untuk numeric: isi answer_value (angka). answer_tolerance opsional (default 0). Kosongkan choices/answer/items.
-- Untuk order: isi items dipisah | (urutan BENAR), answer_order index dipisah | (biasanya 0|1|2|…). Kosongkan choices.
-- skill: topik (Pecahan, Desimal, Persentase, Geometri, Pola, Aljabar, …)
-- difficulty: Mudah | Sedang | Sulit
-- type: salah satu dari analyst | speedster | investigator | codebreaker | explorer
-- correct: feedback jika benar (1–2 kalimat, nuansa detektif)
-- wrong: untuk mcq, 4 feedback dipisah tanda | (urut A|B|C|D); untuk numeric/order boleh kosong
-- clue: 1 kalimat petunjuk cerita setelah menjawab
+LARANGAN (ini penyebab “semua di kolom A”):
+- Jangan pakai titik koma (;) sebagai pemisah
+- Jangan pakai tab
+- Jangan buat tabel Markdown (| kolom | kolom |)
+- Jangan bungkus SATU BARIS penuh dengan satu pasang tanda kutip
+- Jangan gabung 23 kolom jadi 1 sel / 1 paragraf
+- Jangan tulis nomor 1. 2. 3. di depan baris
+- Tanda | HANYA boleh di DALAM kolom V (wrong) atau P (items), BUKAN pemisah kolom
 
-Sebaran kesulitan: ~12 Mudah, ~12 Sedang, ~6 Sulit.
-Jangan pakai simbol $. Gunakan Rp atau bilangan polos.
-Untuk numeric uang: minta siswa tulis angka tanpa titik (contoh 120000).
-Jangan sertakan penjelasan di luar CSV.
+Kalau teks di dalam 1 kolom mengandung koma, kutip HANYA kolom itu, contoh:
+...,"Pagi hari ada 8 siswa, lalu masuk 7 lagi.",15,...
+
+============================================================
+CONTOH 3 BARIS (tiru pola ini)
+============================================================
+
+folder_id,folder_title,bab_id,bab_title,id,type_ui,scene,q,choice_a,choice_b,choice_c,choice_d,answer,answer_value,answer_tolerance,items,answer_order,skill,difficulty,type,correct,wrong,clue
+kantin-pelangi,Misteri Kantin Pelangi,bab-1,Bab 1 — Antrian,q1-1,mcq,Pagi hari kantin ramai.,Di antrian ada 8 siswa dan 7 siswa. Berapa jumlahnya?,14,15,16,17,B,,,,,Penjumlahan,Mudah,analyst,8 + 7 = 15.,Kurang 1.|Benar 15.|Kelebihan 1.|Terlalu banyak.,Hitung semua anak.
+kantin-pelangi,Misteri Kantin Pelangi,bab-1,Bab 1 — Antrian,q1-2,numeric,Mesin kasir minta angka.,12 + 8 - 5 = ? (angka saja),,,,,,15,0,,,Hitung,Mudah,codebreaker,12 + 8 = 20 lalu 20 - 5 = 15.,,Kode pertama.
+kantin-pelangi,Misteri Kantin Pelangi,bab-1,Bab 1 — Antrian,q1-3,order,Kertas resep sobek. Urutkan dari kecil ke besar.,Urutkan angkanya.,,,,,,,,12|19|24|31,0|1|2|3,Membandingkan,Mudah,explorer,12 lalu 19 24 31.,,Angka kecil dulu.
+
+Cek cepat 1 baris mcq: kolom A=folder_id, F=mcq, H=pertanyaan, I–L=pilihan, M=A/B/C/D, N–Q kosong, W=clue.
+
+============================================================
+ISI TIAP KOLOM
+============================================================
+
+A folder_id     slug huruf kecil, tanpa spasi (contoh: kantin-pelangi). Sama di semua baris.
+B folder_title  judul misi. Sama di semua baris.
+C bab_id        bab-1 … bab-4
+D bab_title     Bab 1 — Judul Singkat
+E id            unik: q1-1, q1-2, …
+F type_ui       mcq  ATAU  numeric  ATAU  order
+G scene         1 kalimat cerita (bukan pertanyaan)
+H q             pertanyaan matematika
+
+Kalau F = mcq:
+  I–L terisi (4 pilihan). M = A atau B atau C atau D.
+  N O P Q dikosongkan.
+  V = 4 feedback dipisah |  urut A|B|C|D  (contoh: Kurang.|Benar.|Hampir.|Terlalu besar.)
+
+Kalau F = numeric:
+  I–L dan M dikosongkan.
+  N = angka jawaban (tanpa titik ribuan; uang 1500 bukan 1.500).
+  O = 0
+  P Q dikosongkan. V boleh kosong.
+
+Kalau F = order:
+  I–L dan M N O dikosongkan.
+  P = item urutan BENAR dipisah |  (contoh: 12|19|24|31)
+  Q = 0|1|2|3
+  V boleh kosong.
+
+R skill         topik: Penjumlahan, Perkalian, Uang, Pola, Waktu, Geometri, …
+S difficulty    Mudah  atau  Sedang  atau  Sulit  (lebih banyak Mudah/Sedang)
+T type          analyst / speedster / investigator / codebreaker / explorer
+U correct       pembahasan 1–2 kalimat
+W clue          1 kalimat petunjuk cerita (boleh kosong)
+
+Jangan pakai simbol $. Pakai Rp atau angka polos.
+Jangan sebut nama produk lain. Ini hanya Algonova Quest.
+
+Setelah menulis: hitung koma di baris 2. Harus 22 koma. Kalau bukan 22, perbaiki dulu.
