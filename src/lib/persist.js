@@ -47,6 +47,7 @@ const AlgoPersist = (() => {
         usedFallback: state.usedFallback,
         seenChapters: state.seenChapters || {},
         briefIndex: state.briefIndex || 0,
+        answerLog: state.answerLog || [],
         ...extra,
       };
       localStorage.setItem(KEY, JSON.stringify(payload));
@@ -99,6 +100,8 @@ const AlgoPersist = (() => {
         game: "investigasi",
         result: "hasil",
         certificate: "sertifikat",
+        report: "laporan",
+        review: "berkas soal",
       },
       en: {
         "level-select": "category select",
@@ -110,6 +113,8 @@ const AlgoPersist = (() => {
         game: "investigation",
         result: "results",
         certificate: "certificate",
+        report: "report",
+        review: "question file",
       },
     };
     return (map[lang] || map.id)[phase] || phase;

@@ -36,10 +36,12 @@ async function visible(page, sel) {
     const hasStory = await page.evaluate(() => typeof getBriefingPanels === "function");
     const hasI18n = await page.evaluate(() => typeof AlgoI18n !== "undefined");
     const hasPersist = await page.evaluate(() => typeof AlgoPersist !== "undefined");
+    const hasReview = await page.evaluate(() => typeof AlgoReview !== "undefined");
     if (!hasAudio) fail("AlgoAudio missing"); else ok("AlgoAudio");
     if (!hasStory) fail("story.js missing"); else ok("story.js");
     if (!hasI18n) fail("i18n missing"); else ok("i18n");
     if (!hasPersist) fail("persist missing"); else ok("persist");
+    if (!hasReview) fail("AlgoReview missing"); else ok("AlgoReview");
 
     // language toggle
     await page.click('.lang-btn[data-lang="en"]');
@@ -155,6 +157,24 @@ async function visible(page, sel) {
     if (certName !== "Tester Lokal") fail("cert name", certName); else ok("certificate");
     const seal = await page.locator(".cert-seal").count();
     if (!seal) fail("cert seal"); else ok("cert seal");
+
+    await page.evaluate(() => {
+      STATE.answerLog = [{
+        n: 1, chapter: "Bab 1", scene: "Museum.", q: "1 + 1 = ?", skill: "Dasar",
+        difficulty: "Mudah", typeUi: "mcq", choices: ["1", "2", "3", "4"],
+        studentLabel: "A. 1", correctLabel: "B. 2", ok: false, hintUsed: true,
+        hintText: "Hint: fokus opsi B — cek ulang hitunganmu.",
+        pembahasan: "1 + 1 = 2", clue: "", wrongNote: "Belum tepat",
+      }];
+      STATE.studentName = "Tester Lokal";
+      STATE.username = "TEST-001";
+      showReview();
+    });
+    await visible(page, "#phase-review");
+    const reviewQ = await page.locator(".review-q").innerText();
+    if (!/1 \+ 1/.test(reviewQ)) fail("review question", reviewQ); else ok("review PDF view");
+    const discuss = await page.locator(".review-discuss").count();
+    if (!discuss) fail("review pembahasan missing"); else ok("review pembahasan");
 
     // admin page loads
     const admin = await page.goto(`${BASE}/admin.html`, { waitUntil: "domcontentloaded" });
