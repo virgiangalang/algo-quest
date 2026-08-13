@@ -69,31 +69,53 @@ function getBearer(req) {
   return "";
 }
 
+const AlgoQuestionCsv = require("../src/lib/question-csv");
+
 function validateBank(data) {
-  if (!data || typeof data !== "object") return "Root harus object JSON";
-  if (!data.level || !LEVELS.includes(data.level)) {
-    return `level wajib salah satu: ${LEVELS.join(", ")}`;
+  return AlgoQuestionCsv.validateBank(data);
+}
+
+function questionRelPath(level, folderId, existingFile) {
+  if (existingFile && String(existingFile).endsWith(".json") && !String(existingFile).includes("..")) {
+    return String(existingFile).replace(/^\/+/, "");
   }
-  if (!Array.isArray(data.chapters) || !data.chapters.length) {
-    return "chapters harus array tidak kosong";
+  const slug = AlgoQuestionCsv.slugFolderId(folderId);
+  if (slug) return `${level}/${slug}.json`;
+  return `${level}.json`;
+}
+
+function upsertCatalogFolder(catalog, level, folder) {
+  const data = catalog && typeof catalog === "object" ? catalog : { version: 1, levels: [] };
+  if (!Array.isArray(data.levels)) data.levels = [];
+  let lvl = data.levels.find((l) => l.id === level);
+  if (!lvl) {
+    lvl = { id: level, title: level, folders: [] };
+    data.levels.push(lvl);
   }
-  let total = 0;
-  for (const ch of data.chapters) {
-    if (!ch.title) return "Setiap bab wajib punya title";
-    if (!Array.isArray(ch.questions)) return `Bab ${ch.title}: questions wajib array`;
-    for (const q of ch.questions) {
-      total++;
-      if (!q.q) return `Soal tanpa teks q di bab ${ch.title}`;
-      if (!Array.isArray(q.choices) || q.choices.length < 2) {
-        return `Soal "${q.q}" harus punya minimal 2 pilihan`;
-      }
-      if (typeof q.answer !== "number" || q.answer < 0 || q.answer >= q.choices.length) {
-        return `Soal "${q.q}": answer harus index 0..${q.choices.length - 1}`;
-      }
-    }
-  }
-  if (total < 1) return "Minimal 1 soal";
-  return null;
+  if (!Array.isArray(lvl.folders)) lvl.folders = [];
+  const id = AlgoQuestionCsv.slugFolderId(folder.id);
+  const next = {
+    id,
+    title: folder.title || id,
+    blurb: folder.blurb || "",
+    file: folder.file || `${level}/${id}.json`,
+    questionsHint: folder.questionsHint || "",
+  };
+  const idx = lvl.folders.findIndex((f) => f.id === id);
+  if (idx >= 0) lvl.folders[idx] = { ...lvl.folders[idx], ...next };
+  else lvl.folders.push(next);
+  data.updatedAt = new Date().toISOString();
+  return data;
+}
+
+function readStaticCatalog() {
+  const fs = require("fs");
+  const path = require("path");
+  const p = path.join(process.cwd(), "public", "questions", "catalog.json");
+  try {
+    if (fs.existsSync(p)) return JSON.parse(fs.readFileSync(p, "utf8"));
+  } catch (_) {}
+  return { version: 1, levels: LEVELS.map((id) => ({ id, title: id, folders: [] })) };
 }
 
 async function blobPut(pathname, content) {
@@ -190,13 +212,18 @@ async function blobGetJson(pathname, opts = {}) {
   return fileResp.json();
 }
 
-async function githubPutQuestion(level, data) {
+async function githubPutFile(relPath, data, message) {
   const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
   const repo = process.env.GITHUB_REPO; // e.g. virgiangalang/algo-quest
   if (!token || !repo) return null;
 
-  const path = `public/questions/${level}.json`;
-  const content = Buffer.from(JSON.stringify(data, null, 2), "utf8").toString("base64");
+  const clean = String(relPath || "").replace(/^\/+/, "");
+  if (!clean || clean.includes("..")) throw new Error("Path file tidak valid");
+  const path = clean.startsWith("public/") ? clean : `public/questions/${clean}`;
+  const content = Buffer.from(
+    typeof data === "string" ? data : JSON.stringify(data, null, 2),
+    "utf8"
+  ).toString("base64");
   const api = `https://api.github.com/repos/${repo}/contents/${path}`;
 
   let sha;
@@ -221,7 +248,7 @@ async function githubPutQuestion(level, data) {
       "User-Agent": "algonova-admin",
     },
     body: JSON.stringify({
-      message: `chore(admin): update soal ${level}`,
+      message: message || `chore(admin): update ${path}`,
       content,
       sha,
       branch: process.env.GITHUB_BRANCH || "main",
@@ -255,6 +282,10 @@ function readStaticQuestion(levelOrFile) {
   return null;
 }
 
+function githubPutQuestion(level, data) {
+  return githubPutFile(`${level}.json`, data, `chore(admin): update soal ${level}`);
+}
+
 module.exports = {
   LEVELS,
   json,
@@ -267,5 +298,9 @@ module.exports = {
   blobPut,
   blobGetJson,
   githubPutQuestion,
+  githubPutFile,
   readStaticQuestion,
+  readStaticCatalog,
+  questionRelPath,
+  upsertCatalogFolder,
 };

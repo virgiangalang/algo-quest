@@ -40,6 +40,8 @@ function pathPrefix() {
 function catalogPathCandidates() {
   const prefix = pathPrefix();
   return [
+    `${prefix}api/catalog`,
+    `/api/catalog`,
     `${prefix}public/questions/catalog.json`,
     `${prefix}questions/catalog.json`,
     `/public/questions/catalog.json`,

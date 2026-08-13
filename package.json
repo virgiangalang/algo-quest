@@ -5,6 +5,8 @@
   "scripts": {
     "start": "python3 -m http.server 8080",
     "test:review": "node scripts/review-unit.cjs",
+    "test:csv": "node scripts/admin-csv-unit.cjs",
+    "test": "node scripts/review-unit.cjs && node scripts/admin-csv-unit.cjs",
     "test:e2e": "node scripts/e2e-smoke.cjs"
   },
   "devDependencies": {

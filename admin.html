@@ -45,7 +45,7 @@ textarea{min-height:120px;font-family:ui-monospace,monospace;font-size:12px}
 .btn.secondary{background:#fff;color:var(--plum);border:1.5px solid #c9bdd4;box-shadow:none}
 .btn:disabled{opacity:.45;pointer-events:none}
 .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;align-items:center}
-.msg{font-family:system-ui,sans-serif;font-size:13px;margin-top:12px;padding:10px 12px;border-radius:8px;display:none}
+.msg{font-family:system-ui,sans-serif;font-size:13px;margin-top:12px;padding:10px 12px;border-radius:8px;display:none;white-space:pre-wrap;line-height:1.45}
 .msg.show{display:block}
 .msg.ok{background:#edf7f1;border:1px solid #bcd9ca;color:#244c3a}
 .msg.err{background:#fbf0f2;border:1px solid #e2bfc5;color:#6d303a}
@@ -91,29 +91,45 @@ textarea{min-height:120px;font-family:ui-monospace,monospace;font-size:12px}
         </div>
       </div>
 
+      <p class="stat" style="margin:0 0 8px">Alur klien: pilih <b>kategori usia</b> → pilih atau buat <b>folder misi</b> → unduh template → isi (boleh pakai AI) → preview → publish.</p>
       <div class="grid" style="margin-top:18px">
         <div>
-          <label for="level">Level soal</label>
+          <label for="level">1. Kategori usia</label>
           <select id="level">
-            <option value="sd-kelas-1-3">SD Kelas 1–3</option>
-            <option value="sd-kelas-4-6" selected>SD Kelas 4–6</option>
-            <option value="smp">SMP</option>
-            <option value="sma">SMA</option>
-            <option value="dewasa">Dewasa</option>
+            <option value="sd-kelas-1-3">SD Kelas 1–3 (±7–9 th)</option>
+            <option value="sd-kelas-4-6" selected>SD Kelas 4–6 (±8–12 th)</option>
+            <option value="smp">SMP (±13–15 th)</option>
+            <option value="sma">SMA (±16–18 th)</option>
+            <option value="dewasa">Dewasa (18+)</option>
           </select>
         </div>
         <div>
-          <label for="caseTitle">Judul kasus (opsional)</label>
-          <input id="caseTitle" type="text" placeholder="Kode yang Hilang" style="font-family:system-ui,sans-serif">
+          <label for="folder">2. Folder / misi (setelah kategori)</label>
+          <select id="folder"></select>
         </div>
       </div>
-
+      <div id="folder-new" class="grid hidden" style="margin-top:14px">
+        <div>
+          <label for="folderId">ID folder baru (huruf kecil)</label>
+          <input id="folderId" type="text" placeholder="contoh: misi-bulan" style="font-family:system-ui,sans-serif">
+        </div>
+        <div>
+          <label for="folderTitle">Judul folder (tampil ke siswa)</label>
+          <input id="folderTitle" type="text" placeholder="Misteri di Kebun Bilangan" style="font-family:system-ui,sans-serif">
+        </div>
+      </div>
+      <div style="margin-top:14px" id="folder-blurb-wrap" class="hidden">
+        <label for="folderBlurb">Deskripsi singkat folder (opsional)</label>
+        <input id="folderBlurb" type="text" placeholder="Petualangan hitung dasar…" style="font-family:system-ui,sans-serif">
+      </div>
       <div style="margin-top:16px">
-        <label for="file">Upload file (.csv atau .json)</label>
+        <label for="file">3. Upload file (.csv atau .json)</label>
         <input type="file" id="file" accept=".csv,.json,text/csv,application/json">
       </div>
 
       <div class="row">
+        <button class="btn secondary" id="btn-template" type="button">Unduh template CSV</button>
+        <button class="btn secondary" id="btn-prompt" type="button">Salin prompt AI</button>
         <button class="btn" id="btn-parse" type="button">Preview & validasi</button>
         <button class="btn" id="btn-publish" type="button" disabled>Publish ke server</button>
         <button class="btn secondary" id="btn-download" type="button" disabled>Unduh JSON</button>
@@ -126,9 +142,11 @@ textarea{min-height:120px;font-family:ui-monospace,monospace;font-size:12px}
     <div class="card links">
       <strong style="font-family:Georgia,serif;font-size:18px">Template & panduan</strong>
       <ul style="margin:10px 0 0 18px">
-        <li><a href="/public/templates/soal-template.csv" download>Download template CSV</a></li>
-        <li><a href="/public/templates/soal-template.json" download>Download template JSON</a></li>
+        <li><a id="link-csv" href="/public/templates/soal-folder-template.csv" download>Template CSV folder (resmi)</a></li>
+        <li><a href="/public/templates/soal-template.csv" download>Template CSV klasik (tanpa folder)</a></li>
+        <li><a href="/public/templates/soal-template.json" download>Template JSON</a></li>
         <li><a href="/public/templates/prompt-ai.txt" download>Prompt AI (copy-paste)</a></li>
+        <li><a href="/public/templates/PANDUAN-FOLDER.md" target="_blank" rel="noopener">Panduan folder</a></li>
         <li><a href="/docs/PANDUAN-SOAL.md" target="_blank" rel="noopener">Panduan lengkap (bahasa awam)</a></li>
         <li><a href="/">← Kembali ke game siswa</a></li>
       </ul>
@@ -141,9 +159,12 @@ textarea{min-height:120px;font-family:ui-monospace,monospace;font-size:12px}
   </div>
 </div>
 
+<script src="src/lib/question-csv.js"></script>
 <script>
 const TOKEN_KEY = "algo_admin_token";
 let parsedBank = null;
+let catalogCache = null;
+let aiPromptTemplate = "";
 
 function showMsg(el, text, type) {
   el.textContent = text;
@@ -157,6 +178,7 @@ function getToken() {
 function setAuthed(on) {
   document.getElementById("login-card").classList.toggle("hidden", on);
   document.getElementById("dash").classList.toggle("hidden", !on);
+  if (on) loadCatalog();
 }
 
 async function login() {
@@ -176,134 +198,110 @@ async function login() {
     setAuthed(true);
     showMsg(msg, "Berhasil masuk.", "ok");
   } catch (e) {
-    showMsg(msg, e.message, "err");
+    showMsg(msg, e.message || "Tidak bisa login. Cek password dan koneksi.", "err");
   } finally {
     btn.disabled = false;
   }
 }
 
-function parseCsv(text) {
-  const rows = [];
-  let i = 0, field = "", row = [], inQ = false;
-  const pushField = () => { row.push(field); field = ""; };
-  const pushRow = () => {
-    if (row.length === 1 && row[0] === "") { row = []; return; }
-    rows.push(row); row = [];
-  };
-  while (i < text.length) {
-    const c = text[i];
-    if (inQ) {
-      if (c === '"') {
-        if (text[i + 1] === '"') { field += '"'; i++; }
-        else inQ = false;
-      } else field += c;
-    } else if (c === '"') inQ = true;
-    else if (c === ",") pushField();
-    else if (c === "\n") { pushField(); pushRow(); }
-    else if (c === "\r") { /* skip */ }
-    else field += c;
-    i++;
+async function loadCatalog() {
+  const paths = ["/api/catalog", "/public/questions/catalog.json", "/questions/catalog.json"];
+  for (const p of paths) {
+    try {
+      const r = await fetch(p, { cache: "no-store" });
+      if (!r.ok) continue;
+      const data = await r.json();
+      if (data && Array.isArray(data.levels)) {
+        catalogCache = data;
+        fillFolderSelect();
+        return;
+      }
+    } catch (_) {}
   }
-  pushField(); pushRow();
-  if (!rows.length) throw new Error("CSV kosong");
-  const headers = rows[0].map((h) => h.trim());
-  return rows.slice(1).filter((r) => r.some((x) => String(x).trim() !== "")).map((r) => {
-    const obj = {};
-    headers.forEach((h, idx) => { obj[h] = r[idx] != null ? String(r[idx]).trim() : ""; });
-    return obj;
-  });
+  catalogCache = { levels: [] };
+  fillFolderSelect();
 }
 
-function rowsToBank(level, rows, caseTitle) {
-  const byChapter = new Map();
-  rows.forEach((row, idx) => {
-    const bab = row.bab_title || row.chapter || "Bab 1";
-    const babId = row.bab_id || `bab-${byChapter.size + 1}`;
-    if (!byChapter.has(bab)) byChapter.set(bab, { id: babId, title: bab, questions: [] });
-    if (!row.q && !row.question) throw new Error(`Baris data ke-${idx + 1}: kolom q kosong`);
+function fillFolderSelect() {
+  const level = document.getElementById("level").value;
+  const sel = document.getElementById("folder");
+  const folders = ((catalogCache && catalogCache.levels) || []).find((l) => l.id === level);
+  const list = (folders && folders.folders) || [];
+  sel.innerHTML = list.map((f) =>
+    `<option value="${f.id}" data-file="${f.file || ""}" data-title="${(f.title || "").replace(/"/g, "&quot;")}">${f.title || f.id}</option>`
+  ).join("") + `<option value="__new__">+ Folder / misi baru…</option>`;
+  if (list.length) sel.value = list[0].id;
+  else sel.value = "__new__";
+  syncFolderNew();
+}
 
-    const typeUi = String(row.type_ui || "mcq").trim().toLowerCase() || "mcq";
-    const base = {
-      id: row.id || `q-${idx + 1}`,
-      type_ui: typeUi,
-      scene: row.scene || "Petunjuk baru muncul di lokasi kasus.",
-      q: row.q || row.question,
-      skill: row.skill || "Matematika",
-      difficulty: row.difficulty || "Sedang",
-      type: row.type || "analyst",
-      correct: row.correct || "Benar! Bukti terkonfirmasi.",
-      clue: row.clue || "Petunjuk tercatat.",
-    };
+function selectedFolderMeta() {
+  const sel = document.getElementById("folder");
+  const opt = sel.options[sel.selectedIndex];
+  const isNew = sel.value === "__new__";
+  const Csv = window.AlgoQuestionCsv;
+  const id = isNew
+    ? (Csv ? Csv.slugFolderId(document.getElementById("folderId").value) : document.getElementById("folderId").value)
+    : sel.value;
+  const title = isNew
+    ? document.getElementById("folderTitle").value.trim()
+    : (opt && opt.getAttribute("data-title")) || sel.value;
+  const file = isNew ? "" : (opt && opt.getAttribute("data-file")) || "";
+  return { id, title, file, isNew, blurb: document.getElementById("folderBlurb").value.trim() };
+}
 
-    if (typeUi === "numeric") {
-      const answerValue = Number(String(row.answer_value ?? row.answer ?? "").trim().replace(",", "."));
-      if (Number.isNaN(answerValue)) throw new Error(`Baris ${idx + 1}: numeric butuh answer_value angka`);
-      base.answer_value = answerValue;
-      if (row.answer_tolerance !== undefined && String(row.answer_tolerance).trim() !== "") {
-        base.answer_tolerance = Number(row.answer_tolerance);
-      }
-      byChapter.get(bab).questions.push(base);
-      return;
-    }
+function syncFolderNew() {
+  const isNew = document.getElementById("folder").value === "__new__";
+  document.getElementById("folder-new").classList.toggle("hidden", !isNew);
+  document.getElementById("folder-blurb-wrap").classList.toggle("hidden", !isNew);
+}
 
-    if (typeUi === "order") {
-      const items = String(row.items || "")
-        .split("|")
-        .map((s) => s.trim())
-        .filter(Boolean);
-      if (items.length < 2) throw new Error(`Baris ${idx + 1}: order butuh items dipisah |`);
-      let answerOrder;
-      if (row.answer_order && String(row.answer_order).trim() !== "") {
-        answerOrder = String(row.answer_order).split("|").map((s) => Number(s.trim()));
-      } else {
-        answerOrder = items.map((_, i) => i);
-      }
-      if (answerOrder.some((n) => Number.isNaN(n) || n < 0 || n >= items.length)) {
-        throw new Error(`Baris ${idx + 1}: answer_order tidak valid`);
-      }
-      base.items = items;
-      base.answer_order = answerOrder;
-      base.choices = items;
-      base.answer = 0;
-      byChapter.get(bab).questions.push(base);
-      return;
-    }
+function downloadTemplate() {
+  const Csv = window.AlgoQuestionCsv;
+  if (!Csv) return;
+  const meta = selectedFolderMeta();
+  const id = meta.id || "folder-baru";
+  const title = meta.title || "Misi Baru";
+  const body = `${Csv.csvHeader()}\n${Csv.exampleRows(id, title)}\n`;
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([body], { type: "text/csv;charset=utf-8" }));
+  a.download = `soal-${id}.csv`;
+  a.click();
+}
 
-    const choices = [row.choice_a, row.choice_b, row.choice_c, row.choice_d]
-      .map((x) => String(x ?? "").trim())
-      .filter((x) => x !== "");
-    if (choices.length < 2) throw new Error(`Baris ${idx + 1}: minimal 2 pilihan`);
-    let answer = row.answer;
-    if (typeof answer === "string" && /^[A-Da-d]$/.test(answer.trim())) {
-      answer = answer.trim().toUpperCase().charCodeAt(0) - 65;
-    } else answer = Number(answer);
-    if (Number.isNaN(answer) || answer < 0 || answer >= choices.length) {
-      throw new Error(`Baris ${idx + 1}: answer harus A-D atau index valid`);
-    }
-    let wrong;
-    if (row.wrong && row.wrong.includes("|")) wrong = row.wrong.split("|").map((s) => s.trim());
-    else wrong = choices.map((_, j) => (j === answer ? "" : "Coba hitung kembali."));
-    while (wrong.length < choices.length) wrong.push("Coba hitung kembali.");
-    base.choices = choices;
-    base.answer = answer;
-    base.wrong = wrong;
-    byChapter.get(bab).questions.push(base);
-  });
-  return {
-    level,
-    label: level,
-    caseTitle: caseTitle || "Kode yang Hilang",
-    curriculum: "Kurikulum Merdeka",
-    chapters: [...byChapter.values()],
-  };
+async function copyAiPrompt() {
+  const msg = document.getElementById("dash-msg");
+  const meta = selectedFolderMeta();
+  const level = document.getElementById("level").value;
+  if (!aiPromptTemplate) {
+    try {
+      const r = await fetch("/public/templates/prompt-ai.txt");
+      aiPromptTemplate = r.ok ? await r.text() : "";
+    } catch (_) {}
+  }
+  let text = aiPromptTemplate || "Buatkan CSV soal Algonova Quest.";
+  text = text.replace(/\{\{LEVEL\}\}/g, level).replace(/\{\{FOLDER\}\}/g, meta.title || meta.id || "folder");
+  try {
+    await navigator.clipboard.writeText(text);
+    showMsg(msg, "Prompt AI disalin. Tempel ke ChatGPT/Gemini, ganti jika perlu, lalu paste hasil CSV ke Excel.", "ok");
+  } catch (_) {
+    showMsg(msg, "Salin manual prompt di /public/templates/prompt-ai.txt", "info");
+  }
 }
 
 async function preview() {
   const msg = document.getElementById("dash-msg");
   const file = document.getElementById("file").files[0];
   const level = document.getElementById("level").value;
-  const caseTitle = document.getElementById("caseTitle").value.trim();
-  if (!file) return showMsg(msg, "Pilih file CSV atau JSON dulu.", "err");
+  const meta = selectedFolderMeta();
+  const Csv = window.AlgoQuestionCsv;
+  if (!file) return showMsg(msg, "Pilih file CSV atau JSON dulu. Unduh template jika belum punya.", "err");
+  if (meta.isNew && !meta.id) {
+    return showMsg(msg, "Isi ID folder baru (huruf kecil, tanpa spasi), contoh: misi-bulan.", "err");
+  }
+  if (meta.isNew && !meta.title) {
+    return showMsg(msg, "Isi judul folder yang akan tampil ke siswa.", "err");
+  }
 
   try {
     const text = await file.text();
@@ -311,33 +309,46 @@ async function preview() {
     if (file.name.toLowerCase().endsWith(".json") || text.trim().startsWith("{")) {
       bank = JSON.parse(text);
       bank.level = level;
-      if (caseTitle) bank.caseTitle = caseTitle;
+      if (meta.title) bank.caseTitle = meta.title;
+      if (meta.id) bank.folder = meta.id;
     } else {
-      const rows = parseCsv(text);
-      bank = rowsToBank(level, rows, caseTitle);
+      if (!Csv) throw new Error("Parser CSV belum termuat. Refresh halaman.");
+      const rows = Csv.parseCsv(text);
+      bank = Csv.rowsToBank(level, rows, {
+        folderId: meta.id,
+        folderTitle: meta.title,
+        caseTitle: meta.title,
+      });
     }
-    if (!bank.chapters || !bank.chapters.length) throw new Error("Tidak ada bab/soal");
+    const err = Csv ? Csv.validateBank(bank) : null;
+    if (err) throw new Error(err);
     const count = bank.chapters.reduce((n, ch) => n + (ch.questions || []).length, 0);
     parsedBank = bank;
     document.getElementById("btn-publish").disabled = false;
     document.getElementById("btn-download").disabled = false;
-    document.getElementById("stats").textContent =
-      `${bank.chapters.length} bab · ${count} soal · level ${level}`;
+    let stats = `${bank.chapters.length} bab · ${count} soal · ${level} / ${meta.title || meta.id}`;
+    if (count < 15) stats += " · catatan: siswa idealnya ≥15 soal per misi";
+    document.getElementById("stats").textContent = stats;
     const prev = document.getElementById("preview");
     prev.classList.remove("hidden");
-    prev.textContent = JSON.stringify(bank, null, 2).slice(0, 4000) + (count > 3 ? "\n…": "");
-    showMsg(msg, "Validasi lokal OK. Siap publish / unduh.", "ok");
+    prev.textContent = JSON.stringify(bank, null, 2).slice(0, 4000) + (count > 3 ? "\n…" : "");
+    showMsg(msg, `Validasi OK (${count} soal). Siap publish atau unduh JSON.`, "ok");
   } catch (e) {
     parsedBank = null;
     document.getElementById("btn-publish").disabled = true;
     document.getElementById("btn-download").disabled = true;
-    showMsg(msg, e.message, "err");
+    const hint = /xlsx|excel/i.test(file.name)
+      ? " File .xlsx tidak didukung — di Excel pilih File → Save As → CSV UTF-8."
+      : "";
+    showMsg(msg, (e.message || "Gagal membaca file.") + hint, "err");
   }
 }
 
 async function publish() {
   const msg = document.getElementById("dash-msg");
-  if (!parsedBank) return showMsg(msg, "Preview dulu.", "err");
+  if (!parsedBank) return showMsg(msg, "Preview & validasi dulu sebelum publish.", "err");
+  const meta = selectedFolderMeta();
+  if (meta.isNew && !meta.id) return showMsg(msg, "ID folder baru masih kosong.", "err");
   const btn = document.getElementById("btn-publish");
   btn.disabled = true;
   try {
@@ -349,23 +360,30 @@ async function publish() {
       },
       body: JSON.stringify({
         level: document.getElementById("level").value,
+        folderId: meta.id,
+        folderTitle: meta.title,
+        folderBlurb: meta.blurb,
+        file: meta.file,
         data: parsedBank,
       }),
     });
-    const data = await resp.json();
-    if (!resp.ok || data.ok === false && data.message && resp.status >= 400) {
-      throw new Error(data.message || "Upload gagal");
+    let data = {};
+    try { data = await resp.json(); } catch (_) {}
+    if (!resp.ok || data.ok === false) {
+      throw new Error(data.message || `Upload gagal (HTTP ${resp.status}). Cek password/sesi dan format soal.`);
     }
     let text = data.message || "OK";
     if (data.published && data.published.length) {
       text += " · via " + data.published.map((p) => p.via).join(", ");
     }
     if (data.needsManualDownload) {
-      text += " · Gunakan Unduh JSON lalu taruh di public/questions/.";
+      text += "\nSimpan JSON ke public/questions/" + (data.file || "…") + " lalu deploy.";
     }
-    if (data.blobError) text += ` (blob: ${data.blobError})`;
-    if (data.githubError) text += ` (github: ${data.githubError})`;
+    if (data.blobError) text += `\nBlob: ${data.blobError}`;
+    if (data.githubError) text += `\nGitHub: ${data.githubError}`;
+    if (data.catalogError) text += `\nCatalog: ${data.catalogError}`;
     showMsg(msg, text, data.needsManualDownload ? "info" : "ok");
+    loadCatalog();
   } catch (e) {
     showMsg(msg, e.message, "err");
   } finally {
@@ -375,11 +393,12 @@ async function publish() {
 
 function downloadJson() {
   if (!parsedBank) return;
+  const meta = selectedFolderMeta();
   const level = document.getElementById("level").value;
-  const blob = new Blob([JSON.stringify(parsedBank, null, 2)], { type: "application/json" });
+  const name = meta.id ? `${level}-${meta.id}.json` : `${level}.json`;
   const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = `${level}.json`;
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(parsedBank, null, 2)], { type: "application/json" }));
+  a.download = name;
   a.click();
 }
 
@@ -391,9 +410,13 @@ document.getElementById("btn-logout").onclick = () => {
   sessionStorage.removeItem(TOKEN_KEY);
   setAuthed(false);
 };
+document.getElementById("level").onchange = fillFolderSelect;
+document.getElementById("folder").onchange = syncFolderNew;
 document.getElementById("btn-parse").onclick = preview;
 document.getElementById("btn-publish").onclick = publish;
 document.getElementById("btn-download").onclick = downloadJson;
+document.getElementById("btn-template").onclick = downloadTemplate;
+document.getElementById("btn-prompt").onclick = copyAiPrompt;
 
 if (getToken()) setAuthed(true);
 </script>

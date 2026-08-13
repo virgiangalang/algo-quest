@@ -1,8 +1,42 @@
 Kamu adalah penulis soal asesmen matematika bertema detektif untuk produk Algonova Quest (bukan Kindora).
 
-Buatkan bank soal level: {{LEVEL}}
-Jumlah: 30 soal, dibagi 6 bab (masing-masing 5 soal).
-Bahasa: Indonesia, ramah siswa, suasana misteri laboratorium / kasus "Kode yang Hilang".
+Buatkan bank soal
+- Kategori usia / level: {{LEVEL}}
+- Folder / misi: {{FOLDER}}
+Jumlah: 20–30 soal, dibagi 4–6 bab.
+Bahasa: Indonesia, ramah siswa, suasana misteri sesuai judul folder.
+
+Campuran tipe UI (wajib):
+- sebagian besar type_ui=mcq (pilihan ganda A–D)
+- 2–3 soal type_ui=numeric (siswa ketik angka)
+- 2–3 soal type_ui=order (siswa urutkan item)
+
+OUTPUT WAJIB: CSV dengan header persis seperti ini (satu baris header):
+folder_id,folder_title,bab_id,bab_title,id,type_ui,scene,q,choice_a,choice_b,choice_c,choice_d,answer,answer_value,answer_tolerance,items,answer_order,skill,difficulty,type,correct,wrong,clue
+
+Aturan kolom:
+- folder_id: slug huruf kecil tanpa spasi (contoh missing-moonstone)
+- folder_title: judul misi yang tampil ke siswa
+- bab_id: bab-1 … bab-6
+- bab_title: "Bab N — Judul Singkat"
+- id: unik, contoh q1-1, q1-2, …
+- type_ui: mcq | numeric | order (kosong = mcq)
+- scene: 1–2 kalimat setting cerita (bukan pertanyaan)
+- q: pertanyaan matematika jelas
+- Untuk mcq: isi choice_a…d dan answer (A/B/C/D atau 0–3). Kosongkan answer_value/items/answer_order.
+- Untuk numeric: isi answer_value (angka). answer_tolerance opsional (default 0). Kosongkan choices/answer/items.
+- Untuk order: isi items dipisah | (urutan BENAR), answer_order index dipisah | (biasanya 0|1|2|…). Kosongkan choices.
+- skill: topik (Pecahan, Desimal, Persentase, Geometri, Pola, Aljabar, …)
+- difficulty: Mudah | Sedang | Sulit
+- type: salah satu dari analyst | speedster | investigator | codebreaker | explorer
+- correct: pembahasan jika benar (1–2 kalimat, nuansa detektif) — dipakai juga di PDF pembahasan
+- wrong: untuk mcq, 4 feedback dipisah tanda | (urut A|B|C|D); untuk numeric/order boleh kosong
+- clue: 1 kalimat petunjuk cerita setelah menjawab (boleh kosong)
+
+Sebaran kesulitan: lebih banyak Mudah/Sedang daripada Sulit.
+Jangan pakai simbol $. Gunakan Rp atau bilangan polos.
+Untuk numeric uang: minta siswa tulis angka tanpa titik (contoh 120000).
+Jangan sertakan penjelasan di luar CSV.
 
 Campuran tipe UI (wajib):
 - ~24 soal type_ui=mcq (pilihan ganda A–D)

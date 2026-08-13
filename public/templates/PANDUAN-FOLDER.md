@@ -10,9 +10,10 @@ Kategori usia (SD 1–3 / SD 4–6 / SMP / SMA / Dewasa)
 
 ## Cara menambah folder baru (simpel)
 
-1. Buat file JSON soal, contoh: `public/questions/sd-kelas-4-6/nama-folder-baru.json`  
-   (boleh salin struktur dari `missing-moonstone.json`)
-2. Daftarkan di `public/questions/catalog.json` di dalam `folders` kategori yang sesuai:
+1. Di `/admin`: pilih kategori usia, lalu **+ Folder / misi baru** (ID + judul).
+2. **Unduh template CSV** — sudah terisi `folder_id`.
+3. Isi soal (atau **Salin prompt AI**) → Preview → Publish.
+4. Alternatif manual: file JSON di `public/questions/<kategori>/<folder>.json` + daftar di `catalog.json` (contoh entri di bawah). Setelah publish/deploy, siswa melihat folder baru setelah pilih kategori.
 
 ```json
 {
@@ -24,8 +25,6 @@ Kategori usia (SD 1–3 / SD 4–6 / SMP / SMA / Dewasa)
   "questionsHint": "20 soal"
 }
 ```
-
-3. Deploy / push → siswa langsung melihat folder baru setelah pilih kategori.
 
 ## Template CSV
 

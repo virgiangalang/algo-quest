@@ -9,11 +9,11 @@ Halaman admin: **`/admin.html`** (password di Vercel env `ADMIN_PASSWORD`).
 
 ## Ringkas 5 langkah
 
-1. Buka template CSV: [`/public/templates/soal-template.csv`](../public/templates/soal-template.csv)
-2. (Opsional) Pakai AI: salin prompt di [`/public/templates/prompt-ai.txt`](../public/templates/prompt-ai.txt), ganti `{{LEVEL}}`, minta AI isi CSV
-3. Cek kolom sesuai `type_ui` (mcq / numeric / order)
-4. Login ke `/admin.html` → pilih level → upload CSV atau JSON
-5. Klik **Publish** (atau **Unduh JSON** kalau belum ada Blob/GitHub token)
+1. Buka `/admin` → pilih **kategori usia** → pilih **folder misi** (atau buat baru)
+2. Klik **Unduh template CSV** (atau pakai [`soal-folder-template.csv`](../public/templates/soal-folder-template.csv))
+3. (Opsional) **Salin prompt AI**, tempel ke ChatGPT/Gemini, paste hasil ke Excel
+4. Simpan sebagai **CSV UTF-8** (bukan .xlsx)
+5. Upload → **Preview & validasi** (error akan menyebut baris Excel) → **Publish**
 
 ---
 

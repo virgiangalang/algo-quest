@@ -1351,6 +1351,7 @@ input{font:inherit}
 <script src="src/lib/ui.js"></script>
 <script src="src/lib/i18n.js"></script>
 <script src="src/lib/persist.js"></script>
+<script src="src/lib/history.js"></script>
 <script src="src/lib/question-render.js"></script>
 <script src="src/lib/certificate.js"></script>
 <script src="src/lib/report.js"></script>
@@ -1630,7 +1631,9 @@ async function handleLogin() {
         studentName: result.studentName || "",
         level: result.level || "",
         folderTitle: "",
-        accuracy: Number(String(result.accuracy || "0").replace("%", "")) || 0,
+        accuracy: (typeof AlgoHistory !== "undefined")
+          ? AlgoHistory.normalizeAccuracy(result.accuracy)
+          : Number(String(result.accuracy || "0").replace("%", "")) || 0,
         xp: Number(result.score) || 0,
         character: result.character || "analyst",
         finishedAt: result.usedAt || new Date().toISOString(),
@@ -1702,7 +1705,8 @@ function loadLocalHistory(username) {
   try {
     const raw = localStorage.getItem(historyKey(username));
     const arr = raw ? JSON.parse(raw) : [];
-    return Array.isArray(arr) ? arr : [];
+    if (!Array.isArray(arr)) return [];
+    return (typeof AlgoHistory !== "undefined") ? AlgoHistory.mergeLists(arr) : arr;
   } catch (_) {
     return [];
   }
@@ -1717,10 +1721,10 @@ function saveLocalHistory(username, list) {
 function upsertLocalHistory(entry) {
   if (!entry || !STATE.username) return;
   const list = loadLocalHistory(STATE.username);
-  const key = entry.finishedAt || entry.certId || JSON.stringify(entry);
-  const filtered = list.filter((x) => (x.finishedAt || x.certId) !== key);
-  filtered.unshift(entry);
-  saveLocalHistory(STATE.username, filtered);
+  const next = (typeof AlgoHistory !== "undefined")
+    ? AlgoHistory.mergeLists(list, [{ ...entry, username: STATE.username }])
+    : [entry, ...list.filter((x) => (x.finishedAt || x.certId) !== (entry.finishedAt || entry.certId))];
+  saveLocalHistory(STATE.username, next);
 }
 
 async function showAccountHub() {
@@ -1745,14 +1749,9 @@ async function showAccountHub() {
       const res = await appsScriptPost({ action: "history", username: STATE.username });
       if (res && Array.isArray(res.history) && res.history.length) {
         const local = loadLocalHistory(STATE.username);
-        const map = new Map();
-        [...res.history, ...local].forEach((h) => {
-          const k = h.finishedAt || h.certId || JSON.stringify(h);
-          if (!map.has(k)) map.set(k, h);
-        });
-        const merged = Array.from(map.values()).sort((a, b) =>
-          String(b.finishedAt || "").localeCompare(String(a.finishedAt || ""))
-        );
+        const merged = (typeof AlgoHistory !== "undefined")
+          ? AlgoHistory.mergeLists(res.history, local)
+          : [...res.history, ...local];
         saveLocalHistory(STATE.username, merged);
         renderHubHistory();
       }
@@ -1771,7 +1770,10 @@ function renderHubHistory() {
   box.className = "";
   box.innerHTML = list.map((h, i) => {
     const title = h.folderTitle || h.level || "Misi Algonova";
-    const acc = h.accuracy != null ? `${String(h.accuracy).replace("%", "")}%` : "—";
+    const accN = (typeof AlgoHistory !== "undefined")
+      ? AlgoHistory.normalizeAccuracy(h.accuracy)
+      : Number(String(h.accuracy || "0").replace("%", "")) || 0;
+    const acc = `${accN}%`;
     const when = h.finishedAt
       ? new Date(h.finishedAt).toLocaleString("id-ID", { dateStyle: "medium", timeStyle: "short" })
       : "—";

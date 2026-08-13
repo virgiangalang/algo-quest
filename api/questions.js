@@ -19,13 +19,14 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    if (!file) {
-      const fromBlob = await blobGetJson(`questions/${level}.json`);
-      if (fromBlob && fromBlob.chapters) {
-        res.setHeader("Cache-Control", "no-store");
-        res.setHeader("X-Algo-Source", "blob");
-        return json(res, 200, fromBlob);
-      }
+    const blobKey = file
+      ? `questions/${String(file).replace(/^\/+/, "")}`
+      : `questions/${level}.json`;
+    const fromBlob = await blobGetJson(blobKey);
+    if (fromBlob && fromBlob.chapters) {
+      res.setHeader("Cache-Control", "no-store");
+      res.setHeader("X-Algo-Source", "blob");
+      return json(res, 200, fromBlob);
     }
 
     const fromDisk = readStaticQuestion(key);
