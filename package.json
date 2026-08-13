@@ -4,6 +4,7 @@
   "description": "Algonova Math — Misteri Matematika (static + Vercel API)",
   "scripts": {
     "start": "python3 -m http.server 8080",
+    "test:review": "node scripts/review-unit.cjs",
     "test:e2e": "node scripts/e2e-smoke.cjs"
   },
   "devDependencies": {
