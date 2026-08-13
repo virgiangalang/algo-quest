@@ -6,6 +6,7 @@ const fs = require("fs");
 const path = require("path");
 const AlgoQuestionCsv = require("../src/lib/question-csv");
 const AlgoHistory = require("../src/lib/history");
+const { upsertCatalogFolder, mergeCatalogLayers, mergeCatalogWithBanks } = require("../api/_lib");
 
 function assert(cond, msg) {
   if (!cond) {
@@ -61,5 +62,25 @@ const merged = AlgoHistory.mergeLists(
 assert(merged.length === 1, "should dedupe to 1, got " + merged.length);
 assert(merged[0].accuracy === 90, "prefer 90");
 assert(merged[0].answers && merged[0].answers.length === 1, "keep answers");
+
+const baseCat = {
+  version: 1,
+  levels: [{ id: "sd-kelas-4-6", title: "SD 4–6", folders: [{ id: "kode", title: "Kode", file: "sd-kelas-4-6.json" }] }],
+};
+const remoteCat = {
+  version: 1,
+  levels: [{ id: "sd-kelas-4-6", title: "SD 4–6", folders: [{ id: "toko", title: "Toko", file: "sd-kelas-4-6/toko.json" }] }],
+};
+const layered = mergeCatalogLayers(baseCat, remoteCat, [
+  { file: "sd-kelas-4-6/misteri-toko-mainan-ajaib.json", level: "sd-kelas-4-6", folder_id: "misteri-toko-mainan-ajaib", folder_title: "Misteri Toko Mainan Ajaib", question_count: 30 },
+]);
+const ids = layered.levels.find((l) => l.id === "sd-kelas-4-6").folders.map((f) => f.id);
+assert(ids.includes("kode") && ids.includes("toko") && ids.includes("misteri-toko-mainan-ajaib"), "catalog merge keeps static + supabase folders");
+
+const withBank = mergeCatalogWithBanks({ version: 1, levels: [] }, [
+  { file: "smp/x.json", level: "smp", folder_id: "x", folder_title: "X", question_count: 20 },
+]);
+assert(withBank.levels.find((l) => l.id === "smp").folders[0].title === "X", "upsert new level from bank");
+assert(upsertCatalogFolder(baseCat, "sd-kelas-4-6", { id: "kode", title: "Kode Baru", file: "sd-kelas-4-6.json" }).levels[0].folders[0].title === "Kode Baru", "folder title update");
 
 console.log("OK admin-csv-unit");

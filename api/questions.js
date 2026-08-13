@@ -3,6 +3,7 @@ const {
   blobGetJson,
   readStaticQuestion,
   LEVELS,
+  supabaseGetBank,
 } = require("./_lib");
 
 module.exports = async function handler(req, res) {
@@ -19,9 +20,18 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const blobKey = file
-      ? `questions/${String(file).replace(/^\/+/, "")}`
-      : `questions/${level}.json`;
+    const rel = file
+      ? String(file).replace(/^\/+/, "")
+      : `${level}.json`;
+
+    const fromSb = await supabaseGetBank(rel);
+    if (fromSb && fromSb.chapters) {
+      res.setHeader("Cache-Control", "no-store");
+      res.setHeader("X-Algo-Source", "supabase");
+      return json(res, 200, fromSb);
+    }
+
+    const blobKey = `questions/${rel}`;
     const fromBlob = await blobGetJson(blobKey);
     if (fromBlob && fromBlob.chapters) {
       res.setHeader("Cache-Control", "no-store");

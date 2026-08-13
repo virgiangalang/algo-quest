@@ -118,6 +118,172 @@ function readStaticCatalog() {
   return { version: 1, levels: LEVELS.map((id) => ({ id, title: id, folders: [] })) };
 }
 
+function supabaseConfig() {
+  const url = String(
+    process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || ""
+  ).replace(/\/$/, "");
+  const service =
+    process.env.SUPABASE_SERVICE_ROLE_KEY ||
+    process.env.SUPABASE_SECRET_KEY ||
+    "";
+  const anon =
+    process.env.SUPABASE_ANON_KEY ||
+    process.env.SUPABASE_PUBLISHABLE_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+    "";
+  const key = service || anon;
+  return {
+    url,
+    key,
+    canWrite: Boolean(url && service),
+    canRead: Boolean(url && key),
+  };
+}
+
+async function supabaseRest(method, pathAndQuery, body, opts = {}) {
+  const cfg = supabaseConfig();
+  if (!cfg.canRead) return null;
+  if (opts.write && !cfg.canWrite) {
+    throw new Error(
+      "Supabase belum siap menulis. Pasang SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY di Vercel (Project Settings → Environment Variables), lalu Redeploy."
+    );
+  }
+  const headers = {
+    apikey: cfg.key,
+    Authorization: `Bearer ${cfg.key}`,
+    Accept: "application/json",
+  };
+  if (body != null) headers["Content-Type"] = "application/json";
+  if (opts.prefer) headers.Prefer = opts.prefer;
+  const resp = await fetch(`${cfg.url}/rest/v1/${pathAndQuery}`, {
+    method,
+    headers,
+    body: body != null ? JSON.stringify(body) : undefined,
+  });
+  const text = await resp.text();
+  let data = null;
+  if (text) {
+    try {
+      data = JSON.parse(text);
+    } catch (_) {
+      data = text;
+    }
+  }
+  if (!resp.ok) {
+    const detail =
+      data && typeof data === "object"
+        ? data.message || data.hint || JSON.stringify(data)
+        : text;
+    throw new Error(`Supabase ${method} gagal (${resp.status}): ${detail}`);
+  }
+  return data;
+}
+
+function mergeCatalogWithBanks(catalog, banks) {
+  let next = catalog && typeof catalog === "object" ? catalog : { version: 1, levels: [] };
+  for (const b of banks || []) {
+    const folderId = b.folder_id || b.folderId;
+    if (!folderId || !b.file || !b.level) continue;
+    next = upsertCatalogFolder(next, b.level, {
+      id: folderId,
+      title: b.folder_title || b.folderTitle || folderId,
+      blurb: b.blurb || "",
+      file: b.file,
+      questionsHint: b.question_count ? `${b.question_count} soal` : b.questionsHint || "",
+    });
+  }
+  return next;
+}
+
+function mergeCatalogLayers(staticCat, remoteCat, banks) {
+  let next = JSON.parse(JSON.stringify(staticCat || { version: 1, levels: [] }));
+  if (remoteCat && Array.isArray(remoteCat.levels)) {
+    for (const lvl of remoteCat.levels) {
+      for (const folder of lvl.folders || []) {
+        next = upsertCatalogFolder(next, lvl.id, folder);
+      }
+    }
+    if (remoteCat.updatedAt) next.updatedAt = remoteCat.updatedAt;
+  }
+  return mergeCatalogWithBanks(next, banks);
+}
+
+async function supabaseGetBank(file) {
+  const clean = String(file || "").replace(/^\/+/, "");
+  if (!clean || clean.includes("..")) return null;
+  try {
+    const rows = await supabaseRest(
+      "GET",
+      `algonova_question_banks?select=payload&file=eq.${encodeURIComponent(clean)}`
+    );
+    if (Array.isArray(rows) && rows[0] && rows[0].payload && rows[0].payload.chapters) {
+      return rows[0].payload;
+    }
+  } catch (_) {}
+  return null;
+}
+
+async function supabaseListBanks() {
+  try {
+    const rows = await supabaseRest(
+      "GET",
+      "algonova_question_banks?select=file,level,folder_id,folder_title,blurb,question_count&order=updated_at.desc"
+    );
+    return Array.isArray(rows) ? rows : [];
+  } catch (_) {
+    return [];
+  }
+}
+
+async function supabaseGetCatalogPayload() {
+  try {
+    const rows = await supabaseRest(
+      "GET",
+      "algonova_catalog?select=payload&id=eq.default"
+    );
+    if (Array.isArray(rows) && rows[0] && rows[0].payload && Array.isArray(rows[0].payload.levels)) {
+      return rows[0].payload;
+    }
+  } catch (_) {}
+  return null;
+}
+
+async function supabaseLoadMergedCatalog() {
+  const staticCat = readStaticCatalog();
+  if (!supabaseConfig().canRead) return staticCat;
+  const [remote, banks] = await Promise.all([
+    supabaseGetCatalogPayload(),
+    supabaseListBanks(),
+  ]);
+  return mergeCatalogLayers(staticCat, remote, banks);
+}
+
+async function supabasePublishBank({ file, level, folderId, folderTitle, blurb, count, payload, catalog }) {
+  const row = {
+    file,
+    level,
+    folder_id: folderId || null,
+    folder_title: folderTitle || null,
+    blurb: blurb || "",
+    question_count: count || 0,
+    payload,
+    updated_at: new Date().toISOString(),
+  };
+  await supabaseRest("POST", "algonova_question_banks?on_conflict=file", row, {
+    write: true,
+    prefer: "return=minimal,resolution=merge-duplicates",
+  });
+  if (catalog) {
+    await supabaseRest(
+      "POST",
+      "algonova_catalog?on_conflict=id",
+      { id: "default", payload: catalog, updated_at: new Date().toISOString() },
+      { write: true, prefer: "return=minimal,resolution=merge-duplicates" }
+    );
+  }
+  return { file };
+}
+
 async function blobPut(pathname, content) {
   const token = process.env.BLOB_READ_WRITE_TOKEN;
   if (!token) return null;
@@ -303,4 +469,10 @@ module.exports = {
   readStaticCatalog,
   questionRelPath,
   upsertCatalogFolder,
+  supabaseConfig,
+  supabaseGetBank,
+  supabaseLoadMergedCatalog,
+  supabasePublishBank,
+  mergeCatalogLayers,
+  mergeCatalogWithBanks,
 };

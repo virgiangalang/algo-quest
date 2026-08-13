@@ -122,9 +122,11 @@ Setelah upload & lolos validasi:
 
 | Kalau di Vercel ada… | Hasil |
 |----------------------|--------|
-| `BLOB_READ_WRITE_TOKEN` | Soal **langsung live** (override file statis) |
-| `GITHUB_TOKEN` + `GITHUB_REPO` | File `public/questions/{level}.json` di-commit → redeploy |
-| Tidak ada keduanya | Tombol **Unduh JSON** — taruh manual ke `public/questions/` lalu deploy |
+| `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` | Soal **langsung live** (folder baru muncul di beranda siswa) |
+| `BLOB_READ_WRITE_TOKEN` / GitHub token | Cadangan lama (opsional) |
+| Belum ada kunci Supabase | Publish menolak otomatis — pasang env lalu Redeploy |
+
+Kunci `service_role` **hanya** di Vercel (server). Jangan taruh di `index.html` / browser.
 
 File statis default tetap ada di `public/questions/*.json` sebagai cadangan.
 

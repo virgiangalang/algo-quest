@@ -151,10 +151,10 @@ textarea{min-height:120px;font-family:ui-monospace,monospace;font-size:12px}
         <li><a href="/">← Kembali ke game siswa</a></li>
       </ul>
       <p style="margin-top:12px;color:var(--muted)">
-        Env di Vercel: <code>ADMIN_PASSWORD</code>.
-        Agar tombol <b>Publish</b> langsung masuk ke website (tanpa unduh JSON), pasang juga
-        <code>BLOB_READ_WRITE_TOKEN</code> atau <code>GITHUB_TOKEN</code> + <code>GITHUB_REPO</code>.
-        Tanpa itu, Publish tetap men-validasi soal lalu <b>otomatis mengunduh JSON</b> untuk di-deploy manual.
+        Env di Vercel: <code>ADMIN_PASSWORD</code> +
+        <code>SUPABASE_URL</code> + <code>SUPABASE_SERVICE_ROLE_KEY</code>
+        (kunci <b>service_role</b> dari Supabase → Settings → API — jangan dibagikan ke siswa).
+        Setelah Redeploy, tombol <b>Publish</b> langsung live di beranda siswa.
       </p>
     </div>
   </div>

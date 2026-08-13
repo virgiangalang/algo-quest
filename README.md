@@ -26,10 +26,9 @@ Untuk **admin API** (login/upload), pakai `vercel dev` (butuh Vercel CLI + env `
 ## Admin soal (CSV / JSON)
 
 1. Set di Vercel → Environment Variables: `ADMIN_PASSWORD` = password admin
-2. (Opsional) `BLOB_READ_WRITE_TOKEN` agar publish langsung live
-3. (Opsional) `GITHUB_TOKEN` + `GITHUB_REPO` agar commit otomatis ke `public/questions/`
-4. Buka `/admin.html` → login → upload template CSV/JSON
-5. Template: `public/templates/` · Panduan: `docs/PANDUAN-SOAL.md`
+2. Publish live: `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` (service_role, server-only)
+3. Buka `/admin.html` → login → upload template CSV/JSON → **Publish**
+4. Template: `public/templates/` · Panduan: `docs/PANDUAN-SOAL.md`
 
 Lihat juga [`.env.example`](./.env.example).
 

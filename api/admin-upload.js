@@ -5,12 +5,14 @@ const {
   getBearer,
   validateBank,
   blobPut,
-  blobGetJson,
   githubPutFile,
   LEVELS,
   readStaticCatalog,
   questionRelPath,
   upsertCatalogFolder,
+  supabaseConfig,
+  supabaseLoadMergedCatalog,
+  supabasePublishBank,
 } = require("./_lib");
 const AlgoQuestionCsv = require("../src/lib/question-csv");
 
@@ -66,6 +68,39 @@ module.exports = async function handler(req, res) {
     const count = (data.chapters || []).reduce((n, ch) => n + ((ch.questions || []).length), 0);
     const relFile = questionRelPath(level, folderId, existingFile);
     const result = { ok: true, level, folderId: folderId || null, file: relFile, count, published: [], download: data };
+    const folderMeta = {
+      id: folderId,
+      title: folderTitle || data.caseTitle || folderId,
+      blurb: folderBlurb,
+      file: relFile,
+      questionsHint: `${count} soal`,
+    };
+
+    let catalog = await supabaseLoadMergedCatalog();
+    if (!catalog || !Array.isArray(catalog.levels)) catalog = readStaticCatalog();
+    if (folderId) catalog = upsertCatalogFolder(catalog, level, folderMeta);
+
+    try {
+      if (supabaseConfig().canWrite) {
+        await supabasePublishBank({
+          file: relFile,
+          level,
+          folderId: folderId || null,
+          folderTitle: folderMeta.title,
+          blurb: folderBlurb,
+          count,
+          payload: data,
+          catalog,
+        });
+        result.published.push({ via: "supabase", file: relFile });
+      } else if (supabaseConfig().canRead) {
+        result.supabaseError = "SUPABASE_SERVICE_ROLE_KEY belum dipasang di Vercel (hanya kunci baca).";
+      } else {
+        result.supabaseError = "SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY belum dipasang di Vercel.";
+      }
+    } catch (e) {
+      result.supabaseError = e.message;
+    }
 
     try {
       const blob = await blobPut(`questions/${relFile}`, data);
@@ -83,15 +118,6 @@ module.exports = async function handler(req, res) {
 
     if (folderId) {
       try {
-        let catalog = await blobGetJson("questions/catalog.json");
-        if (!catalog || !Array.isArray(catalog.levels)) catalog = readStaticCatalog();
-        catalog = upsertCatalogFolder(catalog, level, {
-          id: folderId,
-          title: folderTitle || data.caseTitle || folderId,
-          blurb: folderBlurb,
-          file: relFile,
-          questionsHint: `${count} soal`,
-        });
         const blobCat = await blobPut("questions/catalog.json", catalog);
         if (blobCat) result.published.push({ via: "blob-catalog" });
         try {
@@ -105,8 +131,7 @@ module.exports = async function handler(req, res) {
       }
     }
 
-    const catalogNow = readStaticCatalog();
-    const alreadyInCatalog = !!(catalogNow.levels || [])
+    const alreadyInCatalog = !!(catalog.levels || [])
       .find((l) => l.id === level)
       ?.folders?.some((f) => f.id === folderId);
 
@@ -118,24 +143,17 @@ module.exports = async function handler(req, res) {
       result.message = [
         `✅ ${count} soal “${title}” sudah dicek dan valid.`,
         "",
-        "Upload otomatis ke website belum aktif (koneksi Blob/GitHub belum dipasang).",
-        `File JSON sudah disiapkan. Letakkan di: public/questions/${relFile}`,
-        alreadyInCatalog
-          ? "Folder ini sudah ada di katalog — tidak perlu daftar ulang."
-          : "Folder baru: daftar juga di public/questions/catalog.json (file catalog ikut diunduh).",
-        "Setelah itu deploy / push agar siswa melihat soal baru.",
-      ].join("\n");
-      if (result.catalogNeeded) {
-        result.catalog = upsertCatalogFolder(catalogNow, level, {
-          id: folderId,
-          title: folderTitle || data.caseTitle || folderId,
-          blurb: folderBlurb,
-          file: relFile,
-          questionsHint: `${count} soal`,
-        });
-      }
+        "Publish otomatis ke Supabase belum aktif.",
+        "Di Vercel → Settings → Environment Variables, pasang:",
+        "  SUPABASE_URL",
+        "  SUPABASE_SERVICE_ROLE_KEY  (Project Settings → API → service_role, jangan share ke siswa)",
+        "Lalu Redeploy. Setelah itu tombol Publish langsung live — tanpa unduh JSON / git push.",
+        result.supabaseError ? `\nDetail: ${result.supabaseError}` : "",
+      ].filter(Boolean).join("\n");
+      if (result.catalogNeeded) result.catalog = catalog;
     } else {
-      result.message = `Soal folder "${folderTitle || folderId || level}" berhasil dipublish (${count} soal).`;
+      const via = result.published.map((p) => p.via).join(", ");
+      result.message = `Soal folder "${folderTitle || folderId || level}" sudah live (${count} soal) via ${via}. Siswa bisa langsung pilih folder ini di beranda.`;
     }
 
     return json(res, 200, result);
