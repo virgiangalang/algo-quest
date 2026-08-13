@@ -105,12 +105,35 @@ module.exports = async function handler(req, res) {
       }
     }
 
+    const catalogNow = readStaticCatalog();
+    const alreadyInCatalog = !!(catalogNow.levels || [])
+      .find((l) => l.id === level)
+      ?.folders?.some((f) => f.id === folderId);
+
     if (!result.published.length) {
-      result.message =
-        "Soal tervalidasi, tapi belum ke server (belum ada token Blob/GitHub). Klik Unduh JSON, simpan ke public/questions/" +
-        relFile +
-        ", lalu deploy. Folder juga perlu didaftarkan di catalog.json.";
       result.needsManualDownload = true;
+      result.catalogNeeded = !!(folderId && !alreadyInCatalog);
+      result.repoPath = `public/questions/${relFile}`;
+      const title = folderTitle || folderId || level;
+      result.message = [
+        `✅ ${count} soal “${title}” sudah dicek dan valid.`,
+        "",
+        "Upload otomatis ke website belum aktif (koneksi Blob/GitHub belum dipasang).",
+        `File JSON sudah disiapkan. Letakkan di: public/questions/${relFile}`,
+        alreadyInCatalog
+          ? "Folder ini sudah ada di katalog — tidak perlu daftar ulang."
+          : "Folder baru: daftar juga di public/questions/catalog.json (file catalog ikut diunduh).",
+        "Setelah itu deploy / push agar siswa melihat soal baru.",
+      ].join("\n");
+      if (result.catalogNeeded) {
+        result.catalog = upsertCatalogFolder(catalogNow, level, {
+          id: folderId,
+          title: folderTitle || data.caseTitle || folderId,
+          blurb: folderBlurb,
+          file: relFile,
+          questionsHint: `${count} soal`,
+        });
+      }
     } else {
       result.message = `Soal folder "${folderTitle || folderId || level}" berhasil dipublish (${count} soal).`;
     }
