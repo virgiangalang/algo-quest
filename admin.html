@@ -194,7 +194,7 @@ textarea{min-height:120px;font-family:ui-monospace,monospace;font-size:12px}
         <li><a href="/public/templates/sd-2-3-misteri-kantin-pelangi.csv" download>Contoh siap unggah: SD 2–3 · Misteri Kantin Pelangi (20 soal)</a></li>
         <li><a href="/public/templates/soal-template.csv" download>Template CSV klasik (tanpa folder)</a></li>
         <li><a href="/public/templates/soal-template.json" download>Template JSON</a></li>
-        <li><a href="/public/templates/prompt-ai.txt" download>Prompt AI (copy-paste)</a></li>
+        <li><a href="/public/templates/prompt-ai.txt?v=20260813w" download>Prompt AI (copy-paste) — 23 kolom A–W</a></li>
         <li><a href="/public/templates/PANDUAN-FOLDER.md" target="_blank" rel="noopener">Panduan folder</a></li>
         <li><a href="/docs/PANDUAN-SOAL.md" target="_blank" rel="noopener">Panduan lengkap (bahasa awam)</a></li>
         <li><a href="/">← Kembali ke game siswa</a></li>
@@ -205,16 +205,17 @@ textarea{min-height:120px;font-family:ui-monospace,monospace;font-size:12px}
         (kunci <b>service_role</b> dari Supabase → Settings → API — jangan dibagikan ke siswa).
         Setelah Redeploy, tombol <b>Publish</b> langsung live di beranda siswa.
       </p>
+      <pre class="preview hidden" id="prompt-preview" style="margin-top:12px;white-space:pre-wrap"></pre>
     </div>
   </div>
 </div>
 
 <script src="src/lib/question-csv.js"></script>
 <script>
+const PROMPT_AI_BUILTIN = "Kamu penulis soal matematika bertema detektif untuk **Algonova Quest**.\n\nBuatkan bank soal:\n- Kategori usia / level: {{LEVEL}}\n- Folder / misi: {{FOLDER}}\n- Jumlah: 20 soal (boleh 20–24), dibagi 4 bab\n- Bahasa Indonesia, ramah siswa, cerita sesuai judul folder\n\nCampuran tipe (wajib):\n- 15–18 soal type_ui=mcq (pilihan ganda)\n- 2–3 soal type_ui=numeric (ketik angka)\n- 2 soal type_ui=order (urutkan)\n\n============================================================\nFORMAT WAJIB — CSV 23 KOLOM (Excel kolom A sampai W)\n============================================================\n\nOutput HANYA file CSV. Tidak ada markdown, tidak ada tabel, tidak ada penjelasan sebelum/sesudahnya.\n\nBaris 1 = header PERSIS seperti ini (copy utuh, jangan dipotong):\n\nfolder_id,folder_title,bab_id,bab_title,id,type_ui,scene,q,choice_a,choice_b,choice_c,choice_d,answer,answer_value,answer_tolerance,items,answer_order,skill,difficulty,type,correct,wrong,clue\n\nSetiap baris soal HARUS punya 22 koma (23 kolom). Kalau koma kurang, semua teks jatuh ke kolom A — itu SALAH.\n\nPeta kolom Excel:\n\nA  folder_id\nB  folder_title\nC  bab_id\nD  bab_title\nE  id\nF  type_ui\nG  scene\nH  q\nI  choice_a\nJ  choice_b\nK  choice_c\nL  choice_d\nM  answer\nN  answer_value\nO  answer_tolerance\nP  items\nQ  answer_order\nR  skill\nS  difficulty\nT  type\nU  correct\nV  wrong\nW  clue\n\n============================================================\nPEMISAH KOLOM = KOMA  ,   (bukan titik koma ;  bukan tab  bukan |)\n============================================================\n\nLARANGAN (ini penyebab “semua di kolom A”):\n- Jangan pakai titik koma (;) sebagai pemisah\n- Jangan pakai tab\n- Jangan buat tabel Markdown (| kolom | kolom |)\n- Jangan bungkus SATU BARIS penuh dengan satu pasang tanda kutip\n- Jangan gabung 23 kolom jadi 1 sel / 1 paragraf\n- Jangan tulis nomor 1. 2. 3. di depan baris\n- Tanda | HANYA boleh di DALAM kolom V (wrong) atau P (items), BUKAN pemisah kolom\n\nKalau teks di dalam 1 kolom mengandung koma, kutip HANYA kolom itu, contoh:\n...,\"Pagi hari ada 8 siswa, lalu masuk 7 lagi.\",15,...\n\n============================================================\nCONTOH 3 BARIS (tiru pola ini)\n============================================================\n\nfolder_id,folder_title,bab_id,bab_title,id,type_ui,scene,q,choice_a,choice_b,choice_c,choice_d,answer,answer_value,answer_tolerance,items,answer_order,skill,difficulty,type,correct,wrong,clue\nkantin-pelangi,Misteri Kantin Pelangi,bab-1,Bab 1 — Antrian,q1-1,mcq,Pagi hari kantin ramai.,Di antrian ada 8 siswa dan 7 siswa. Berapa jumlahnya?,14,15,16,17,B,,,,,Penjumlahan,Mudah,analyst,8 + 7 = 15.,Kurang 1.|Benar 15.|Kelebihan 1.|Terlalu banyak.,Hitung semua anak.\nkantin-pelangi,Misteri Kantin Pelangi,bab-1,Bab 1 — Antrian,q1-2,numeric,Mesin kasir minta angka.,12 + 8 - 5 = ? (angka saja),,,,,,15,0,,,Hitung,Mudah,codebreaker,12 + 8 = 20 lalu 20 - 5 = 15.,,Kode pertama.\nkantin-pelangi,Misteri Kantin Pelangi,bab-1,Bab 1 — Antrian,q1-3,order,Kertas resep sobek. Urutkan dari kecil ke besar.,Urutkan angkanya.,,,,,,,,12|19|24|31,0|1|2|3,Membandingkan,Mudah,explorer,12 lalu 19 24 31.,,Angka kecil dulu.\n\nCek cepat 1 baris mcq: kolom A=folder_id, F=mcq, H=pertanyaan, I–L=pilihan, M=A/B/C/D, N–Q kosong, W=clue.\n\n============================================================\nISI TIAP KOLOM\n============================================================\n\nA folder_id     slug huruf kecil, tanpa spasi (contoh: kantin-pelangi). Sama di semua baris.\nB folder_title  judul misi. Sama di semua baris.\nC bab_id        bab-1 … bab-4\nD bab_title     Bab 1 — Judul Singkat\nE id            unik: q1-1, q1-2, …\nF type_ui       mcq  ATAU  numeric  ATAU  order\nG scene         1 kalimat cerita (bukan pertanyaan)\nH q             pertanyaan matematika\n\nKalau F = mcq:\n  I–L terisi (4 pilihan). M = A atau B atau C atau D.\n  N O P Q dikosongkan.\n  V = 4 feedback dipisah |  urut A|B|C|D  (contoh: Kurang.|Benar.|Hampir.|Terlalu besar.)\n\nKalau F = numeric:\n  I–L dan M dikosongkan.\n  N = angka jawaban (tanpa titik ribuan; uang 1500 bukan 1.500).\n  O = 0\n  P Q dikosongkan. V boleh kosong.\n\nKalau F = order:\n  I–L dan M N O dikosongkan.\n  P = item urutan BENAR dipisah |  (contoh: 12|19|24|31)\n  Q = 0|1|2|3\n  V boleh kosong.\n\nR skill         topik: Penjumlahan, Perkalian, Uang, Pola, Waktu, Geometri, …\nS difficulty    Mudah  atau  Sedang  atau  Sulit  (lebih banyak Mudah/Sedang)\nT type          analyst / speedster / investigator / codebreaker / explorer\nU correct       pembahasan 1–2 kalimat\nW clue          1 kalimat petunjuk cerita (boleh kosong)\n\nJangan pakai simbol $. Pakai Rp atau angka polos.\nJangan sebut nama produk lain. Ini hanya Algonova Quest.\n\nSetelah menulis: hitung koma di baris 2. Harus 22 koma. Kalau bukan 22, perbaiki dulu.\n";
 const TOKEN_KEY = "algo_admin_token";
 let parsedBank = null;
 let catalogCache = null;
-let aiPromptTemplate = "";
 
 function showMsg(el, text, type) {
   el.textContent = text;
@@ -354,19 +355,28 @@ async function copyAiPrompt() {
   const msg = document.getElementById("dash-msg");
   const meta = selectedFolderMeta();
   const level = document.getElementById("level").value;
-  if (!aiPromptTemplate) {
-    try {
-      const r = await fetch("/public/templates/prompt-ai.txt");
-      aiPromptTemplate = r.ok ? await r.text() : "";
-    } catch (_) {}
-  }
-  let text = aiPromptTemplate || "Buatkan CSV soal Algonova Quest.";
+  let text = typeof PROMPT_AI_BUILTIN === "string" ? PROMPT_AI_BUILTIN : "";
+  try {
+    const r = await fetch("/public/templates/prompt-ai.txt?v=20260813w", { cache: "no-store" });
+    if (r.ok) {
+      const fetched = await r.text();
+      if (fetched && fetched.length > 400 && !/Kindora/i.test(fetched) && /folder_id,folder_title/.test(fetched)) {
+        text = fetched;
+      }
+    }
+  } catch (_) {}
+  if (!text) text = "Buatkan CSV 23 kolom (A-W) untuk Algonova Quest. Header: folder_id,folder_title,bab_id,bab_title,id,type_ui,scene,q,choice_a,choice_b,choice_c,choice_d,answer,answer_value,answer_tolerance,items,answer_order,skill,difficulty,type,correct,wrong,clue";
   text = text.replace(/\{\{LEVEL\}\}/g, level).replace(/\{\{FOLDER\}\}/g, meta.title || meta.id || "folder");
+  const box = document.getElementById("prompt-preview");
+  if (box) {
+    box.textContent = text;
+    box.classList.remove("hidden");
+  }
   try {
     await navigator.clipboard.writeText(text);
-    showMsg(msg, "Prompt AI disalin. Tempel ke ChatGPT/Gemini. Hasil HARUS CSV 23 kolom (Excel A–W), pemisah koma — jangan sampai semua teks di kolom A.", "ok");
+    showMsg(msg, "Prompt baru disalin (23 kolom A–W, tanpa Kindora). Tempel ke ChatGPT/Gemini. Hasil CSV harus pecah sampai kolom W, bukan numpuk di A.", "ok");
   } catch (_) {
-    showMsg(msg, "Salin manual prompt di /public/templates/prompt-ai.txt", "info");
+    showMsg(msg, "Clipboard gagal. Prompt tampil di kotak bawah — salin manual.", "info");
   }
 }
 
