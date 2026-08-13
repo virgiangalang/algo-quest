@@ -251,6 +251,49 @@
     return rows.map((r) => r.map(csvEscape).join(",")).join("\n");
   }
 
+  function bankToCsv(bank) {
+    const fid = slugFolderId(bank && bank.folder);
+    const ft = (bank && bank.caseTitle) || "";
+    const lines = [HEADER.join(",")];
+    for (const ch of (bank && bank.chapters) || []) {
+      for (const q of ch.questions || []) {
+        const typeUi = String(q.type_ui || "mcq").toLowerCase();
+        const choices = Array.isArray(q.choices) ? q.choices : [];
+        const answerLetter =
+          typeUi === "mcq" && typeof q.answer === "number" && q.answer >= 0
+            ? String.fromCharCode(65 + q.answer)
+            : "";
+        const row = [
+          fid,
+          ft,
+          ch.id || "",
+          ch.title || "",
+          q.id || "",
+          typeUi,
+          q.scene || "",
+          q.q || "",
+          choices[0] || "",
+          choices[1] || "",
+          choices[2] || "",
+          choices[3] || "",
+          answerLetter,
+          typeUi === "numeric" ? (q.answer_value != null ? q.answer_value : "") : "",
+          q.answer_tolerance != null && q.answer_tolerance !== "" ? q.answer_tolerance : "",
+          Array.isArray(q.items) ? q.items.join("|") : "",
+          Array.isArray(q.answer_order) ? q.answer_order.join("|") : "",
+          q.skill || "",
+          q.difficulty || "",
+          q.type || "",
+          q.correct || "",
+          Array.isArray(q.wrong) ? q.wrong.join("|") : "",
+          q.clue || "",
+        ];
+        lines.push(row.map(csvEscape).join(","));
+      }
+    }
+    return lines.join("\n");
+  }
+
   const AlgoQuestionCsv = {
     LEVELS,
     HEADER,
@@ -260,6 +303,7 @@
     validateBank,
     csvHeader,
     exampleRows,
+    bankToCsv,
     detectDelimiter,
   };
 

@@ -11,7 +11,7 @@ function json(res, status, body) {
   res.statusCode = status;
   res.setHeader("Content-Type", "application/json; charset=utf-8");
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,DELETE,OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.end(JSON.stringify(body));
 }
@@ -195,8 +195,57 @@ function mergeCatalogWithBanks(catalog, banks) {
   return next;
 }
 
+function catalogHiddenSet(catalog) {
+  const hidden = catalog && Array.isArray(catalog.hiddenFiles) ? catalog.hiddenFiles : [];
+  return new Set(hidden.map((x) => String(x).replace(/^\/+/, "")));
+}
+
+function applyHiddenFiles(catalog) {
+  const hidden = catalogHiddenSet(catalog);
+  if (!hidden.size) return catalog;
+  for (const lvl of catalog.levels || []) {
+    lvl.folders = (lvl.folders || []).filter((f) => {
+      const file = String(f.file || "").replace(/^\/+/, "");
+      return !hidden.has(file) && !hidden.has(String(f.id || ""));
+    });
+  }
+  return catalog;
+}
+
+function hideFolderInCatalog(catalog, { file, folderId, level }) {
+  const next = JSON.parse(JSON.stringify(catalog || { version: 1, levels: [] }));
+  if (!Array.isArray(next.hiddenFiles)) next.hiddenFiles = [];
+  const clean = String(file || "").replace(/^\/+/, "");
+  const id = String(folderId || "").trim();
+  if (clean && !next.hiddenFiles.includes(clean)) next.hiddenFiles.push(clean);
+  if (id && !next.hiddenFiles.includes(id)) next.hiddenFiles.push(id);
+  for (const lvl of next.levels || []) {
+    if (level && lvl.id !== level) continue;
+    lvl.folders = (lvl.folders || []).filter((f) => f.id !== id && f.file !== clean);
+  }
+  next.updatedAt = new Date().toISOString();
+  return applyHiddenFiles(next);
+}
+
+function unhideFileInCatalog(catalog, file, folderId) {
+  if (!catalog) return catalog;
+  const clean = String(file || "").replace(/^\/+/, "");
+  const id = String(folderId || "").trim();
+  if (Array.isArray(catalog.hiddenFiles)) {
+    catalog.hiddenFiles = catalog.hiddenFiles.filter((x) => x !== clean && x !== id);
+  }
+  return catalog;
+}
+
+function isFileHidden(catalog, file) {
+  if (!file) return false;
+  return catalogHiddenSet(catalog).has(String(file).replace(/^\/+/, ""));
+}
+
 function mergeCatalogLayers(staticCat, remoteCat, banks) {
   let next = JSON.parse(JSON.stringify(staticCat || { version: 1, levels: [] }));
+  const hidden = [];
+  if (remoteCat && Array.isArray(remoteCat.hiddenFiles)) hidden.push(...remoteCat.hiddenFiles);
   if (remoteCat && Array.isArray(remoteCat.levels)) {
     for (const lvl of remoteCat.levels) {
       for (const folder of lvl.folders || []) {
@@ -205,7 +254,9 @@ function mergeCatalogLayers(staticCat, remoteCat, banks) {
     }
     if (remoteCat.updatedAt) next.updatedAt = remoteCat.updatedAt;
   }
-  return mergeCatalogWithBanks(next, banks);
+  next = mergeCatalogWithBanks(next, banks);
+  next.hiddenFiles = [...new Set(hidden.map((x) => String(x).replace(/^\/+/, "")))];
+  return applyHiddenFiles(next);
 }
 
 async function supabaseGetBank(file) {
@@ -256,6 +307,30 @@ async function supabaseLoadMergedCatalog() {
     supabaseListBanks(),
   ]);
   return mergeCatalogLayers(staticCat, remote, banks);
+}
+
+async function supabaseSaveCatalog(catalog) {
+  await supabaseRest(
+    "POST",
+    "algonova_catalog?on_conflict=id",
+    { id: "default", payload: catalog, updated_at: new Date().toISOString() },
+    { write: true, prefer: "return=minimal,resolution=merge-duplicates" }
+  );
+}
+
+async function supabaseDeleteBank(file) {
+  const clean = String(file || "").replace(/^\/+/, "");
+  if (!clean || clean.includes("..")) throw new Error("Path file tidak valid");
+  await supabaseRest("DELETE", `algonova_question_banks?file=eq.${encodeURIComponent(clean)}`, null, {
+    write: true,
+    prefer: "return=minimal",
+  });
+  return { file: clean };
+}
+
+async function supabaseIsFileHidden(file) {
+  const remote = await supabaseGetCatalogPayload();
+  return isFileHidden(remote, file);
 }
 
 async function supabasePublishBank({ file, level, folderId, folderTitle, blurb, count, payload, catalog }) {
@@ -475,4 +550,12 @@ module.exports = {
   supabasePublishBank,
   mergeCatalogLayers,
   mergeCatalogWithBanks,
+  applyHiddenFiles,
+  hideFolderInCatalog,
+  unhideFileInCatalog,
+  isFileHidden,
+  supabaseSaveCatalog,
+  supabaseDeleteBank,
+  supabaseIsFileHidden,
+  supabaseGetCatalogPayload,
 };

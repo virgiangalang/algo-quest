@@ -13,6 +13,7 @@ const {
   supabaseConfig,
   supabaseLoadMergedCatalog,
   supabasePublishBank,
+  unhideFileInCatalog,
 } = require("./_lib");
 const AlgoQuestionCsv = require("../src/lib/question-csv");
 
@@ -78,6 +79,7 @@ module.exports = async function handler(req, res) {
 
     let catalog = await supabaseLoadMergedCatalog();
     if (!catalog || !Array.isArray(catalog.levels)) catalog = readStaticCatalog();
+    catalog = unhideFileInCatalog(catalog, relFile, folderId);
     if (folderId) catalog = upsertCatalogFolder(catalog, level, folderMeta);
 
     try {

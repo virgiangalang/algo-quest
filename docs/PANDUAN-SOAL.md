@@ -13,7 +13,9 @@ Halaman admin: **`/admin.html`** (password di Vercel env `ADMIN_PASSWORD`).
 2. Klik **Unduh template CSV** (atau pakai [`soal-folder-template.csv`](../public/templates/soal-folder-template.csv))
 3. (Opsional) **Salin prompt AI**, tempel ke ChatGPT/Gemini, paste hasil ke Excel
 4. Simpan sebagai **CSV UTF-8** (bukan .xlsx)
-5. Upload → **Preview & validasi** (error akan menyebut baris Excel) → **Publish**
+5. Upload → **Preview & validasi** → **Publish**
+
+**Edit / hapus (tanpa CSV):** di admin, pilih folder → **Muat soal** / **Edit soal** → ubah teks atau **Hapus soal ini** → **Simpan perubahan soal**. **Hapus folder** (ketik `HAPUS`) menghilangkan misi dari beranda siswa.
 
 ---
 

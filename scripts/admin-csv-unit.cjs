@@ -6,7 +6,7 @@ const fs = require("fs");
 const path = require("path");
 const AlgoQuestionCsv = require("../src/lib/question-csv");
 const AlgoHistory = require("../src/lib/history");
-const { upsertCatalogFolder, mergeCatalogLayers, mergeCatalogWithBanks } = require("../api/_lib");
+const { upsertCatalogFolder, mergeCatalogLayers, mergeCatalogWithBanks, hideFolderInCatalog } = require("../api/_lib");
 
 function assert(cond, msg) {
   if (!cond) {
@@ -82,5 +82,17 @@ const withBank = mergeCatalogWithBanks({ version: 1, levels: [] }, [
 ]);
 assert(withBank.levels.find((l) => l.id === "smp").folders[0].title === "X", "upsert new level from bank");
 assert(upsertCatalogFolder(baseCat, "sd-kelas-4-6", { id: "kode", title: "Kode Baru", file: "sd-kelas-4-6.json" }).levels[0].folders[0].title === "Kode Baru", "folder title update");
+
+const hiddenCat = hideFolderInCatalog(layered, { file: "sd-kelas-4-6/toko.json", folderId: "toko", level: "sd-kelas-4-6" });
+const hiddenIds = hiddenCat.levels.find((l) => l.id === "sd-kelas-4-6").folders.map((f) => f.id);
+assert(!hiddenIds.includes("toko"), "hidden folder removed from catalog");
+assert(hiddenCat.hiddenFiles.includes("sd-kelas-4-6/toko.json"), "hiddenFiles recorded");
+const rematerialized = mergeCatalogLayers(baseCat, hiddenCat, []);
+assert(!rematerialized.levels.find((l) => l.id === "sd-kelas-4-6").folders.some((f) => f.id === "toko"), "static merge does not resurrect hidden folder");
+
+const csvRound = AlgoQuestionCsv.bankToCsv(folderBank);
+assert(csvRound.split("\n").length >= 4, "bankToCsv has header + rows");
+const reparsed = AlgoQuestionCsv.rowsToBank("sd-kelas-4-6", AlgoQuestionCsv.parseCsv(csvRound), {});
+assert(!AlgoQuestionCsv.validateBank(reparsed), "csv roundtrip validates");
 
 console.log("OK admin-csv-unit");

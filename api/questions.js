@@ -4,6 +4,7 @@ const {
   readStaticQuestion,
   LEVELS,
   supabaseGetBank,
+  supabaseIsFileHidden,
 } = require("./_lib");
 
 module.exports = async function handler(req, res) {
@@ -23,6 +24,10 @@ module.exports = async function handler(req, res) {
     const rel = file
       ? String(file).replace(/^\/+/, "")
       : `${level}.json`;
+
+    if (await supabaseIsFileHidden(rel)) {
+      return json(res, 404, { ok: false, message: `Soal ${key} tidak ditemukan` });
+    }
 
     const fromSb = await supabaseGetBank(rel);
     if (fromSb && fromSb.chapters) {

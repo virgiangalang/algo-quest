@@ -60,6 +60,25 @@ textarea{min-height:120px;font-family:ui-monospace,monospace;font-size:12px}
   font-family:system-ui,sans-serif;font-size:12px;background:#23202a;color:#f5f1f7;
   border-radius:10px;padding:14px;max-height:280px;overflow:auto;white-space:pre-wrap;
 }
+.folder-list{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:8px}
+.folder-item{
+  display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;
+  background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+  font-family:system-ui,sans-serif;font-size:13px;
+}
+.folder-item .meta{color:var(--muted);font-size:12px;margin-top:2px}
+.btn.danger{background:#9e3849;box-shadow:0 3px 0 #6d2431}
+.btn.danger:hover{background:#b34457}
+.btn.tiny{padding:7px 10px;font-size:12px;box-shadow:none}
+.q-card{
+  border:1px solid var(--line);border-radius:10px;padding:12px;margin:8px 0;background:#fff;
+  font-family:system-ui,sans-serif;
+}
+.q-card h4{font-size:13px;margin-bottom:8px}
+.q-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.q-card input,.q-card select,.q-card textarea{width:100%;padding:8px 10px;border:1.5px solid #d5ccc0;border-radius:7px;background:#fff;font-family:system-ui,sans-serif;font-size:13px}
+.q-card textarea{min-height:64px}
+.chapter-head{display:flex;gap:8px;align-items:center;margin-top:16px}
 </style>
 </head>
 <body>
@@ -137,6 +156,35 @@ textarea{min-height:120px;font-family:ui-monospace,monospace;font-size:12px}
       <div class="msg" id="dash-msg"></div>
       <div class="stat" id="stats" style="margin-top:10px"></div>
       <div class="preview hidden" id="preview" style="margin-top:12px"></div>
+    </div>
+
+    <div class="card">
+      <strong style="font-family:Georgia,serif;font-size:18px">Edit / hapus soal</strong>
+      <p class="stat" style="margin:8px 0 0">Pilih folder di atas, lalu muat soal. Bisa ubah teks, hapus satu soal, atau hapus seluruh folder dari beranda siswa. Simpan = Publish ulang ke Supabase.</p>
+      <div class="row">
+        <button class="btn" id="btn-load" type="button">Muat soal folder ini</button>
+        <button class="btn secondary" id="btn-csv-current" type="button" disabled>Unduh CSV folder ini</button>
+        <button class="btn secondary" id="btn-add-q" type="button" disabled>Tambah soal</button>
+        <button class="btn danger" id="btn-delete-folder" type="button">Hapus folder dari siswa</button>
+      </div>
+      <div class="msg" id="edit-msg"></div>
+      <ul class="folder-list" id="folder-list"></ul>
+      <div id="editor" class="hidden" style="margin-top:14px">
+        <div class="grid">
+          <div>
+            <label for="edit-title">Judul misi (tampil ke siswa)</label>
+            <input id="edit-title" type="text">
+          </div>
+          <div>
+            <label for="edit-blurb">Deskripsi singkat</label>
+            <input id="edit-blurb" type="text">
+          </div>
+        </div>
+        <div id="q-editor"></div>
+        <div class="row">
+          <button class="btn" id="btn-save-edit" type="button">Simpan perubahan soal</button>
+        </div>
+      </div>
     </div>
 
     <div class="card links">
@@ -223,17 +271,48 @@ async function loadCatalog() {
   fillFolderSelect();
 }
 
+function escapeHtml(s) {
+  return String(s ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 function fillFolderSelect() {
   const level = document.getElementById("level").value;
   const sel = document.getElementById("folder");
   const folders = ((catalogCache && catalogCache.levels) || []).find((l) => l.id === level);
   const list = (folders && folders.folders) || [];
   sel.innerHTML = list.map((f) =>
-    `<option value="${f.id}" data-file="${f.file || ""}" data-title="${(f.title || "").replace(/"/g, "&quot;")}">${f.title || f.id}</option>`
+    `<option value="${escapeHtml(f.id)}" data-file="${escapeHtml(f.file || "")}" data-title="${escapeHtml(f.title || "")}" data-blurb="${escapeHtml(f.blurb || "")}">${escapeHtml(f.title || f.id)}</option>`
   ).join("") + `<option value="__new__">+ Folder / misi baru…</option>`;
   if (list.length) sel.value = list[0].id;
   else sel.value = "__new__";
   syncFolderNew();
+  renderFolderList(list);
+}
+
+function renderFolderList(list) {
+  const ul = document.getElementById("folder-list");
+  if (!ul) return;
+  const level = document.getElementById("level").value;
+  if (!list.length) {
+    ul.innerHTML = `<li class="stat">Belum ada folder di kategori ini.</li>`;
+    return;
+  }
+  ul.innerHTML = list.map((f) => `
+    <li class="folder-item">
+      <div>
+        <strong>${escapeHtml(f.title || f.id)}</strong>
+        <div class="meta">${escapeHtml(level)} · ${escapeHtml(f.file || "")} · ${escapeHtml(f.questionsHint || "")}</div>
+      </div>
+      <div class="row" style="margin:0">
+        <button class="btn tiny secondary" type="button" data-act="load" data-id="${escapeHtml(f.id)}">Edit soal</button>
+        <button class="btn tiny danger" type="button" data-act="del" data-id="${escapeHtml(f.id)}" data-file="${escapeHtml(f.file || "")}">Hapus</button>
+      </div>
+    </li>
+  `).join("");
 }
 
 function selectedFolderMeta() {
@@ -334,6 +413,7 @@ async function preview() {
     prev.classList.remove("hidden");
     prev.textContent = JSON.stringify(bank, null, 2).slice(0, 4000) + (count > 3 ? "\n…" : "");
     showMsg(msg, `Validasi OK (${count} soal). Siap publish atau unduh JSON.`, "ok");
+    if (!document.getElementById("editor").classList.contains("hidden")) renderEditor();
   } catch (e) {
     parsedBank = null;
     document.getElementById("btn-publish").disabled = true;
@@ -376,8 +456,8 @@ async function publish() {
       body: JSON.stringify({
         level: document.getElementById("level").value,
         folderId: meta.id,
-        folderTitle: meta.title,
-        folderBlurb: meta.blurb,
+        folderTitle: (document.getElementById("edit-title") && document.getElementById("edit-title").value.trim()) || meta.title,
+        folderBlurb: meta.blurb || (document.getElementById("edit-blurb") && document.getElementById("edit-blurb").value.trim()) || "",
         file: meta.file,
         data: parsedBank,
       }),
@@ -406,11 +486,227 @@ async function publish() {
 }
 
 function downloadJson() {
+  collectEditor();
   if (!parsedBank) return;
   const meta = selectedFolderMeta();
   const level = document.getElementById("level").value;
   const rel = meta.file || (meta.id ? `${level}/${meta.id}.json` : `${level}.json`);
   triggerDownload(fileBasename(rel), JSON.stringify(parsedBank, null, 2), "application/json");
+}
+
+function authHeaders() {
+  return { "Content-Type": "application/json", Authorization: `Bearer ${getToken()}` };
+}
+
+function blankQuestion() {
+  return {
+    id: `q-${Date.now()}`,
+    type_ui: "mcq",
+    scene: "Petunjuk baru muncul di lokasi kasus.",
+    q: "",
+    choices: ["", "", "", ""],
+    answer: 0,
+    skill: "Matematika",
+    difficulty: "Sedang",
+    type: "analyst",
+    correct: "Benar! Bukti terkonfirmasi.",
+    wrong: ["Coba hitung kembali.", "Coba hitung kembali.", "Coba hitung kembali.", "Coba hitung kembali."],
+    clue: "",
+  };
+}
+
+function renderEditor() {
+  const wrap = document.getElementById("q-editor");
+  const editor = document.getElementById("editor");
+  if (!parsedBank) {
+    editor.classList.add("hidden");
+    document.getElementById("btn-add-q").disabled = true;
+    document.getElementById("btn-csv-current").disabled = true;
+    return;
+  }
+  editor.classList.remove("hidden");
+  document.getElementById("btn-add-q").disabled = false;
+  document.getElementById("btn-csv-current").disabled = false;
+  document.getElementById("edit-title").value = parsedBank.caseTitle || "";
+  document.getElementById("edit-blurb").value = document.getElementById("folderBlurb").value || "";
+  document.getElementById("btn-publish").disabled = false;
+  document.getElementById("btn-download").disabled = false;
+  let html = "";
+  (parsedBank.chapters || []).forEach((ch, ci) => {
+    html += `<div class="chapter-head">
+      <input data-ch-title="${ci}" value="${escapeHtml(ch.title || "")}" placeholder="Judul bab">
+      <button class="btn tiny secondary" type="button" data-add-in="${ci}">+ Soal di bab ini</button>
+    </div>`;
+    (ch.questions || []).forEach((q, qi) => {
+      const typeUi = (q.type_ui || "mcq").toLowerCase();
+      const choices = q.choices || ["", "", "", ""];
+      html += `<div class="q-card" data-ci="${ci}" data-qi="${qi}">
+        <h4>Soal ${qi + 1} · ${escapeHtml(q.id || "")}</h4>
+        <div class="q-grid">
+          <div>
+            <label>Tipe</label>
+            <select data-f="type_ui">
+              <option value="mcq" ${typeUi === "mcq" ? "selected" : ""}>Pilihan ganda</option>
+              <option value="numeric" ${typeUi === "numeric" ? "selected" : ""}>Isi angka</option>
+              <option value="order" ${typeUi === "order" ? "selected" : ""}>Urutan</option>
+            </select>
+          </div>
+          <div>
+            <label>Kunci (A–D / angka)</label>
+            <input data-f="answer" value="${escapeHtml(typeUi === "numeric" ? (q.answer_value ?? "") : (typeof q.answer === "number" ? String.fromCharCode(65 + q.answer) : q.answer || ""))}">
+          </div>
+        </div>
+        <label style="margin-top:8px">Cerita singkat</label>
+        <input data-f="scene" value="${escapeHtml(q.scene || "")}">
+        <label style="margin-top:8px">Pertanyaan</label>
+        <textarea data-f="q">${escapeHtml(q.q || "")}</textarea>
+        <div class="q-grid" style="margin-top:8px">
+          <div><label>A</label><input data-f="choice_0" value="${escapeHtml(choices[0] || "")}"></div>
+          <div><label>B</label><input data-f="choice_1" value="${escapeHtml(choices[1] || "")}"></div>
+          <div><label>C</label><input data-f="choice_2" value="${escapeHtml(choices[2] || "")}"></div>
+          <div><label>D</label><input data-f="choice_3" value="${escapeHtml(choices[3] || "")}"></div>
+        </div>
+        <label style="margin-top:8px">Items urutan (pisah | )</label>
+        <input data-f="items" value="${escapeHtml(Array.isArray(q.items) ? q.items.join("|") : "")}">
+        <label style="margin-top:8px">Pembahasan benar</label>
+        <input data-f="correct" value="${escapeHtml(q.correct || "")}">
+        <label style="margin-top:8px">Clue</label>
+        <input data-f="clue" value="${escapeHtml(q.clue || "")}">
+        <div class="row"><button class="btn tiny danger" type="button" data-del-q="${ci}:${qi}">Hapus soal ini</button></div>
+      </div>`;
+    });
+  });
+  wrap.innerHTML = html || `<p class="stat">Belum ada soal. Klik Tambah soal.</p>`;
+  document.getElementById("stats").textContent = `${(parsedBank.chapters || []).length} bab · ${(parsedBank.chapters || []).reduce((n, c) => n + ((c.questions || []).length), 0)} soal`;
+}
+
+function collectEditor() {
+  const editor = document.getElementById("editor");
+  if (!parsedBank || editor.classList.contains("hidden")) return parsedBank;
+  parsedBank.caseTitle = document.getElementById("edit-title").value.trim() || parsedBank.caseTitle;
+  const blurb = document.getElementById("edit-blurb").value.trim();
+  document.getElementById("folderBlurb").value = blurb;
+  editor.querySelectorAll("[data-ch-title]").forEach((el) => {
+    const ci = Number(el.getAttribute("data-ch-title"));
+    if (parsedBank.chapters[ci]) parsedBank.chapters[ci].title = el.value.trim();
+  });
+  editor.querySelectorAll(".q-card").forEach((card) => {
+    const ci = Number(card.getAttribute("data-ci"));
+    const qi = Number(card.getAttribute("data-qi"));
+    const q = parsedBank.chapters[ci] && parsedBank.chapters[ci].questions[qi];
+    if (!q) return;
+    const val = (name) => {
+      const el = card.querySelector(`[data-f="${name}"]`);
+      return el ? el.value : "";
+    };
+    q.scene = val("scene");
+    q.q = val("q");
+    q.correct = val("correct");
+    q.clue = val("clue");
+    const typeUi = val("type_ui") || "mcq";
+    q.type_ui = typeUi;
+    if (typeUi === "numeric") {
+      q.answer_value = Number(String(val("answer")).replace(",", "."));
+    } else if (typeUi === "order") {
+      q.items = val("items").split("|").map((s) => s.trim()).filter(Boolean);
+      q.answer_order = q.items.map((_, i) => i);
+      q.choices = q.items;
+      q.answer = 0;
+    } else {
+      q.choices = [val("choice_0"), val("choice_1"), val("choice_2"), val("choice_3")].filter((x) => String(x).trim() !== "");
+      let answer = val("answer").trim();
+      if (/^[A-Da-d]$/.test(answer)) answer = answer.toUpperCase().charCodeAt(0) - 65;
+      else answer = Number(answer);
+      q.answer = answer;
+    }
+  });
+  return parsedBank;
+}
+
+async function loadBank(folderId) {
+  const msg = document.getElementById("edit-msg");
+  if (folderId) document.getElementById("folder").value = folderId;
+  syncFolderNew();
+  const meta = selectedFolderMeta();
+  const level = document.getElementById("level").value;
+  const file = meta.file || (meta.id ? `${level}/${meta.id}.json` : `${level}.json`);
+  try {
+    const r = await fetch(`/api/questions?file=${encodeURIComponent(file)}`, { cache: "no-store" });
+    const data = await r.json();
+    if (!r.ok || !data.chapters) throw new Error(data.message || "Soal tidak ditemukan.");
+    parsedBank = data;
+    parsedBank.level = level;
+    if (meta.id) parsedBank.folder = meta.id;
+    const opt = document.getElementById("folder").selectedOptions[0];
+    if (opt && opt.getAttribute("data-blurb")) document.getElementById("folderBlurb").value = opt.getAttribute("data-blurb");
+    renderEditor();
+    showMsg(msg, `Dimuat: ${data.caseTitle || meta.title} (${data.chapters.reduce((n, c) => n + (c.questions || []).length, 0)} soal). Edit lalu Simpan.`, "ok");
+  } catch (e) {
+    showMsg(msg, e.message, "err");
+  }
+}
+
+function addQuestion(chapterIndex) {
+  collectEditor();
+  if (!parsedBank) return;
+  if (!parsedBank.chapters || !parsedBank.chapters.length) {
+    parsedBank.chapters = [{ id: "bab-1", title: "Bab 1", questions: [] }];
+  }
+  const ci = Number.isInteger(chapterIndex) ? chapterIndex : parsedBank.chapters.length - 1;
+  parsedBank.chapters[ci].questions.push(blankQuestion());
+  renderEditor();
+}
+
+async function saveEdit() {
+  const msg = document.getElementById("edit-msg");
+  collectEditor();
+  const Csv = window.AlgoQuestionCsv;
+  if (!parsedBank) return showMsg(msg, "Muat folder dulu.", "err");
+  const err = Csv ? Csv.validateBank(parsedBank) : null;
+  if (err) return showMsg(msg, err, "err");
+  await publish();
+  const dash = document.getElementById("dash-msg");
+  if (dash.classList.contains("ok") || dash.classList.contains("info")) {
+    showMsg(msg, dash.textContent, dash.classList.contains("ok") ? "ok" : "info");
+    renderEditor();
+  }
+}
+
+async function deleteFolder(folderId, file) {
+  const msg = document.getElementById("edit-msg");
+  if (folderId) document.getElementById("folder").value = folderId;
+  const meta = selectedFolderMeta();
+  const level = document.getElementById("level").value;
+  const title = meta.title || folderId;
+  const typed = window.prompt(`Hapus folder “${title}” dari beranda siswa?\nKetik HAPUS untuk konfirmasi.`);
+  if (typed !== "HAPUS") return;
+  try {
+    const resp = await fetch("/api/admin-bank", {
+      method: "DELETE",
+      headers: authHeaders(),
+      body: JSON.stringify({
+        level,
+        folderId: meta.id || folderId,
+        file: file || meta.file,
+      }),
+    });
+    const data = await resp.json().catch(() => ({}));
+    if (!resp.ok || data.ok === false) throw new Error(data.message || "Gagal hapus.");
+    parsedBank = null;
+    renderEditor();
+    showMsg(msg, data.message, "ok");
+    await loadCatalog();
+  } catch (e) {
+    showMsg(msg, e.message, "err");
+  }
+}
+
+function downloadCurrentCsv() {
+  collectEditor();
+  const Csv = window.AlgoQuestionCsv;
+  if (!parsedBank || !Csv || !Csv.bankToCsv) return;
+  const meta = selectedFolderMeta();
+  triggerDownload(`soal-${meta.id || "folder"}.csv`, Csv.bankToCsv(parsedBank), "text/csv;charset=utf-8");
 }
 
 document.getElementById("btn-login").onclick = login;
@@ -424,10 +720,38 @@ document.getElementById("btn-logout").onclick = () => {
 document.getElementById("level").onchange = fillFolderSelect;
 document.getElementById("folder").onchange = syncFolderNew;
 document.getElementById("btn-parse").onclick = preview;
-document.getElementById("btn-publish").onclick = publish;
+document.getElementById("btn-publish").onclick = () => { collectEditor(); publish(); };
 document.getElementById("btn-download").onclick = downloadJson;
 document.getElementById("btn-template").onclick = downloadTemplate;
 document.getElementById("btn-prompt").onclick = copyAiPrompt;
+document.getElementById("btn-load").onclick = () => loadBank();
+document.getElementById("btn-csv-current").onclick = downloadCurrentCsv;
+document.getElementById("btn-add-q").onclick = () => addQuestion();
+document.getElementById("btn-save-edit").onclick = saveEdit;
+document.getElementById("btn-delete-folder").onclick = () => deleteFolder();
+document.getElementById("folder-list").addEventListener("click", (e) => {
+  const btn = e.target.closest("button[data-act]");
+  if (!btn) return;
+  if (btn.getAttribute("data-act") === "load") loadBank(btn.getAttribute("data-id"));
+  if (btn.getAttribute("data-act") === "del") deleteFolder(btn.getAttribute("data-id"), btn.getAttribute("data-file"));
+});
+document.getElementById("q-editor").addEventListener("click", (e) => {
+  const addIn = e.target.closest("[data-add-in]");
+  if (addIn) {
+    collectEditor();
+    addQuestion(Number(addIn.getAttribute("data-add-in")));
+    return;
+  }
+  const del = e.target.closest("[data-del-q]");
+  if (!del) return;
+  collectEditor();
+  const [ci, qi] = del.getAttribute("data-del-q").split(":").map(Number);
+  const ch = parsedBank && parsedBank.chapters[ci];
+  if (!ch) return;
+  ch.questions.splice(qi, 1);
+  parsedBank.chapters = parsedBank.chapters.filter((c) => (c.questions || []).length);
+  renderEditor();
+});
 
 if (getToken()) setAuthed(true);
 </script>
